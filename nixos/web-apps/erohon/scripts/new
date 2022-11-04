@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+# new - create a new git repository
+#
+# Usage:
+#
+#   new [repo name]
+#
+
+abort 'Not implemented yet.'

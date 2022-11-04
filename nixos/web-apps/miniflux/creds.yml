@@ -1,0 +1,39 @@
+miniflux_admin: ENC[AES256_GCM,data:Z3LLMtwPpfphyUKwRAwOAsOL/88agpX53/ZET5R8IuKmBkoOHYxBvCXzBhnjnmF1JtyF4K+XrHgxdnqiZ1tl4GpGAS44UWFMIYnhvwJ+yzqx,iv:KAM57j3qDh3kc2XoQVRfG0qQZ50MWa/L7pF16Q7KulA=,tag:aW8vVEc2FxnWZuftXSkGUw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age17lvnmh99feams2pvfljw34k5s705uk89x6g26r4ml85yu0h2q9uswpmjm6
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1SjhEYTBiZGc5Yzg1YlJD
+            K3NLR09XaHhVVGhnWVN6b1hDZnhEeEc5RWxjCmVEQlNrdmU5VnUwVmpjTld3RG51
+            RHBTTTVRYnRWS1VRZFJ2RmVlUVI0dEUKLS0tIHlKZ2pwd3RiVTJrQzcreW1RMy9P
+            MW9VSVlvYXY0Unp1N2lBb0h5TWdFZ28KMM43TjkbFgItDuK01lfSCWzVWrLpzkMX
+            Ucr36Rhs6HveI9l/Jiuf5H/SIukfMr07kUF37WF2+MOoFMNhdWKdZQ==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1n7wt2ctw9ep8cll7lfrh4j69wr608ayxru3cpztljj0v3vm6qyms47fys4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlREVzTVZlcTBXRkZIYk1Y
+            UTVBVzM3MUthNkFmR203OTltN0R0S25rY1RVCmdvbVg5VzBFWC9peHlVaU4zVGVw
+            dlI1SkNFUEFFUG1vVk1RWnMra1VyUGsKLS0tIDVHU1ZNYnZFZWNEeVVOVEFNV3Vs
+            VERKMGRQVHVqa2RJRm5LWVVIRWtNemMKsQqqu49Jdco72zjvAbc9cwpHssPYkTnI
+            xKL/akM9Lw36DB3ZUds8lS+Noe1MdL0kQbU5a2ezAXGrYG/iYElh/w==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1a98ems87xszlfme3uz94feematuh7nku84sfdezyq9qz5q8emp6qsuevgr
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBUZlp4UlpqWG1MQmsxUGdy
+            d1ExSkQzeHYvUEtHN2pISHRPY2JxTnZjekhrCjlkRmoraG9CbXVxcUUya2gycVQy
+            RFpPOUN5MjFmTUpuT0xuS3ZtWkpGR3MKLS0tIGtsZFppOGk3OVhBMlMyYTlEOVlK
+            WnY0WXlzeldLbTN3WTY0Y0ZQdjVqcGMKpkK/K9VDfWV8eepjZnfHGRBEDb6b/3/t
+            GjWgxPTpyaA1TrjRmVwl23v89ummzIxN/Zk/hRPu/4mhmESzqKFfSg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-08-17T03:56:07Z"
+    mac: ENC[AES256_GCM,data:sVuAQV1CH4JHnLZpdhghl/5tKQJ5osBna1B85gFIB0DGgaaoN+1SfhguPpz669SRoDF98F4wWqOebk1zg/TRPoad/1RpQ7sqE8V+Xiriv1gDkvK+8+FhUbsB5kh6DqXfHALE4BOyGEtw+PSefQ/uZrwvfC7bna9tHrrL1mJAvfo=,iv:i1ABMkVTXAsIc8ODBeMU+ObtXmuMY/Cl9Zo8v9lORxc=,tag:rkdoRb5aRnHVtSOTOa9QFw==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.7.3

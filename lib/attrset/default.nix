@@ -1,0 +1,6 @@
+[
+
+  ./getting.nix
+  ./merge.nix
+
+]

@@ -1,0 +1,12 @@
+---
+keys:
+  - &me age17lvnmh99feams2pvfljw34k5s705uk89x6g26r4ml85yu0h2q9uswpmjm6
+  - &laptop age1n7wt2ctw9ep8cll7lfrh4j69wr608ayxru3cpztljj0v3vm6qyms47fys4
+  - &harumi age1a98ems87xszlfme3uz94feematuh7nku84sfdezyq9qz5q8emp6qsuevgr
+
+creation_rules:
+  - key_groups:
+    - age:
+      - *me
+      - *laptop
+      - *harumi
