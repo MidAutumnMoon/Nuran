@@ -73,8 +73,8 @@
     {
       inherit lib;
 
-      nixosConfigurations =
-        { aquae =
+      nixosConfigurations = { 
+          lyfua =
             machine { toplevel = ./machines/laptop; };
           harumi =
             machine { toplevel = ./machines/harumi; };

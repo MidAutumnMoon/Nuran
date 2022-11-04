@@ -1,6 +1,19 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
+
+let
+
+  baseOption =
+    [ "compress-force=zstd" "noatime" ];
+
+in
 
 {
+
+  boot.initrd.luks.devices."lyfua" = {
+      device =
+        "/dev/disk/by-uuid/fcdf1ea7-8aa1-4dd6-9271-c010612fca41";
+    };
+
 
   fileSystems."/" =
     { device = "none";
@@ -8,52 +21,50 @@
       options = [ "defaults" "size=16G" "mode=755" ];
     };
 
-  fileSystems."/nix" =
-    { device = "aquae/local/nix";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
-
-  fileSystems."/var/log" =
-    { device = "aquae/local/log";
-      fsType = "zfs";
-    };
-
-  fileSystems."/var/lib" =
-    { device = "aquae/local/lib";
-      fsType = "zfs";
-    };
-
-  fileSystems."/var/tmp" =
-    { device = "aquae/local/tmp";
-      fsType = "zfs";
-    };
-
-  fileSystems."/var/cache" =
-    { device = "aquae/local/cache";
-      fsType = "zfs";
-    };
-
   fileSystems."/home" =
-    { device = "aquae/safe/home";
-      fsType = "zfs";
+    { device = "/dev/mapper/lyfua";
+      fsType = "btrfs";
+      options = [ "subvol=home" ] ++ baseOption;
+    };
+
+  # fileSystems."/etc" =
+  #   { device = "/dev/mapper/lyfua";
+  #     fsType = "btrfs";
+  #     options = [ "subvol=etc" ] ++ baseOption;
+  #   };
+
+  fileSystems."/nix" =
+    { device = "/dev/mapper/lyfua";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ] ++ baseOption;
     };
 
   fileSystems."/persist" =
-    { device = "aquae/safe/persist";
-      fsType = "zfs";
+    { device = "/dev/mapper/lyfua";
+      fsType = "btrfs";
+      options = [ "subvol=persist" ] ++ baseOption;
       neededForBoot = true;
     };
 
+  fileSystems."/root" =
+    { device = "/dev/mapper/lyfua";
+      fsType = "btrfs";
+      options = [ "subvol=root" ] ++ baseOption;
+    };
+
+  fileSystems."/var" =
+    { device = "/dev/mapper/lyfua";
+      fsType = "btrfs";
+      options = [ "subvol=var" ] ++ baseOption;
+    };
+
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1BD4-6174";
+    { device = "/dev/disk/by-uuid/FD5E-3536";
       fsType = "vfat";
     };
 
+
   swapDevices =
-    [ {
-      device = "/dev/disk/by-uuid/932e25e5-a659-4e66-bebe-fc9bda581083";
-      discardPolicy = "both";
-    } ];
+    [ { device = "/dev/disk/by-uuid/a70dc6c5-5746-4587-bb58-b809af148645"; } ];
 
 }
