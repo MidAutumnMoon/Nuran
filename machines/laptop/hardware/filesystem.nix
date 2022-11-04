@@ -3,7 +3,7 @@
 let
 
   baseOption =
-    [ "compress-force=zstd" "noatime" ];
+    [ "compress-force=zstd" "noatime" "discard=async" ];
 
 in
 
@@ -12,6 +12,8 @@ in
   boot.initrd.luks.devices."lyfua" = {
       device =
         "/dev/disk/by-uuid/fcdf1ea7-8aa1-4dd6-9271-c010612fca41";
+      bypassWorkqueues = true;
+      allowDiscards = true;
     };
 
 
