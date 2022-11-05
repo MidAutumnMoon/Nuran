@@ -1,0 +1,14 @@
+Layout/SpaceInsideParens:
+    Enabled: false
+
+Layout/SpaceAroundBlockParameters:
+    Enabled: false
+
+Layout/EmptyLines:
+    Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+    Enabled: false
+
+Style/NegatedIf:
+    Enabled: false
