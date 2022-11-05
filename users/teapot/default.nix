@@ -1,13 +1,7 @@
-{ config, ... }:
+{ imports = [
 
-{
+  ./environment.nix
+  ./programs.nix
 
-  imports =
-    [
-      ./environment.nix
-      ./programs.nix
-      ./services.nix
-    ];
-
-}
+]; }
 
