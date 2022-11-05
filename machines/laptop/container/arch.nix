@@ -9,19 +9,13 @@
   #    - machinectl import-tar ./image.tar.zstd arch
   #
 
-  systemd.nspawn."arch" =
-    { enable =
-        true;
+  systemd.nspawn."arch" = {
+      enable = true;
       execConfig =
         { Boot = true;
           PrivateUsers = 0;
         };
-      networkConfig =
-        { Private = false; };
-      filesConfig =
-        { Bind =
-            [ "/home/teapot/Storage:/Storage" ];
-        };
+      networkConfig.Private = false;
     };
 
 }

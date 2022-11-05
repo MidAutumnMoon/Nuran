@@ -1,12 +1,7 @@
-{
+{ imports = [
 
-  imports =
-    [
-      ./arch.nix
-    ];
+  ./policy
 
+  ./arch.nix
 
-  security.polkit.extraConfig =
-    builtins.readFile ./policy.js;
-
-}
+]; }
