@@ -2,13 +2,13 @@
 
 {
 
-  boot.blacklistedKernelModules =
-    [ "nouveau"
-      "i2c_nvidia_gpu"
-    ];
+  boot.kernelModules =
+    [ "fuse" ];
 
-  hardware.cpu.amd.updateMicrocode =
-    true;
+  boot.blacklistedKernelModules =
+    [ "nouveau" "i2c_nvidia_gpu" ];
+
+  hardware.cpu.amd.updateMicrocode = true;
 
   boot.kernelPackages =
     lib.mkForce pkgs.linuxPackages_zen-teapot;
