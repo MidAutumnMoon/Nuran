@@ -14,11 +14,6 @@ in
 
 { nudata.services = {
 
-  shiori = service
-    { port = 17860;
-      domain = "mark.418.im";
-    };
-
   miniflux = service
     { port = 17861;
       domain = "rss.418.im";

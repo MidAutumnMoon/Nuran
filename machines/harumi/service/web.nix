@@ -12,8 +12,6 @@
         config.fileSystems."/data/erohon".mountPoint;
     };
 
-  services.shiori.enable = true;
-
   services.libreddit.enable = true;
 
   nuran.services.hentai-home =
