@@ -8,6 +8,10 @@
   boot.blacklistedKernelModules =
     [ "nouveau" "i2c_nvidia_gpu" ];
 
+  boot.kernelParams = [
+      "preempt=full"
+    ];
+
   hardware.cpu.amd.updateMicrocode = true;
 
   boot.kernelPackages =
