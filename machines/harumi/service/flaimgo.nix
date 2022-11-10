@@ -11,7 +11,7 @@
 
       location / {
         expires    max;
-        add_header Cache-Control "public";
+        add_header Cache-Control "public, immutable";
         add_header Access-Control-Allow-Origin *;
 
         gzip off;

@@ -32,8 +32,9 @@ lib.condMod (config.services.libreddit.enable) {
       ${config.nuran.nginx.snippets."418_certs"}
 
       location ~ /(thumb|emoji|img|style|preview|hls) {
-        expires 1y;
         proxy_cache Pcache;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
         ${proxy_pass}
       }
 

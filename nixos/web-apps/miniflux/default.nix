@@ -49,6 +49,7 @@ lib.condMod (config.services.miniflux.enable) {
 
       location ~ /(proxy) {
         expires max;
+        add_header Cache-Control "public, immutable";
         proxy_ignore_headers
           Cache-Control
           Vary

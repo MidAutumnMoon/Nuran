@@ -134,7 +134,8 @@ in
         max_size=10g;
       proxy_cache_key  $scheme$host$proxy_host$uri$is_args$args;
       proxy_cache_lock on;
-      proxy_cache_valid 200 1h;
+      proxy_cache_valid 200 301 302 12h;
+      proxy_cache_valid any 10m;
       proxy_cache_background_update on;
       proxy_cache_use_stale
         error
