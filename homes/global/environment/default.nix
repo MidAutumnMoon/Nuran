@@ -1,5 +1,5 @@
-{
+{ imports = [
 
-  xdg.enable = true;
+  ./xdg.nix
 
-}
+]; }
