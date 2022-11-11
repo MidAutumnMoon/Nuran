@@ -8,8 +8,8 @@ let
   nginxCmd =
     "${lib.getExe nginxCfg.package} -c ${nginxCfg.configFile}";
 
-  serviceConfig =
-    { ExecStart = nginxCmd;
+  serviceConfig = {
+      ExecStart = nginxCmd;
       ExecReload =
         [ "${nginxCmd} -t"
           "${pkgs.coreutils}/bin/kill -HUP $MAINPID"
@@ -30,7 +30,6 @@ let
       LogsDirectoryMode = "0750";
 
       ProcSubset = "pid";
-      ProtectProc = "invisible";
       UMask = "0027"; # 0640 / 0750
 
       AmbientCapabilities =
@@ -39,16 +38,17 @@ let
         [ "CAP_NET_BIND_SERVICE" "CAP_SYS_RESOURCE" ];
 
       NoNewPrivileges = true;
-      ProtectSystem = "strict";
-      ProtectHome = true;
       PrivateTmp = true;
       PrivateDevices = true;
+      ProtectSystem = "strict";
+      ProtectHome = true;
       ProtectHostname = true;
       ProtectClock = true;
       ProtectKernelTunables = true;
       ProtectKernelModules = true;
       ProtectKernelLogs = true;
       ProtectControlGroups = true;
+      ProtectProc = "invisible";
       RestrictAddressFamilies =
         [ "AF_UNIX" "AF_INET" "AF_INET6" ];
       RestrictNamespaces = true;
@@ -60,8 +60,7 @@ let
       PrivateMounts = true;
 
       SystemCallArchitectures = "native";
-      SystemCallFilter =
-        [ "~@cpu-emulation @debug @keyring @mount @obsolete @privileged @setuid" ];
+      SystemCallFilter = [ "@system-service" ];
     };
 
 in

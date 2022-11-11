@@ -35,8 +35,8 @@ lib.condMod (cfg.enable) {
 
   users.groups.${cfg.account} = {};
 
-  users.users.${cfg.account} =
-    { isSystemUser = true;
+  users.users.${cfg.account} = {
+      isSystemUser = true;
       group = cfg.account;
       home = cfg.dataDir;
       createHome = true;
@@ -53,23 +53,43 @@ lib.condMod (cfg.enable) {
       requires = [ "network-online.target" ];
     };
 
-  systemd.services."hentai-home".serviceConfig =
-    { User = cfg.account;
+  systemd.services."hentai-home".serviceConfig = {
+      User = cfg.account;
       Group = cfg.account;
+      Restart = "on-failure";
+      RestartSec = "5s";
+
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 3";
       ExecStart = "${lib.getExe pkgs.hentai-home}";
       WorkingDirectory = cfg.dataDir;
+
+      RemoveIPC = true;
+      NoNewPrivileges = true;
+      LockPersonality = true;
+      ProcSubset = "pid";
       ProtectSystem = "strict";
       ProtectHome = true;
       ProtectHostname = true;
       ProtectKernelLogs = true;
+      ProtectKernelTunables = true;
+      ProtectProc = "invisible";
+      ProtectControlGroups = true;
+      ProtectClock = true;
       PrivateTmp = true;
-      BindReadOnlyPaths =
+      PrivateDevices = true;
+      PrivateUsers = true;
+      RestrictNamespaces = true;
+      RestrictSUIDSGID = true;
+      RestrictRealtime = true;
+      RestrictAddressFamilies = [ "AF_INET" "AF_INET6" ];
+      SystemCallFilter = "@system-service";
+
+      ReadOnlyPaths =
         [ "/nix/store"
           "/etc/ssl"
           "/etc/resolv.conf"
         ];
-      BindPaths =
+      ReadWritePaths =
         [ cfg.dataDir ];
     };
 

@@ -1,14 +1,8 @@
-{ lib, config, pkgs, ... }:
+{ lib, ... }:
 
-lib.condMod config.services.postgresql.enable {
+{
 
-  services.postgresql.package =
-    pkgs.postgresql_15;
-
-  systemd.services.postgresql.serviceConfig = {
-      RemoveIPC = true;
-      NoNewPrivileges = true;
-
+  systemd.services.nscd.serviceConfig = {
       PrivateDevices = true;
       PrivateTmp = true;
 
@@ -19,7 +13,7 @@ lib.condMod config.services.postgresql.enable {
       ProtectKernelModules = true;
       ProtectHostname = true;
       ProtectKernelTunables = true;
-      ProtectHome = true;
+      ProtectHome = lib.mkForce true;
       ProtectProc = "invisible";
       ProcSubset = "pid";
       MemoryDenyWriteExecute = true;
