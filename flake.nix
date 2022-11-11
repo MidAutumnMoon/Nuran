@@ -69,19 +69,19 @@
             { inherit flake; };
         };
 
-    in
-    {
+    in {
+
       inherit lib;
 
-      nixosConfigurations = { 
+      nixosConfigurations = {
           lyfua =
             machine { toplevel = ./machines/laptop; };
           harumi =
             machine { toplevel = ./machines/harumi; };
         };
 
-      colmena.meta =
-        { nixpkgs =
+      colmena.meta = {
+          nixpkgs =
             pkgsForSystems."x86_64-linux";
           specialArgs =
             { inherit lib flake; };
@@ -92,6 +92,7 @@
 
       devShells =
         lib.hexaShell pkgsForSystems [ "sops" "colmena" "ssh-to-age" ];
+
     };
     # outputs end & terminate the bracket slope
 }
