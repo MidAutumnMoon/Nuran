@@ -70,6 +70,7 @@ rec {
 
   inherit (nuran.trivial)
     doNothing
+    onceride
     ;
 
 }

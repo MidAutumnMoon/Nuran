@@ -1,3 +1,9 @@
 with (builtins.getFlake (toString ../.)).lib;
 
-true
+let pkgs = import <nixpkgs> {}; in
+
+onceride pkgs.hello {} ( x: {
+
+  postInstall = "";
+
+} )
