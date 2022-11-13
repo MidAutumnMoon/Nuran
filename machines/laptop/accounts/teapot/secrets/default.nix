@@ -1,6 +1,6 @@
 {
 
-  sops.secrets."rclone_hetzner" =
+  sops.secrets."rclone_conf" =
     { owner = "teapot";
       sopsFile = ./rclone.yml;
     };

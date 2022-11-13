@@ -17,7 +17,7 @@ in
   (builder {
       remoteName = "Hetzner";
       mountPoint = "${homeDir}/Remote/Hetzner";
-      configPath = "${sopsSecrets.rclone_hetzner.path}";
+      configPath = "${sopsSecrets."rclone_conf".path}";
       extraFlags =
         "--vfs-disk-space-total-size 1T";
     })
