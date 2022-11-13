@@ -3,7 +3,10 @@
 let
 
   baseOption =
-    [ "compress-force=zstd" "noatime" "discard=async" ];
+    [ "defaults" "compress-force=zstd" "noatime" "discard=async" ];
+
+  securityOptions =
+    [ "nodev" "nosuid" ];
 
 in
 
@@ -20,13 +23,15 @@ in
   fileSystems."/" =
     { device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=16G" "mode=755" ];
+      options =
+        [ "defaults" "size=16G" "mode=755" ];
     };
 
   fileSystems."/home" =
     { device = "/dev/mapper/lyfua";
       fsType = "btrfs";
-      options = [ "subvol=home" ] ++ baseOption;
+      options =
+        [ "subvol=home" ] ++ baseOption;
     };
 
   # fileSystems."/etc" =
@@ -38,31 +43,37 @@ in
   fileSystems."/nix" =
     { device = "/dev/mapper/lyfua";
       fsType = "btrfs";
-      options = [ "subvol=nix" ] ++ baseOption;
+      options =
+        [ "subvol=nix" ] ++ baseOption;
     };
 
   fileSystems."/persist" =
     { device = "/dev/mapper/lyfua";
       fsType = "btrfs";
-      options = [ "subvol=persist" ] ++ baseOption;
       neededForBoot = true;
+      options =
+        [ "subvol=persist" ] ++ baseOption ++ securityOptions;
     };
 
   fileSystems."/root" =
     { device = "/dev/mapper/lyfua";
       fsType = "btrfs";
-      options = [ "subvol=root" ] ++ baseOption;
+      options =
+        [ "subvol=root" ] ++ baseOption;
     };
 
   fileSystems."/var" =
     { device = "/dev/mapper/lyfua";
       fsType = "btrfs";
-      options = [ "subvol=var" ] ++ baseOption;
+      options =
+        [ "subvol=var" ] ++ baseOption;
     };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/FD5E-3536";
       fsType = "vfat";
+      options =
+        [ "defaults" ] ++ securityOptions;
     };
 
 
