@@ -4,4 +4,6 @@
   ./postgresql.nix
   ./flaimgo.nix
 
+  ./journald.nix
+
 ]; }
