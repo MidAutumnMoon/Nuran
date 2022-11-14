@@ -100,11 +100,12 @@ in
 
       # Performance
       sendfile on;
+      sendfile_max_chunk 512k;
       aio threads;
       aio_write on;
       tcp_nopush on;
       tcp_nodelay on;
-      directio 16m;
+      directio 1m;
       open_file_cache max=1200 inactive=30s;
       read_ahead 64k;
 
