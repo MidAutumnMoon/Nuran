@@ -2,7 +2,7 @@
   remoteName
 , mountPoint
 , configPath
-, extraFlags ? ""
+, extraFlags ? []
 }:
 
 
@@ -30,17 +30,19 @@ let
       --log-level INFO \
       --log-systemd \
       --human-readable \
+      --max-backlog -1 \
+      --fast-list \
+      --use-mmap \
+      --expect-continue-timeout 0 \
+      --disable-http2 \
       --vfs-cache-mode full \
-      --vfs-cache-max-size 2G \
-      --vfs-cache-max-age 1m \
-      --vfs-write-back 2s \
-      --vfs-read-chunk-size 64M \
+      --vfs-cache-max-size 8G \
+      --vfs-cache-max-age 1h \
       --dir-cache-time 1m \
       --poll-interval 10s \
-      --multi-thread-cutoff 64M \
+      --multi-thread-cutoff 128M \
       --multi-thread-streams 8 \
-      --no-modtime \
-      ${extraFlags} \
+      ${lib.concatStringsSep " " extraFlags} \
       "${remoteName}:" "${mountPoint}"
     '';
 

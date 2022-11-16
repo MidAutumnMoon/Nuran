@@ -19,7 +19,7 @@ in
       mountPoint = "${homeDir}/Remote/Hetzner";
       configPath = "${sopsSecrets."rclone_conf".path}";
       extraFlags =
-        "--vfs-disk-space-total-size 1T";
+        [ "--vfs-disk-space-total-size 1T" ];
     })
 
 ]; }
