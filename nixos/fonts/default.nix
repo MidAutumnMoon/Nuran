@@ -10,8 +10,8 @@ lib.condMod (config.nuran.fonts.enable) {
   fonts.enableDefaultFonts =
     lib.mkForce false;
 
-  fonts.fonts = with pkgs;
-    [ # CJK fonts
+  fonts.fonts = with pkgs; [
+      # CJK fonts
       source-han-sans
 
       # Sans & Monospace fonts
@@ -24,7 +24,7 @@ lib.condMod (config.nuran.fonts.enable) {
       paratype-pt-sans
 
       # Emoji
-      twemoji-color-font
+      noto-fonts-emoji
 
       # All-in-one fonts
       ibm-plex
