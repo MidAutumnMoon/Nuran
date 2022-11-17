@@ -14,10 +14,12 @@ lib.condMod (config.services.libreddit.enable) {
       address = "[::1]";
     };
 
-  systemd.services.libreddit.environment =
-    { LIBREDDIT_DEFAULT_THEME = "nord";
+  systemd.services.libreddit.environment = {
+      LIBREDDIT_DEFAULT_THEME = "nord";
       LIBREDDIT_DEFAULT_SHOW_NSFW = "on";
       LIBREDDIT_DEFAULT_USE_HLS = "on";
+      LIBREDDIT_DEFAULT_BLUR_NSFW = "on";
+      LIBREDDIT_DEFAULT_AUTOPLAY_VIDEOS = "off";
     };
 
   nuran.nginx.vhosts =
