@@ -7,7 +7,7 @@
       rclone prime-offload
       wl-clipboard neofetch
 
-      ruby_3
+      ruby-teapot
 
       firefox-teapot virt-manager
     ];

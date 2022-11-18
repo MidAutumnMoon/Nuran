@@ -1,14 +1,25 @@
+AllCops:
+  # trick learnt from
+  # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/98112
+  TargetRubyVersion: <%= RUBY_VERSION[/^\d+\.\d+/, 0] %>
+
 Layout/SpaceInsideParens:
-    Enabled: false
+  Enabled: false
 
 Layout/SpaceAroundBlockParameters:
-    Enabled: false
+  Enabled: false
 
 Layout/EmptyLines:
-    Enabled: false
+  Enabled: false
 
 Layout/EmptyLinesAroundModuleBody:
-    Enabled: false
+  Enabled: false
+
+Layout/SpaceInsideArrayPercentLiteral:
+  Enabled: false
+
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: false
 
 Style/NegatedIf:
-    Enabled: false
+  Enabled: false

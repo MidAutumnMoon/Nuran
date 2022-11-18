@@ -2,21 +2,28 @@
 
 let
 
-  _neovim = pkgs.neovim-teapot.override
-    { extraTools = with pkgs; [
-        fd
-        gcc
-        nil
-        rubyPackages_3.solargraph
-      ]; };
+  localRuby = pkgs.ruby-teapot.withPackages ( p: with p; [
+      solargraph
+      yard
+    ] );
+
+  extraTools = with pkgs; [
+      fd ripgrep gcc
+      nil
+      localRuby
+    ];
+
+  localNeovim =
+    pkgs.neovim-teapot.override { inherit extraTools; };
 
 
 in
 
 lib.condMod (config.programs.neovim.enable) {
 
-  disabledModules =
-    [ "programs/neovim.nix" ];
+  disabledModules = [
+      "programs/neovim.nix"
+    ];
 
   options.programs.neovim = lib.mkOption {
       type = lib.types.submodule
@@ -27,8 +34,9 @@ lib.condMod (config.programs.neovim.enable) {
         };
     };
 
-  home.packages =
-    [ _neovim ];
+  home.packages = [
+      localNeovim
+    ];
 
 }
 
