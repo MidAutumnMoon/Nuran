@@ -9,11 +9,12 @@
       desktopManager.plasma5.runUsingSystemd = true;
     };
 
-  xdg.portal.extraPortals =
-    [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
 
-  nuran.fonts.enable =
-    true;
+  nuran.fonts.enable = true;
 
   environment.systemPackages =
     with pkgs;
@@ -21,16 +22,19 @@
     with kdeGear;
     [
       kde-gtk-config
-      unzip unrar
-      qtimageformats
+      unzip
+      unrar
 
       papirus-icon-theme
       graphite-cursor-theme
       breeze-gtk
 
-      kate ark okular
-      krunner fcitx5-qt ksshaskpass
+      kate
+      ark
+      okular
       qimgv
+
+      krunner fcitx5-qt ksshaskpass
     ];
 
 }
