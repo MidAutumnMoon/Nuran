@@ -2,6 +2,8 @@
 
 {
 
+  services.nscd.enableNsncd = true;
+
   systemd.services.nscd.serviceConfig = {
       PrivateDevices = true;
       PrivateTmp = true;
