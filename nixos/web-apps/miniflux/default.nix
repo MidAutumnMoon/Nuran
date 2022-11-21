@@ -47,7 +47,7 @@ lib.condMod (config.services.miniflux.enable) {
 
       proxy_cache Pcache;
 
-      location ~ /(proxy) {
+      location ~ /(proxy|feed/icon) {
         expires max;
         add_header Cache-Control "public, immutable";
         proxy_ignore_headers

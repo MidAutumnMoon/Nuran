@@ -2,25 +2,31 @@
 
 let
 
-  nginxCfg =
-    config.nuran.nginx;
+  nginxCfg = config.nuran.nginx;
 
   nginxCmd =
     "${lib.getExe nginxCfg.package} -c ${nginxCfg.configFile}";
 
   serviceConfig = {
-      ExecStart = nginxCmd;
-      ExecReload =
-        [ "${nginxCmd} -t"
+      Environment = [
+          "LD_PRELOAD=${lib.getLib pkgs.mimalloc}/lib/libmimalloc.so"
+        ];
+      ExecStart = [
+          nginxCmd
+        ];
+      ExecReload = [
+          "${nginxCmd} -t"
           "${pkgs.coreutils}/bin/kill -HUP $MAINPID"
         ];
+
       Restart = "always";
       RestartSec = "10s";
 
       User = nginxCfg.account;
       Group = nginxCfg.account;
-      SupplementaryGroups =
-        [ config.users.groups."keys".name ];
+      SupplementaryGroups = [
+          config.users.groups."keys".name
+        ];
 
       RuntimeDirectory = "nginx";
       RuntimeDirectoryMode = "0750";
@@ -30,7 +36,7 @@ let
       LogsDirectoryMode = "0750";
 
       ProcSubset = "pid";
-      UMask = "0027"; # 0640 / 0750
+      UMask = "0027";
 
       AmbientCapabilities =
         [ "CAP_NET_BIND_SERVICE" "CAP_SYS_RESOURCE" ];
@@ -49,8 +55,7 @@ let
       ProtectKernelLogs = true;
       ProtectControlGroups = true;
       ProtectProc = "invisible";
-      RestrictAddressFamilies =
-        [ "AF_UNIX" "AF_INET" "AF_INET6" ];
+      RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
       RestrictNamespaces = true;
       LockPersonality = true;
       MemoryDenyWriteExecute = true;
@@ -67,12 +72,10 @@ in
 
 lib.condMod (nginxCfg.enable) {
 
-  systemd.services."nginx" =
-    { description = "Nginx Web Server";
-      wantedBy =
-        [ "multi-user.target" ];
-      after =
-        [ "network.target" "nss-lookup.target" ];
+  systemd.services."nginx" = {
+      description = "Nginx Web Server";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" "nss-lookup.target" ];
 
       inherit serviceConfig;
     };

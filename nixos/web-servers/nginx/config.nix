@@ -95,7 +95,6 @@ in
       ssl_stapling on;
       ssl_stapling_verify on;
       ssl_conf_command Options KTLS;
-      ssl_buffer_size 8k;
       resolver 127.0.0.53;
 
       # Performance
@@ -106,13 +105,25 @@ in
       tcp_nopush on;
       tcp_nodelay on;
       directio 1m;
-      open_file_cache max=1200 inactive=30s;
+      open_file_cache
+        max=10000
+        inactive=30s;
+      open_file_cache_errors on;
+      open_file_cache_min_uses 2;
       read_ahead 64k;
+      ssl_dyn_rec_enable on;
 
       # Security
       server_tokens off;
-      hide_server_tokens on;
-      security_headers on;
+      more_clear_headers Server;
+      more_clear_headers X-Powered-By;
+      more_clear_headers X-Application-Version;
+      more_set_headers 'X-Content-Type-Options: nosniff';
+      more_set_headers 'X-XSS-Protection: 1; mode=block';
+      more_set_headers
+        'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload';
+      more_set_headers 'X-Frame-Options: DENY';
+      more_set_headers 'Referrer-Policy: strict-origin-when-cross-origin';
 
       # Proxy
       proxy_http_version    1.1;

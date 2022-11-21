@@ -2,8 +2,7 @@
 
 let
 
-  cfg =
-    config.nuran.nginx;
+  cfg = config.nuran.nginx;
 
   inherit (lib) types;
 
@@ -13,7 +12,7 @@ lib.condMod (cfg.enable) {
 
   imports = [
     ./service.nix
-    ./final_config.nix
+    ./config.nix
   ];
 
 
@@ -21,8 +20,8 @@ lib.condMod (cfg.enable) {
 
   options.nuran.nginx = {
 
-    enable = lib.mkEnableOption
-      "enable Nuran's simplified Nginx";
+    enable =
+      lib.mkEnableOption "enable Nuran's simplified Nginx";
 
     package = lib.mkOption
       { type = types.package;
@@ -44,8 +43,7 @@ lib.condMod (cfg.enable) {
 
     # TODO: to file based snippets
     snippets = lib.mkOption
-      { type =
-          types.attrsOf types.lines;
+      { type = types.attrsOf types.lines;
         description =
           "Some shared build blocks.";
       };
@@ -55,8 +53,6 @@ lib.condMod (cfg.enable) {
 
     configFile = lib.mkOption
       { type = types.package;
-        description =
-          "finalConfig wrote to nix store.";
         readOnly = true;
       };
 
@@ -67,19 +63,17 @@ lib.condMod (cfg.enable) {
 
   users.groups."${cfg.account}" = {};
 
-  users.users."${cfg.account}" =
-    { group = cfg.account;
+  users.users."${cfg.account}" = {
+      group = cfg.account;
       isSystemUser = true;
     };
 
 
-  nuran.nginx.snippets =
-    { "418_certs" = ''
+  nuran.nginx.snippets = {
+      "418_certs" = ''
         ssl_certificate ${config.sops.secrets."418_fullchain".path};
         ssl_certificate_key ${config.sops.secrets."418_key".path};
         '';
-      uwsgi =
-        "include ${cfg.package}/conf/uwsgi_params;";
       fastcgi =
         "include ${cfg.package}/conf/fastcgi_params;";
     };
@@ -104,6 +98,7 @@ lib.condMod (cfg.enable) {
     }
     '';
 
+
   sops.secrets."nginx_dhparam" =
     { sopsFile = ./dhparam.yml;
       owner = cfg.account;
@@ -112,11 +107,10 @@ lib.condMod (cfg.enable) {
   nuran.nginx.dhparamFile =
     config.sops.secrets."nginx_dhparam".path;
 
-  networking.firewall.allowedTCPPorts =
-    [ 443 ];
 
-  networking.firewall.allowedUDPPorts =
-    [ 443 ];
+  networking.firewall.allowedTCPPorts = [ 443 ];
+
+  networking.firewall.allowedUDPPorts = [ 443 ];
 
   boot.kernelModules = [ "tls" ];
 
