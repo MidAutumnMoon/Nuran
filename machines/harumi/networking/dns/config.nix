@@ -1,14 +1,16 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
 
   networking.nameservers =
-    lib.mkForce [ "1.1.1.1#cloudflare-dns.com" ];
+    lib.mkForce [ "127.0.10.53" ];
 
   services.resolved.enable = true;
 
   services.resolved.extraConfig = ''
-      DNSOverTLS = yes
+    Cache = no
+    FallbackDNS =
+    LLMNR = no
     '';
 
 }
