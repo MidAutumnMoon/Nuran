@@ -8,11 +8,6 @@
       nameservers = [ "127.0.0.1" ];
     };
 
-  environment.systemPackages = with pkgs;
-    [ libimobiledevice ];
-
-  services.usbmuxd.enable = true;
-
   networking.networkmanager.enable = true;
 
 }
