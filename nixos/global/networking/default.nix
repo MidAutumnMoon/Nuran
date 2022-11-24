@@ -1,7 +1,6 @@
 {
 
-  networking.firewall.enable =
-    true;
+  networking.firewall.enable = true;
 
   boot.kernel.sysctl = {
       "net.core.default_qdisc" =
@@ -19,5 +18,9 @@
       "net.ipv4.tcp_slow_start_after_idle" =
         0;
     };
+
+  networking.useNetworkd = true;
+
+  services.resolved.enable = true;
 
 }

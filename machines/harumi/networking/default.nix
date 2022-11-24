@@ -1,6 +1,6 @@
 { imports = [
 
-  ./address.nix
+  ./config.nix
   ./sysctl.nix
 
   ./dns
