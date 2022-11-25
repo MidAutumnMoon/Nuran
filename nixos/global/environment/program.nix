@@ -12,9 +12,11 @@
     ];
 
 
-  programs =
-    { fish.enable = true;
+  programs = {
+      fish.enable = true;
       neovim.enable = true;
     };
+
+  programs.command-not-found.enable = false;
 
 }
