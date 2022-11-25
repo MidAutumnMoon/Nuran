@@ -3,6 +3,7 @@
   description =
     "MidAutumnMoon's system collection, aka the Nuran.";
 
+
   inputs =
     { nixpkgs.url =
         "github:NixOS/nixpkgs/nixos-unstable-small";
@@ -34,7 +35,9 @@
         };
     };
 
+
   outputs = { self, nixpkgs, ... } @ flake:
+
     let
 
       lib =
@@ -48,8 +51,8 @@
 
       modules = with flake;
         (lib.listAllModules ./nixos)
-          ++
-        [ ./nudata
+        ++ [
+          ./nudata
           sops-nix.nixosModule
           impermanence.nixosModule
           home-manager.nixosModule
@@ -73,12 +76,8 @@
 
       inherit lib;
 
-      nixosConfigurations = {
-          lyfua =
-            machine { toplevel = ./machines/laptop; };
-          harumi =
-            machine { toplevel = ./machines/harumi; };
-        };
+      nixosConfigurations."lyfua" =
+        machine { toplevel = ./machines/laptop; };
 
       colmena.meta = {
           nixpkgs =
@@ -87,13 +86,11 @@
             { inherit lib flake; };
         };
 
-      colmena."harumi".imports =
-        withToplevel ./machines/harumi;
-
       devShells =
         lib.hexaShell pkgsForSystems [ "sops" "colmena" "ssh-to-age" ];
 
     };
     # outputs end & terminate the bracket slope
+
 }
 
