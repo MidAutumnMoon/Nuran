@@ -2,16 +2,19 @@
 
 let
 
-  inherit (lib) getExe;
+  inherit (lib) getExe getBin;
 
-  substituteEnv = with pkgs;
-    { git =
-        getExe git;
-      heif_enc =
-        "${libheif}/bin/heif-enc";
-      yt_dlp =
-        getExe yt-dlp;
+
+  substituteEnv = with pkgs; {
+
+      git = getExe git;
+
+      avifenc = "${getBin libavif}/bin/avifenc";
+
+      yt_dlp = getExe yt-dlp;
+
     };
+
 
 in
 
@@ -24,8 +27,7 @@ runCommandLocal "fish-functions" substituteEnv ''
     -exec \
       cp --dereference --target-directory "$out" '{}' \+
 
-  for funcfile in "$out"/*.fish
-  do
+  for funcfile in "$out"/*.fish; do
     substituteAllInPlace "$funcfile"
   done
   ''

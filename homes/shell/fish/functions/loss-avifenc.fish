@@ -1,11 +1,24 @@
 function loss-avifenc -d 'AVIF with a bit lower quality'
 
-    command "@heif_enc@" \
-        --avif \
-        -p chroma=420 \
-        -p threads=16 \
-        --bit-depth 8 \
-        --premultiplied-alpha \
-        "$argv[1]"
+    set --function InputFileName "$argv[1]"
+    set --function DestFileName "$(path change-extension avif $InputFileName)"
+
+    command '@avifenc@' \
+        --min 0 \
+        --max 63 \
+        --minalpha 0 \
+        --maxalpha 63 \
+        --depth 8 \
+        --yuv 420 \
+        --range limited \
+        --speed 3 \
+        --premultiply \
+        -a end-usage=q \
+        -a cq-level=18 \
+        -a tune=butteraugli \
+        -a color:enable-chroma-deltaq=1 \
+        -a enable-qm=1 \
+        --jobs 4 \
+        "$InputFileName" "$DestFileName"
 
 end
