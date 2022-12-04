@@ -3,18 +3,25 @@
 {
 
   home.packages = with pkgs; [
-      file ripgrep fd
-      rclone prime-offload
-      wl-clipboard neofetch
+      file
+      ripgrep
+      fd
+
+      rclone
+      prime-offload
+      wl-clipboard
+      neofetch
 
       ruby-teapot
 
-      firefox-teapot virt-manager
+      firefox-teapot
+      virt-manager
     ];
 
 
-  programs =
-    { # Editors
+  programs = {
+
+      # Editors
       neovim.enable = true;
 
       # Shells
@@ -35,8 +42,6 @@
       # Security tools
       gpg.enable = true;
 
-      # Other Things
-      fcitx5.enable = true;
     };
 
 
