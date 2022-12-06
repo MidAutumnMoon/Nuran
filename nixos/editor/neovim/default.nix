@@ -3,17 +3,19 @@
 
 lib.condMod (config.programs.neovim.enable) {
 
-  disabledModules =
-    [ "programs/neovim.nix" ];
+  programs.neovim = {
 
-  options.programs.neovim.enable =
-    lib.mkEnableOption "Numinus";
+      package =
+        pkgs.neovim-unwrapped-teapot;
 
+      withRuby = false;
 
-  environment.systemPackages = with pkgs;
-    [ neovim-teapot-with-config ];
+      withPython3 = false;
 
-  environment.variables.EDITOR =
-    lib.mkOverride 900 "nvim";
+      withNodeJs = false;
+
+      defaultEditor = true;
+
+    };
 
 }
