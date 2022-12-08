@@ -4,30 +4,42 @@ lib.flatMod {
 
   imports = [
     ./mimic.nix
+    ./registry.nix
   ];
 
 
-  nix.package =
-    pkgs.nixVersions.unstable;
+  nix.package = pkgs.nixVersions.unstable;
 
-  nix.settings =
-    { trusted-users =
-        [ "root" ];
-      auto-optimise-store =
-        true;
-      narinfo-cache-negative-ttl =
-        360;
-      substituters =
-        [ "https://nuirrce.cachix.org" ];
+  nix.settings = {
+
+      trusted-users = [ "root" ];
+
+      auto-optimise-store = true;
+
+      narinfo-cache-negative-ttl = 360;
+
+      substituters = lib.mkAfter [
+          "https://nuirrce.cachix.org"
+        ];
+
       trusted-public-keys =
         [ "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk=" ];
+
+      auto-allocate-uids = true;
+
+      use-cgroups = true;
+
+      experimental-features = [
+          "nix-command"
+          "flakes"
+          "ca-derivations"
+          "repl-flake"
+          "auto-allocate-uids"
+          "cgroups"
+        ];
+
     };
 
-  nix.extraOptions =
-    "experimental-features = nix-command flakes ca-derivations";
-
-  # Disable documentation generating
-  # to speedup system building a little bit.
-  documentation.nixos.enable = false;
+  nix.nrBuildUsers = 0;
 
 }

@@ -1,7 +1,7 @@
 { imports = [
 
   ./program.nix
-  ./locale-time.nix
+  ./localetime.nix
   ./system.nix
 
 ]; }
