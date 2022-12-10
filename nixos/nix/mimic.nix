@@ -1,11 +1,11 @@
-{ lib, pkgs, flake, ... }:
+{ lib, pkgs, flakes, ... }:
 
 
 {
 
   nix.nixPath = lib.mkForce [
-      "nixpkgs=${toString flake.nixpkgs}"
-      "nixos=${toString flake.nixpkgs}"
+      "nixpkgs=${toString flakes.nixpkgs}"
+      "nixos=${toString flakes.nixpkgs}"
     ];
 
 }

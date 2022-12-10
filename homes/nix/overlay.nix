@@ -1,9 +1,9 @@
-{ flake, ... }:
+{ flakes, ... }:
 
 {
 
   xdg.configFile."nixpkgs/overlays.nix".text = ''
-    ( builtins.getFlake "${flake.nuclage}" ).totalOverlays
+    ( builtins.getFlake "${flakes.nuclage}" ).totalOverlays
     '';
 
 }

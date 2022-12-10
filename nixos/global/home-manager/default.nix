@@ -1,9 +1,9 @@
-{ lib, config, flake, pkgs, ... }:
+{ lib, config, flakes, pkgs, ... }:
 
 let
 
   homeManagersLib =
-    import "${flake.home-manager}/modules/lib/stdlib-extended.nix" pkgs.lib;
+    import "${flakes.home-manager}/modules/lib/stdlib-extended.nix" pkgs.lib;
 
   libPlusHomeManagersLib =
     lib // homeManagersLib;
@@ -22,7 +22,7 @@ in
       # - home-manager/0232fe1b75e6d7864fd82b5c72f6646f87838fc3/nixos/default.nix#L17
       extraSpecialArgs = {
           lib = libPlusHomeManagersLib;
-          inherit flake;
+          inherit flakes;
         };
 
       sharedModules =

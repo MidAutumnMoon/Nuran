@@ -1,4 +1,4 @@
-{ lib, pkgs, flake, ... }:
+{ lib, pkgs, ... }:
 
 lib.flatMod {
 

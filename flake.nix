@@ -4,8 +4,8 @@
     "MidAutumnMoon's system collection, aka the Nuran.";
 
 
-  inputs =
-    { nixpkgs.url =
+  inputs = {
+      nixpkgs.url =
         "github:NixOS/nixpkgs/nixos-unstable-small";
 
       nulib.url =
@@ -36,7 +36,7 @@
     };
 
 
-  outputs = { self, nixpkgs, ... } @ flake:
+  outputs = { self, nixpkgs, ... } @ flakes:
 
     let
 
@@ -44,12 +44,12 @@
         nixpkgs.lib.extend (import ./lib);
 
       overlays =
-        flake.nuclage.totalOverlays;
+        flakes.nuclage.totalOverlays;
 
       config =
         { allowUnfree = true; };
 
-      modules = with flake;
+      modules = with flakes;
         (lib.listAllModules ./nixos)
         ++ [
           ./nudata
@@ -58,10 +58,6 @@
           home-manager.nixosModule
         ];
 
-      withToplevel =
-        toplevel: modules ++ [ toplevel ];
-
-
       pkgsForSystems =
         lib.importNixpkgs { inherit nixpkgs config overlays; };
 
@@ -69,7 +65,7 @@
         lib.mkSystems {
           inherit nixpkgs config overlays modules;
           arguments =
-            { inherit flake; };
+            { inherit flakes; };
         };
 
     in {
@@ -83,7 +79,7 @@
           nixpkgs =
             pkgsForSystems."x86_64-linux";
           specialArgs =
-            { inherit lib flake; };
+            { inherit lib flakes; };
         };
 
       devShells =
