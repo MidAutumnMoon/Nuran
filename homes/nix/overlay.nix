@@ -3,7 +3,10 @@
 {
 
   xdg.configFile."nixpkgs/overlays.nix".text = ''
-    ( builtins.getFlake "${flakes.nuclage}" ).totalOverlays
+    if builtins ? getFlake then
+      ( builtins.getFlake "${flakes.nuclage}" ).totalOverlays
+    else
+      []
     '';
 
 }
