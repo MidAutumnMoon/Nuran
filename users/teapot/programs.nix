@@ -6,6 +6,7 @@
       file
       ripgrep
       fd
+      p7zip
 
       rclone
       prime-offload
