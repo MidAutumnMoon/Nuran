@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
 
@@ -13,5 +13,9 @@
   systemd.network.wait-online.extraArgs = [
       "--interface=wlp2s0:routable"
     ];
+
+  services.resolved.extraConfig = ''
+    Cache = no
+    '';
 
 }
