@@ -30,7 +30,7 @@ in
   #
   # Sometimes overrideAttrs is simply not enough.
   #
-  onceride' =
+  oncerideDrv =
     drv: overrideEssence: overrideDrvEssence:
       assert isDerivation drv;
       assert isAttrs overrideEssence
