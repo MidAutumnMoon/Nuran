@@ -19,7 +19,7 @@
   hardware.cpu.amd.updateMicrocode = true;
 
   boot.kernelPackages =
-    lib.mkForce pkgs.linuxPackages_zen-teapot;
+    lib.mkForce pkgs.linuxPackages-teapot;
 
   boot.kernel.sysctl = {
       "net.ipv4.tcp_congestion_control" = lib.mkForce "bbr2";
