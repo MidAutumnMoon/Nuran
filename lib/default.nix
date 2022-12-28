@@ -36,12 +36,13 @@ in
 
 rec {
 
-  nuran.attrset = callLib ./attrset;
-  nuran.path    = callLib ./path;
-  nuran.file    = callLib ./file;
-  nuran.flake   = callLib ./flake;
-  nuran.nixos   = callLib ./nixos;
-  nuran.trivial = callLib ./trivial;
+  nuran.attrset  = callLib ./attrset;
+  nuran.path     = callLib ./path;
+  nuran.file     = callLib ./file;
+  nuran.flake    = callLib ./flake;
+  nuran.nixos    = callLib ./nixos;
+  nuran.trivial  = callLib ./trivial;
+  nuran.language = callLib ./language;
 
 
   inherit (nuran.attrset)
@@ -71,6 +72,10 @@ rec {
   inherit (nuran.trivial)
     doNothing
     onceride oncerideDrv
+    ;
+
+  inherit (nuran.language)
+    readVersionCargo
     ;
 
 }
