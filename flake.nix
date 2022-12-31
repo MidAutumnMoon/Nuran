@@ -41,7 +41,7 @@
     let
 
       lib =
-        nixpkgs.lib.extend (import ./lib);
+        nixpkgs.lib.extend ( import ./lib );
 
       overlays =
         flakes.nuclage.totalOverlays;
@@ -50,8 +50,8 @@
         { allowUnfree = true; };
 
       modules = with flakes;
-        (lib.listAllModules ./nixos)
-        ++ [
+        ( lib.listAllModules ./nixos ) ++
+        [
           ./nudata
           sops-nix.nixosModule
           impermanence.nixosModule
