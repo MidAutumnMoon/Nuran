@@ -1,8 +1,7 @@
-{
+{ nudata.paths = {
 
-  nudata.paths =
-    { homeModules = ../homes;
-      homeProfiles = ../users;
-    };
+  homeModule = ../home;
 
-}
+  homeProfiles = ../users;
+
+}; }

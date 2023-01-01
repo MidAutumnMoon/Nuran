@@ -10,25 +10,21 @@ let
 
 in
 
-{
+{ home-manager = {
 
-  home-manager = {
+  useGlobalPkgs = true;
 
-      useGlobalPkgs = true;
+  useUserPackages = true;
 
-      useUserPackages = true;
-
-      # Why does this work?
-      # - home-manager/0232fe1b75e6d7864fd82b5c72f6646f87838fc3/nixos/default.nix#L17
-      extraSpecialArgs = {
-          lib = libPlusHomeManagersLib;
-          inherit flakes;
-        };
-
-      sharedModules =
-        lib.listAllModules config.nudata.paths.homeModules;
-
+  # Why does this work?
+  # - home-manager/0232fe1b75e6d7864fd82b5c72f6646f87838fc3/nixos/default.nix#L17
+  extraSpecialArgs = {
+      lib = libPlusHomeManagersLib;
+      inherit flakes;
     };
 
-}
+  sharedModules =
+    lib.listAllModules config.nudata.paths.homeModule;
+
+}; }
 
