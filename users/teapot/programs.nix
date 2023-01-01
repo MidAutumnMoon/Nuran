@@ -7,6 +7,7 @@
       ripgrep
       fd
       p7zip
+      derputils
 
       rclone
       prime-offload
