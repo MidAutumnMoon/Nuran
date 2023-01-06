@@ -36,7 +36,6 @@ in
 
 rec {
 
-  nuran.attrset  = callLib ./attrset;
   nuran.path     = callLib ./path;
   nuran.file     = callLib ./file;
   nuran.flake    = callLib ./flake;
@@ -45,10 +44,6 @@ rec {
   nuran.language = callLib ./language;
   nuran.nixpkgs  = callLib ./nixpkgs;
 
-
-  inherit (nuran.attrset)
-    mergeListOfAttrs
-    ;
 
   inherit (nuran.path)
     isDir isFile
