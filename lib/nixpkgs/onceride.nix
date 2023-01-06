@@ -1,15 +1,5 @@
 lib:
 
-let
-
-  inherit (lib)
-    isAttrs
-    isFunction
-    isDerivation
-    ;
-
-in
-
 {
 
   # onceride ::
@@ -19,10 +9,6 @@ in
   #
   onceride =
     drv: overrideEssence: overrideAttrsEssence:
-      assert isDerivation drv;
-      assert isAttrs overrideEssence
-             || isFunction overrideEssence;
-      assert isFunction overrideAttrsEssence;
       ( drv.override overrideEssence ).overrideAttrs overrideAttrsEssence;
 
   # onceride' ::
@@ -32,10 +18,6 @@ in
   #
   oncerideDrv =
     drv: overrideEssence: overrideDrvEssence:
-      assert isDerivation drv;
-      assert isAttrs overrideEssence
-             || isFunction overrideEssence;
-      assert isFunction overrideDrvEssence;
       ( drv.override overrideEssence ).overrideDerivation overrideDrvEssence;
 
 }

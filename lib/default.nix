@@ -67,7 +67,6 @@ rec {
 
   inherit (nuran.trivial)
     doNothing
-    onceride oncerideDrv
     ;
 
   inherit (nuran.language)
@@ -76,6 +75,7 @@ rec {
 
   inherit (nuran.nixpkgs)
     removePatches
+    onceride oncerideDrv
     ;
 
 }
