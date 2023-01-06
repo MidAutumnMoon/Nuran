@@ -62,8 +62,9 @@
         lib.importNixpkgs { inherit nixpkgs config overlays; };
 
       machine =
-        lib.mkSystems {
-          inherit nixpkgs config overlays modules;
+        lib.assembleSystem {
+          inherit
+            nixpkgs config overlays modules;
           arguments =
             { inherit flakes; };
         };

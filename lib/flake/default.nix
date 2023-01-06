@@ -1,3 +1,0 @@
-[
-  ./nixos/mkSystems.nix
-]

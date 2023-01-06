@@ -38,7 +38,6 @@ rec {
 
   nuran.path     = callLib ./path;
   nuran.file     = callLib ./file;
-  nuran.flake    = callLib ./flake;
   nuran.module   = callLib ./module;
   nuran.trivial  = callLib ./trivial;
   nuran.language = callLib ./language;
@@ -54,10 +53,6 @@ rec {
     readSomeFiles readAllFiles
     ;
 
-  inherit ( nuran.flake )
-    mkSystems
-    ;
-
   inherit (nuran.module)
     isModule
     flatMod condMod
@@ -66,6 +61,7 @@ rec {
 
   inherit ( nuran.trivial )
     doNothing
+    assembleSystem
     ;
 
   inherit (nuran.language)
