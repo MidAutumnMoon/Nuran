@@ -35,7 +35,7 @@ let
     self: func:
       assert isFunction func;
       mapAttrs
-        ( _: pkgsForSystem: applyAndWrapResult func pkgsForSystem )
+        ( _: pkgs: applyAndWrapResult func pkgs )
         ( removeAttrs self [ "__functor" ] );
 
 in

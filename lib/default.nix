@@ -55,7 +55,6 @@ rec {
     ;
 
   inherit ( nuran.flake )
-    hexaShell
     mkSystems
     ;
 
@@ -77,6 +76,7 @@ rec {
     removePatches
     onceride oncerideDrv
     importNixpkgs
+    hexaShell
     ;
 
 }
