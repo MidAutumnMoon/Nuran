@@ -1,5 +1,3 @@
-with (builtins.getFlake (toString ../.)).lib;
+with (builtins.getFlake (toString ../.)).lib; let pkgs = import <nixpkgs> {}; in
 
-let pkgs = import <nixpkgs> {}; in
-
-readVersionCargo
+removePatches [ "system_rplugin_manifest.patch" ] pkgs.neovim-unwrapped.patches

@@ -43,6 +43,7 @@ rec {
   nuran.nixos    = callLib ./nixos;
   nuran.trivial  = callLib ./trivial;
   nuran.language = callLib ./language;
+  nuran.nixpkgs  = callLib ./nixpkgs;
 
 
   inherit (nuran.attrset)
@@ -76,6 +77,10 @@ rec {
 
   inherit (nuran.language)
     readVersionCargo
+    ;
+
+  inherit (nuran.nixpkgs)
+    removePatches
     ;
 
 }
