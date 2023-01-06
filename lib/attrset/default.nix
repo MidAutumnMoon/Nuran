@@ -1,6 +1,5 @@
 [
 
-  ./getting.nix
   ./merge.nix
 
 ]

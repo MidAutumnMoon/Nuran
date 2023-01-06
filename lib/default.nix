@@ -47,7 +47,7 @@ rec {
 
 
   inherit (nuran.attrset)
-    mergeListOfAttrs getAttrsByValue
+    mergeListOfAttrs
     ;
 
   inherit (nuran.path)
