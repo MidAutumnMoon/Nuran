@@ -2,31 +2,32 @@ lib:
 
 let
 
-  inherit (builtins)
+  inherit ( builtins )
     attrNames
     concatMap
     readDir
     ;
 
-  inherit (lib.nuran.attrset)
-    getAttrsByValue;
-
-  inherit (lib.nuran.path)
-    isDir;
+  inherit ( lib.nuran.path )
+    isDir
+    ;
 
 
-  # _listDirs :: path -> [ path ]
-  #
-  # It saves 1-2ms magically compared to calling
-  # "nuran.path.path.listDirs" (both with
-  # type checking disabled).
-  #
-  _listDirs =
+  # listDirNames :: path -> [ string ]
+  listDirNames =
+    parent:
+      let children = readDir parent; in
+      concatMap ( name:
+        if children.${ name } == "directory" then
+          [ name ]
+        else
+          []
+      ) ( attrNames children );
+
+  # listDirs :: path -> [ path ]
+  listDirs =
     toplevel:
-      let
-        dirs = getAttrsByValue "directory" (readDir toplevel);
-      in
-        map (name: toplevel + "/${name}") (attrNames dirs);
+      map ( path: toplevel + ( "/" + path ) ) ( listDirNames toplevel );
 
 
   # _listAllDirs :: path -> [ path ]
@@ -36,12 +37,10 @@ let
   #
   _listAllDirs =
     toplevel:
-      let
-        subdirs = _listDirs toplevel;
-      in
-        if subdirs == []
-        then [ toplevel ]
-        else [ toplevel ] ++ (concatMap _listAllDirs subdirs);
+      let subdirs = listDirs toplevel; in
+      if subdirs == []
+      then [ toplevel ]
+      else [ toplevel ] ++ ( concatMap _listAllDirs subdirs );
 
 in
 
@@ -51,6 +50,9 @@ in
   #
   # Traverse the $toplevel from up to bottom
   # and find every directories under it.
+  #
+  # Benchmark: 180ms runs on whole nixpkgs,
+  # with kernel 6.1 & btrfs. Not too shabby :)
   #
   listAllDirs =
     toplevel:

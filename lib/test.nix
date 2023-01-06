@@ -1,3 +1,3 @@
 with (builtins.getFlake (toString ../.)).lib; let pkgs = import <nixpkgs> {}; in
 
-isModule ./.
+length (listAllDirs /home/teapot/Playground/nixpkgs)
