@@ -2,7 +2,7 @@ lib:
 
 let
 
-  inherit (builtins)
+  inherit ( builtins )
     isAttrs
     ;
 
@@ -40,7 +40,8 @@ in
   flatMod =
     body:
       assert isAttrs body;
-      { options =
+      {
+        options =
           body.options or {};
         imports =
           body.imports or [];

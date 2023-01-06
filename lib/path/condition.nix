@@ -2,7 +2,7 @@ lib:
 
 let
 
-  inherit (builtins)
+  inherit ( builtins )
     isPath
     pathExists
     toString

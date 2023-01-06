@@ -2,15 +2,16 @@ lib:
 
 let
 
-  inherit (builtins)
+  inherit ( builtins )
     all
     isPath isString
     readFile
     concatStringsSep
     ;
 
-  inherit (lib.nuran.path)
-    isDir listAllFiles;
+  inherit ( lib.nuran.path )
+    isDir listAllFiles
+    ;
 
 in
 

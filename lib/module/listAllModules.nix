@@ -2,6 +2,10 @@ lib:
 
 let
 
+  inherit ( builtins )
+    filter
+    ;
+
   inherit ( lib.nuran.path )
     isDir
     listAllDirs
@@ -23,6 +27,6 @@ in
   listAllModules =
     toplevel:
       assert isDir toplevel;
-      builtins.filter isModule (listAllDirs toplevel);
+      filter isModule ( listAllDirs toplevel );
 
 }

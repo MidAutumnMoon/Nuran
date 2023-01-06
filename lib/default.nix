@@ -11,49 +11,38 @@ let
   # Then the list of returned attrset
   # is got foldl-ed using '//'.
 
+  lib = self;
 
-  # _mergeListOfAttrs :: [ attrset ] -> attrset
-  #
-  _mergeListOfAttrs =
-    builtins.foldl' ( a: b: a // b ) { };
+  mergeListOfAttrs =
+    builtins.foldl' ( a: b: a // b ) {};
 
-  # _readLibFuncs :: path -> [ (attrset -> attrset) ]
-  #
-  _readLibFuncs =
-    libDir: map import ( import libDir );
+  importParts =
+    dir: map import ( import dir );
 
-  # _applySelf :: (attrset -> attrset) -> attrset
-  #
-  _applySelf =
-    libFunc: libFunc self;
-
-  # callLib :: path -> attrset
-  #
-  callLib =
-    libDir: _mergeListOfAttrs ( map _applySelf (_readLibFuncs libDir) );
+  importLib =
+    dir: mergeListOfAttrs ( map ( f: f lib ) ( importParts dir ) );
 
 in
 
 rec {
 
-  nuran.path     = callLib ./path;
-  nuran.file     = callLib ./file;
-  nuran.module   = callLib ./module;
-  nuran.trivial  = callLib ./trivial;
-  nuran.language = callLib ./language;
-  nuran.nixpkgs  = callLib ./nixpkgs;
+  nuran.path     = importLib ./path;
+  nuran.file     = importLib ./file;
+  nuran.module   = importLib ./module;
+  nuran.trivial  = importLib ./trivial;
+  nuran.language = importLib ./language;
+  nuran.nixpkgs  = importLib ./nixpkgs;
 
-
-  inherit (nuran.path)
+  inherit ( nuran.path )
     isDir isFile
     listAllFiles listAllDirs
     ;
 
-  inherit (nuran.file)
+  inherit ( nuran.file )
     readSomeFiles readAllFiles
     ;
 
-  inherit (nuran.module)
+  inherit ( nuran.module )
     isModule
     flatMod condMod
     listAllModules
@@ -64,7 +53,7 @@ rec {
     assembleSystem
     ;
 
-  inherit (nuran.language)
+  inherit ( nuran.language )
     readVersionCargo
     ;
 
