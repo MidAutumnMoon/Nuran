@@ -54,7 +54,7 @@ rec {
     isDir isFile
     concatPath concatPathMap
     listFiles listDirs
-    listAllFiles listAllDirs listAllModules
+    listAllFiles listAllDirs
     ;
 
   inherit (nuran.file)
@@ -69,6 +69,7 @@ rec {
   inherit (nuran.nixos)
     isModule
     flatMod condMod
+    listAllModules
     ;
 
   inherit (nuran.trivial)

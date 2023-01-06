@@ -4,5 +4,4 @@
 
   ./listing/simple.nix
   ./listing/recursive.nix
-  ./listing/module.nix
 ]
