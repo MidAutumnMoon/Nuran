@@ -54,8 +54,8 @@ rec {
     readSomeFiles readAllFiles
     ;
 
-  inherit (nuran.flake)
-    importNixpkgs hexaShell
+  inherit ( nuran.flake )
+    hexaShell
     mkSystems
     ;
 
@@ -73,9 +73,10 @@ rec {
     readVersionCargo
     ;
 
-  inherit (nuran.nixpkgs)
+  inherit ( nuran.nixpkgs )
     removePatches
     onceride oncerideDrv
+    importNixpkgs
     ;
 
 }

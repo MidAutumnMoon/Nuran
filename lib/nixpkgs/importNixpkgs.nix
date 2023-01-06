@@ -2,19 +2,19 @@ lib:
 
 let
 
-  inherit (builtins)
+  inherit ( builtins )
     isFunction
-    mapAttrs removeAttrs
+    mapAttrs
+    removeAttrs
     ;
 
-  inherit (lib.nuran.flake)
+  inherit ( lib.nuran.flake )
     forEachSystem
     ;
 
 
-  # _callpkgs :: nixpkgs -> attrset -> attrset
-  #
-  _callpkgs =
+  # importNixpkgs :: nixpkgs -> attrset -> attrset
+  importForEachSystem =
     nixpkgs: options:
       forEachSystem (
         system: import nixpkgs ( options // { inherit system; } )
@@ -22,23 +22,21 @@ let
 
 
   # _apply :: (attrset -> whatever) -> instance of pkgs -> whatever
-  #
-  _apply =
+  applyAndWrapResult =
     func: pkgs:
-      let
-        result = func pkgs;
-      in
-        if lib.isDerivation result
-        then { default = result; }
-        else result;
+      let result = func pkgs; in
+      if lib.isDerivation result
+      then { default = result; }
+      else result;
 
 
   # __functor :: attrset -> (attrset -> whatever) -> attrset
-  #
   __functor =
     self: func:
       assert isFunction func;
-      mapAttrs (_: pkgs: _apply func pkgs) (removeAttrs self ["__functor"]);
+      mapAttrs
+        ( _: pkgsForSystem: applyAndWrapResult func pkgsForSystem )
+        ( removeAttrs self [ "__functor" ] );
 
 in
 
@@ -77,11 +75,10 @@ in
   #
   importNixpkgs =
     {
-      nixpkgs
-    , config ? { }
-    , overlays ? [ ]
-    ,
+      nixpkgs,
+      config ? { },
+      overlays ? [ ]
     }:
-      (_callpkgs nixpkgs { inherit config overlays; }) // { inherit __functor; };
+      ( importForEachSystem nixpkgs { inherit config overlays; } ) // { inherit __functor; };
 
 }
