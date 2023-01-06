@@ -2,10 +2,13 @@ lib:
 
 let
 
-  inherit (lib.nuran.path)
+  inherit ( lib.nuran.path )
     isDir
-    isModule
     listAllDirs
+    ;
+
+  inherit ( lib.nuran.nixos )
+    isModule
     ;
 
 in

@@ -51,7 +51,7 @@ rec {
     ;
 
   inherit (nuran.path)
-    isDir isFile isModule
+    isDir isFile
     concatPath concatPathMap
     listFiles listDirs
     listAllFiles listAllDirs listAllModules
@@ -67,6 +67,7 @@ rec {
     ;
 
   inherit (nuran.nixos)
+    isModule
     flatMod condMod
     ;
 
