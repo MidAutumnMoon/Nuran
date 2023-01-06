@@ -8,7 +8,7 @@ let
     removeAttrs
     ;
 
-  inherit ( lib.nuran.flake )
+  inherit ( lib.nuran.trivial )
     forEachSystem
     ;
 

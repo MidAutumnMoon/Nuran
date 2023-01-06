@@ -64,7 +64,7 @@ rec {
     listAllModules
     ;
 
-  inherit (nuran.trivial)
+  inherit ( nuran.trivial )
     doNothing
     ;
 
