@@ -7,7 +7,7 @@ let
     listAllDirs
     ;
 
-  inherit ( lib.nuran.nixos )
+  inherit ( lib.nuran.module )
     isModule
     ;
 

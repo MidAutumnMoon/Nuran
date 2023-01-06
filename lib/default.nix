@@ -39,7 +39,7 @@ rec {
   nuran.path     = callLib ./path;
   nuran.file     = callLib ./file;
   nuran.flake    = callLib ./flake;
-  nuran.nixos    = callLib ./nixos;
+  nuran.module   = callLib ./module;
   nuran.trivial  = callLib ./trivial;
   nuran.language = callLib ./language;
   nuran.nixpkgs  = callLib ./nixpkgs;
@@ -59,7 +59,7 @@ rec {
     mkSystems
     ;
 
-  inherit (nuran.nixos)
+  inherit (nuran.module)
     isModule
     flatMod condMod
     listAllModules

@@ -2,8 +2,12 @@ lib:
 
 let
 
-  inherit (builtins)
-    isAttrs isBool
+  inherit ( builtins )
+    isAttrs
+    ;
+
+  inherit ( lib.nuran.module )
+    flatMod
     ;
 
   _condMod =
@@ -58,6 +62,6 @@ in
     cond: body:
       # $cond shouldn't be type checked
       assert isAttrs body;
-      _condMod cond (lib.nuran.nixos.flatMod body);
+      _condMod cond ( flatMod body );
 
 }
