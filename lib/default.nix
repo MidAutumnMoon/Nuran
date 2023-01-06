@@ -52,8 +52,6 @@ rec {
 
   inherit (nuran.path)
     isDir isFile
-    concatPath concatPathMap
-    listFiles listDirs
     listAllFiles listAllDirs
     ;
 
