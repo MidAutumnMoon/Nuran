@@ -2,13 +2,13 @@
 
 {
 
-  virtualisation.libvirtd =
-    { enable = true;
+  virtualisation.libvirtd = {
+      enable = true;
       onBoot = "ignore";
     };
 
-  virtualisation.libvirtd.qemu =
-    { package = pkgs.qemu_kvm;
+  virtualisation.libvirtd.qemu = {
+      package = pkgs.qemu_kvm;
       runAsRoot = false;
     };
 
@@ -17,5 +17,8 @@
 
   users.users."teapot".extraGroups =
     [ "qemu-libvirtd" "libvirtd" ];
+
+  networking.firewall.trustedInterfaces =
+    [ "virbr0" ];
 
 }
