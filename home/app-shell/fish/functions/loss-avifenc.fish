@@ -1,9 +1,9 @@
 function loss-avifenc -d 'AVIF with a bit lower quality'
 
     set --function InputFileName "$argv[1]"
-    set --function DestFileName "$(path change-extension avif $InputFileName)"
+    set --function DestFileName "$( path change-extension avif "$InputFileName" )"
 
-    command '@avifenc@' \
+    command '@cli_avifenc@' \
         --min 0 \
         --max 63 \
         --minalpha 0 \

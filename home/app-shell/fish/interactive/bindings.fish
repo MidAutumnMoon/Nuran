@@ -1,4 +1,5 @@
 bind --user \eh delete-char
+
 bind --user \e\x7F kill-whole-line
 
 bind --user \cl \

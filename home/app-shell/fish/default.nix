@@ -1,22 +1,37 @@
 { lib, config, pkgs, ... }:
 
+let
+
+  readAllFish =
+    pkgs.callPackage ./read_all_fish.nix {};
+
+  buildFunctions =
+    pkgs.callPackage ./build_functions.nix {};
+
+in
+
 lib.condMod (config.programs.fish.enable) {
 
+
   programs.fish.shellInit = ''
-    source "${ pkgs.callPackage ./read-files.nix { toplevel = ./init; } }"
+    source "${ readAllFish ./global }"
+
     set --prepend fish_function_path \
-      ${ pkgs.callPackage ./normalize-functions.nix {} }
+      ${ buildFunctions ./functions }
     '';
+
 
   programs.fish.interactiveShellInit = ''
-    source "${ pkgs.callPackage ./read-files.nix { toplevel = ./config; } }"
+    source "${ readAllFish ./interactive }"
     '';
 
-  home.packages = with pkgs; with fishPlugins;
-    [ moreutils
-      tide
-      puffer-fish
+
+  home.packages = with pkgs; [
+      moreutils
+      fishPlugins.tide
+      fishPlugins.puffer-fish
     ];
+
 
 }
 
