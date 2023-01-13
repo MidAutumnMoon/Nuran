@@ -1,9 +1,9 @@
-{ lib, config, pkgs, ... } @ args:
+{ lib, config, pkgs, ... }:
 
 let
 
   kittyNoBorder = pkgs.writeShellScript "kitty-class-no-border" ''
-      exec ${lib.getExe pkgs.kitty} --class kitty_no_border
+    exec ${lib.getExe pkgs.kitty} --class kitty_no_border
     '';
 
   kittyNoBorderDesktop = pkgs.makeDesktopItem
@@ -20,11 +20,13 @@ in
 
 lib.condMod (config.programs.kitty.enable) {
 
-  home.packages = with pkgs;
-    [ kittyNoBorderDesktop ];
+  home.packages = [
+      kittyNoBorderDesktop
+    ];
 
-  programs.kitty.extraConfig =
-    builtins.readFile ./kitty.conf;
+  programs.kitty.extraConfig = ''
+    ${ builtins.readFile ./kitty.conf }
+    '';
 
   # Remeber to use "Force Blur" the
   # Kwin script to make kitty blury.
