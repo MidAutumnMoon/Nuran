@@ -2,7 +2,6 @@
 
 {
 
-  system.stateVersion =
-    lib.mkForce "22.05";
+  system.stateVersion = lib.trivial.release;
 
 }
