@@ -8,10 +8,10 @@ lib.condMod (config.services.openssh.enable) {
   services.openssh.openFirewall =
     lib.mkDefault true;
 
-  services.openssh =
-    { permitRootLogin = "prohibit-password";
-      passwordAuthentication = false;
-      kbdInteractiveAuthentication = false;
+  services.openssh.settings = {
+      PermitRootLogin = "prohibit-password";
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
     };
 
 }
