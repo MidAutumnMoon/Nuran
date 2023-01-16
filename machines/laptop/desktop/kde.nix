@@ -14,8 +14,6 @@
       xdg-desktop-portal-wlr
     ];
 
-  nuran.fonts.enable = true;
-
   programs.dconf.enable = true;
 
   environment.systemPackages =

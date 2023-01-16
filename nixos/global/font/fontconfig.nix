@@ -1,50 +1,46 @@
 { lib, config, pkgs, ... }:
 
-
-lib.condMod (config.nuran.fonts.enable) {
-
-  options.nuran.fonts.enable =
-    lib.mkEnableOption "Preferred fonts";
-
+lib.condMod ( config.fonts.fontconfig.enable ) {
 
   fonts.enableDefaultFonts =
     lib.mkForce false;
 
   fonts.fonts = with pkgs; [
-      # CJK fonts
-      source-han-sans
+      noto-fonts-cjk-teapot
 
-      # Sans & Monospace fonts
       iosevka-teapot
-      (pkgs.nerdfonts.override {
-        fonts = [ "Hack" ];
-      })
+      hack-font
+      nerdfonts-teapot
 
-      # Sans Serif fonts
-      paratype-pt-sans
-
-      # Emoji
-      noto-fonts-emoji
-
-      # All-in-one fonts
       ibm-plex
     ];
 
-  fonts.fontconfig.defaultFonts = lib.mkForce
-    { sansSerif =
-        [ "PT Sans"
-          "Source Han Sans SC"
-          "Source Han Sans TC"
-          "Source Han Sans"
-        ];
+  fonts.fontconfig.defaultFonts = lib.mkForce {
+      sansSerif =
+        [ "Noto Sans" "Noto Sans CJK SC" ];
+      serif =
+        [ "Noto Sans" "Noto Sans CJK SC" ];
       monospace =
-        [ "Hack" ];
-      emoji =
-        [ "Twitter Color Emoji" ];
+        [ "Hack" "Iosevka Teapot" ];
+      emoji = [];
     };
 
   fonts.fontconfig.localConf =
     builtins.readFile ./local.xml;
+
+
+  fonts.fontconfig.hinting = lib.mkDefault {
+      enable = true;
+      autohint = true;
+    };
+
+  fonts.fontconfig.antialias =
+    lib.mkDefault true;
+
+  fonts.fontconfig.subpixel.rgba = "none";
+
+  fonts.fontconfig.subpixel.lcdfilter = "none";
+
 
   fonts.fontDir.enable = true;
 
