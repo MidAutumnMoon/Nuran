@@ -1,25 +1,32 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
 
   environment.systemPackages = with pkgs; [
 
-      # Networking tools
       dig mtr
 
-      # Useful utils
       htop git screen
       file fd ripgrep
 
+      neovim-teapot
+
     ];
+
+  environment.variables.EDITOR =
+    lib.mkOverride lib.nuranPrio "nvim";
 
 
   programs = {
+
+      neovim.enable = lib.mkForce false;
+
       fish.enable = true;
-      neovim.enable = true;
+
+      command-not-found.enable = false;
+
     };
 
-  programs.command-not-found.enable = false;
 
   documentation.nixos.enable = false;
 

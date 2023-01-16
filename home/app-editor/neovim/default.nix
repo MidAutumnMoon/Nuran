@@ -1,42 +1,31 @@
-{ lib, config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
 
-  localRuby = pkgs.ruby-teapot.withPackages ( p: with p; [
+  _ruby = pkgs.ruby-teapot.withPackages
+    ( p: with p; [
       solargraph
       yard
     ] );
 
-  extraTools = with pkgs; [
+  extraPrograms = with pkgs; [
       fd ripgrep gcc
       nil
-      localRuby
+      _ruby
     ];
 
-  localNeovim =
-    pkgs.neovim-teapot.override { inherit extraTools; };
+  _neovim =
+    pkgs.neovim-teapot.override { inherit extraPrograms; };
 
 
 in
 
-lib.condMod (config.programs.neovim.enable) {
+{
 
-  disabledModules = [
-      "programs/neovim.nix"
-    ];
+  home.packages = [ _neovim ];
 
-  options.programs.neovim = lib.mkOption {
-      type = lib.types.submodule
-        { freeformType = with lib.types;
-            attrsOf anything;
-          options.enable =
-            lib.mkEnableOption "Numinus!";
-        };
-    };
-
-  home.packages = [
-      localNeovim
-    ];
+  home.sessionVariables.EDITOR =
+    lib.mkOverride lib.nuranPrio "nvim";
 
 }
 

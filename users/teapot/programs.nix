@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
 
   home.packages = with pkgs; [
+
       file
       ripgrep
       fd
@@ -18,13 +19,14 @@
 
       firefox-teapot
       virt-manager
+
     ];
 
 
   programs = {
 
       # Editors
-      neovim.enable = true;
+      neovim.enable = lib.mkForce false;
 
       # Shells
       fish.enable = true;
