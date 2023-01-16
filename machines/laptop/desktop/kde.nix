@@ -34,7 +34,7 @@
       kate
       ark
       okular
-      qimgv
+      qimgv-teapot
 
       krunner fcitx5-qt ksshaskpass
     ];
