@@ -35,7 +35,8 @@ abbr -a gcm   "git commit -m"
 abbr -a gcam  "git commit -a -m"
 abbr -a gcfx  "git commit --fixup"
 
-abbr -a gcl "git clone"
+abbr -a gcl  "git clone"
+abbr -a gcl1 "git clone --depth 1"
 
 abbr -a gcount "git shortlog -sn"
 
