@@ -3,17 +3,16 @@
 let
 
   kittyNoBorder = pkgs.writeShellScript "kitty-class-no-border" ''
+    export GLFW_IM_MODULE='ibus'
     exec ${lib.getExe pkgs.kitty} --class kitty_no_border
     '';
 
-  kittyNoBorderDesktop = pkgs.makeDesktopItem
-    { name = "kitty-no-border";
+  kittyNoBorderDesktop = pkgs.makeDesktopItem {
+      name = "kitty-no-border";
       desktopName = "Kitty No Border";
       icon = "kitty";
-      exec =
-        "${toString kittyNoBorder}";
-      categories =
-        [ "System" "TerminalEmulator" ];
+      exec = "${toString kittyNoBorder}";
+      categories = [ "TerminalEmulator" ];
     };
 
 in
