@@ -32,8 +32,8 @@ in
       NURAN_TOPLEVEL =
         "${homeDirectory}/Nix";
 
-      UNSTASHED_TOPLEVEL =
-        "${homeDirectory}/Project/Unstashed";
+      NUENV =
+        "${ homeDirectory }/Project/Nix/Nuenv";
 
     };
 
