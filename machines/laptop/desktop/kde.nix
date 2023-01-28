@@ -9,11 +9,6 @@
       desktopManager.plasma5.runUsingSystemd = true;
     };
 
-  xdg.portal.extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-    ];
-
   programs.dconf.enable = true;
 
   environment.systemPackages =
