@@ -85,4 +85,13 @@
     Option "ScrollPixelDistance" "2"
     '';
 
+
+  # Steam
+
+  hardware.steam-hardware.enable = true;
+
+  hardware.uinput.enable = true;
+
+  users.users."teapot".extraGroups = [ "uinput" ];
+
 }
