@@ -12,13 +12,14 @@ in
 
 {
 
-  boot.initrd.luks.devices."lyfua" = {
-      device =
+  boot.initrd.kernelModules = [ "nvme" ];
+
+  boot.initrd.luks.devices."lyfua" =
+    { device =
         "/dev/disk/by-uuid/fcdf1ea7-8aa1-4dd6-9271-c010612fca41";
       bypassWorkqueues = true;
       allowDiscards = true;
     };
-
 
   fileSystems."/" =
     { device = "none";
@@ -33,12 +34,6 @@ in
       options =
         [ "subvol=home" ] ++ baseOption;
     };
-
-  # fileSystems."/etc" =
-  #   { device = "/dev/mapper/lyfua";
-  #     fsType = "btrfs";
-  #     options = [ "subvol=etc" ] ++ baseOption;
-  #   };
 
   fileSystems."/nix" =
     { device = "/dev/mapper/lyfua";
