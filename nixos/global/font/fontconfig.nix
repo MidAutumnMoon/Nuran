@@ -41,8 +41,5 @@ lib.condMod ( config.fonts.fontconfig.enable ) {
 
   fonts.fontconfig.subpixel.lcdfilter = "none";
 
-
-  fonts.fontDir.enable = true;
-
 }
 
