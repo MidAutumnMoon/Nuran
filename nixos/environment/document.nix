@@ -1,0 +1,5 @@
+{
+
+  documentation.nixos.enable = false;
+
+}

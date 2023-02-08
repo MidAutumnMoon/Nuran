@@ -2,7 +2,21 @@
 
 {
 
-  boot.kernelModules = [ "amdgpu" ];
+  boot.kernelPackages =
+    lib.mkForce pkgs.linuxPackages-teapot;
+
+  boot.initrd.includeDefaultModules = false;
+
+  boot.initrd.availableKernelModules = [
+      "hid_generic"
+      "usbhid"
+      "xhci_pci"
+      "xhci_hcd"
+    ];
+
+  boot.kernelModules = [
+      "amdgpu"
+    ];
 
   boot.blacklistedKernelModules = [
       "nouveau"
@@ -14,9 +28,6 @@
   hardware.cpu.amd.updateMicrocode = true;
 
   hardware.enableRedistributableFirmware = true;
-
-  boot.kernelPackages =
-    lib.mkForce pkgs.linuxPackages-teapot;
 
 
   # Bootloader
