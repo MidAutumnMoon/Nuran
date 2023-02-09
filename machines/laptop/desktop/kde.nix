@@ -5,8 +5,12 @@
   services.xserver = {
       displayManager.defaultSession = "plasmawayland";
       displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
-      desktopManager.plasma5.runUsingSystemd = true;
+    };
+
+  services.xserver.desktopManager.plasma5 = {
+      enable = true;
+      runUsingSystemd = true;
+      phononBackend = "vlc";
     };
 
   programs.dconf.enable = true;
