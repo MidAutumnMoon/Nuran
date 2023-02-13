@@ -1,9 +1,14 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 
 {
 
   boot.kernelPackages =
     lib.mkForce pkgs.linuxPackages-teapot;
+
+  boot.extraModulePackages =
+    with config.boot.kernelPackages; [
+      acpi_call
+    ];
 
   boot.initrd.includeDefaultModules = false;
 
@@ -16,6 +21,7 @@
 
   boot.kernelModules = [
       "amdgpu"
+      "acpi_call"
     ];
 
   boot.blacklistedKernelModules = [
