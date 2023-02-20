@@ -32,8 +32,8 @@ in
       NURAN_TOPLEVEL =
         "${homeDirectory}/Nix";
 
-      NUENV =
-        "${ homeDirectory }/Project/Nix/Nuenv";
+      Nuclage =
+        "${ homeDirectory }/Project/Nix/Nuclage";
 
     };
 
