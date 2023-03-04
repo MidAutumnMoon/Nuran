@@ -1,0 +1,28 @@
+[book]
+authors = [ "MidAutumnMoon" ]
+language = "en"
+src = "bubbles"
+title = "Cider Bubble"
+
+[build]
+build-dir = "out"
+create-missing = false
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "frappe"
+mathjax-support = true
+additional-css = [
+    "./theme/self.css",
+    "./theme/catppuccin.css",
+    "./theme/catppuccin-highlight.css"
+]
+
+[output.html.print]
+enable = false
+
+[preprocessor.catppuccin]
+assets_version = "0.1.1" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
+
+[preprocessor.toc]
+renderer = [ "html" ]

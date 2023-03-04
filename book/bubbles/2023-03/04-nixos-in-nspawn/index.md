@@ -1,6 +1,8 @@
-# Setup NixOS inside systemd-nspawn
+# Setup NixOS using systemd-nspawn
 
-- https://hub.nspawn.org/images/ provides NixOS tarball
+<!-- toc -->
+
+- <https://hub.nspawn.org/images/> provides NixOS tarball
     - Has a sane default configuration.nix
         - Has `boot.loader.initScript.enable = true;` (otherwise nspawn won't be able to boot the system)
         - Has `boot.isContainer = true;`

@@ -83,7 +83,16 @@ in {
     };
 
   devShells =
-    lib.hexaShell pkgsForSystems [ "sops" "colmena" "ssh-to-age" ];
+    lib.hexaShell pkgsForSystems [
+      "colmena"
+      "sops"
+      "ssh-to-age"
+      "wrangler"
+      "mdbook"
+      "mdbook-catppuccin"
+      "mdbook-toc"
+      "minify"
+    ];
 
 }; # outputs end & terminate the bracket slope
 

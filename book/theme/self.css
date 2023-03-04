@@ -1,0 +1,11 @@
+main a[href^="http"]:where( :not([href*="cider.418.im/"]) )::after {
+    opacity: 60%;
+    content: "⬈";
+}
+
+figure {
+    text-align: center;
+    font-size: smaller;
+    font-style: italic;
+    color: grey;
+}

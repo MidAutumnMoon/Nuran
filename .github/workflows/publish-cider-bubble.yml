@@ -1,0 +1,51 @@
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'flake.*'
+      - 'book/**'
+
+jobs:
+
+  publish:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      deployments: write
+
+    name: Publish Cider Bubble to Cloudflare Pages
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup nix
+        uses: cachix/install-nix-action@v20
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          extra_nix_config: |
+            substituters = https://cache.nixos.org/ https://nuirrce.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk=
+
+      - name: Build Cider Bubble
+        run: |
+          nix develop -c -- \
+            mdbook build "book"
+
+      - name: Minify
+        run: |
+          nix develop -c -- \
+            minify --all --recursive --verbose --sync --output "out_mini" "book/out"
+
+      - name: Publish
+        if: ${{ success() }}
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_USER_ID }}
+          projectName: cider-bubble
+          directory: out_mini
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
