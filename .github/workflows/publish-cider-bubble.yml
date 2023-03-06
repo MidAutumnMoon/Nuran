@@ -11,6 +11,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
+
     permissions:
       contents: read
       deployments: write
