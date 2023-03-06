@@ -7,5 +7,9 @@ figure {
     text-align: center;
     font-size: smaller;
     font-style: italic;
-    color: grey;
+    color: #838383; /* Nice grey */
+}
+
+figure > figcaption {
+    opacity: 0.85;
 }
