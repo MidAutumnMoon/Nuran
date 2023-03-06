@@ -5,11 +5,6 @@
   boot.kernelPackages =
     lib.mkForce pkgs.linuxPackages-teapot;
 
-  boot.extraModulePackages =
-    with config.boot.kernelPackages; [
-      acpi_call
-    ];
-
   boot.initrd.includeDefaultModules = false;
 
   boot.initrd.availableKernelModules = [
@@ -17,11 +12,6 @@
       "usbhid"
       "xhci_pci"
       "xhci_hcd"
-    ];
-
-  boot.kernelModules = [
-      "amdgpu"
-      "acpi_call"
     ];
 
   boot.blacklistedKernelModules = [
