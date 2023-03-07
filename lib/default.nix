@@ -30,7 +30,6 @@ rec {
   nuran.file     = importLib ./file;
   nuran.module   = importLib ./module;
   nuran.trivial  = importLib ./trivial;
-  nuran.language = importLib ./language;
   nuran.nixpkgs  = importLib ./nixpkgs;
 
   inherit ( nuran.path )
@@ -52,10 +51,6 @@ rec {
   inherit ( nuran.trivial )
     doNothing
     assembleSystem
-    ;
-
-  inherit ( nuran.language )
-    readVersionCargo
     ;
 
   inherit ( nuran.nixpkgs )
