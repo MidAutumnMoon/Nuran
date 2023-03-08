@@ -1,9 +1,6 @@
 { imports = [
 
-  ./nix-daemon.nix
-  ./openssh.nix
-  ./power.nix
-  ./flatpak.nix
+  ./all.nix
 
   ./dnscrypt-proxy
 
