@@ -24,7 +24,10 @@ in
     };
 
   sharedModules =
-    lib.listAllModules config.nudata.paths.homeModule;
+    ( lib.listAllModules config.nudata.paths.homeModule )
+    ++ [
+      flakes.nix-index-db.hmModules.nix-index
+    ];
 
 }; }
 

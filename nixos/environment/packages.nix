@@ -9,4 +9,6 @@
   file
   fd ripgrep
 
+  comma
+
 ]; }
