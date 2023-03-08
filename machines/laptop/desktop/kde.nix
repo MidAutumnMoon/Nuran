@@ -1,11 +1,40 @@
 { pkgs, lib, ... }:
 
+let
+
+  greetd-script = pkgs.writers.writeFish "greetd-script" ''
+    exec '${lib.getExe pkgs.greetd.tuigreet}' \
+      --sessions '/run/current-system/sw/share/wayland-sessions' \
+      --time \
+      --remember \
+      --remember-user-session \
+      --cmd 'startplasma-wayland'
+    '';
+
+in
+
 {
 
-  services.xserver = {
-      displayManager.defaultSession = "plasmawayland";
-      displayManager.sddm.enable = true;
+  # xserver module defaults to enable lightdm
+  # if no other display managers are enabled :(
+  services.xserver.displayManager.lightdm.enable = false;
+
+  services.greetd = {
+      enable = true;
+      vt = 2;
     };
+
+  services.greetd.settings = {
+      default_session.command = greetd-script;
+    };
+
+  security.pam.services.greetd.enableKwallet = true;
+
+  systemd.services.greetd.serviceConfig = {
+      # Type = idle slows down the login flow a lot
+      Type = lib.mkForce "simple";
+    };
+
 
   services.xserver.desktopManager.plasma5 = {
       enable = true;
