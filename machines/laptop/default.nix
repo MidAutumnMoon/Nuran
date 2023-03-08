@@ -3,10 +3,9 @@
   ./kernel.nix
   ./hardware.nix
   ./filesystem.nix
-
   ./networking
-  ./desktop
 
+  ./desktop.nix
   ./accounts
   ./environment
   ./services

@@ -15,6 +15,10 @@ in
 
 {
 
+  #
+  # Display Manager
+  #
+
   # xserver module defaults to enable lightdm
   # if no other display managers are enabled :(
   services.xserver.displayManager.lightdm.enable = false;
@@ -35,6 +39,17 @@ in
       Type = lib.mkForce "simple";
     };
 
+  systemd.tmpfiles.rules = [
+      "d /var/cache/tuigreet 0755 greeter greeter - -"
+    ];
+
+
+
+  #
+  # KDE
+  #
+
+  programs.dconf.enable = true;
 
   services.xserver.desktopManager.plasma5 = {
       enable = true;
@@ -42,27 +57,35 @@ in
       phononBackend = "vlc";
     };
 
-  programs.dconf.enable = true;
-
   environment.systemPackages =
     with pkgs;
     with plasma5Packages;
     with kdeGear;
     [
       kde-gtk-config
-      unzip
-      unrar
+      fcitx5-qt ksshaskpass
 
       papirus-icon-theme
       graphite-cursor-theme
       breeze-gtk
 
-      kate
-      ark
+      unzip unrar
+      kate ark
       okular
       qimgv-teapot
+    ];
 
-      krunner fcitx5-qt ksshaskpass
+
+
+  #
+  # IME
+  #
+
+  i18n.inputMethod.enabled = "fcitx5";
+
+  i18n.inputMethod.fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+      fcitx5-chinese-addons
     ];
 
 }
