@@ -7,7 +7,7 @@ function quick7z
 
     set -f Origin "$argv[1]"
     set -f Basename ( path basename -- "$Origin" )
-    set -f Target "$Basename"
+    set -f Target "$Basename.7z"
 
     command 7z a -m0=lzma2 -mx=7 -ms=on "$Target" "$Origin"
 
