@@ -1,4 +1,4 @@
-{ lib, pkgs, config, nixosConfig, ... }:
+{ config, nixosConfig, ... }:
 
 let
 
@@ -17,6 +17,14 @@ in
   (builder {
       remoteName = "Hetzner";
       mountPoint = "${homeDir}/Remote/Hetzner";
+      configPath = "${sopsSecrets."rclone_conf".path}";
+      extraFlags =
+        [ "--vfs-disk-space-total-size 1T" ];
+    } )
+
+  (builder {
+      remoteName = "HetznerSecond";
+      mountPoint = "${homeDir}/Remote/SecBox";
       configPath = "${sopsSecrets."rclone_conf".path}";
       extraFlags =
         [ "--vfs-disk-space-total-size 1T" ];
