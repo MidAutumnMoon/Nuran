@@ -8,9 +8,6 @@ inputs = {
   nixpkgs.url =
     "github:NixOS/nixpkgs/nixos-unstable-small";
 
-  nulib.url =
-    "github:MidAutumnMoon/Nulib";
-
   # Some modules
 
   impermanence.url =
@@ -29,14 +26,6 @@ inputs = {
   nix-index-db =
     { url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-  # Some overlays
-
-  nuclage =
-    { url = "github:MidAutumnMoon/Nuclage";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nulib.follows = "nulib";
     };
 
 };
