@@ -1,0 +1,55 @@
+name: "Update sources"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * */3"
+
+jobs:
+
+  update-sources:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup nix
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: "nixpkgs=channel:nixpkgs-unstable"
+
+      - name: Install required tools
+        run: nix-env -f '<nixpkgs>' -iA 'fish'
+
+      - name: Configure nix-daemon
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: fish __scripts/configure-daemon.fish
+
+      - name: Run nvfetcher
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          fish 'packages/nvfetcher' | tee /tmp/nvfetcher_outputs
+          sed --in-place '0,/^Changes/d' /tmp/nvfetcher_outputs
+
+      # Ass in the pain to do this using the holyf bash
+      - name: Read nvfetcher changes
+        id: version_changes
+        uses: andstor/file-reader-action@v1
+        with:
+          path: "/tmp/nvfetcher_outputs"
+
+      - name: Open PR
+        uses: peter-evans/create-pull-request@v4
+        with:
+          delete-branch: true
+          title: "sources: update [bot]"
+          commit-message: "sources: update [bot]"
+          committer: "GitHub <noreply@github.com>"
+          author: "GitHub <noreply@github.com>"
+          body: |
+            ${{ steps.version_changes.outputs.contents }}
