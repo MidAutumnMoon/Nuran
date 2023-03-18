@@ -131,6 +131,19 @@ in {
       minify
     ];
 
+  shellRecipes."rust" = p:
+    with p; [
+      rustc
+      cargo
+      clippy
+      cargo-bloat
+      cargo-nextest
+      cargo-outdated
+      rustfmt
+      rust-analyzer
+      stdenvTeapot.cc
+    ];
+
   devShells =
     lib.brewShells pkgsBrew self.shellRecipes;
 
