@@ -1,0 +1,236 @@
+{
+    "cachyos-patches": {
+        "cargoLocks": null,
+        "date": "2023-03-17",
+        "extract": null,
+        "name": "cachyos-patches",
+        "passthru": null,
+        "pinned": true,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "d3503c89a63d58786e4259a524e9da9166b90cfd",
+            "sha256": "sha256-IFJC4bnhxjQyJvmMGtfnfPGWvNXaxlGNPPUocwP1HiA=",
+            "type": "git",
+            "url": "https://github.com/CachyOS/kernel-patches/"
+        },
+        "version": "d3503c89a63d58786e4259a524e9da9166b90cfd"
+    },
+    "derputils": {
+        "cargoLocks": null,
+        "date": "2023-03-06",
+        "extract": {
+            "Cargo.lock": "./derputils-26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51/Cargo.lock"
+        },
+        "name": "derputils",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51",
+            "sha256": "sha256-WqxAw9D17e1ZM9n4CW7P9mTY128IKFR3ibDC5mOMm8M=",
+            "type": "git",
+            "url": "https://github.com/MidAutumnMoon/derputils"
+        },
+        "version": "26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51"
+    },
+    "graphite-cursors": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "graphite-cursors",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "vinceliuice",
+            "repo": "Graphite-cursors",
+            "rev": "2021-11-26",
+            "sha256": "sha256-Kopl2NweYrq9rhw+0EUMhY/pfGo4g387927TZAhI5/A=",
+            "type": "github"
+        },
+        "version": "2021-11-26"
+    },
+    "k380-fn-keys-swap": {
+        "cargoLocks": null,
+        "date": "2021-11-28",
+        "extract": null,
+        "name": "k380-fn-keys-swap",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81",
+            "sha256": "sha256-Eubm9duEdUk8FBDbiVx2W20xKcmLrRTnrE+PiQxUuRI=",
+            "type": "git",
+            "url": "https://github.com/jergusg/k380-function-keys-conf/"
+        },
+        "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
+    },
+    "mdbook-catppuccin": {
+        "cargoLocks": null,
+        "date": "2023-03-03",
+        "extract": {
+            "Cargo.lock": "./mdbook-catppuccin-98cf81a998a49c3176854f46c6e9a971f34b1c93/Cargo.lock"
+        },
+        "name": "mdbook-catppuccin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "98cf81a998a49c3176854f46c6e9a971f34b1c93",
+            "sha256": "sha256-UoKsjLjGra5XxyVD50fTkkCd5mB9fd4cH4c1MIhe7uA=",
+            "type": "git",
+            "url": "https://github.com/catppuccin/mdBook"
+        },
+        "version": "98cf81a998a49c3176854f46c6e9a971f34b1c93"
+    },
+    "mdbook-toc": {
+        "cargoLocks": null,
+        "date": "2023-02-14",
+        "extract": {
+            "Cargo.lock": "./mdbook-toc-c78210ea72deaea938c8947ab1bec24b14653ea2/Cargo.lock"
+        },
+        "name": "mdbook-toc",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "c78210ea72deaea938c8947ab1bec24b14653ea2",
+            "sha256": "sha256-WkrXNFujLjE9dpFj2vTnmPa1beCGi7ZvyCOTW0Q/TO8=",
+            "type": "git",
+            "url": "https://github.com/badboy/mdbook-toc"
+        },
+        "version": "c78210ea72deaea938c8947ab1bec24b14653ea2"
+    },
+    "moonscript": {
+        "cargoLocks": null,
+        "date": "2022-11-04",
+        "extract": null,
+        "name": "moonscript",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "a0108328373d5f3f1aefb98341aa895dd75a1b2a",
+            "sha256": "sha256-JzWe8vKTxcixeyeCampvbqQ7/p8LkF+J0Sv/FthILwo=",
+            "type": "git",
+            "url": "https://github.com/leafo/moonscript"
+        },
+        "version": "a0108328373d5f3f1aefb98341aa895dd75a1b2a"
+    },
+    "neovim": {
+        "cargoLocks": null,
+        "date": "2023-03-18",
+        "extract": null,
+        "name": "neovim",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "c6f8af36e134a67b489d59e078425cada5eafd7b",
+            "sha256": "sha256-WmyfOpDkV3jNen6NVGTDVb7UriPTBAMjy6/CcxdFpkU=",
+            "type": "git",
+            "url": "https://github.com/neovim/neovim"
+        },
+        "version": "c6f8af36e134a67b489d59e078425cada5eafd7b"
+    },
+    "noto-fonts-cjk": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "noto-fonts-cjk",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-Uo9OGyX/O62wMhs40BXZVMTA3pJseDDvUOShlI9qPu0=",
+            "type": "url",
+            "url": "https://github.com/googlefonts/noto-cjk/releases/download/Sans2.004/03_NotoSansCJK-OTC.zip"
+        },
+        "version": "Sans2.004"
+    },
+    "puffer-fish": {
+        "cargoLocks": null,
+        "date": "2023-03-15",
+        "extract": null,
+        "name": "puffer-fish",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "5d3cb25e0d63356c3342fb3101810799bb651b64",
+            "sha256": "sha256-aPxEHSXfiJJXosIm7b3Pd+yFnyz43W3GXyUB5BFAF54=",
+            "type": "git",
+            "url": "https://github.com/nickeb96/puffer-fish"
+        },
+        "version": "5d3cb25e0d63356c3342fb3101810799bb651b64"
+    },
+    "shadowsocks-rust": {
+        "cargoLocks": null,
+        "date": "2023-03-18",
+        "extract": {
+            "Cargo.lock": "./shadowsocks-rust-115dba795dc677d22880d2c4188b5dd5be5fdc7b/Cargo.lock"
+        },
+        "name": "shadowsocks-rust",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "115dba795dc677d22880d2c4188b5dd5be5fdc7b",
+            "sha256": "sha256-Z/FbEtP8S1fwcs7v30GSRjTK860A2YPDNKgvNTXFGSI=",
+            "type": "git",
+            "url": "https://github.com/shadowsocks/shadowsocks-rust"
+        },
+        "version": "115dba795dc677d22880d2c4188b5dd5be5fdc7b"
+    },
+    "tide": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "tide",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "IlanCosman",
+            "repo": "tide",
+            "rev": "v5.5.1",
+            "sha256": "sha256-vi4sYoI366FkIonXDlf/eE2Pyjq7E/kOKBrQS+LtE+M=",
+            "type": "github"
+        },
+        "version": "v5.5.1"
+    }
+}

@@ -2,27 +2,19 @@
 
 set -l Config '
 
-# Native produced
-
 [derputils]
 src.git = "https://github.com/MidAutumnMoon/derputils"
 fetch.git = "https://github.com/MidAutumnMoon/derputils"
 extract = [ "Cargo.lock" ]
 
-# Editor
-
 [neovim]
 src.git = "https://github.com/neovim/neovim"
 fetch.git = "https://github.com/neovim/neovim"
-
-# Network
 
 [shadowsocks-rust]
 src.git = "https://github.com/shadowsocks/shadowsocks-rust"
 fetch.git = "https://github.com/shadowsocks/shadowsocks-rust"
 extract = [ "Cargo.lock" ]
-
-# Shells
 
 [tide]
 src.github = "IlanCosman/tide"
@@ -31,8 +23,6 @@ fetch.github = "IlanCosman/tide"
 [puffer-fish]
 src.git = "https://github.com/nickeb96/puffer-fish"
 fetch.git = "https://github.com/nickeb96/puffer-fish"
-
-# Themes & Fonts
 
 [graphite-cursors]
 src.github = "vinceliuice/Graphite-cursors"
@@ -53,27 +43,13 @@ src.git = "https://github.com/badboy/mdbook-toc"
 fetch.git = "https://github.com/badboy/mdbook-toc"
 extract = [ "Cargo.lock" ]
 
-# Multimedia
-
-[qimgv]
-src.git = "https://github.com/easymodo/qimgv"
-fetch.git = "https://github.com/easymodo/qimgv"
-
-# Language
-
 [moonscript]
 src.git = "https://github.com/leafo/moonscript"
 fetch.git = "https://github.com/leafo/moonscript"
 
-
-# Hardware related
-
 [k380-fn-keys-swap]
 src.git = "https://github.com/jergusg/k380-function-keys-conf/"
 fetch.git = "https://github.com/jergusg/k380-function-keys-conf/"
-
-
-# Kernel
 
 [cachyos-patches]
 src.git = "https://github.com/CachyOS/kernel-patches/"

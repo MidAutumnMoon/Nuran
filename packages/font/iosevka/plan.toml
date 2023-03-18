@@ -1,0 +1,25 @@
+[buildPlans.iosevka-teapot]
+family = "Iosevka Teapot"
+spacing = "term"
+serifs = "slab"
+no-cv-ss = true
+export-glyph-names = false
+no-ligation = true
+
+[buildPlans.iosevka-teapot.variants.design]
+capital-z = "straight-serifed"
+f = "flat-hook-serifed"
+x = "curly-serifless"
+caret = "high"
+number-sign = "upright"
+at = "threefold-tall"
+dollar = "open"
+percent = "rings-segmented-slash"
+
+[buildPlans.iosevka-teapot.variants.italic]
+x = "curly-serifless"
+y = "cursive-flat-hook"
+z = "cursive"
+
+[buildPlans.iosevka-teapot.variants.oblique]
+x = "curly-serifless"
