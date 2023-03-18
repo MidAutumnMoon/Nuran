@@ -15,9 +15,7 @@
       wl-clipboard
       neofetch
 
-      ruby-teapot
-
-      firefox-teapot
+      firefox_teapot
       virt-manager
 
     ];

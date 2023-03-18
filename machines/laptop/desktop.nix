@@ -72,7 +72,7 @@ in
       unzip unrar
       kate ark
       okular
-      qimgv-teapot
+      qimgv
     ];
 
 

@@ -3,7 +3,7 @@
 {
 
   boot.kernelPackages =
-    lib.mkForce pkgs.linuxPackages-teapot;
+    lib.mkForce pkgs.linuxPackages_teapot;
 
   boot.initrd.includeDefaultModules = false;
 

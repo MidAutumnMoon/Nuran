@@ -2,7 +2,7 @@
 
 lib.condMod (config.programs.mpv.enable) {
 
-  programs.mpv.package = pkgs.mpv-teapot;
+  programs.mpv.package = pkgs.mpv_teapot;
 
   programs.mpv.bindings =
     import ./binding.nix;

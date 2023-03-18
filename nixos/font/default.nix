@@ -6,11 +6,11 @@ lib.condMod ( config.fonts.fontconfig.enable ) {
     lib.mkForce false;
 
   fonts.fonts = with pkgs; [
-      noto-fonts-cjk-teapot
+      noto-fonts-cjk_teapot
 
-      iosevka-teapot
+      iosevka_teapot
       hack-font
-      nerdfonts-teapot
+      nerdfonts_teapot
 
       ibm-plex
     ];
