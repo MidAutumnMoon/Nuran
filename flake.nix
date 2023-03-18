@@ -48,19 +48,20 @@ outputs = { self, nixpkgs, ... } @ flakes: let
     nixpkgs.lib.extend ( import ./lib );
 
   overlays =
-    flakes.nuclage.totalOverlays;
+    builtins.attrValues self.overlays;
 
   config =
     { allowUnfree = true; };
 
   modules = with flakes;
-    ( lib.listAllModules ./nixos ) ++
-    [
+    lib.flatten [
       ./nudata
       sops-nix.nixosModule
       impermanence.nixosModule
       home-manager.nixosModule
+      ( lib.listAllModules ./nixos )
     ];
+
 
   pkgsBrew =
     lib.brewNixpkgs nixpkgs { inherit config overlays; };
@@ -77,18 +78,36 @@ in {
 
   inherit lib;
 
+  /*
+  *
+  * Overlays & packages
+  *
+  */
 
-  #
-  # NixOS & deploy
-  #
+  overlays.nuclage =
+    import ./packages { inherit lib; };
+
+  overlays.reexport =
+    import ./packages/reexport.nix { inherit flakes; };
+
+  legacyPackages = pkgsBrew lib.id;
+
+
+  /*
+  *
+  * NixOS & deploy
+  *
+  */
 
   nixosConfigurations."lyfua" =
     machine { toplevel = ./machines/laptop; };
 
 
-  #
-  # devShells
-  #
+  /*
+  *
+  * devShells
+  *
+  */
 
   shellRecipes."nuran" = p:
     with p; [

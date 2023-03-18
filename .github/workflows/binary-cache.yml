@@ -1,0 +1,73 @@
+name: "Teapot's binary cache"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'flake.*'
+      - 'packages/**'
+  schedule:
+    - cron: "0 */6 * * *"
+
+
+jobs:
+
+  build-cache:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        task-name:
+          - kernels-modules
+          - parallel-1
+          - parallel-2
+          - parallel-3
+          - rust-things
+          - rust-heavy-things
+          - go-things
+          - lua-things
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v3
+
+      - name: "Setup nix"
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: "nixpkgs=channel:nixpkgs-unstable"
+
+      - name: "Install tools"
+        run: |
+          nix-env -f '<nixpkgs>' -iA \
+            'nix-build-uncached' 'fish'
+
+      - name: "Freeup bloats"
+        run: fish __scripts/cleansing.fish light
+
+      - name: "Configure nix daemon"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: fish __scripts/configure-daemon.fish
+
+      - name: "Update workspace flake"
+        run: nix flake update
+
+      - name: "Setup cachix"
+        uses: cachix/cachix-action@master
+        with:
+          name: "nuirrce"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          cachixArgs: "-c7"
+          pushFilter: |
+            (NVIDIA.*\.run)|(-source|vendor\..*|go-modules|-crate-|.tar.gz)
+
+      - name: "Run build"
+        run: |
+          fish __scripts/do-build.fish 'packages/workflow-builds.nix' '${{ matrix.task-name }}'
+
+      - name: "Cleanup"
+        if: always()
+        run: nix-collect-garbage -d
