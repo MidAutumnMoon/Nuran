@@ -11,7 +11,6 @@ let
     forEachSystem
     ;
 
-  # importNixpkgs :: nixpkgs -> attrset -> attrset
   importForEachSystem =
     nixpkgs: options:
       forEachSystem (
@@ -28,7 +27,7 @@ in
 
 {
 
-  # importNixpkgs :: nixpkgs -> attrset -> attrset
+  # brewNixpkgs :: nixpkgs -> attrset -> attrset
   #
   # Import nixpkgs for common supported systems.
   #
