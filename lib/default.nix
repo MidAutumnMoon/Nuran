@@ -56,7 +56,7 @@ rec {
   inherit ( nuran.nixpkgs )
     removePatches
     onceride oncerideDrv
-    importNixpkgs
+    brewNixpkgs
     hexaShell
     ;
 

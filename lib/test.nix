@@ -1,3 +1,11 @@
 with (builtins.getFlake (toString ../.)).lib; let pkgs = import <nixpkgs> {}; in
 
-1
+let
+
+  pkgsBrew = brewNixpkgs { inherit someting; };
+
+in
+
+pkgsBrew."<system>".any
+
+pkgsBrew ( p: with p; [ hello ] )

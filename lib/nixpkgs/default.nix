@@ -1,7 +1,7 @@
 [
 
   ./onceride.nix
-  ./importNixpkgs.nix
+  ./brewNixpkgs.nix
   ./hexaShell.nix
   ./removePatches.nix
 
