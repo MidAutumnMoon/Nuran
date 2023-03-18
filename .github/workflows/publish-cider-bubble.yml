@@ -36,12 +36,12 @@ jobs:
 
       - name: Build Cider Bubble
         run: |
-          nix develop -c -- \
+          nix develop .#cider-bubble -c -- \
             mdbook build "book"
 
       - name: Minify
         run: |
-          nix develop -c -- \
+          nix develop .#cider-bubble -c -- \
             minify --all --recursive --verbose --sync --output "out_mini" "book/out"
 
       - name: Publish

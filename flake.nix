@@ -62,8 +62,8 @@ outputs = { self, nixpkgs, ... } @ flakes: let
       home-manager.nixosModule
     ];
 
-  pkgsForSystems =
-    lib.importNixpkgs { inherit nixpkgs config overlays; };
+  pkgsBrew =
+    lib.brewNixpkgs nixpkgs { inherit config overlays; };
 
   machine =
     lib.assembleSystem {
@@ -77,29 +77,39 @@ in {
 
   inherit lib;
 
+
+  #
+  # NixOS & deploy
+  #
+
   nixosConfigurations."lyfua" =
     machine { toplevel = ./machines/laptop; };
 
-  colmena.meta = {
-      nixpkgs =
-        pkgsForSystems."x86_64-linux";
-      specialArgs =
-        { inherit lib flakes; };
-    };
 
-  devShells =
-    lib.hexaShell pkgsForSystems [
-      "colmena"
-      "sops"
-      "ssh-to-age"
-      "wrangler"
-      "mdbook"
-      "mdbook-catppuccin"
-      "mdbook-toc"
-      "minify"
+  #
+  # devShells
+  #
+
+  shellRecipes."nuran" = p:
+    with p; [
+      colmena
+      sops
+      ssh-to-age
     ];
 
-}; # outputs end & terminate the bracket slope
+  shellRecipes."cider-bubble" = p:
+    with p; [
+      wrangler
+      mdbook
+      mdbook-catppuccin
+      mdbook-toc
+      minify
+    ];
+
+  devShells =
+    lib.brewShells pkgsBrew self.shellRecipes;
+
+};
 
 }
 
