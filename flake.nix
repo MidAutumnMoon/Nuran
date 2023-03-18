@@ -97,6 +97,12 @@ in {
       ssh-to-age
     ];
 
+  shellRecipes."nuclage" = p:
+    with p; [
+      nix-build-uncached
+      nvfetcher
+    ];
+
   shellRecipes."cider-bubble" = p:
     with p; [
       wrangler

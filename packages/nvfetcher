@@ -1,0 +1,162 @@
+#!/usr/bin/env -S fish -PN
+
+set -l Config '
+
+# Native produced
+
+[derputils]
+src.git = "https://github.com/MidAutumnMoon/derputils"
+fetch.git = "https://github.com/MidAutumnMoon/derputils"
+extract = [ "Cargo.lock" ]
+
+# Editor
+
+[neovim]
+src.git = "https://github.com/neovim/neovim"
+fetch.git = "https://github.com/neovim/neovim"
+
+# Network
+
+[shadowsocks-rust]
+src.git = "https://github.com/shadowsocks/shadowsocks-rust"
+fetch.git = "https://github.com/shadowsocks/shadowsocks-rust"
+extract = [ "Cargo.lock" ]
+
+# Shells
+
+[tide]
+src.github = "IlanCosman/tide"
+fetch.github = "IlanCosman/tide"
+
+[puffer-fish]
+src.git = "https://github.com/nickeb96/puffer-fish"
+fetch.git = "https://github.com/nickeb96/puffer-fish"
+
+# Themes & Fonts
+
+[graphite-cursors]
+src.github = "vinceliuice/Graphite-cursors"
+fetch.github = "vinceliuice/Graphite-cursors"
+
+[noto-fonts-cjk]
+src.github_tag = "googlefonts/noto-cjk"
+src.include_regex = "Sans.*"
+fetch.url = "https://github.com/googlefonts/noto-cjk/releases/download/$ver/03_NotoSansCJK-OTC.zip"
+
+[mdbook-catppuccin]
+src.git = "https://github.com/catppuccin/mdBook"
+fetch.git = "https://github.com/catppuccin/mdBook"
+extract = [ "Cargo.lock" ]
+
+[mdbook-toc]
+src.git = "https://github.com/badboy/mdbook-toc"
+fetch.git = "https://github.com/badboy/mdbook-toc"
+extract = [ "Cargo.lock" ]
+
+# Multimedia
+
+[qimgv]
+src.git = "https://github.com/easymodo/qimgv"
+fetch.git = "https://github.com/easymodo/qimgv"
+
+# Language
+
+[moonscript]
+src.git = "https://github.com/leafo/moonscript"
+fetch.git = "https://github.com/leafo/moonscript"
+
+
+# Hardware related
+
+[k380-fn-keys-swap]
+src.git = "https://github.com/jergusg/k380-function-keys-conf/"
+fetch.git = "https://github.com/jergusg/k380-function-keys-conf/"
+
+
+# Kernel
+
+[cachyos-patches]
+src.git = "https://github.com/CachyOS/kernel-patches/"
+fetch.git = "https://github.com/CachyOS/kernel-patches/"
+pinned = true
+
+'
+
+
+
+#
+# Prepare env
+#
+
+set -l FishPath ( status fish-path )
+
+set -l ScriptPath ( status filename | path resolve )
+
+set -l ScriptDir ( path dirname -- "$ScriptPath" )
+
+set -l SourceDir "$ScriptDir/_sources"
+
+
+#
+# Enter devshell
+#
+
+if not set --query NvfetcherDevshell
+
+    set -lx NvfetcherDevshell ( true )
+
+    nix develop .#nuclage -c "$FishPath" "$ScriptPath" $argv
+
+    exit $status
+
+end
+
+
+#
+# "force" mode remove "pinned" from $Config
+#
+
+if test "$argv[1]" = "force"
+
+    set Config "$( printf "$Config" | sed '/^pinned/d' )"
+
+end
+
+
+#
+# Remove stale files
+#
+
+find "$SourceDir" -mindepth 1 ! -name 'generated.*' -delete
+
+
+#
+# Add $GITHUB_TOKEN to config
+#
+
+set -l KeyfileOption
+
+if set --query GITHUB_TOKEN
+
+    set -l KeyfilePath "$( mktemp --suffix .toml )"
+
+    printf "%s\n" \
+        "[keys]" \
+        "github = \"$GITHUB_TOKEN\"" \
+    > "$KeyfilePath"
+
+    set KeyfileOption "--keyfile" "$KeyfilePath"
+
+end
+
+
+#
+# Run nvfetcher
+#
+
+nvfetcher \
+    --config ( printf "$Config" | psub ) \
+    --build-dir "$SourceDir" \
+    --retry 8 \
+    -j 8 \
+    $KeyfileOption
