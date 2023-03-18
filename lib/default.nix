@@ -57,7 +57,7 @@ rec {
     removePatches
     onceride oncerideDrv
     brewNixpkgs
-    hexaShell
+    brewShells
     ;
 
 }

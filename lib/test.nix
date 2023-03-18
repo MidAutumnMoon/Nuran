@@ -2,10 +2,24 @@ with (builtins.getFlake (toString ../.)).lib; let pkgs = import <nixpkgs> {}; in
 
 let
 
-  pkgsBrew = brewNixpkgs { inherit someting; };
+  pkgsBrew = brewNixpkgs <nixpkgs> {};
 
 in
 
-pkgsBrew."<system>".any
+brewShells pkgsBrew rec {
 
-pkgsBrew ( p: with p; [ hello ] )
+  default = listOfPackages;
+
+  listOfPackages = p: [ p.hello ];
+
+  withHook = p: {
+    packages = [ p.hello ];
+    shellHook = ''
+      echo "This should hello"
+      hello
+      '';
+  };
+
+  passthru = p: 123;
+
+}

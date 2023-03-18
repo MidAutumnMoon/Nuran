@@ -1,8 +1,10 @@
 [
 
   ./onceride.nix
+
   ./brewNixpkgs.nix
-  ./hexaShell.nix
+  ./brewShells.nix
+
   ./removePatches.nix
 
 ]
