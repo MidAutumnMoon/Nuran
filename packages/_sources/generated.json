@@ -151,12 +151,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "c6f8af36e134a67b489d59e078425cada5eafd7b",
-            "sha256": "sha256-WmyfOpDkV3jNen6NVGTDVb7UriPTBAMjy6/CcxdFpkU=",
+            "rev": "204a8b17c8ebab1619cc47a920a06dcc348d75f7",
+            "sha256": "sha256-tLSKQZ3KYqqwhXC4X2lwIg/g1cmjpKRogGhA9G0a/2I=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "c6f8af36e134a67b489d59e078425cada5eafd7b"
+        "version": "204a8b17c8ebab1619cc47a920a06dcc348d75f7"
     },
     "noto-fonts-cjk": {
         "cargoLocks": null,
