@@ -45,7 +45,7 @@ outputs = { self, nixpkgs, ... } @ flakes: let
   modules = with flakes;
     lib.flatten [
       ./nudata
-      sops-nix.nixosModule
+      sops-nix.nixosModules.default
       impermanence.nixosModule
       home-manager.nixosModule
       ( lib.listAllModules ./nixos )
