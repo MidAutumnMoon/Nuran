@@ -1,6 +1,6 @@
 { imports = [
 
   ./root.nix
-  ./teapot
+  ./teapot.nix
 
 ]; }

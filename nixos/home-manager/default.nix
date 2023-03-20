@@ -23,10 +23,10 @@ in
       inherit flakes;
     };
 
-  sharedModules =
-    ( lib.listAllModules config.nudata.paths.homeModule )
-    ++ [
+  sharedModules = [
+      config.nudata.paths.home
       flakes.nix-index-db.hmModules.nix-index
+      flakes.sops-nix.homeManagerModules.sops
     ];
 
 }; }

@@ -1,0 +1,5 @@
+{ imports = [
+
+  ./fcitx5
+
+]; }
