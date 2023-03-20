@@ -29,13 +29,7 @@ lib.condMod ( config.fonts.fontconfig.enable ) {
     builtins.readFile ./local.xml;
 
 
-  fonts.fontconfig.hinting = lib.mkDefault {
-      enable = true;
-      autohint = true;
-    };
-
-  fonts.fontconfig.antialias =
-    lib.mkDefault true;
+  fonts.fontconfig.antialias = true;
 
   fonts.fontconfig.subpixel.rgba = "none";
 
