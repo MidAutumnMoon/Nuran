@@ -135,6 +135,12 @@ in {
       stdenvTeapot.cc
     ];
 
+  shellRecipes."picno" = p:
+    with p; [
+      xxHash
+      waifu2x-converter-cpp
+    ];
+
   devShells =
     lib.brewShells pkgsBrew self.shellRecipes;
 
