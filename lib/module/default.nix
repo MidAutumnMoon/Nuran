@@ -6,6 +6,4 @@
   ./flatMod.nix
   ./condMod.nix
 
-  ./priority.nix
-
 ]

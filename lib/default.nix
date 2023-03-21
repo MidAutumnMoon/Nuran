@@ -45,7 +45,6 @@ rec {
     isModule
     flatMod condMod
     listAllModules
-    nuranPrio
     ;
 
   inherit ( nuran.trivial )

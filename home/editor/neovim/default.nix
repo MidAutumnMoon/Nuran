@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
 
@@ -18,8 +18,7 @@ in
 
   home.packages = [ usefulNeovim ];
 
-  home.sessionVariables.EDITOR =
-    lib.mkOverride lib.nuranPrio "nvim";
+  home.sessionVariables.EDITOR = "nvim";
 
 }
 
