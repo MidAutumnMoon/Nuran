@@ -3,5 +3,6 @@
   ./all.nix
 
   ./dnscrypt-proxy
+  ./rclone
 
 ]; }

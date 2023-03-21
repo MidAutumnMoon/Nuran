@@ -5,7 +5,7 @@
   ./shterm
   ./vcs
 
-  ./security
+  ./safety
 
   ./atmosphere
   ./warehouse

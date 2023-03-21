@@ -26,7 +26,6 @@ in
   sharedModules = [
       config.nudata.paths.home
       flakes.nix-index-db.hmModules.nix-index
-      flakes.sops-nix.homeManagerModules.sops
     ];
 
 }; }
