@@ -98,6 +98,8 @@ in {
   *
   */
 
+  shellRecipes."default" = self.shellRecipes.nuran;
+
   shellRecipes."nuran" = p:
     with p; [
       colmena
