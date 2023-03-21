@@ -19,10 +19,6 @@ in
   # Display Manager
   #
 
-  # xserver module defaults to enable lightdm
-  # if no other display managers are enabled :(
-  services.xserver.displayManager.lightdm.enable = false;
-
   services.greetd = {
       enable = true;
       vt = 2;
