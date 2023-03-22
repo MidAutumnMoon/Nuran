@@ -61,5 +61,7 @@ in
       ExecStop = unmountScript;
     };
 
+  wantedBy = [ "default.target" ];
+
 }; }
 
