@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51";
+    version = "f6b049f2a7bf00e8178892d39f04049bd1923389";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51";
+      rev = "f6b049f2a7bf00e8178892d39f04049bd1923389";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-WqxAw9D17e1ZM9n4CW7P9mTY128IKFR3ibDC5mOMm8M=";
+      sha256 = "sha256-li89RqCJv0MZBBdJqaQpr7i2o2xYOY0p3FF955w2OuE=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51/Cargo.lock;
-    date = "2023-03-06";
+    "Cargo.lock" = builtins.readFile ./derputils-f6b049f2a7bf00e8178892d39f04049bd1923389/Cargo.lock;
+    date = "2023-03-21";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -82,29 +82,29 @@
   };
   moonscript = {
     pname = "moonscript";
-    version = "a0108328373d5f3f1aefb98341aa895dd75a1b2a";
+    version = "fa104985a6edb0890495e93515bca017031bef87";
     src = fetchgit {
       url = "https://github.com/leafo/moonscript";
-      rev = "a0108328373d5f3f1aefb98341aa895dd75a1b2a";
+      rev = "fa104985a6edb0890495e93515bca017031bef87";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-JzWe8vKTxcixeyeCampvbqQ7/p8LkF+J0Sv/FthILwo=";
+      sha256 = "sha256-on/j+1xly1Z0VTKvonax1gnkc/Ff/efaBxhvN2LMgDM=";
     };
-    date = "2022-11-04";
+    date = "2023-03-22";
   };
   neovim = {
     pname = "neovim";
-    version = "204a8b17c8ebab1619cc47a920a06dcc348d75f7";
+    version = "b2253cd000b2eaf1e7df298ced2e65c40c30e780";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "204a8b17c8ebab1619cc47a920a06dcc348d75f7";
+      rev = "b2253cd000b2eaf1e7df298ced2e65c40c30e780";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-tLSKQZ3KYqqwhXC4X2lwIg/g1cmjpKRogGhA9G0a/2I=";
+      sha256 = "sha256-YgmC8C2m/y5gULrMQ8bFDCqQcioai3QPfK+taxkMWU8=";
     };
-    date = "2023-03-18";
+    date = "2023-03-23";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -129,17 +129,17 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "115dba795dc677d22880d2c4188b5dd5be5fdc7b";
+    version = "91028db4a327c9b0b7fa3e64412377b645ce9266";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "115dba795dc677d22880d2c4188b5dd5be5fdc7b";
+      rev = "91028db4a327c9b0b7fa3e64412377b645ce9266";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-Z/FbEtP8S1fwcs7v30GSRjTK860A2YPDNKgvNTXFGSI=";
+      sha256 = "sha256-jauRr9EN/dJ4+c6d2tuVwLx0BMMLTsQvhbVXq9kiR/Y=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-115dba795dc677d22880d2c4188b5dd5be5fdc7b/Cargo.lock;
-    date = "2023-03-18";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-91028db4a327c9b0b7fa3e64412377b645ce9266/Cargo.lock;
+    date = "2023-03-20";
   };
   tide = {
     pname = "tide";
@@ -151,5 +151,13 @@
       fetchSubmodules = false;
       sha256 = "sha256-vi4sYoI366FkIonXDlf/eE2Pyjq7E/kOKBrQS+LtE+M=";
     });
+  };
+  yuzu-ea-appimage = {
+    pname = "yuzu-ea-appimage";
+    version = "EA-3470";
+    src = fetchurl {
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3470/Linux-Yuzu-EA-3470.AppImage";
+      sha256 = "sha256-q44svJplMV4AOEo30IrubRIwG6tESyGWlK90IR4rspM=";
+    };
   };
 }
