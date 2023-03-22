@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51";
+    version = "f6b049f2a7bf00e8178892d39f04049bd1923389";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51";
+      rev = "f6b049f2a7bf00e8178892d39f04049bd1923389";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-WqxAw9D17e1ZM9n4CW7P9mTY128IKFR3ibDC5mOMm8M=";
+      sha256 = "sha256-li89RqCJv0MZBBdJqaQpr7i2o2xYOY0p3FF955w2OuE=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-26f8f7ff96fa7aa15e19c4c4c9da711f41d19c51/Cargo.lock;
-    date = "2023-03-06";
+    "Cargo.lock" = builtins.readFile ./derputils-f6b049f2a7bf00e8178892d39f04049bd1923389/Cargo.lock;
+    date = "2023-03-21";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "204a8b17c8ebab1619cc47a920a06dcc348d75f7";
+    version = "a7b537c7a4e5b6114cd75df5178199f4449c6480";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "204a8b17c8ebab1619cc47a920a06dcc348d75f7";
+      rev = "a7b537c7a4e5b6114cd75df5178199f4449c6480";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-tLSKQZ3KYqqwhXC4X2lwIg/g1cmjpKRogGhA9G0a/2I=";
+      sha256 = "sha256-GoAvNR/BQmI1GVBOcO6G7deL70eqv4ZlT2c4p7CfUxw=";
     };
-    date = "2023-03-18";
+    date = "2023-03-22";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -129,17 +129,17 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "115dba795dc677d22880d2c4188b5dd5be5fdc7b";
+    version = "91028db4a327c9b0b7fa3e64412377b645ce9266";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "115dba795dc677d22880d2c4188b5dd5be5fdc7b";
+      rev = "91028db4a327c9b0b7fa3e64412377b645ce9266";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-Z/FbEtP8S1fwcs7v30GSRjTK860A2YPDNKgvNTXFGSI=";
+      sha256 = "sha256-jauRr9EN/dJ4+c6d2tuVwLx0BMMLTsQvhbVXq9kiR/Y=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-115dba795dc677d22880d2c4188b5dd5be5fdc7b/Cargo.lock;
-    date = "2023-03-18";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-91028db4a327c9b0b7fa3e64412377b645ce9266/Cargo.lock;
+    date = "2023-03-20";
   };
   tide = {
     pname = "tide";
