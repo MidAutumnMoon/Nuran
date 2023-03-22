@@ -2121,6 +2121,7 @@ in
   DEBUG_INFO_NONE = yes;
   DEBUG_INFO_BTF = forceOptionNo;
   DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT = forceNo;
+  GDB_SCRIPTS = forceOptionNo;
   STACK_TRACER = forceOptionNo;
   FUNCTION_PROFILER = forceOptionNo;
   FUNCTION_TRACER = forceOptionNo;
