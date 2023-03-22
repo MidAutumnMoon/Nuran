@@ -66,8 +66,6 @@
       nvidiaBusId = "PCI:1:0:0";
     };
 
-  hardware.video.hidpi.enable = true;
-
 
   # Touchpad
 

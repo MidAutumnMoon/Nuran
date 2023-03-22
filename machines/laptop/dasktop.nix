@@ -15,6 +15,9 @@ in
 
 {
 
+  fonts.optimizeForVeryHighDPI = true;
+
+
   #
   # Display Manager
   #
