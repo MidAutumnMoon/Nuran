@@ -82,29 +82,29 @@
   };
   moonscript = {
     pname = "moonscript";
-    version = "a0108328373d5f3f1aefb98341aa895dd75a1b2a";
+    version = "fa104985a6edb0890495e93515bca017031bef87";
     src = fetchgit {
       url = "https://github.com/leafo/moonscript";
-      rev = "a0108328373d5f3f1aefb98341aa895dd75a1b2a";
+      rev = "fa104985a6edb0890495e93515bca017031bef87";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-JzWe8vKTxcixeyeCampvbqQ7/p8LkF+J0Sv/FthILwo=";
+      sha256 = "sha256-on/j+1xly1Z0VTKvonax1gnkc/Ff/efaBxhvN2LMgDM=";
     };
-    date = "2022-11-04";
+    date = "2023-03-22";
   };
   neovim = {
     pname = "neovim";
-    version = "a7b537c7a4e5b6114cd75df5178199f4449c6480";
+    version = "b02880593e281ce44661ce22e9391edfe921e47e";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "a7b537c7a4e5b6114cd75df5178199f4449c6480";
+      rev = "b02880593e281ce44661ce22e9391edfe921e47e";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-GoAvNR/BQmI1GVBOcO6G7deL70eqv4ZlT2c4p7CfUxw=";
+      sha256 = "sha256-hdIloJyWSpizsHgW0u2pe8f+DL6UefRizv6287XbTEQ=";
     };
-    date = "2023-03-22";
+    date = "2023-03-23";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -151,5 +151,13 @@
       fetchSubmodules = false;
       sha256 = "sha256-vi4sYoI366FkIonXDlf/eE2Pyjq7E/kOKBrQS+LtE+M=";
     });
+  };
+  yuzu-ea-appimage = {
+    pname = "yuzu-ea-appimage";
+    version = "EA-3468";
+    src = fetchurl {
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3468/Linux-Yuzu-EA-3468.AppImage";
+      sha256 = "sha256-NOdO7Lxqge6PZx3d3a3lBTmz/rg6DzHcOJRJ6lvuufg=";
+    };
   };
 }

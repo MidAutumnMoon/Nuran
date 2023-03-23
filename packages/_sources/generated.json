@@ -122,7 +122,7 @@
     },
     "moonscript": {
         "cargoLocks": null,
-        "date": "2022-11-04",
+        "date": "2023-03-22",
         "extract": null,
         "name": "moonscript",
         "passthru": null,
@@ -132,16 +132,16 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "a0108328373d5f3f1aefb98341aa895dd75a1b2a",
-            "sha256": "sha256-JzWe8vKTxcixeyeCampvbqQ7/p8LkF+J0Sv/FthILwo=",
+            "rev": "fa104985a6edb0890495e93515bca017031bef87",
+            "sha256": "sha256-on/j+1xly1Z0VTKvonax1gnkc/Ff/efaBxhvN2LMgDM=",
             "type": "git",
             "url": "https://github.com/leafo/moonscript"
         },
-        "version": "a0108328373d5f3f1aefb98341aa895dd75a1b2a"
+        "version": "fa104985a6edb0890495e93515bca017031bef87"
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-03-22",
+        "date": "2023-03-23",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -151,12 +151,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "a7b537c7a4e5b6114cd75df5178199f4449c6480",
-            "sha256": "sha256-GoAvNR/BQmI1GVBOcO6G7deL70eqv4ZlT2c4p7CfUxw=",
+            "rev": "b02880593e281ce44661ce22e9391edfe921e47e",
+            "sha256": "sha256-hdIloJyWSpizsHgW0u2pe8f+DL6UefRizv6287XbTEQ=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "a7b537c7a4e5b6114cd75df5178199f4449c6480"
+        "version": "b02880593e281ce44661ce22e9391edfe921e47e"
     },
     "noto-fonts-cjk": {
         "cargoLocks": null,
@@ -232,5 +232,20 @@
             "type": "github"
         },
         "version": "v5.5.1"
+    },
+    "yuzu-ea-appimage": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "yuzu-ea-appimage",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-NOdO7Lxqge6PZx3d3a3lBTmz/rg6DzHcOJRJ6lvuufg=",
+            "type": "url",
+            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3468/Linux-Yuzu-EA-3468.AppImage"
+        },
+        "version": "EA-3468"
     }
 }
