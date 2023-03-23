@@ -56,6 +56,10 @@ src.git = "https://github.com/CachyOS/kernel-patches/"
 fetch.git = "https://github.com/CachyOS/kernel-patches/"
 pinned = true
 
+[yuzu-ea-appimage]
+src.github = "pineappleEA/pineapple-src"
+fetch.url = "https://github.com/pineappleEA/pineapple-src/releases/download/$ver/Linux-Yuzu-$ver.AppImage"
+
 '
 
 
