@@ -29,13 +29,6 @@
       pulse.enable      = true;
     };
 
-  services.pipewire.config.pipewire = {
-      "context.properties" =
-        { "log.level" = 3;
-          "link.max-buffers" = 64;
-        };
-    };
-
 
   # Graphic
 
