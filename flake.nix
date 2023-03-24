@@ -91,6 +91,11 @@ in {
   nixosConfigurations."lyfua" =
     machine { toplevel = ./machines/laptop; };
 
+  homeModules = lib.flatten [
+      ( lib.listAllModules ./home )
+      flakes.nix-index-db.hmModules.nix-index
+    ];
+
 
   /*
   *

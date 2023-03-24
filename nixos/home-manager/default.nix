@@ -23,10 +23,7 @@ in
       inherit flakes;
     };
 
-  sharedModules = [
-      config.nudata.paths.home
-      flakes.nix-index-db.hmModules.nix-index
-    ];
+  sharedModules = flakes.self.homeModules;
 
 }; }
 
