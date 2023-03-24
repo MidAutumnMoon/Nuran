@@ -42,23 +42,13 @@ outputs = { self, nixpkgs, ... } @ flakes: let
   config =
     { allowUnfree = true; };
 
-  modules = with flakes;
-    lib.flatten [
-      ./constants
-      sops-nix.nixosModules.default
-      impermanence.nixosModule
-      home-manager.nixosModule
-      ( lib.listAllModules ./nixos )
-    ];
-
-
   pkgsBrew =
     lib.brewNixpkgs nixpkgs { inherit config overlays; };
 
   machine =
     lib.assembleSystem {
-      inherit
-        nixpkgs config overlays modules;
+      inherit nixpkgs config overlays;
+      modules = self.nixosModules;
       arguments =
         { inherit flakes; };
     };
@@ -94,6 +84,16 @@ in {
   homeModules = lib.flatten [
       ( lib.listAllModules ./home )
       flakes.nix-index-db.hmModules.nix-index
+    ];
+
+  nixosModules = lib.flatten [
+      ./constants
+      ( lib.listAllModules ./nixos )
+      ( with flakes; [
+        sops-nix.nixosModules.default
+        impermanence.nixosModule
+        home-manager.nixosModule
+      ] )
     ];
 
 
