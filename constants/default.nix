@@ -10,16 +10,10 @@ in
 {
 
   imports = [
-    ./path.nix
     ./pubkeys.nix
     ./certs
     ./services.nix
   ];
-
-  options.nudata.paths = lib.mkOption
-    { type = types.attrsOf types.path;
-      readOnly = true;
-    };
 
   options.nudata.pubkeys = lib.mkOption
     { type = types.attrsOf types.str;

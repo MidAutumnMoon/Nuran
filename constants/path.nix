@@ -1,5 +1,0 @@
-{ nudata.paths = {
-
-  home = ../home;
-
-}; }
