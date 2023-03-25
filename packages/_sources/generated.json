@@ -151,12 +151,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "aab4443bb907a0cf7ef874c22f8cfae667b65552",
-            "sha256": "sha256-ohxQH9jCr76T8DbX2oAMxOzmsT+yFVJ6oKNFrAhfgrA=",
+            "rev": "063e93864a7e99ac1c4781bbe4ea63c0adb075a8",
+            "sha256": "sha256-RkNJ3VhpksNOM5FZtJZWIWULDwebBuG868MmFVPo5CY=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "aab4443bb907a0cf7ef874c22f8cfae667b65552"
+        "version": "063e93864a7e99ac1c4781bbe4ea63c0adb075a8"
     },
     "noto-fonts-cjk": {
         "cargoLocks": null,
@@ -242,10 +242,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-9NYrXTw7XXkWEP33PfyqwJn0bE0H9ZH2ewKV9245650=",
+            "sha256": "sha256-1T3cPl6cm+oW4N3/GvlQB7GvdwelWBxdNq2/fve3nQA=",
             "type": "url",
-            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3472/Linux-Yuzu-EA-3472.AppImage"
+            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3473/Linux-Yuzu-EA-3473.AppImage"
         },
-        "version": "EA-3472"
+        "version": "EA-3473"
     }
 }
