@@ -47,6 +47,8 @@ in
 
   programs.dconf.enable = true;
 
+  programs.ssh.enableAskPassword = false;
+
   services.xserver.desktopManager.plasma5 = {
       enable = true;
       runUsingSystemd = true;
@@ -59,7 +61,7 @@ in
     with kdeGear;
     [
       kde-gtk-config
-      fcitx5-qt ksshaskpass
+      fcitx5-qt
 
       papirus-icon-theme
       graphite-cursor-theme
