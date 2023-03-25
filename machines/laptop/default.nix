@@ -13,4 +13,6 @@
   ./container
   ./virtualisation
 
+  ./warehouse
+
 ]; }
