@@ -1,29 +1,59 @@
-{ config, lib, pkgs, ... }:
+{ nixosConfig, pkgs, ... }:
+
+let
+
+  allowedSigners = pkgs.writeText "git-allowed-signers" '''';
+
+  secrets = nixosConfig.sops.secrets;
+
+in
 
 
-{
+{ imports = [
 
-  imports = [ ./delta.nix ];
+  ./delta.nix
 
-  programs.git.enable = true;
+]; xdg.configFile."git/config".text = ''
 
-  programs.git =
-    { userName = "MidAutumnMoon";
-      userEmail = "me@418.im";
+  [user]
+    email = "me@418.im"
+    name = "MidAutumnMoon"
 
-      signing.key = "3B9D690FD7E4664A\!";
-      signing.signByDefault = true;
-    };
+  [merge]
+    conflictstyle = "diff3"
 
-  programs.git.extraConfig =
-    { init.defaultBranch = "master";
-      core.quotePath = false;
-      http.proxy = "socks5h://127.0.0.1:1081";
-    };
+  [init]
+    defaultBranch = "master"
 
-  programs.git.lfs.enable = true;
+  [core]
+    quotePath = false
 
-  home.sessionVariables =
-    { GIT_ASKPASS = "/run/current-system/sw/bin/ksshaskpass"; };
+  [http]
+    proxy = "${nixosConfig.networking.proxy.httpProxy}"
 
-}
+  [credential]
+    helper = "store --file=${secrets."git_credentials".path}"
+
+
+  # Signing
+
+  [user]
+    signingKey = "${secrets."id_teapot.pub".path}"
+
+  [gpg]
+    format = "ssh"
+
+  [gpg "ssh"]
+    allowedSignersFile = "${allowedSigners}"
+
+  [commit]
+    gpgSign = true
+
+  [tag]
+    gpgSign = true
+
+''; home.packages = with pkgs; [
+
+  git
+
+]; }

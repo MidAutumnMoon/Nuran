@@ -2,28 +2,24 @@
 
 let
 
-  deltaExe = lib.getExe pkgs.delta;
-
-  deltaWithConf =
-    "LESS='LR --wheel-lines=3' ${deltaExe}";
+  deltaWithConfig = pkgs.writeShellScript "delta-w-config" ''
+    export LESS="LR --wheel-lines=3"
+    exec "${lib.getExe pkgs.delta}"
+    '';
 
 in
 
-{
+{ xdg.configFile."git/config".text = ''
 
-  programs.git.iniContent = {
+  # delta
 
-      core.pager =
-        lib.mkForce deltaWithConf;
+  [core]
+    pager = "${deltaWithConfig}"
 
-      merge =
-        { conflictstyle = "diff3"; };
+  [delta]
+    navigate = true
+    hyperlinks = true
+    line-numbers = true;
+    side-by-side = true;
 
-      delta =
-        { line-numbers = true;
-          side-by-side = true;
-        };
-
-    };
-
-}
+''; }
