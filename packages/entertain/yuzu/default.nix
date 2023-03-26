@@ -45,8 +45,11 @@ mkDerivation {
       src = yuzuAppimage;
     };
 
-  installPhase =
-    builtins.readFile ./install_phase.sh;
+  installPhase = ''
+    pushd "$src/usr"
+    install -Dm755 "bin/yuzu" "$out/bin/yuzu"
+    cp -rv "share" "$out/"
+    '';
 
   qtWrapperArgs = [
       "--prefix LD_LIBRARY_PATH : ${libraryPath}"
