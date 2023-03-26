@@ -141,7 +141,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-03-25",
+        "date": "2023-03-26",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -151,12 +151,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "36ee10057ab9a93144975449cc5e27f9b96e0af3",
-            "sha256": "sha256-vyKu7sqO8NbM2r3cO0vvt+1uA50KBkhoD5B954QQZRA=",
+            "rev": "4863ca6b8902c5b0aab95f2af640118cd417d379",
+            "sha256": "sha256-QHwx/NbIfsedzOMJQF29LqS+BebXAHpQVL9jQ5YsY+o=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "36ee10057ab9a93144975449cc5e27f9b96e0af3"
+        "version": "4863ca6b8902c5b0aab95f2af640118cd417d379"
     },
     "noto-fonts-cjk": {
         "cargoLocks": null,
@@ -242,10 +242,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-QO6gF4/txsRMY7K37ZXdAHf990ZjLJ8HXPrM2xtLGwI=",
+            "sha256": "sha256-DUVrTO6kVM46OabGsDiJv02YCmzBavpeI/cSttvftgs=",
             "type": "url",
-            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3475/Linux-Yuzu-EA-3475.AppImage"
+            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3476/Linux-Yuzu-EA-3476.AppImage"
         },
-        "version": "EA-3475"
+        "version": "EA-3476"
     }
 }
