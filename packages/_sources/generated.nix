@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "36ee10057ab9a93144975449cc5e27f9b96e0af3";
+    version = "2257ade3dc2daab5ee12d27807c0b3bcf103cd29";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "36ee10057ab9a93144975449cc5e27f9b96e0af3";
+      rev = "2257ade3dc2daab5ee12d27807c0b3bcf103cd29";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-vyKu7sqO8NbM2r3cO0vvt+1uA50KBkhoD5B954QQZRA=";
+      sha256 = "sha256-3mSo2rSMITABSLz7WAyIcbE+TnkEjDntyrXjg75rlgg=";
     };
-    date = "2023-03-25";
+    date = "2023-03-26";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -154,10 +154,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3475";
+    version = "EA-3477";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3475/Linux-Yuzu-EA-3475.AppImage";
-      sha256 = "sha256-QO6gF4/txsRMY7K37ZXdAHf990ZjLJ8HXPrM2xtLGwI=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3477/Linux-Yuzu-EA-3477.AppImage";
+      sha256 = "sha256-TytimqPkrTx5kibiRNqRC3G1dKAeZ7odMdFGAzJlB6E=";
     };
   };
 }
