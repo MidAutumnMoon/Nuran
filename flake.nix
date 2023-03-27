@@ -118,6 +118,13 @@ in {
       nvfetcher
     ];
 
+  shellRecipes."numinus" = p:
+    with p; [
+      moonscript
+      watchexec
+      rsync
+    ];
+
   shellRecipes."cider-bubble" = p:
     with p; [
       wrangler
