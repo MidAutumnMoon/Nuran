@@ -13,4 +13,6 @@
 
   services.power-profiles-daemon.enable = true;
 
+  services.dbus.implementation = "broker";
+
 }
