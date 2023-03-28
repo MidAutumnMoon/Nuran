@@ -2,7 +2,9 @@
 
 let
 
-  allowedSigners = pkgs.writeText "git-allowed-signers" '''';
+  allowedSigners = pkgs.writeText "git-allowed-signers" ''
+    me@418.im ${nixosConfig.nudata.pubkeys.self}
+    '';
 
   secrets = nixosConfig.sops.secrets;
 
