@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "7c7cea084263b4a42ad711962c16be2d6448c30b";
+    version = "6469c7b13c4bc15b3f80ef46bf42c4ac69a3de3b";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "7c7cea084263b4a42ad711962c16be2d6448c30b";
+      rev = "6469c7b13c4bc15b3f80ef46bf42c4ac69a3de3b";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-B8PEhlpcBCqucNhUhBjeZgNGIetXqatDYJdt5ngKHp4=";
+      sha256 = "sha256-M0TKXM8YLmvWURTxvOq2tY5mehGRGe4JtxKiIge4TAU=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-7c7cea084263b4a42ad711962c16be2d6448c30b/Cargo.lock;
-    date = "2023-03-25";
+    "Cargo.lock" = builtins.readFile ./derputils-6469c7b13c4bc15b3f80ef46bf42c4ac69a3de3b/Cargo.lock;
+    date = "2023-03-29";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "2257ade3dc2daab5ee12d27807c0b3bcf103cd29";
+    version = "eac75a971d042bd610310314e6c64097694ee418";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "2257ade3dc2daab5ee12d27807c0b3bcf103cd29";
+      rev = "eac75a971d042bd610310314e6c64097694ee418";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-3mSo2rSMITABSLz7WAyIcbE+TnkEjDntyrXjg75rlgg=";
+      sha256 = "sha256-Bosur3fGSjIt2rPuENzQFhlIBsQi/2CBZxUJep+nA2w=";
     };
-    date = "2023-03-26";
+    date = "2023-03-28";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -154,10 +154,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3477";
+    version = "EA-3486";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3477/Linux-Yuzu-EA-3477.AppImage";
-      sha256 = "sha256-TytimqPkrTx5kibiRNqRC3G1dKAeZ7odMdFGAzJlB6E=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3486/Linux-Yuzu-EA-3486.AppImage";
+      sha256 = "sha256-LGWLT61pJsmk7Qn+o+0gx0S1gdX+CvJMuQ0ZYf+IM4U=";
     };
   };
 }
