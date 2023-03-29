@@ -1,15 +1,38 @@
 { lib, config, pkgs, ... }:
 
+let
+
+  dnscryptProgram =
+    lib.getExe pkgs.dnscrypt-proxy2;
+
+in
+
 {
 
-  services.dnscrypt-proxy2.enable = true;
+sops.secrets."dnscrypt_config".sopsFile = ./config.yml;
 
-  sops.secrets."dnscrypt_conf".sopsFile = ./config.yml;
+systemd.services."dnscrypt-proxy" = {
+  description = "dnscrypt-proxy";
 
-  systemd.services."dnscrypt-proxy2".serviceConfig
-    .LoadCredential = "conf:${config.sops.secrets."dnscrypt_conf".path}";
+  after = [ "network.target" ];
+  wantedBy = [ "multi-user.target" ];
 
-  systemd.services."dnscrypt-proxy2".serviceConfig.ExecStart =
-    lib.mkForce
-      "${lib.getExe pkgs.dnscrypt-proxy2} -config \${CREDENTIALS_DIRECTORY}/conf";
+  serviceConfig = {
+
+      DynamicUser = true;
+      SystemCallFilter = "@system-service";
+
+      AmbientCapabilities = "CAP_NET_BIND_SERVICE";
+
+      RuntimeDirectory = "dnscrypt-proxy";
+      StateDirectory = "dnscrypt-proxy";
+
+      LoadCredential =
+        "config:${config.sops.secrets."dnscrypt_config".path}";
+
+      ExecStart = "${dnscryptProgram} -config %d/config";
+
+    };
+};
+
 }

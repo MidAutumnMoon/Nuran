@@ -1,11 +1,9 @@
-{ lib, pkgs, ... }:
-
 {
 
   networking = {
       hostName = "lyfua";
       hostId = "66ccff70";
-      nameservers = [ "127.0.0.1" ];
+      nameservers = [ "127.0.1.53" ];
     };
 
   networking.networkmanager.enable = true;
