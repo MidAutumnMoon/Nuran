@@ -43,7 +43,7 @@ rec {
 
   inherit ( nuran.module )
     isModule
-    flatMod condMod
+    flatMod condMod mergeMod
     listAllModules
     ;
 
