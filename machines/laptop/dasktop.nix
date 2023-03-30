@@ -42,7 +42,7 @@ in
 
 
   #
-  # KDE
+  # DE
   #
 
   programs.dconf.enable = true;
@@ -71,6 +71,9 @@ in
       kate ark
       okular
       qimgv
+
+      xorg.xprop
+      xdg-utils
     ];
 
 

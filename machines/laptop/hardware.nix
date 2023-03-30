@@ -33,9 +33,9 @@
   # Graphic
 
   services.xserver = {
-      enable = true;
+      enable = false;
       dpi    = 120;
-      videoDrivers = [ "amdgpu" "nvidia" ];
+      videoDrivers = [ "modesetting" "nvidia" ];
     };
 
   hardware.opengl = {
