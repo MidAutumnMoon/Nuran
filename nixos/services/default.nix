@@ -6,6 +6,4 @@
 
   vnstat.enable = true;
 
-  openssh.enable = true;
-
 }; }
