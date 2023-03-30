@@ -1,19 +1,11 @@
 {
 
-  networking = {
-      hostName = "lyfua";
-      hostId = "66ccff70";
-      nameservers = [ "127.0.1.53" ];
-    };
+  networking.hostName = "lyfua";
 
   networking.networkmanager.enable = true;
 
   systemd.network.wait-online.extraArgs = [
       "--interface=wlp2s0:routable"
     ];
-
-  services.resolved.extraConfig = ''
-    Cache = no
-    '';
 
 }

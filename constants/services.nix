@@ -2,13 +2,11 @@
 
 let
 
-  service =
-    content: lib.makeExtensible ( self: {
-        local_addr =
-          "[::1]:${toString self.port}";
-        full_domain =
-          "https://${self.domain}/";
-      } // content );
+  service = content:
+    lib.makeExtensible ( self: {
+      local_addr = "[::1]:${toString self.port}";
+      full_domain = "https://${self.domain}/";
+    } // content );
 
 in
 
@@ -22,6 +20,11 @@ in
   libreddit = service
     { port = 17862;
       domain = "red.418.im";
+    };
+
+  dnscrypt =
+    { listen_addr = "127.0.54.53";
+      listen_addr6 = "::1";
     };
 
 }; }

@@ -1,13 +1,22 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 lib.mergeMod [
 
 {
-  networking.firewall.enable = true;
-
   networking.useNetworkd = true;
 
+  services.nscd.enableNsncd = true;
+}
+
+{
+  networking.nameservers =
+    lib.attrValues config.nudata.services.dnscrypt;
+
   services.resolved.enable = true;
+
+  services.resolved.extraConfig = ''
+    Cache = no
+    '';
 }
 
 { boot.kernel.sysctl = {
