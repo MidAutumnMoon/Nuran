@@ -3,30 +3,30 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "d3503c89a63d58786e4259a524e9da9166b90cfd";
+    version = "5987103d04ec3790251a45135267019153612650";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "d3503c89a63d58786e4259a524e9da9166b90cfd";
+      rev = "5987103d04ec3790251a45135267019153612650";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-IFJC4bnhxjQyJvmMGtfnfPGWvNXaxlGNPPUocwP1HiA=";
+      sha256 = "sha256-3nLwGt8Zl7YNfp0YMlJNKnmw0ND52M69RQbyOg6/C7A=";
     };
-    date = "2023-03-17";
+    date = "2023-03-30";
   };
   derputils = {
     pname = "derputils";
-    version = "6469c7b13c4bc15b3f80ef46bf42c4ac69a3de3b";
+    version = "350f8b39f6cd90c4d5216a93195b17af64c7258f";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "6469c7b13c4bc15b3f80ef46bf42c4ac69a3de3b";
+      rev = "350f8b39f6cd90c4d5216a93195b17af64c7258f";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-M0TKXM8YLmvWURTxvOq2tY5mehGRGe4JtxKiIge4TAU=";
+      sha256 = "sha256-N3EvhFK9d2va/yR0ZGhzDRjCreuRW3DjM+Aem9daDUo=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-6469c7b13c4bc15b3f80ef46bf42c4ac69a3de3b/Cargo.lock;
-    date = "2023-03-29";
+    "Cargo.lock" = builtins.readFile ./derputils-350f8b39f6cd90c4d5216a93195b17af64c7258f/Cargo.lock;
+    date = "2023-04-01";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "eac75a971d042bd610310314e6c64097694ee418";
+    version = "9084948893f9c1669ab56061c8d04adabbb6c3cf";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "eac75a971d042bd610310314e6c64097694ee418";
+      rev = "9084948893f9c1669ab56061c8d04adabbb6c3cf";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-Bosur3fGSjIt2rPuENzQFhlIBsQi/2CBZxUJep+nA2w=";
+      sha256 = "sha256-3IhrEgGNlH03xosB2qtlBd/HYLBV2EQQ/OlT1TGCfh4=";
     };
-    date = "2023-03-28";
+    date = "2023-04-01";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -154,10 +154,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3486";
+    version = "EA-3493";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3486/Linux-Yuzu-EA-3486.AppImage";
-      sha256 = "sha256-LGWLT61pJsmk7Qn+o+0gx0S1gdX+CvJMuQ0ZYf+IM4U=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3493/Linux-Yuzu-EA-3493.AppImage";
+      sha256 = "sha256-BvRLfDEGTq+jh8yo+f/vHM5bZOIHjJckXs1FY6XomXA=";
     };
   };
 }
