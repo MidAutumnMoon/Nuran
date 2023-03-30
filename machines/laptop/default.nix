@@ -5,8 +5,8 @@
   ./filesystem.nix
   ./networking
 
+  ./account.nix
   ./dasktop.nix
-  ./accounts
   ./environment
   ./services
 
