@@ -24,6 +24,15 @@ in
   [merge]
     conflictstyle = "diff3"
 
+  [diff]
+    mnemonicPrefix = true
+
+  [pull]
+    rebase = "merges"
+
+  [status]
+    showUntrackedFiles = "all"
+
   [init]
     defaultBranch = "master"
 
