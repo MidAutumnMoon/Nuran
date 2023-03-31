@@ -2079,7 +2079,7 @@ in
   # Enable the block layer
   #
   MQ_IOSCHED_KYBER = forceNo;
-  BLOCK_LEGACY_AUTOLOAD = no;
+  BLOCK_LEGACY_AUTOLOAD = forceOptionNo;
 
 
   #
