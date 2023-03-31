@@ -1,6 +1,6 @@
 { lib, config, ... }:
 
-lib.mergeMod [
+lib.mkMerge [
 
 {
   networking.useNetworkd = true;

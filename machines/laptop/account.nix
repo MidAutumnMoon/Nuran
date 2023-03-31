@@ -6,7 +6,7 @@ let
 
 in
 
-lib.mergeMod [
+lib.mkMerge [
 
 { users.users.${selfName}= {
 
