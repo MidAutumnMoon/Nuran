@@ -69,7 +69,6 @@ in
 
       unzip unrar
       kate ark
-      okular
       qimgv
 
       xorg.xprop

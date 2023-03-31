@@ -14,7 +14,7 @@ plasmaSelf: plasmaSuper: {
       print-manager = emptyDirectory;
       gwenview = emptyDirectory;
       khelpcenter = emptyDirectory;
-      okular = gearSuper.okular.override { withSpeech = false; };
+      okular = emptyDirectory;
     } );
 
   plasma5 = plasmaSuper.plasma5.overrideScope' ( plasmaSelf: plasmaSuper: {
