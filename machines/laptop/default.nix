@@ -9,9 +9,7 @@
   ./dasktop.nix
   ./environment
   ./services
-
-  ./container
-  ./virtualisation
+  ./virtcontar
 
   ./warehouse
 
