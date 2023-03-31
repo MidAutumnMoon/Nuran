@@ -5,6 +5,5 @@
 
   ./flatMod.nix
   ./condMod.nix
-  ./mergeMod.nix
 
 ]
