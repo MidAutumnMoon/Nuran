@@ -4,6 +4,7 @@
   path,
 
   stdenv,
+  stdenvTeapot,
   callPackage,
   buildPackages,
 
@@ -13,12 +14,17 @@
 } @ pkgArgs:
 
 # lld currently is usable to linker setup.elf
-# (LLVM 14, kernel 6.1) :(
+# (LLVM 15, kernel 6+) :(
+
+let
+
+  stdenvName = "stdenv";
+
+in
 
 ( callPackage "${ path }/pkgs/os-specific/linux/kernel/zen-kernels.nix" ( pkgArgs // {
 
-  stdenv =
-    stdenv;
+  stdenv = pkgArgs.${stdenvName};
 
   kernelPatches =
     linuxPackages_zen.kernel.kernelPatches
@@ -35,12 +41,13 @@
   # If "configfile" is built using clang,
   # so that Kbuild will be able to detect LLVM
   # toolchain, making LTO etc. possible.
-  #
-  # (keep in sync with kernel's stdenv selection)
   buildPackages =
-    buildPackages // { stdenv = buildPackages.stdenv; };
+    buildPackages // { stdenv = buildPackages.${stdenvName}; };
 
 } ) ).zen.overrideDerivation ( oldDrv: {
+
+  LLVM =
+    if pkgArgs.${stdenvName}.cc.isClang then 1 else null;
 
   preConfigure = oldDrv.preConfigure or "" + ''
     makeFlagsArray+=(

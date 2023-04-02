@@ -3,17 +3,16 @@
   callPackage,
 }:
 
-# from CachyOS
-
-( let
+let
 
   cachyPatches =
-    sources."cachyos-patches".src + "/6.2";
+    sources."cachyos-patches".src + "/6.3";
+
+  patch =
+    name: patch: { inherit name patch; };
 
 in [
 
-  { name = "bore-scheduler";
-    patch = "${cachyPatches}/sched/0001-bore.patch";
-  }
+  ( patch "bore_sche" "${cachyPatches}/sched/0001-bore.patch" )
 
-] )
+]
