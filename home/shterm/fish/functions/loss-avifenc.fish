@@ -18,7 +18,7 @@ function loss-avifenc -d 'AVIF with a bit lower quality'
         -a tune=butteraugli \
         -a color:enable-chroma-deltaq=1 \
         -a enable-qm=1 \
-        --jobs 4 \
+        --jobs ( math (nproc) / 2 ) \
         "$InputFileName" "$DestFileName"
 
 end
