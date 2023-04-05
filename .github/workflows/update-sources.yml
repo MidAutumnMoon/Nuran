@@ -44,7 +44,7 @@ jobs:
           path: "/tmp/nvfetcher_outputs"
 
       - name: Open PR
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           delete-branch: true
           title: "sources: update [bot]"
