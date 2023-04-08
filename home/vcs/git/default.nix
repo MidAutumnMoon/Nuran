@@ -45,6 +45,9 @@ in
   [credential]
     helper = "store --file=${secrets."git_credentials".path}"
 
+  [gc]
+    auto = 0
+
 
   # Signing
 
