@@ -9,6 +9,7 @@
 
   p7zip
   rclone
+  pueue
 
   firefox_teapot
   virt-manager
