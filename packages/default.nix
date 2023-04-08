@@ -147,6 +147,10 @@ rec {
   mdbook-toc =
     callPackage ./warehouse/mdbook/toc {};
 
+  # need --impure
+  abcd =
+    callPackage ./warehouse/abcd { flakePath = ../.; };
+
 
 
   /*

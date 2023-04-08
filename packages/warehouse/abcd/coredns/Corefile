@@ -1,0 +1,25 @@
+(global) {
+    errors
+    log
+    loadbalance
+
+    cache 3600 {
+        prefetch 600 1m 30%
+    }
+
+    hosts @blocklist@ {
+        reload 0s
+        ttl 7200
+        no_reverse
+        fallthrough
+    }
+
+    forward . tls://1.1.1.1 tls://1.0.0.1 {
+        tls_servername cloudflare-dns.com
+    }
+}
+
+.:53 {
+    bind @dns_addr@
+    import global
+}
