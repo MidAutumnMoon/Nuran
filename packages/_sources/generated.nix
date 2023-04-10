@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "339011f59c25937567f1e88d663c22dade5e217a";
+    version = "3c724fe1f3efae0d00b43e381523ea2ec7229328";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "339011f59c25937567f1e88d663c22dade5e217a";
+      rev = "3c724fe1f3efae0d00b43e381523ea2ec7229328";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-p3Bm6ne3bGjKRti3p7nllnHAcbJHSIiV0qe5vBNcN20=";
+      sha256 = "sha256-5uoKhA2rv+xEHqLBpgb2gfbnsugVTjQ/3c29/eV4OGY=";
     };
-    date = "2023-04-08";
+    date = "2023-04-10";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
