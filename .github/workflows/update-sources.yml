@@ -33,6 +33,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          mkdir -p "$HOME/.config/nvfetcher"
+          printf "$GITHUB_TOKEN" > "$HOME/.config/nvfetcher/github_token"
           fish 'packages/nvfetcher' | tee /tmp/nvfetcher_outputs
           sed --in-place '0,/^Changes/d' /tmp/nvfetcher_outputs
 
