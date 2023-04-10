@@ -1,10 +1,21 @@
-{ nixosConfig, pkgs, ... }:
+{ lib, nixosConfig, pkgs, ... }:
 
 let
 
-  allowedSigners = pkgs.writeText "git-allowed-signers" ''
+  inherit ( pkgs ) writeText writers;
+
+  inherit ( writers ) writeFish;
+
+  allowedSigners = writeText "git-allowed-signers" ''
     me@418.im ${nixosConfig.nudata.pubkeys.self}
-    '';
+  '';
+
+  watchghaWrapper = writeFish "watchgha" ''
+    set -lx GITHUB_TOKEN "$( cat ${secrets.github_token.path} )"
+    ${lib.getExe pkgs.watchgha} \
+      "$( git remote get-url origin )" \
+      "$( git rev-parse --abbrev-ref HEAD )"
+  '';
 
   secrets = nixosConfig.sops.secrets;
 
@@ -47,6 +58,13 @@ in
 
   [gc]
     auto = 0
+
+
+  # Alias
+
+  [alias]
+
+    workflow-watch = "!${watchghaWrapper}"
 
 
   # Signing
