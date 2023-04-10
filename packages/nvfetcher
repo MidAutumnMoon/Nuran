@@ -111,23 +111,33 @@ find "$SourceDir" -mindepth 1 ! -name 'generated.*' -delete
 
 
 #
-# Add $GITHUB_TOKEN to config
+# Add Github token
 #
 
-set -l KeyfileOption
+set -l Keyfile ( mktemp --suffix ".toml" )
+set -l NvfetcherKeyfileOption
 
-if set --query GITHUB_TOKEN
+set -l GithubTokenFile
+set -l GithubToken
 
-    set -l KeyfilePath "$( mktemp --suffix .toml )"
-
-    printf "%s\n" \
-        "[keys]" \
-        "github = \"$GITHUB_TOKEN\"" \
-    > "$KeyfilePath"
-
-    set KeyfileOption "--keyfile" "$KeyfilePath"
-
+if set --query XDG_CONFIG_HOME
+    set GithubTokenFile "$XDG_CONFIG_HOME/nvfetcher/github_token"
+else
+    set GithubTokenFile "$HOME/.config/nvfetcher/github_token"
 end
+
+if not test -f "$GithubTokenFile"
+    echo "Put Github access token in <$GithubTokenFile>"
+    exit ( false )
+end
+
+set GithubToken ( tr -cd '[:print:]' < "$GithubTokenFile" )
+
+printf "%s\n" \
+    "[keys]" \
+    "github = \"$GithubToken\"" > "$Keyfile"
+
+set -a NvfetcherKeyfileOption "--keyfile" "$Keyfile"
 
 
 #
@@ -139,4 +149,11 @@ nvfetcher \
     --build-dir "$SourceDir" \
     --retry 8 \
     -j 8 \
-    $KeyfileOption
+    $NvfetcherKeyfileOption
+
+
+#
+# Cleanup
+#
+
+rm "$Keyfile"
