@@ -18,6 +18,7 @@ with ( builtins.getFlake (toString ../.) ).legacyPackages."${ builtins.currentSy
 
   parallel-2 = [
     plasma5Packages.kwallet-pam
+    watchgha
   ];
 
   parallel-3 = [

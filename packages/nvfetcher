@@ -60,6 +60,10 @@ pinned = true
 src.github = "pineappleEA/pineapple-src"
 fetch.url = "https://github.com/pineappleEA/pineapple-src/releases/download/$ver/Linux-Yuzu-$ver.AppImage"
 
+[watchgha]
+src.git = "https://github.com/nedbat/watchgha"
+fetch.git = "https://github.com/nedbat/watchgha"
+
 '
 
 
