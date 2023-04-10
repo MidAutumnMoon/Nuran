@@ -17,9 +17,11 @@ in
   "id_teapot.pub" = forTeapot ./ssh.yml;
 
 
-  # git credentials
+  # git credentials & Github token whatever
 
-  "git_credentials" = forTeapot ./git_cred.yml;
+  "github_token" = forTeapot ./git_token.yml;
+  "git_credentials" = forTeapot ./git_token.yml;
+  "nix_token_config" = forTeapot ./git_token.yml;
 
 
   # abcd portable service
