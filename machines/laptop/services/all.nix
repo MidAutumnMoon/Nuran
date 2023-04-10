@@ -1,18 +1,28 @@
-{ lib, ... }:
+{ lib, config, ... }:
+
+lib.mkMerge [
+
+{ services = {
+
+  flatpak.enable = true;
+
+  openssh.enable = true;
+
+  openssh.openFirewall = false;
+
+  power-profiles-daemon.enable = true;
+
+  dbus.implementation = "broker";
+
+}; }
 
 {
-
-  services.flatpak.enable = true;
-
   # Not enough memory :(
   nix.settings.cores = lib.mkForce 8;
 
-  services.openssh.enable = true;
-
-  services.openssh.openFirewall = false;
-
-  services.power-profiles-daemon.enable = true;
-
-  services.dbus.implementation = "broker";
-
+  nix.extraOptions = ''
+    !include ${config.sops.secrets."nix_token_config".path}
+  '';
 }
+
+]
