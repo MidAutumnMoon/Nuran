@@ -66,6 +66,8 @@ in
 
     workflow-watch = "!${watchghaWrapper}"
 
+    kill-reflog = "reflog expire --all --expire=now --expire-unreachable=now"
+
 
   # Signing
 
