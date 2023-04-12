@@ -50,11 +50,15 @@ command --query nix-build-uncached
 
 set --local BuildFlags \
     '--print-build-logs' \
-    '--option narinfo-cache-negative-ttl 0' \
-    '--option keep-going true' \
-    '--option max-jobs 3'
+    '--option' 'narinfo-cache-negative-ttl' '0' \
+    '--option' 'keep-going' 'true' \
+    '--option' 'max-jobs' '3'
 
-command nix-build-uncached \
-    "$AttrsetFile" -A "$DrvListName" \
-    -build-flags ( string join -- " " $BuildFlags )
+# command nix-build-uncached \
+#     "$AttrsetFile" -A "$DrvListName" \
+#     -build-flags ( string join -- " " $BuildFlags )
 
+command nix build \
+    --file "$AttrsetFile" \
+    "$DrvListName" \
+    $BuildFlags
