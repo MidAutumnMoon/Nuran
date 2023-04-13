@@ -26,4 +26,3 @@ assets_version = "0.1.1" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
 
 [preprocessor.toc]
 renderer = [ "html" ]
-marker = "[[_TOC_]]"
