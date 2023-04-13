@@ -3,6 +3,7 @@
 { home.packages = with pkgs; [
 
   file ripgrep fd neofetch
+  trurl
   derputils
   wl-clipboard
   prime-offload
