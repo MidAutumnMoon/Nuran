@@ -1,45 +1,60 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, flakes, ... }:
 
-lib.flatMod {
+lib.mkMerge [
 
-  imports = [
-    ./mimic.nix
-    ./registry.nix
+{
+  nix.package = pkgs.nixVersions.stable;
+}
+
+
+{ nix.settings = {
+
+  trusted-users = [ "root" ];
+
+  auto-optimise-store = true;
+
+  narinfo-cache-negative-ttl = 360;
+
+  # Query cache.nixos.org first
+  substituters = lib.mkAfter [
+    "https://nuirrce.cachix.org"
   ];
 
+  trusted-public-keys = [
+    "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
+  ];
 
-  nix.package = pkgs.nixVersions.unstable;
+  auto-allocate-uids = true;
 
-  nix.settings = {
+  use-cgroups = true;
 
-      trusted-users = [ "root" ];
+  experimental-features = [
+    "nix-command"
+    "flakes"
+    "ca-derivations"
+    "repl-flake"
+    "auto-allocate-uids"
+    "cgroups"
+  ];
 
-      auto-optimise-store = true;
+}; }
 
-      narinfo-cache-negative-ttl = 360;
 
-      substituters = lib.mkAfter [
-          "https://nuirrce.cachix.org"
-        ];
+{ nix.registry = {
 
-      trusted-public-keys =
-        [ "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk=" ];
+  "short" = {
+    from = { id = "p"; type = "indirect"; };
+    to = { type = "path"; path = flakes.nixpkgs; };
+  };
 
-      auto-allocate-uids = true;
+}; }
 
-      use-cgroups = true;
 
-      experimental-features = [
-          "nix-command"
-          "flakes"
-          "ca-derivations"
-          "repl-flake"
-          "auto-allocate-uids"
-          "cgroups"
-        ];
-
-    };
-
-  nix.nrBuildUsers = 0;
-
+{
+  nix.nixPath = lib.mkForce [
+    "nixpkgs=${toString flakes.nixpkgs}"
+    "nixos=${toString flakes.nixpkgs}"
+  ];
 }
+
+]
