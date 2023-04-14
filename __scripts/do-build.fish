@@ -41,22 +41,11 @@ command nix eval --impure --json \
         exit 1
     end
 
-command --query nix-build-uncached
-    or begin
-        echo "nix-build-uncached not found"
-        exit 1
-    end
-
-
 set --local BuildFlags \
     '--print-build-logs' \
     '--option' 'narinfo-cache-negative-ttl' '0' \
     '--option' 'keep-going' 'true' \
     '--option' 'max-jobs' '3'
-
-# command nix-build-uncached \
-#     "$AttrsetFile" -A "$DrvListName" \
-#     -build-flags ( string join -- " " $BuildFlags )
 
 command nix build \
     --file "$AttrsetFile" \

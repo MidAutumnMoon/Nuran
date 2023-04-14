@@ -114,7 +114,6 @@ in {
 
   shellRecipes."nuclage" = p:
     with p; [
-      nix-build-uncached
       nvfetcher
     ];
 
