@@ -1,0 +1,270 @@
+{
+    "cachyos-patches": {
+        "cargoLocks": null,
+        "date": "2023-04-13",
+        "extract": null,
+        "name": "cachyos-patches",
+        "passthru": null,
+        "pinned": true,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "977c74a08501e82592bf6767c62a9c498a973951",
+            "sha256": "sha256-K9zr0Xfdf8tOkn+REn/zA95pEt/mHB2n7mWpNJqnamc=",
+            "type": "git",
+            "url": "https://github.com/CachyOS/kernel-patches/"
+        },
+        "version": "977c74a08501e82592bf6767c62a9c498a973951"
+    },
+    "derputils": {
+        "cargoLocks": null,
+        "date": "2023-04-13",
+        "extract": {
+            "Cargo.lock": "./derputils-430fa5ab3c6f98cf0e7966a309aa67908ffc63bb/Cargo.lock"
+        },
+        "name": "derputils",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "430fa5ab3c6f98cf0e7966a309aa67908ffc63bb",
+            "sha256": "sha256-gYqKiuuk8oPAQdT6XaB6SpqpM0YUq+KtGeUccZW6gNA=",
+            "type": "git",
+            "url": "https://github.com/MidAutumnMoon/derputils"
+        },
+        "version": "430fa5ab3c6f98cf0e7966a309aa67908ffc63bb"
+    },
+    "graphite-cursors": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "graphite-cursors",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "vinceliuice",
+            "repo": "Graphite-cursors",
+            "rev": "2021-11-26",
+            "sha256": "sha256-Kopl2NweYrq9rhw+0EUMhY/pfGo4g387927TZAhI5/A=",
+            "type": "github"
+        },
+        "version": "2021-11-26"
+    },
+    "k380-fn-keys-swap": {
+        "cargoLocks": null,
+        "date": "2021-11-28",
+        "extract": null,
+        "name": "k380-fn-keys-swap",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81",
+            "sha256": "sha256-Eubm9duEdUk8FBDbiVx2W20xKcmLrRTnrE+PiQxUuRI=",
+            "type": "git",
+            "url": "https://github.com/jergusg/k380-function-keys-conf/"
+        },
+        "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
+    },
+    "mdbook-catppuccin": {
+        "cargoLocks": null,
+        "date": "2023-03-03",
+        "extract": {
+            "Cargo.lock": "./mdbook-catppuccin-98cf81a998a49c3176854f46c6e9a971f34b1c93/Cargo.lock"
+        },
+        "name": "mdbook-catppuccin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "98cf81a998a49c3176854f46c6e9a971f34b1c93",
+            "sha256": "sha256-UoKsjLjGra5XxyVD50fTkkCd5mB9fd4cH4c1MIhe7uA=",
+            "type": "git",
+            "url": "https://github.com/catppuccin/mdBook"
+        },
+        "version": "98cf81a998a49c3176854f46c6e9a971f34b1c93"
+    },
+    "mdbook-toc": {
+        "cargoLocks": null,
+        "date": "2023-02-14",
+        "extract": {
+            "Cargo.lock": "./mdbook-toc-c78210ea72deaea938c8947ab1bec24b14653ea2/Cargo.lock"
+        },
+        "name": "mdbook-toc",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "c78210ea72deaea938c8947ab1bec24b14653ea2",
+            "sha256": "sha256-WkrXNFujLjE9dpFj2vTnmPa1beCGi7ZvyCOTW0Q/TO8=",
+            "type": "git",
+            "url": "https://github.com/badboy/mdbook-toc"
+        },
+        "version": "c78210ea72deaea938c8947ab1bec24b14653ea2"
+    },
+    "moonscript": {
+        "cargoLocks": null,
+        "date": "2023-03-22",
+        "extract": null,
+        "name": "moonscript",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "fa104985a6edb0890495e93515bca017031bef87",
+            "sha256": "sha256-on/j+1xly1Z0VTKvonax1gnkc/Ff/efaBxhvN2LMgDM=",
+            "type": "git",
+            "url": "https://github.com/leafo/moonscript"
+        },
+        "version": "fa104985a6edb0890495e93515bca017031bef87"
+    },
+    "neovim": {
+        "cargoLocks": null,
+        "date": "2023-04-15",
+        "extract": null,
+        "name": "neovim",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "2e2101cf7b0e4a70f5670d9d1317860a47bb8385",
+            "sha256": "sha256-wEWHxaC72uUiccrlPK5Dt2+kTGC0EXlxKF76OzUzfj8=",
+            "type": "git",
+            "url": "https://github.com/neovim/neovim"
+        },
+        "version": "2e2101cf7b0e4a70f5670d9d1317860a47bb8385"
+    },
+    "noto-fonts-cjk": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "noto-fonts-cjk",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-Uo9OGyX/O62wMhs40BXZVMTA3pJseDDvUOShlI9qPu0=",
+            "type": "url",
+            "url": "https://github.com/googlefonts/noto-cjk/releases/download/Sans2.004/03_NotoSansCJK-OTC.zip"
+        },
+        "version": "Sans2.004"
+    },
+    "puffer-fish": {
+        "cargoLocks": null,
+        "date": "2023-03-15",
+        "extract": null,
+        "name": "puffer-fish",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "5d3cb25e0d63356c3342fb3101810799bb651b64",
+            "sha256": "sha256-aPxEHSXfiJJXosIm7b3Pd+yFnyz43W3GXyUB5BFAF54=",
+            "type": "git",
+            "url": "https://github.com/nickeb96/puffer-fish"
+        },
+        "version": "5d3cb25e0d63356c3342fb3101810799bb651b64"
+    },
+    "shadowsocks-rust": {
+        "cargoLocks": null,
+        "date": "2023-04-15",
+        "extract": {
+            "Cargo.lock": "./shadowsocks-rust-c9c59f9664f3fc178005302ab974889271274b58/Cargo.lock"
+        },
+        "name": "shadowsocks-rust",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "c9c59f9664f3fc178005302ab974889271274b58",
+            "sha256": "sha256-MgyRfQhXK9W/PGdDWJAR8LB9Q5CPtiQ2xFpoQ+UuiMY=",
+            "type": "git",
+            "url": "https://github.com/shadowsocks/shadowsocks-rust"
+        },
+        "version": "c9c59f9664f3fc178005302ab974889271274b58"
+    },
+    "tide": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "tide",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "IlanCosman",
+            "repo": "tide",
+            "rev": "v5.5.1",
+            "sha256": "sha256-vi4sYoI366FkIonXDlf/eE2Pyjq7E/kOKBrQS+LtE+M=",
+            "type": "github"
+        },
+        "version": "v5.5.1"
+    },
+    "watchgha": {
+        "cargoLocks": null,
+        "date": "2023-04-15",
+        "extract": null,
+        "name": "watchgha",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "06f262f23f3e844a389e0c6a84d58b8025337300",
+            "sha256": "sha256-evX2ZpLiSYl/VLDzQXuj0SWC+wadxRxApCM8qudmwWc=",
+            "type": "git",
+            "url": "https://github.com/nedbat/watchgha"
+        },
+        "version": "06f262f23f3e844a389e0c6a84d58b8025337300"
+    },
+    "yuzu-ea-appimage": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "yuzu-ea-appimage",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-afuIrXFlm+9qQ+X7zusU06thwZv2gTR1rRgNOKWJVME=",
+            "type": "url",
+            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3512/Linux-Yuzu-EA-3512.AppImage"
+        },
+        "version": "EA-3512"
+    }
+}
