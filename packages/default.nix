@@ -5,7 +5,7 @@ final: prev:
 let
 
   sources =
-    final.callPackage ./_sources/generated.nix {};
+    final.callPackage ./__sources/generated.nix {};
 
   callPackage =
     final.newScope { inherit lib sources callPackage; };
