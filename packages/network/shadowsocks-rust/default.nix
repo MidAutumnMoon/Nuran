@@ -13,35 +13,44 @@ rustPlatformTeapot.buildRustPackage rec {
 
   inherit ( sources.${ pname } ) src;
 
-  cargoLock.lockFileContents =
-    sources.${ pname }."Cargo.lock";
+  cargoLock = {
+
+    lockFileContents = sources.${pname}."Cargo.lock";
+
+    outputHashes = {
+      "trust-dns-proto-0.22.0" = "sha256-A1PKlTsZUT63isARZqckefxcre462cLNQNUZ8cGfmus=";
+    };
+
+  };
 
 
   doCheck = false;
 
   inherit ( teapot ) RUSTFLAGS;
 
+
   buildNoDefaultFeatures = true;
 
   buildFeatures = [
-      "local"
-      "server"
-      "trust-dns"
-      "local-http"
-      "local-tunnel"
-      "dns-over-tls"
-      "dns-over-https"
-      "mimalloc"
-      "multi-threaded"
-      "aead-cipher-2022"
-      "logging"
-      "security-replay-attack-detect"
-    ];
+    "local"
+    "server"
+    "trust-dns"
+    "local-http"
+    "local-tunnel"
+    "dns-over-tls"
+    "dns-over-https"
+    "mimalloc"
+    "multi-threaded"
+    "aead-cipher-2022"
+    "logging"
+    "security-replay-attack-detect"
+  ];
+
 
   meta = {
-      homepage = "https://github.com/shadowsocks/shadowsocks-rust";
-      license = lib.licenses.mit;
-    };
+    homepage = "https://github.com/shadowsocks/shadowsocks-rust";
+    license = lib.licenses.mit;
+  };
 
 }
 
