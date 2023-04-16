@@ -9,7 +9,7 @@ let
       --remember \
       --remember-user-session \
       --cmd 'startplasma-wayland'
-    '';
+  '';
 
 in
 
@@ -19,25 +19,22 @@ in
   # Display Manager
   #
 
-  services.greetd = {
-      enable = true;
-      vt = 2;
-    };
+  services.greetd.enable = true;
 
   services.greetd.settings = {
-      default_session.command = greetd-script;
-    };
+    default_session.command = greetd-script;
+  };
 
   security.pam.services.greetd.enableKwallet = true;
 
   systemd.services.greetd.serviceConfig = {
-      # Type = idle slows down the login flow a lot
-      Type = lib.mkForce "simple";
-    };
+    # "idle" slows down the login flow a lot
+    Type = lib.mkForce "simple";
+  };
 
   systemd.tmpfiles.rules = [
-      "d /var/cache/tuigreet 0755 greeter greeter - -"
-    ];
+    "d /var/cache/tuigreet 0755 greeter greeter - -"
+  ];
 
 
 
@@ -50,10 +47,10 @@ in
   programs.ssh.enableAskPassword = false;
 
   services.xserver.desktopManager.plasma5 = {
-      enable = true;
-      runUsingSystemd = true;
-      phononBackend = "vlc";
-    };
+    enable = true;
+    runUsingSystemd = true;
+    phononBackend = "vlc";
+  };
 
   environment.systemPackages =
     with pkgs;
@@ -84,8 +81,8 @@ in
   i18n.inputMethod.enabled = "fcitx5";
 
   i18n.inputMethod.fcitx5.addons = with pkgs; [
-      fcitx5-mozc
-      fcitx5-chinese-addons
-    ];
+    fcitx5-mozc
+    fcitx5-chinese-addons
+  ];
 
 }
