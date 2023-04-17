@@ -81,20 +81,18 @@ in {
   nixosConfigurations."lyfua" =
     machine { toplevel = ./machines/laptop; };
 
-  homeModules = lib.flatten [
-      ( lib.listAllModules ./home )
-      flakes.nix-index-db.hmModules.nix-index
-    ];
+  homeModules =
+    with flakes; [
+      nix-index-db.hmModules.nix-index
+    ] ++ ( lib.listAllModules ./home );
 
-  nixosModules = lib.flatten [
+  nixosModules =
+    with flakes; [
       ./constants
-      ( lib.listAllModules ./nixos )
-      ( with flakes; [
-        sops-nix.nixosModules.default
-        impermanence.nixosModule
-        home-manager.nixosModule
-      ] )
-    ];
+      sops-nix.nixosModules.default
+      impermanence.nixosModule
+      home-manager.nixosModule
+    ] ++ ( lib.listAllModules ./nixos );
 
 
   /*
@@ -103,29 +101,27 @@ in {
   *
   */
 
-  shellRecipes."default" = self.shellRecipes.nuran;
+  shellRecipes = {
 
-  shellRecipes."nuran" = p:
-    with p; [
+    default = self.shellRecipes.nuran;
+
+    nuran = p: with p; [
       colmena
       sops
       ssh-to-age
     ];
 
-  shellRecipes."nuclage" = p:
-    with p; [
+    nuclage = p: with p; [
       nvfetcher
     ];
 
-  shellRecipes."numinus" = p:
-    with p; [
+    numinus = p: with p; [
       moonscript
       watchexec
       rsync
     ];
 
-  shellRecipes."cider-bubble" = p:
-    with p; [
+    cider-bubble = p: with p; [
       wrangler
       mdbook
       mdbook-catppuccin
@@ -133,8 +129,7 @@ in {
       minify
     ];
 
-  shellRecipes."rust" = p:
-    with p; [
+    rust = p: with p; [
       rustc
       cargo
       clippy
@@ -146,11 +141,12 @@ in {
       stdenvTeapot.cc
     ];
 
-  shellRecipes."picno" = p:
-    with p; [
+    picno = p: with p; [
       xxHash
       waifu2x-converter-cpp
     ];
+
+  };
 
   devShells =
     lib.brewShells pkgsBrew self.shellRecipes;
