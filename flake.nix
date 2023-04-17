@@ -146,6 +146,13 @@ in {
       waifu2x-converter-cpp
     ];
 
+    musicy = p: with p; [
+      picard
+      shntool
+      cuetools
+      flac
+    ];
+
   };
 
   devShells =
