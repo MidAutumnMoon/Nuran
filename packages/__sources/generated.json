@@ -5,7 +5,7 @@
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
-        "pinned": false,
+        "pinned": true,
         "src": {
             "deepClone": false,
             "fetchSubmodules": false,
@@ -141,7 +141,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-04-15",
+        "date": "2023-04-17",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -151,12 +151,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "2e2101cf7b0e4a70f5670d9d1317860a47bb8385",
-            "sha256": "sha256-wEWHxaC72uUiccrlPK5Dt2+kTGC0EXlxKF76OzUzfj8=",
+            "rev": "85bc9e897039619327b1de85fcdf13ea65c9bb9b",
+            "sha256": "sha256-vc3+p1AIf6jXNjQ/iO/FRYR7ADNKlCxRn2sYU4zEvj8=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "2e2101cf7b0e4a70f5670d9d1317860a47bb8385"
+        "version": "85bc9e897039619327b1de85fcdf13ea65c9bb9b"
     },
     "noto-fonts-cjk": {
         "cargoLocks": null,
@@ -194,9 +194,9 @@
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
-        "date": "2023-04-15",
+        "date": "2023-04-16",
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-c9c59f9664f3fc178005302ab974889271274b58/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-1a5e57d2de75d72e372b597df19c699d603ab100/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -206,12 +206,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "c9c59f9664f3fc178005302ab974889271274b58",
-            "sha256": "sha256-MgyRfQhXK9W/PGdDWJAR8LB9Q5CPtiQ2xFpoQ+UuiMY=",
+            "rev": "1a5e57d2de75d72e372b597df19c699d603ab100",
+            "sha256": "sha256-88quutcEmVEgChjEZK7U8ox9Nfq19KqhLZ7Ugh8ECOI=",
             "type": "git",
             "url": "https://github.com/shadowsocks/shadowsocks-rust"
         },
-        "version": "c9c59f9664f3fc178005302ab974889271274b58"
+        "version": "1a5e57d2de75d72e372b597df19c699d603ab100"
     },
     "tide": {
         "cargoLocks": null,
