@@ -35,6 +35,7 @@ rec {
   inherit ( nuran.path )
     isDir isFile
     listAllFiles listAllDirs
+    hasExtension
     ;
 
   inherit ( nuran.file )
