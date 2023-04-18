@@ -9,15 +9,16 @@
 
 let
 
-  inherit ( builtins ) match filter;
-
-  isFishFile =
-    path: if ( match ".*\\.fish$" (toString path) ) != null then true else false;
+  inherit ( lib )
+    filter
+    hasExtension
+    listAllFiles
+    ;
 
   functionFiles = map ( p: writeTextFile {
     name = baseNameOf p;
     text = callPackage p {};
-  } ) ( filter isFishFile (lib.listAllFiles ./.) );
+  } ) ( filter (hasExtension ".fish") (listAllFiles ./.) );
 
 in
 
