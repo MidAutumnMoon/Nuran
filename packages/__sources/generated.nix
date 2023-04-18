@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "2e2101cf7b0e4a70f5670d9d1317860a47bb8385";
+    version = "59fed8bb6457eb6c5204dc39a49d7ea0e1781482";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "2e2101cf7b0e4a70f5670d9d1317860a47bb8385";
+      rev = "59fed8bb6457eb6c5204dc39a49d7ea0e1781482";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-wEWHxaC72uUiccrlPK5Dt2+kTGC0EXlxKF76OzUzfj8=";
+      sha256 = "sha256-1q9LoRuJvm+LOsBECQtU5HNQxl0VC1DPm0xHCXnj9jc=";
     };
-    date = "2023-04-15";
+    date = "2023-04-18";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -129,17 +129,17 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "c9c59f9664f3fc178005302ab974889271274b58";
+    version = "1a5e57d2de75d72e372b597df19c699d603ab100";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "c9c59f9664f3fc178005302ab974889271274b58";
+      rev = "1a5e57d2de75d72e372b597df19c699d603ab100";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-MgyRfQhXK9W/PGdDWJAR8LB9Q5CPtiQ2xFpoQ+UuiMY=";
+      sha256 = "sha256-88quutcEmVEgChjEZK7U8ox9Nfq19KqhLZ7Ugh8ECOI=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-c9c59f9664f3fc178005302ab974889271274b58/Cargo.lock;
-    date = "2023-04-15";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-1a5e57d2de75d72e372b597df19c699d603ab100/Cargo.lock;
+    date = "2023-04-16";
   };
   tide = {
     pname = "tide";
