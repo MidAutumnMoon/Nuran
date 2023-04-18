@@ -2,24 +2,9 @@ with (builtins.getFlake (toString ../.)).lib; let pkgs = import <nixpkgs> {}; in
 
 let
 
-  pkgsBrew = brewNixpkgs <nixpkgs> {};
+  isMDFile =
+    path: if ( builtins.match ".*\\.md$" (toString path) ) != null then true else false;
 
 in
 
-brewShells pkgsBrew rec {
-
-  default = listOfPackages;
-
-  listOfPackages = p: [ p.hello ];
-
-  withHook = p: {
-    packages = [ p.hello ];
-    shellHook = ''
-      echo "This should hello"
-      hello
-      '';
-  };
-
-  passthru = p: 123;
-
-}
+filter isMDFile ( listAllFiles ./. )

@@ -1,3 +1,5 @@
+{ ... }: ''
+
 function cp
 
     status is-interactive
@@ -6,3 +8,5 @@ function cp
     command cp $flags $argv
 
 end
+
+''

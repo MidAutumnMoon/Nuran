@@ -1,3 +1,5 @@
+{}: ''
+
 function ssh -d 'ssh without kitty'
 
     set -fx TERM xterm-256color
@@ -5,3 +7,5 @@ function ssh -d 'ssh without kitty'
     command ssh $argv
 
 end
+
+''

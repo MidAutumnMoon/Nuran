@@ -1,3 +1,5 @@
+{ lib, pkgs, }: ''
+
 function quick7z
 
     if test ( count $argv ) -ne 1
@@ -9,7 +11,8 @@ function quick7z
     set -f Basename ( path basename -- "$Origin" )
     set -f Target "$Basename.7z"
 
-    command 7z a -m0=lzma2 -mx=7 -ms=on "$Target" "$Origin"
+    command '${lib.getExe pkgs.p7zip}' a -m0=lzma2 -mx=7 -ms=on "$Target" "$Origin"
 
 end
 
+''

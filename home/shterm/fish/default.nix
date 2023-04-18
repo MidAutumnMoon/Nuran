@@ -1,38 +1,37 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
 
-  readAllFish =
-    pkgs.callPackage ./read_all_fish.nix {};
+  inherit ( pkgs ) callPackage;
 
-  buildFunctions =
-    pkgs.callPackage ./build_functions.nix {};
+  readAllFish =
+    callPackage ./read_all_fish.nix {};
 
 in
 
-{
+lib.mkMerge [
 
-  programs.fish.enable = true;
+{ programs.fish = {
 
-  programs.fish.shellInit = ''
+  enable = true;
+
+  shellInit = ''
     source "${ readAllFish ./global }"
-
     set --prepend fish_function_path \
-      ${ buildFunctions ./functions }
-    '';
+      "${ callPackage ./functions/build.nix { inherit lib; } }"
+  '';
 
-
-  programs.fish.interactiveShellInit = ''
+  interactiveShellInit = ''
     source "${ readAllFish ./interactive }"
-    '';
+  '';
+
+}; }
 
 
-  home.packages = with pkgs; [
-      moreutils
-      fishPlugins.tide
-      fishPlugins.puffer-fish
-    ];
+{ home.packages = with pkgs; [
+  moreutils
+  fishPlugins.tide
+  fishPlugins.puffer-fish
+]; }
 
-
-}
-
+]

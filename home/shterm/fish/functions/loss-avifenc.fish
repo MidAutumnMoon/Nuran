@@ -1,9 +1,11 @@
+{ pkgs }: ''
+
 function loss-avifenc -d 'AVIF with a bit lower quality'
 
     set --function InputFileName "$argv[1]"
     set --function DestFileName "$( path change-extension avif "$InputFileName" )"
 
-    command '@cli_avifenc@' \
+    command '${pkgs.libavif}/bin/avifenc' \
         --min 0 \
         --max 63 \
         --minalpha 0 \
@@ -22,3 +24,5 @@ function loss-avifenc -d 'AVIF with a bit lower quality'
         "$InputFileName" "$DestFileName"
 
 end
+
+''

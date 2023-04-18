@@ -1,3 +1,5 @@
+{}: ''
+
 function mv
 
     status is-interactive
@@ -6,3 +8,5 @@ function mv
     command mv $flags $argv
 
 end
+
+''
