@@ -28,6 +28,11 @@ inputs = {
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+  colmena =
+    { url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
 };
 
 
