@@ -100,6 +100,22 @@ in {
     ] ++ ( lib.listAllModules ./nixos );
 
 
+  colmena =
+    lib.adoptColmena self.nixosConfigurations {
+
+      meta = {
+        nixpkgs = pkgsBrew."x86_64-linux";
+      };
+
+      lyfua.deployment = {
+        allowLocalDeployment = true;
+        targetHost = "localhost";
+        targetPort = 47128;
+      };
+
+    };
+
+
   /*
   *
   * devShells
@@ -111,7 +127,7 @@ in {
     default = self.shellRecipes.nuran;
 
     nuran = p: with p; [
-      colmena
+      colmena_git
       sops
       ssh-to-age
     ];

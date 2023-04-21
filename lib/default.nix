@@ -51,6 +51,7 @@ rec {
   inherit ( nuran.trivial )
     doNothing
     assembleSystem
+    adoptColmena
     ;
 
   inherit ( nuran.nixpkgs )
