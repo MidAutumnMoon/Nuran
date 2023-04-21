@@ -1,39 +1,40 @@
 { lib, config, pkgs, ... }:
 
-lib.condMod ( config.fonts.fontconfig.enable ) {
+lib.condMod ( config.fonts.fontconfig.enable )
 
-  fonts.enableDefaultFonts =
-    lib.mkForce false;
+{ fonts = {
 
-  fonts.fonts = with pkgs; [
-      noto-fonts-cjk_teapot
+  enableDefaultFonts = lib.mkForce false;
 
-      iosevka_teapot
-      hack-font
-      nerdfonts_teapot
+  fonts = with pkgs; [
+    noto-fonts-cjk_teapot
+    noto-fonts-emoji
 
-      ibm-plex
-    ];
+    iosevka_teapot
+    hack-font
+    nerdfonts_teapot
 
-  fonts.fontconfig.defaultFonts = lib.mkForce {
+    ibm-plex
+  ];
+
+  fontconfig = {
+
+    defaultFonts = lib.mkForce {
       sansSerif =
         [ "Noto Sans" "Noto Sans CJK SC" ];
       serif =
         [ "Noto Sans" "Noto Sans CJK SC" ];
       monospace =
         [ "Hack" "Iosevka Teapot" ];
-      emoji = [];
     };
 
-  fonts.fontconfig.localConf =
-    builtins.readFile ./local.xml;
+    localConf = builtins.readFile ./local.xml;
 
+    antialias = true;
+    subpixel.rgba = "none";
+    subpixel.lcdfilter = "none";
 
-  fonts.fontconfig.antialias = true;
+  };
 
-  fonts.fontconfig.subpixel.rgba = "none";
-
-  fonts.fontconfig.subpixel.lcdfilter = "none";
-
-}
+}; }
 
