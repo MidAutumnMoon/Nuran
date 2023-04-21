@@ -11,6 +11,7 @@
   p7zip
   rclone
   pueue
+  colmena_git
 
   firefox_teapot
   virt-manager
