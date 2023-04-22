@@ -157,6 +157,7 @@ in {
       cargo-bloat
       cargo-nextest
       cargo-outdated
+      cargo-edit
       rustfmt
       rust-analyzer
       stdenvTeapot.cc
