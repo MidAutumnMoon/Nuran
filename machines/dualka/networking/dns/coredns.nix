@@ -19,6 +19,6 @@
         tls_servername cloudflare-dns.com
       }
     }
-    '';
+  '';
 
 }

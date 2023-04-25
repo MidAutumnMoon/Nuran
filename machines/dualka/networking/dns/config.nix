@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, ... }:
 
 {
 
@@ -11,6 +11,6 @@
     Cache = no
     FallbackDNS =
     LLMNR = no
-    '';
+  '';
 
 }

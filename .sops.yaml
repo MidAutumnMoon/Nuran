@@ -2,9 +2,11 @@
 keys:
   - &me age17lvnmh99feams2pvfljw34k5s705uk89x6g26r4ml85yu0h2q9uswpmjm6
   - &laptop age1n7wt2ctw9ep8cll7lfrh4j69wr608ayxru3cpztljj0v3vm6qyms47fys4
+  - &dualka age1q9vt54yjfxxn2ju7qchrnr9t7nzyuvc6k2n0s83lrkr24qdgcehqs4yp2n
 
 creation_rules:
   - key_groups:
     - age:
       - *me
       - *laptop
+      - *dualka

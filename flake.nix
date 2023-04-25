@@ -83,8 +83,13 @@ in {
   *
   */
 
-  nixosConfigurations."lyfua" =
-    machine { toplevel = ./machines/laptop; };
+  nixosConfigurations = {
+
+    lyfua = machine { toplevel = ./machines/laptop; };
+
+    dualka = machine { toplevel = ./machines/dualka; };
+
+  };
 
   homeModules =
     with flakes; [
@@ -100,8 +105,8 @@ in {
     ] ++ ( lib.listAllModules ./nixos );
 
 
-  colmena =
-    lib.adoptColmena self.nixosConfigurations {
+  colmena = lib.adoptColmena
+    self.nixosConfigurations {
 
       meta = {
         nixpkgs = pkgsBrew."x86_64-linux";
@@ -111,6 +116,10 @@ in {
         allowLocalDeployment = true;
         targetHost = "localhost";
         targetPort = 47128;
+      };
+
+      dualka.deployment = {
+        # targetPort = 47128;
       };
 
     };
