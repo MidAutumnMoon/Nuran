@@ -4,6 +4,7 @@
 
   ./programs.nix
   ./localezoe.nix
+  ./sysctl.nix
 
   ./leftover.nix
 
