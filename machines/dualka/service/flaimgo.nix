@@ -1,25 +1,25 @@
 { config, ... }:
 
-{
+{ nuran.nginx.vhosts = ''
 
-  nuran.nginx.vhosts = ''
-    server {
-      listen [::]:443 ssl http2;
-      server_name p.418.im;
+  server {
 
-      ${config.nuran.nginx.snippets."418_certs"}
+    listen [::]:443 ssl http2;
+    server_name p.418.im;
 
-      location / {
-        expires    max;
-        add_header Cache-Control "public, immutable";
-        add_header Access-Control-Allow-Origin *;
+    include ${config.nuran.nginx.snippets."default_certs"};
 
-        gzip off;
+    location / {
+      expires    max;
+      add_header Cache-Control "public, immutable";
+      add_header Access-Control-Allow-Origin *;
 
-        # This ending "/" is important.
-        alias ${config.fileSystems."/data/flaimgo".mountPoint}/;
-      }
+      gzip off;
+
+      # This ending "/" is important.
+      alias /srv/flaimgo/;
     }
-    '';
 
-}
+  }
+
+''; }

@@ -1,24 +1,16 @@
-{ config, ... }:
-
 {
 
   nuran.nginx.enable = true;
 
-  services.miniflux.enable = true;
+  services = {
 
-  nuran.services.erohon =
-    { enable = true;
-      repoPath =
-        config.fileSystems."/data/erohon".mountPoint;
-    };
+    # psql 15 breakage workaround
+    # GRANT ALL ON SCHEMA public TO miniflux;
+    # ALTER DATABASE miniflux OWNER TO miniflux;
+    miniflux.enable = true;
 
-  services.libreddit.enable = true;
+    libreddit.enable = true;
 
-  nuran.services.hentai-home =
-    { enable = true;
-      port = 33679;
-      dataDir =
-        config.fileSystems."/data/hentai-home".mountPoint;
-    };
+  };
 
 }

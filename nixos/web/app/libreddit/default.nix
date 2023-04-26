@@ -15,23 +15,21 @@ lib.condMod (config.services.libreddit.enable) {
     };
 
   systemd.services.libreddit.environment = {
-      LIBREDDIT_DEFAULT_THEME = "nord";
-      LIBREDDIT_DEFAULT_SHOW_NSFW = "on";
-      LIBREDDIT_DEFAULT_USE_HLS = "on";
-      LIBREDDIT_DEFAULT_BLUR_NSFW = "on";
-      LIBREDDIT_DEFAULT_AUTOPLAY_VIDEOS = "off";
-    };
+    LIBREDDIT_DEFAULT_THEME = "nord";
+    LIBREDDIT_DEFAULT_SHOW_NSFW = "on";
+    LIBREDDIT_DEFAULT_USE_HLS = "on";
+    LIBREDDIT_DEFAULT_BLUR_NSFW = "on";
+    LIBREDDIT_DEFAULT_AUTOPLAY_VIDEOS = "off";
+  };
 
   nuran.nginx.vhosts =
     let
-      proxy_pass =
-        "proxy_pass http://${libreddit.local_addr};";
-    in ''
-    server {
+      proxy_pass = "proxy_pass http://${libreddit.local_addr};";
+    in '' server {
       listen [::]:443 ssl http2;
       server_name ${libreddit.domain};
 
-      ${config.nuran.nginx.snippets."418_certs"}
+      include ${config.nuran.nginx.snippets."default_certs"};
 
       location ~ /(thumb|emoji|img|style|preview|hls) {
         proxy_cache Pcache;
@@ -43,7 +41,6 @@ lib.condMod (config.services.libreddit.enable) {
       location / {
         ${proxy_pass}
       }
-    }
-    '';
+    } '';
 
 }
