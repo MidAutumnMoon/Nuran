@@ -1,11 +1,12 @@
 {
 
-  networking.hostName = "lyfua";
-
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "lyfua";
+    networkmanager.enable = true;
+  };
 
   systemd.network.wait-online.extraArgs = [
-      "--interface=wlp2s0:routable"
-    ];
+    "--interface=wlp2s0:routable"
+  ];
 
 }
