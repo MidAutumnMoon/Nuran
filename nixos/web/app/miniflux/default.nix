@@ -23,7 +23,7 @@ lib.condMod (config.services.miniflux.enable) {
     POLLING_PARSING_ERROR_LIMIT = "6";
     POLLING_SCHEDULER = "entry_frequency";
 
-    PROXY_IMAGES = "all";
+    PROXY_OPTION = "all";
 
     WORKER_POOL_SIZE = "10";
 
