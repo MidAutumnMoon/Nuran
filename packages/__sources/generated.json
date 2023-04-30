@@ -20,9 +20,9 @@
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-04-13",
+        "date": "2023-04-30",
         "extract": {
-            "Cargo.lock": "./derputils-430fa5ab3c6f98cf0e7966a309aa67908ffc63bb/Cargo.lock"
+            "Cargo.lock": "./derputils-853f2de0f531d5d7da4595505f409fb7d84d5b81/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "430fa5ab3c6f98cf0e7966a309aa67908ffc63bb",
-            "sha256": "sha256-gYqKiuuk8oPAQdT6XaB6SpqpM0YUq+KtGeUccZW6gNA=",
+            "rev": "853f2de0f531d5d7da4595505f409fb7d84d5b81",
+            "sha256": "sha256-1fTBdgmMbt7IYIzyBo/VeWXe0Wse8ZcZnQes+aZ0f4A=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "430fa5ab3c6f98cf0e7966a309aa67908ffc63bb"
+        "version": "853f2de0f531d5d7da4595505f409fb7d84d5b81"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -141,7 +141,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-04-18",
+        "date": "2023-04-30",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -151,12 +151,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "59fed8bb6457eb6c5204dc39a49d7ea0e1781482",
-            "sha256": "sha256-1q9LoRuJvm+LOsBECQtU5HNQxl0VC1DPm0xHCXnj9jc=",
+            "rev": "4f3f81ed86542109824bd199198fb43e6fccdc17",
+            "sha256": "sha256-tRnYmHVPtthGzSPY5FtB8fx7UddB6aNyGs7DtU4/ekg=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "59fed8bb6457eb6c5204dc39a49d7ea0e1781482"
+        "version": "4f3f81ed86542109824bd199198fb43e6fccdc17"
     },
     "noto-fonts-cjk": {
         "cargoLocks": null,
@@ -261,10 +261,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-afuIrXFlm+9qQ+X7zusU06thwZv2gTR1rRgNOKWJVME=",
+            "sha256": "sha256-p1d4vgbNqdsWctmIa/WTmW1CzokTQIjh4GvVAfyXlZ8=",
             "type": "url",
-            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3512/Linux-Yuzu-EA-3512.AppImage"
+            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3537/Linux-Yuzu-EA-3537.AppImage"
         },
-        "version": "EA-3512"
+        "version": "EA-3537"
     }
 }
