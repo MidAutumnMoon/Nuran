@@ -1,8 +1,14 @@
+{ lib, ... }:
+
 {
 
   networking = {
     hostName = "lyfua";
-    networkmanager.enable = true;
+  };
+
+  networking.networkmanager = {
+    enable = true;
+    plugins = lib.mkForce [];
   };
 
   systemd.network.wait-online.extraArgs = [
