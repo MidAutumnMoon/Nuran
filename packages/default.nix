@@ -199,12 +199,12 @@ rec {
   */
 
   # stdenvTeapot =
-  #   with prev.buildPackages.llvmPackages_15;
+  #   with prev.buildPackages.llvmPackages_16;
   #   prev.overrideCC stdenv ( libstdcxxClang.override { inherit bintools; } );
 
   stdenvTeapot =
     with prev;
-    useMoldLinker buildPackages.llvmPackages_15.stdenv;
+    useMoldLinker buildPackages.llvmPackages_16.stdenv;
 
   rustPlatformTeapot =
     with prev;
