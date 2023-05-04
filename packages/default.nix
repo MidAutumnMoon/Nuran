@@ -187,7 +187,7 @@ rec {
   teapot.RUSTFLAGS = [
       "-C target-cpu=${ teapot.march }"
       "-C linker=clang"
-      "-C link-arg=-fuse-ld=mold"
+      "-C link-arg=-fuse-ld=lld"
     ];
 
 
@@ -198,13 +198,13 @@ rec {
   *
   */
 
-  # stdenvTeapot =
-  #   with prev.buildPackages.llvmPackages_16;
-  #   prev.overrideCC stdenv ( libstdcxxClang.override { inherit bintools; } );
-
   stdenvTeapot =
-    with prev;
-    useMoldLinker buildPackages.llvmPackages_16.stdenv;
+    with prev.buildPackages.llvmPackages_16;
+    prev.overrideCC stdenv ( libstdcxxClang.override { inherit bintools; } );
+
+  # stdenvTeapot =
+  #   with prev;
+  #   useMoldLinker buildPackages.llvmPackages_16.stdenv;
 
   rustPlatformTeapot =
     with prev;
