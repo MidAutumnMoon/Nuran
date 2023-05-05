@@ -8,18 +8,21 @@
   boot.initrd.includeDefaultModules = false;
 
   boot.initrd.availableKernelModules = [
-      "hid_generic"
-      "usbhid"
-      "xhci_pci"
-      "xhci_hcd"
-    ];
+    "hid_generic"
+    "usbhid"
+    "xhci_pci"
+    "xhci_hcd"
+  ];
 
   boot.blacklistedKernelModules = [
-      "nouveau"
-      "i2c_nvidia_gpu"
-    ];
+    "nouveau"
+    "i2c_nvidia_gpu"
+  ];
 
-  boot.kernelParams = [ "preempt=full" ];
+  boot.kernelParams = [
+    "preempt=full"
+    "init_on_alloc=1"
+  ];
 
   hardware.cpu.amd.updateMicrocode = true;
 
@@ -31,8 +34,8 @@
   boot.initrd.systemd.enable = true;
 
   boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
 }
