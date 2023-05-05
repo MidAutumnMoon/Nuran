@@ -12,7 +12,6 @@ extract = [ "Cargo.lock" ]
 [neovim]
 src.git = "https://github.com/neovim/neovim"
 fetch.git = "https://github.com/neovim/neovim"
-pinned = true
 
 # Language
 
