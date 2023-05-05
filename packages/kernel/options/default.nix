@@ -41,7 +41,6 @@ in
 
   PCSPKR_PLATFORM = no;
   KALLSYMS_ALL = no;
-  SLS = yes;
 
 
   #
@@ -157,7 +156,6 @@ in
     BT_BNEP = no;
     BT_RFCOMM = no;
     # QoS
-    NET_SCH_CBQ = no;
     NET_SCH_HTB = no;
     NET_SCH_HFSC = no;
     NET_SCH_PRIO = no;
@@ -171,7 +169,6 @@ in
     NET_SCH_ETF = no;
     NET_SCH_TAPRIO = no;
     NET_SCH_GRED = no;
-    NET_SCH_DSMARK = no;
     NET_SCH_DRR = no;
     NET_SCH_MQPRIO = no;
     NET_SCH_SKBPRIO = no;
@@ -438,7 +435,6 @@ in
     RTC_DRV_MSM6242 = no;
     RTC_DRV_BQ4802 = no;
     RTC_DRV_RP5C01 = no;
-    RTC_DRV_V3020 = no;
     RTC_DRV_FTRTC010 = no;
     RTC_DRV_GOLDFISH = no;
     RTC_DRV_MAX6916 = no;
@@ -566,7 +562,6 @@ in
     DW_DMAC = no;
     DW_DMAC_PCI = no;
     DW_EDMA = no;
-    DW_EDMA_PCIE = no;
     SF_PDMA = no;
     ASYNC_TX_DMA = yes;
     DMATEST = no;
@@ -749,7 +744,6 @@ in
 
     # Power supply
     #:continue
-    PDA_POWER = no;
     IP5XXX_POWER = no;
     TEST_POWER = no;
     CHARGER_LTC4162L = no;
@@ -1554,8 +1548,9 @@ in
     IRQ_REMAP = forceOptionNo;
 
     # Misc devices
+    SMPRO_ERRMON = no;
+    SMPRO_MISC = no;
     GP_PCI1XXXX = no;
-    HABANA_AI = no;
     AD525X_DPOT = no;
     IBM_ASM = no;
     PHANTOM = no;
@@ -1613,7 +1608,6 @@ in
     MFD_MC13XXX_SPI = no;
     MFD_MC13XXX_I2C = no;
     MFD_MP2629 = no;
-    HTC_PASIC3 = no;
     MFD_INTEL_QUARK_I2C_GPIO = no;
     LPC_ICH = no;
     LPC_SCH = no;
@@ -1660,7 +1654,6 @@ in
     MFD_WM8994 = no;
     MFD_ATC260X_I2C = no;
     RAVE_SP_CORE = no;
-    MFD_INTEL_M10_BMC = no;
     MFD_MT6370 = no;
     MFD_OCELOT = no;
     MFD_SY7636A = no;
