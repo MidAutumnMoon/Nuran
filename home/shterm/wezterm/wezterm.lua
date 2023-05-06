@@ -58,7 +58,7 @@ wezterm.on( "window-focus-changed", function( window, pane )
 end )
 
 config.hide_tab_bar_if_only_one_tab = true
-config.use_fancy_tab_bar = false
+-- config.use_fancy_tab_bar = false
 
 config.window_padding = {
     right = 0,
@@ -71,7 +71,7 @@ config.window_decorations = "NONE"
 
 config.window_frame = {
     font = wezterm.font { family = 'Hack', weight = 'Bold' },
-    font_size = config.font_size - 3,
+    font_size = config.font_size - 1,
 }
 
 
