@@ -53,11 +53,12 @@ config.background = {
     }
 }
 
-wezterm.on( "window-focus-changed", function()
-  os.execute( '@blurScript@' )
+wezterm.on( "window-focus-changed", function( window, pane )
+    os.execute( '@blurScriptAsync@' )
 end )
 
 config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = false
 
 config.window_padding = {
     right = 0,
