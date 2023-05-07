@@ -106,22 +106,16 @@ in {
 
 
   colmena = lib.adoptColmena
-    self.nixosConfigurations {
-
+    self.nixosConfigurations
+    {
       meta = {
         nixpkgs = pkgsBrew."x86_64-linux";
       };
-
       lyfua.deployment = {
         allowLocalDeployment = true;
         targetHost = "localhost";
         targetPort = 47128;
       };
-
-      dualka.deployment = {
-        # targetPort = 47128;
-      };
-
     };
 
 
