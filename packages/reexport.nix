@@ -6,15 +6,26 @@ let
 
   inherit ( final ) system;
 
+  packagesFrom =
+    flake: flake.packages.${system};
+
+  selectPackage =
+    flake: pname: ( packagesFrom flake ).${pname};
+
 in
+
+with flakes;
 
 {
 
-  inherit ( flakes.sops-nix.packages.${system} )
+  inherit ( packagesFrom sops-nix )
     sops-install-secrets;
 
   colmena_git =
-    flakes.colmena.packages.${system}.colmena;
+    selectPackage colmena "colmena";
+
+  nil =
+    selectPackage nil-lsp "nil";
 
 }
 

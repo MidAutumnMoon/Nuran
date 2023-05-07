@@ -30,6 +30,7 @@ with ( builtins.getFlake (toString ../.) ).legacyPackages."${ builtins.currentSy
     mdbook-catppuccin
     mdbook-toc
     colmena_git
+    nil
   ];
 
   rust-heavy-things = [
