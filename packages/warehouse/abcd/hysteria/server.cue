@@ -16,3 +16,5 @@ key: "@hy_key@"
 
 resolver: "udp://@dns_addr@:53"
 resolve_preference: "46"
+
+// bind_outbound: device: "wgcf"

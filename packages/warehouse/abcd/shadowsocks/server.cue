@@ -27,3 +27,4 @@ runtime: {
     mode: "multi_thread"
 }
 
+// outbound_bind_interface: "wgcf"
