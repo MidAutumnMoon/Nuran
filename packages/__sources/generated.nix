@@ -3,16 +3,16 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "977c74a08501e82592bf6767c62a9c498a973951";
+    version = "1e806df0e335a53c7fc2e2954ab756325a8fe496";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "977c74a08501e82592bf6767c62a9c498a973951";
+      rev = "1e806df0e335a53c7fc2e2954ab756325a8fe496";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-K9zr0Xfdf8tOkn+REn/zA95pEt/mHB2n7mWpNJqnamc=";
+      sha256 = "sha256-jYA1FDHDQ7gRmXMsOKDbr+s8ltEfkCbUDOTFIy1rlwE=";
     };
-    date = "2023-04-13";
+    date = "2023-05-26";
   };
   derputils = {
     pname = "derputils";
@@ -31,13 +31,13 @@
   graphite-cursors = {
     pname = "graphite-cursors";
     version = "2021-11-26";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "vinceliuice";
       repo = "Graphite-cursors";
       rev = "2021-11-26";
       fetchSubmodules = false;
       sha256 = "sha256-Kopl2NweYrq9rhw+0EUMhY/pfGo4g387927TZAhI5/A=";
-    });
+    };
   };
   k380-fn-keys-swap = {
     pname = "k380-fn-keys-swap";
@@ -68,17 +68,17 @@
   };
   mdbook-toc = {
     pname = "mdbook-toc";
-    version = "c78210ea72deaea938c8947ab1bec24b14653ea2";
+    version = "ee15575d470e83ecb055512d88e38c381e1eaf39";
     src = fetchgit {
       url = "https://github.com/badboy/mdbook-toc";
-      rev = "c78210ea72deaea938c8947ab1bec24b14653ea2";
+      rev = "ee15575d470e83ecb055512d88e38c381e1eaf39";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-WkrXNFujLjE9dpFj2vTnmPa1beCGi7ZvyCOTW0Q/TO8=";
+      sha256 = "sha256-3lAi9ZNtwhA2OtIR4tN2wiztp3pnRxtaGG0MwGEk0u0=";
     };
-    "Cargo.lock" = builtins.readFile ./mdbook-toc-c78210ea72deaea938c8947ab1bec24b14653ea2/Cargo.lock;
-    date = "2023-02-14";
+    "Cargo.lock" = builtins.readFile ./mdbook-toc-ee15575d470e83ecb055512d88e38c381e1eaf39/Cargo.lock;
+    date = "2023-05-15";
   };
   moonscript = {
     pname = "moonscript";
@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "648f777931d49b8013146f69d7e2776f69c52900";
+    version = "b46f61ac050e6eb530ceb4d4b510b612596427c5";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "648f777931d49b8013146f69d7e2776f69c52900";
+      rev = "b46f61ac050e6eb530ceb4d4b510b612596427c5";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-8AEpJKteBBro16AAh4AvhvyNLPHdXzYNmbC5OD/2zSw=";
+      sha256 = "sha256-G4yUVbHJWoEVX9xO0B1MYwbiMv1KnNrbyECWM4AJxlw=";
     };
-    date = "2023-05-05";
+    date = "2023-05-27";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -129,48 +129,48 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "34127b8270f4c504cabfaf29a57e630622e6efc6";
+    version = "0c4f9da320e414be59aadf764f3d586ed4df59e2";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "34127b8270f4c504cabfaf29a57e630622e6efc6";
+      rev = "0c4f9da320e414be59aadf764f3d586ed4df59e2";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-p4m+XIBMms79BOypbUwnqt/CbIILhk1iFz2S+JH1i3s=";
+      sha256 = "sha256-9Sc56b9IOGgL+QM3GtN9NxqaWA/SHzsBugyJV7zBs+M=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-34127b8270f4c504cabfaf29a57e630622e6efc6/Cargo.lock;
-    date = "2023-05-05";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-0c4f9da320e414be59aadf764f3d586ed4df59e2/Cargo.lock;
+    date = "2023-05-24";
   };
   tide = {
     pname = "tide";
     version = "v5.5.1";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "IlanCosman";
       repo = "tide";
       rev = "v5.5.1";
       fetchSubmodules = false;
       sha256 = "sha256-vi4sYoI366FkIonXDlf/eE2Pyjq7E/kOKBrQS+LtE+M=";
-    });
+    };
   };
   watchgha = {
     pname = "watchgha";
-    version = "06f262f23f3e844a389e0c6a84d58b8025337300";
+    version = "830e536f5663147ea8fb2272773ca1377fe39d6a";
     src = fetchgit {
       url = "https://github.com/nedbat/watchgha";
-      rev = "06f262f23f3e844a389e0c6a84d58b8025337300";
+      rev = "830e536f5663147ea8fb2272773ca1377fe39d6a";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-evX2ZpLiSYl/VLDzQXuj0SWC+wadxRxApCM8qudmwWc=";
+      sha256 = "sha256-n5fjkB4mFfKajMUzHPFnHv/kjmL3In4wGhAbeIdp/9A=";
     };
-    date = "2023-04-15";
+    date = "2023-05-19";
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3556";
+    version = "EA-3617";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3556/Linux-Yuzu-EA-3556.AppImage";
-      sha256 = "sha256-TR9MH7bZC5kzaAadqZgSOWQ8Y5XLi/cKKOJRZMiJsp4=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3617/Linux-Yuzu-EA-3617.AppImage";
+      sha256 = "sha256-+FKzwcHMbM0A44KaiQ41KDXCiyfz9yLWQuUwAQ+Az/E=";
     };
   };
 }
