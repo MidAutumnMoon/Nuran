@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "648f777931d49b8013146f69d7e2776f69c52900";
+    version = "057a5bc78d90db50caa85cdb34986fb186f0fd98";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "648f777931d49b8013146f69d7e2776f69c52900";
+      rev = "057a5bc78d90db50caa85cdb34986fb186f0fd98";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-8AEpJKteBBro16AAh4AvhvyNLPHdXzYNmbC5OD/2zSw=";
+      sha256 = "sha256-YrvW9gDZ4OId05rHr4a/5FcnEA/AyF8AeCbo2P4fuHY=";
     };
-    date = "2023-05-05";
+    date = "2023-05-08";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -129,16 +129,16 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "34127b8270f4c504cabfaf29a57e630622e6efc6";
+    version = "bf5d9a909acc04c93405729542f5f0c9de31121f";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "34127b8270f4c504cabfaf29a57e630622e6efc6";
+      rev = "bf5d9a909acc04c93405729542f5f0c9de31121f";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-p4m+XIBMms79BOypbUwnqt/CbIILhk1iFz2S+JH1i3s=";
+      sha256 = "sha256-JwqHkWymnOIn9AOZkwdsmmaSacoJ7LCZmgHSYMKbuXk=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-34127b8270f4c504cabfaf29a57e630622e6efc6/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-bf5d9a909acc04c93405729542f5f0c9de31121f/Cargo.lock;
     date = "2023-05-05";
   };
   tide = {
@@ -167,10 +167,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3556";
+    version = "EA-3571";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3556/Linux-Yuzu-EA-3556.AppImage";
-      sha256 = "sha256-TR9MH7bZC5kzaAadqZgSOWQ8Y5XLi/cKKOJRZMiJsp4=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3571/Linux-Yuzu-EA-3571.AppImage";
+      sha256 = "sha256-p4mHYXX0Pq5m02WoHlrR8j3D50cwDPyPkD9CqRviHco=";
     };
   };
 }
