@@ -11,7 +11,6 @@ with ( builtins.getFlake (toString ../.) ).legacyPackages."${ builtins.currentSy
     k380-fn-keys-swap
     nerdfonts_teapot
     noto-fonts-cjk_teapot
-    mpv_teapot
     unrar
     nginx_teapot
   ];

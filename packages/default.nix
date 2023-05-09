@@ -96,9 +96,6 @@ rec {
   *
   */
 
-  mpv_teapot =
-    callPackage ./entertain/mpv {};
-
   yuzu_teapot =
     prev.libsForQt5.callPackage ./entertain/yuzu { inherit sources; };
 
