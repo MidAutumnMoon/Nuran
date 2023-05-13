@@ -93,6 +93,8 @@ set -a NvfetcherKeyfileOption "--keyfile" "$Keyfile"
 # Run nvfetcher
 #
 
+set -l NvfetcherExitStatus 0
+
 nvfetcher \
     --config ( printf "$Config" | psub ) \
     --build-dir "$SourceDir" \
@@ -100,9 +102,13 @@ nvfetcher \
     -j 8 \
     $NvfetcherKeyfileOption
 
+set NvfetcherExitStatus $status
+
 
 #
 # Cleanup
 #
 
 rm "$Keyfile"
+
+exit $NvfetcherExitStatus
