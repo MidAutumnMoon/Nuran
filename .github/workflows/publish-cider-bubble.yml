@@ -23,6 +23,10 @@ jobs:
 
     name: Publish Cider Bubble to Cloudflare Pages
 
+    defaults:
+      run:
+        shell: bash
+
     steps:
 
       - name: Checkout
