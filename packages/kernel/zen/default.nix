@@ -1,20 +1,30 @@
 {
   callPackage,
-  linuxPackagesFor,
+
+  linuxManualConfig,
+  linuxPackages_zen,
+
+  ...
 }:
 
 let
 
-  zenPackage =
-    linuxPackagesFor ( callPackage ./kernel.nix {} );
+  baseKernel = linuxPackages_zen.kernel;
 
 in
 
-zenPackage.extend ( self: super: {
+linuxManualConfig {
 
-  nvidiaPackages = super.nvidiaPackages.extend ( nvidiaSelf: nvidiaSuper: {
-      stable =
-        nvidiaSuper.stable.override { disable32Bit = true; };
-    } );
+  inherit ( baseKernel )
+    src version modDirVersion;
 
-} )
+  isZen = true;
+
+  configfile = ./configfile;
+  allowImportFromDerivation = true;
+
+  kernelPatches =
+    baseKernel.kernelPatches
+    ++ callPackage ./patches.nix {};
+
+}
