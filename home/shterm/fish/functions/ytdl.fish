@@ -6,7 +6,12 @@ function ytdl -d 'Nicer yt-dlp for downloading single video.'
 
     command '${lib.getExe pkgs.yt-dlp}' \
         -S ext:mp4:m4a \
-        --split-chapters \
+        --embed-chapters \
+        --embed-thumbnail \
+        --embed-metadata \
+        --embed-subs \
+        --sub-langs 'all' \
+        --mtime \
         --output '%(fulltitle)s.%(ext)s' \
         "$VideoSpec"
 
