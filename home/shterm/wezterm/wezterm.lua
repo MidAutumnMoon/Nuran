@@ -35,6 +35,7 @@ config.font_size = 16.4
 config.line_height = 1.12
 
 config.use_cap_height_to_scale_fallback_fonts = true
+config.warn_about_missing_glyphs = false
 
 
 --
@@ -52,6 +53,8 @@ config.background = {
         opacity = 0.72,
     }
 }
+
+config.enable_wayland = false
 
 wezterm.on( "window-focus-changed", function( window, pane )
     os.execute( '@blurScriptAsync@' )
@@ -80,9 +83,14 @@ config.window_frame = {
 --
 
 config.check_for_updates = false
-config.enable_wayland = false
 config.mouse_wheel_scrolls_tabs = true
+
+config.audible_bell = "Disabled"
+config.visual_bell = {
+  fade_in_duration_ms = 75,
+  fade_out_duration_ms = 75,
+  target = 'CursorColor',
+}
 
 
 return config
-
