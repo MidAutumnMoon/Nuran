@@ -28,9 +28,6 @@ pref( 'gfx.offscreencanvas.enabled',       true );
 pref( 'gfx.webrender.program-binary',      true );
 pref( 'gfx.webrender.program-binary-disk', true );
 
-pref( 'dom.webgpu.enabled',       true );
-pref( 'gfx.webgpu.force-enabled', true );
-
 pref( 'layers.acceleration.force-enabled', true );
 pref( 'layers.gpu-process.enabled',        true );
 pref( 'layers.gpu-process.force-enabled',  true );
@@ -72,15 +69,13 @@ pref( 'browser.urlbar.decodeURLsOnCopy',            true );
 pref( 'browser.urlbar.keepPanelOpenDuringImeComposition', true );
 
 pref( 'browser.urlbar.trimURLs',            false );
-pref( 'browser.urlbar.shortcuts.bookmarks', false );  // Annoying!
-pref( 'browser.urlbar.shortcuts.history',   false );
-pref( 'browser.urlbar.shortcuts.tabs',      false );
 pref( 'browser.urlbar.suggest.searches',    false );
 pref( 'browser.urlbar.suggest.engines',     false );
 pref( 'browser.urlbar.suggest.openpage',    false );
 pref( 'browser.urlbar.suggest.topsites',    false );
-pref( 'browser.urlbar.suggest.calculator',  true );   // But calculator is fun.
+pref( 'browser.urlbar.suggest.calculator',  false );
 pref( 'browser.urlbar.groupLabels.enabled', false );
+pref( 'browser.urlbar.resultMenu',          false );
 
 pref( 'toolkit.tabbox.switchByScrolling', true );
 pref( 'browser.tabs.insertAfterCurrent',  true );
@@ -170,8 +165,6 @@ pref( 'dom.allow_cut_copy',         true );
 pref( 'dom.webshare.enabled',       false );
 pref( 'dom.vibrator.enabled',       false );
 
-pref( 'webgl.enable-debug-renderer-info', false )
-
 pref( 'media.webspeech.recognition.enable', false );
 pref( 'media.webspeech.synth.enabled',      false );
 
@@ -253,10 +246,6 @@ pref( 'browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons',   fals
 pref( 'browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features', false );
 
 lockPref( 'privacy.userContext.enabled', true );
-
-// will prevent from logging into Google
-// pref( 'general.useragent.override',
-//   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36' );
 
 pref( 'font.system.whitelist', '' );
 
