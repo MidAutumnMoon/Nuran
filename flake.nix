@@ -8,6 +8,23 @@ inputs = {
   nixpkgs.url =
     "github:NixOS/nixpkgs/nixos-unstable-small";
 
+  # Some packages
+
+  colmena =
+    { url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+  nil-lsp =
+    { url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+  nvfetcher =
+    { url = "github:berberman/nvfetcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   # Some modules
 
   impermanence.url =
@@ -25,16 +42,6 @@ inputs = {
 
   nix-index-db =
     { url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-  colmena =
-    { url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-  nil-lsp =
-    { url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
