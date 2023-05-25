@@ -77,6 +77,9 @@ rec {
   watchgha =
     callPackage ./utility/watchgha {};
 
+  rpgsavedecrypt =
+    callPackage ./utility/rpgsavedecrypt {};
+
 
 
   /*
