@@ -27,5 +27,8 @@ with flakes;
   nil =
     selectPackage nil-lsp "nil";
 
+  nvfetcher_git =
+    selectPackage nvfetcher "default";
+
 }
 
