@@ -14,13 +14,7 @@ rustPlatformTeapot.buildRustPackage rec {
   inherit ( sources.${ pname } ) src;
 
   cargoLock = {
-
     lockFileContents = sources.${pname}."Cargo.lock";
-
-    outputHashes = {
-      "trust-dns-proto-0.22.0" = "sha256-A1PKlTsZUT63isARZqckefxcre462cLNQNUZ8cGfmus=";
-    };
-
   };
 
 
@@ -32,8 +26,7 @@ rustPlatformTeapot.buildRustPackage rec {
   buildNoDefaultFeatures = true;
 
   buildFeatures = [
-    "local"
-    "server"
+    "service"
     "trust-dns"
     "local-http"
     "local-tunnel"
