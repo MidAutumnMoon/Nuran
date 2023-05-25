@@ -148,7 +148,7 @@ in {
     ];
 
     nuclage = p: with p; [
-      nvfetcher
+      nvfetcher_git
     ];
 
     numinus = p: with p; [
