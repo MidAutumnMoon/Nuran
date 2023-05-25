@@ -2,6 +2,6 @@
 
 {
 
-  home.stateVersion = nixosConfig.system.stateVersion;
+  home.stateVersion = "23.05";
 
 }
