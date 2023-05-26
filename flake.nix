@@ -190,6 +190,13 @@ in {
       flac
     ];
 
+    kernel = p: with p; [
+      gcc_latest
+      ncurses
+      flex
+      bison
+    ];
+
   };
 
   devShells =
