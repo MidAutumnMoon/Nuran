@@ -31,7 +31,7 @@ config.font = wezterm.font_with_fallback {
     },
 }
 
-config.font_size = 16.4
+config.font_size = 17
 config.line_height = 1.12
 
 config.use_cap_height_to_scale_fallback_fonts = true
@@ -42,7 +42,7 @@ config.warn_about_missing_glyphs = false
 -- Appearance
 --
 
-config.initial_cols = 186
+config.initial_cols = 175
 config.initial_rows = 42
 
 config.background = {
