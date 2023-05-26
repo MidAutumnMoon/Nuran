@@ -7,6 +7,9 @@
   derputils
   wl-clipboard
   prime-offload
+  libtree
+  lazygit
+  libarchive
 
   p7zip
   rclone
