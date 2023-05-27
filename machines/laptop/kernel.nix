@@ -22,6 +22,9 @@
   boot.kernelParams = [
     "preempt=full"
     "init_on_alloc=1"
+    "zswap.enabled=1"
+    "zswap.compressor=lz4"
+    "zswap.max_pool_percent=20"
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
