@@ -82,6 +82,8 @@ config.window_frame = {
 -- Misc
 --
 
+config.default_prog = { '@fish@', '--interactive' }
+
 config.check_for_updates = false
 config.mouse_wheel_scrolls_tabs = true
 

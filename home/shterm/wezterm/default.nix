@@ -21,6 +21,7 @@ let
   mainConfig = pkgs.substituteAll {
     src = ./wezterm.lua;
     inherit blurScriptAsync;
+    fish = lib.getExe pkgs.fish;
   };
 
 in

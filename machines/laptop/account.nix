@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 let
 
@@ -15,14 +15,12 @@ lib.mkMerge [
 
   isNormalUser = true;
 
-  shell = pkgs.fish;
-
   description = "MidAutumnMoon";
 
   extraGroups = [
-      "wheel"
-      config.users.groups."keys".name
-    ];
+    "wheel"
+    config.users.groups."keys".name
+  ];
 
 }; }
 
