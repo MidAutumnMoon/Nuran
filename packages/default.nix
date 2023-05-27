@@ -111,7 +111,7 @@ rec {
   */
 
   linux_teapot =
-    callPackage ./kernel/zen {};
+    callPackage ./kernel/vanilla {};
 
   linuxPackages_teapot =
     prev.linuxPackagesFor linux_teapot;
