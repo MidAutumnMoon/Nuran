@@ -1,4 +1,7 @@
 {
+  sources,
+
+  lib,
   callPackage,
 
   linuxManualConfig,
@@ -11,12 +14,20 @@ let
 
   baseKernel = linuxPackages_zen.kernel;
 
+  latestKernel = with sources.zen-kernel; {
+    version = lib.removePrefix "v" version;
+    inherit src;
+  };
+
 in
 
 linuxManualConfig {
 
-  inherit ( baseKernel )
-    src version modDirVersion;
+  inherit ( latestKernel )
+    src version;
+
+  modDirVersion =
+    lib.versions.pad 3 latestKernel.version;
 
   isZen = true;
 

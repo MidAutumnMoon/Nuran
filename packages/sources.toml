@@ -52,6 +52,11 @@ fetch.url = "https://github.com/pineappleEA/pineapple-src/releases/download/$ver
 
 # Kernel
 
+[zen-kernel]
+src.github_tag = "zen-kernel/zen-kernel"
+src.include_regex = ".*-zen.*$"
+fetch.url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/$ver.tar.gz"
+
 [cachyos-patches]
 src.git = "https://github.com/CachyOS/kernel-patches/"
 fetch.git = "https://github.com/CachyOS/kernel-patches/"
