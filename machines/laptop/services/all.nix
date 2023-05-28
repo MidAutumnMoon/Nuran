@@ -12,8 +12,6 @@ lib.mkMerge [
 
   power-profiles-daemon.enable = true;
 
-  dbus.implementation = "broker";
-
 }; }
 
 {
