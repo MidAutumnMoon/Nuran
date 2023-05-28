@@ -1,5 +1,7 @@
 { imports = [
 
+  ./kernel.nix
+
   ./account.nix
 
   ./programs.nix
