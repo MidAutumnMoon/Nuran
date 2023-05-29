@@ -3,10 +3,10 @@
   sources,
   teapot,
 
-  rustPlatformTeapot
+  rustPlatform
 }:
 
-rustPlatformTeapot.buildRustPackage rec {
+rustPlatform.buildRustPackage rec {
 
   pname = "shadowsocks-rust";
   version = "unstable";

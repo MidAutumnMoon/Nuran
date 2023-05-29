@@ -170,12 +170,12 @@ rec {
   teapot.mtune = "znver2";
 
   teapot.baseOptimiz = [
-      "-march=${ teapot.march }"
-      "-mtune=${ teapot.mtune }"
-      "-fno-semantic-interposition"
-      "-fomit-frame-pointer"
-      "-pipe"
-    ];
+    "-march=${teapot.march}"
+    "-mtune=${teapot.mtune}"
+    "-fno-semantic-interposition"
+    "-fomit-frame-pointer"
+    "-pipe"
+  ];
 
   teapot.aggressiveOptimiz =
     teapot.baseOptimiz ++ [
@@ -188,10 +188,8 @@ rec {
     ];
 
   teapot.RUSTFLAGS = [
-      "-C target-cpu=${ teapot.march }"
-      "-C linker=clang"
-      "-C link-arg=-fuse-ld=lld"
-    ];
+    "-C target-cpu=${teapot.march}"
+  ];
 
 
 
@@ -208,11 +206,6 @@ rec {
   # stdenvTeapot =
   #   with prev;
   #   useMoldLinker buildPackages.llvmPackages_16.stdenv;
-
-  rustPlatformTeapot =
-    with prev;
-    makeRustPlatform ( rustPackages // { stdenv = stdenvTeapot; } );
-
 
   # "mkDerivationFromStdenv" is a function which accepts a stdenv
   # as argument and returns the well-known "mkDerivation" function,
