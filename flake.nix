@@ -168,15 +168,24 @@ in {
     rust = p: with p; [
       rustc
       cargo
-      clippy
       cargo-bloat
       cargo-nextest
       cargo-outdated
       cargo-edit
+      clippy
       rustfmt
       rust-analyzer
       stdenvTeapot.cc
+      pkg-config
     ];
+
+    rust-gtk4 = p: with p; [
+      cairo
+      gtk4
+      gdk-pixbuf
+      pango
+      libadwaita
+    ] ++ ( self.shellRecipes.rust p );
 
     picno = p: with p; [
       xxHash
