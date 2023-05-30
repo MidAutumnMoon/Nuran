@@ -177,15 +177,15 @@ rec {
     "-pipe"
   ];
 
-  teapot.aggressiveOptimiz =
-    teapot.baseOptimiz ++ [
-      "-O3"
-      "-fno-math-errno"
-      "-fno-trapping-math"
-      "-fno-signed-zeros"
-      "-fassociative-math"
-      "-freciprocal-math"
-    ];
+  teapot.aggressiveOptimiz = lib.flatten [
+    teapot.baseOptimiz
+    "-O3"
+    "-fno-math-errno"
+    "-fno-trapping-math"
+    "-fno-signed-zeros"
+    "-fassociative-math"
+    "-freciprocal-math"
+  ];
 
   teapot.RUSTFLAGS = [
     "-C target-cpu=${teapot.march}"
