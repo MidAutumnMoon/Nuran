@@ -8,6 +8,9 @@ inputs = {
   nixpkgs.url =
     "github:NixOS/nixpkgs/nixos-unstable-small";
 
+  nixpkgs-master.url =
+    "github:NixOS/nixpkgs/master";
+
   # Some packages
 
   colmena =
@@ -86,7 +89,11 @@ in {
   overlays.reexport =
     import ./packages/reexport.nix { inherit flakes; };
 
-  legacyPackages = pkgsBrew lib.id;
+  legacyPackages =
+    let
+      pkgsBrewMaster =
+        lib.brewNixpkgs flakes.nixpkgs-master { inherit config overlays; };
+    in pkgsBrewMaster lib.id;
 
 
   /*

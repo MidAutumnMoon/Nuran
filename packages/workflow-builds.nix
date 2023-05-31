@@ -1,4 +1,5 @@
-with ( builtins.getFlake (toString ../.) ).legacyPackages."${ builtins.currentSystem }";
+with builtins;
+with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
 
 {
 
