@@ -18,7 +18,6 @@ percent = "rings-segmented-slash"
 
 [buildPlans.iosevka-teapot.variants.italic]
 x = "curly-serifless"
-y = "cursive-flat-hook"
 z = "cursive"
 
 [buildPlans.iosevka-teapot.variants.oblique]
