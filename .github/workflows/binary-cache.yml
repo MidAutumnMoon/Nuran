@@ -48,8 +48,8 @@ jobs:
           nix-env -f '<nixpkgs>' -iA \
             'nix-build-uncached' 'fish'
 
-      - name: "Freeup bloats"
-        run: fish __scripts/cleansing.fish light
+      # - name: "Freeup bloats"
+      #   run: fish __scripts/cleansing.fish light
 
       - name: "Configure nix daemon"
         env:
