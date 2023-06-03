@@ -37,7 +37,7 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           extra_nix_config: |
-            substituters = https://cache.nixos.org/ https://nuirrce.cachix.org
+            substituters = https://cache.nixos.org/ https://nuirrce.cachix.org/
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk=
 
       - name: Build Cider Bubble
