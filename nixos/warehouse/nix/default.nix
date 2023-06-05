@@ -13,7 +13,9 @@ lib.mkMerge [
 
   auto-optimise-store = true;
 
-  narinfo-cache-negative-ttl = 360;
+  keep-going = true;
+
+  narinfo-cache-negative-ttl = 60;
 
   # Query cache.nixos.org first
   substituters = lib.mkAfter [
