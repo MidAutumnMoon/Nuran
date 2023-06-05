@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "a8ee4c7a81a8df3fe705e941e7d1c2c9e2f6194e";
+    version = "16561dac39490921715a9a8a14dab884659ffc3e";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "a8ee4c7a81a8df3fe705e941e7d1c2c9e2f6194e";
+      rev = "16561dac39490921715a9a8a14dab884659ffc3e";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-JdiWBgeMWaepn1J9Zw4gvnyIkTKZMhwKe5TbLFdevkU=";
+      sha256 = "sha256-KTB5GF0teaJDKrZNQ53EIqoNxAnEig4pqm1S9IFO/1A=";
     };
-    date = "2023-06-02";
+    date = "2023-06-05";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -129,17 +129,17 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "02d8b6a3c122dcd508ead0e550aeb962128f4ef7";
+    version = "702690fbb1046268644731e98777d938712c8f9f";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "02d8b6a3c122dcd508ead0e550aeb962128f4ef7";
+      rev = "702690fbb1046268644731e98777d938712c8f9f";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-zxRAglei+5BHenS3kOAHW2jnwFxlAuVLL8aMSM2orUw=";
+      sha256 = "sha256-gQ27tubtMHGKxQlInFH9pJTj8tedS7babQ3IrgkgHpo=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-02d8b6a3c122dcd508ead0e550aeb962128f4ef7/Cargo.lock;
-    date = "2023-05-30";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-702690fbb1046268644731e98777d938712c8f9f/Cargo.lock;
+    date = "2023-06-03";
   };
   tide = {
     pname = "tide";
@@ -167,10 +167,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3631";
+    version = "EA-3638";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3631/Linux-Yuzu-EA-3631.AppImage";
-      sha256 = "sha256-2bFNtOQ8M2gnWEy0ncuiOFJzIm0iPQ/jluxp9Mz8G2s=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3638/Linux-Yuzu-EA-3638.AppImage";
+      sha256 = "sha256-Xm2ivx1VMzZTQI7lx9bkeygRJ3T39Zy4vDBUOKqDHiI=";
     };
   };
 }
