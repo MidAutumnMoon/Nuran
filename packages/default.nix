@@ -114,7 +114,7 @@ rec {
     callPackage ./kernel/vanilla {};
 
   linuxPackages_teapot =
-    prev.linuxPackagesFor linux_teapot;
+    callPackage ./kernel/packages { kernel = linux_teapot; };
 
 
 
