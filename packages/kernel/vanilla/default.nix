@@ -1,29 +1,37 @@
 {
-  lib,
-  callPackage,
+    callPackage,
+    teapot,
 
-  linuxManualConfig,
-  pkgs,
+    linuxManualConfig,
+    pkgs,
 
-  ...
+    ...
 }:
 
 let
 
-  baseKernel = pkgs.linux_6_3;
+    baseKernel = pkgs.linux_6_3;
 
 in
 
-linuxManualConfig {
+( linuxManualConfig {
 
-  inherit ( baseKernel )
-    src version modDirVersion;
+    inherit ( baseKernel )
+        src version modDirVersion;
 
-  configfile = ./configfile;
-  allowImportFromDerivation = true;
+    configfile = ./configfile;
+    allowImportFromDerivation = true;
 
-  kernelPatches =
-    baseKernel.kernelPatches
-    ++ callPackage ./patches.nix {};
+    kernelPatches =
+        baseKernel.kernelPatches
+        ++ callPackage ./patches.nix {};
 
-}
+} ).overrideDerivation ( oldDrv: {
+
+    preConfigure = oldDrv.preConfigure or "" + ''
+        makeFlagsArray+=(
+          KCFLAGS="${toString teapot.baseOptimiz}"
+        )
+    '';
+
+} )
