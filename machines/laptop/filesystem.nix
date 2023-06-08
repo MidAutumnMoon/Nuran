@@ -12,14 +12,16 @@ in
 
 {
 
-  boot.initrd.kernelModules = [ "nvme" ];
-
   boot.initrd.luks.devices."lyfua" =
     { device =
         "/dev/disk/by-uuid/fcdf1ea7-8aa1-4dd6-9271-c010612fca41";
       bypassWorkqueues = true;
       allowDiscards = true;
     };
+
+  boot.initrd.luks.cryptoModules = [
+    "aes" "aes_generic" "xts" "sha512"
+  ];
 
   fileSystems."/" =
     { device = "none";
