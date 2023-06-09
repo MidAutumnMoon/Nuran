@@ -10,6 +10,7 @@
   libtree
   lazygit
   libarchive
+  nix-tree
 
   p7zip
   rclone
