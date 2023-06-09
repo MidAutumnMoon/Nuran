@@ -5,7 +5,7 @@
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
-        "pinned": false,
+        "pinned": true,
         "src": {
             "deepClone": false,
             "fetchSubmodules": false,
@@ -141,7 +141,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-06-08",
+        "date": "2023-06-09",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -151,12 +151,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "be539f5fa8e2d7ad73f7f69941bd6ff13354e89c",
-            "sha256": "sha256-mA++qMIbc0YyTSKbG8+Tvonzx3v1Sx83nE4B3CoEtVs=",
+            "rev": "49019da86e283052c042509689f3a287056d1340",
+            "sha256": "sha256-7+uiQjrVMzgJxf+SMtKJew3cr5de8QQE19ABaN1jlMc=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "be539f5fa8e2d7ad73f7f69941bd6ff13354e89c"
+        "version": "49019da86e283052c042509689f3a287056d1340"
     },
     "noto-fonts-cjk": {
         "cargoLocks": null,
@@ -261,10 +261,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-k+G06Xi3CHBt5mKGxseFHZRCnQKR4K7Y2O3svwWkY20=",
+            "sha256": "sha256-+PKrplooPhjtt3J7PruBOptp5d0LQG21ypgO7Go4P6c=",
             "type": "url",
-            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3651/Linux-Yuzu-EA-3651.AppImage"
+            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3653/Linux-Yuzu-EA-3653.AppImage"
         },
-        "version": "EA-3651"
+        "version": "EA-3653"
     }
 }
