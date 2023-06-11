@@ -1,8 +1,7 @@
 { imports = [
 
-  ./kernel.nix
+  ./foundation.nix
   ./hardware.nix
-  ./filesystem.nix
   ./networking
 
   ./account.nix
