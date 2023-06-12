@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "a24d7f637ebc36cfc21bec0291a600a301df5c2f";
+    version = "40679613ff2214918559f4ac1a5ca698d2a65337";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "a24d7f637ebc36cfc21bec0291a600a301df5c2f";
+      rev = "40679613ff2214918559f4ac1a5ca698d2a65337";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-Dpl++ng4JRf4rtX92ENr0kP+P67Q3dGGdGcC73rIAkY=";
+      sha256 = "sha256-C88I8GGS8/ccN9SoLNal5YGcdVm9y3d7T7fx/Loh76s=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-a24d7f637ebc36cfc21bec0291a600a301df5c2f/Cargo.lock;
-    date = "2023-06-12";
+    "Cargo.lock" = builtins.readFile ./derputils-40679613ff2214918559f4ac1a5ca698d2a65337/Cargo.lock;
+    date = "2023-06-11";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -95,16 +95,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "bde59e81473f29944ef80ff98f6b2c88010b2df6";
+    version = "3c4890d1efe7c23c0bff7bc4532f19cf03c94e04";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "bde59e81473f29944ef80ff98f6b2c88010b2df6";
+      rev = "3c4890d1efe7c23c0bff7bc4532f19cf03c94e04";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-4E4u80JX2jgal5DTOoLMlowO1Z76B5ni8CDMXGC4Gwc=";
+      sha256 = "sha256-YnVtvPz6XLU5BlJ4WTo6Oa4ICfAeoZVyMzYcZDizCrE=";
     };
-    date = "2023-06-11";
+    date = "2023-06-12";
   };
   noto-fonts-cjk = {
     pname = "noto-fonts-cjk";
@@ -167,10 +167,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3659";
+    version = "EA-3661";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3659/Linux-Yuzu-EA-3659.AppImage";
-      sha256 = "sha256-PDMr8D3w07INK4bQMDSEsBpHyVFsvPaud45upFsdggc=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3661/Linux-Yuzu-EA-3661.AppImage";
+      sha256 = "sha256-8KWV4PjNUyDFYgpN7WW7GhFu68V01BfRLq4DNsjnk9Y=";
     };
   };
 }
