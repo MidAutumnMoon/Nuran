@@ -12,7 +12,6 @@ lib.condMod ( config.fonts.fontconfig.enable )
 
     iosevka_teapot
     hack-font
-    nerdfonts_teapot
 
     ibm-plex
   ];

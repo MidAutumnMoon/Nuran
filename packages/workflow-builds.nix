@@ -10,7 +10,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
   parallel-1 = [
     hentai-home
     k380-fn-keys-swap
-    nerdfonts_teapot
     noto-fonts-cjk_teapot
     unrar
     nginx_teapot
