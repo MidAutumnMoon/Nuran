@@ -133,10 +133,6 @@ rec {
   noto-fonts-cjk_teapot =
     callPackage ./font/noto-fonts-cjk {};
 
-  nerdfonts_teapot =
-    callPackage ./font/nerd-fonts {};
-
-
 
   /*
   *

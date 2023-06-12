@@ -14,10 +14,6 @@ config.font = wezterm.font_with_fallback {
         stretch = "Expanded",
     },
     {
-        family = "Hack Nerd Font",
-        weight = "Regular",
-    },
-    {
         family = "Noto Sans CJK SC",
         weight = "Medium",
     },
