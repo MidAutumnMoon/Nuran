@@ -2,34 +2,17 @@
   self,
   luajit,
 
-  lib,
-  teapot,
-  stdenvTeapot,
   callPackage,
 
   deterministicStringIds ? true
 }:
 
 
-lib.onceride luajit
+luajit.override {
 
-( _: {
+    packageOverrides =
+        callPackage ../packages { lua = self; };
 
-  stdenv = stdenvTeapot;
+    inherit deterministicStringIds;
 
-  packageOverrides =
-    callPackage ../packages { lua = self; };
-
-  inherit deterministicStringIds;
-
-} )
-
-( oldAttrs: {
-
-  preBuild = oldAttrs.preBuild or "" + ''
-    makeFlagsArray+=(
-      CFLAGS="${ toString teapot.baseOptimiz }"
-    )
-    '';
-
-} )
+}

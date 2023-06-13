@@ -170,6 +170,9 @@ rec {
     "-mtune=${teapot.mtune}"
     "-fno-semantic-interposition"
     "-fomit-frame-pointer"
+    "-flto"
+    "-ftrivial-auto-var-init=zero"
+    "-fstack-clash-protection"
     "-pipe"
   ];
 
