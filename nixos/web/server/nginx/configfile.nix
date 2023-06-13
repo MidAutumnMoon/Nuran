@@ -99,8 +99,6 @@ in
     # Performance
     sendfile on;
     sendfile_max_chunk 512k;
-    aio threads;
-    aio_write on;
     tcp_nopush on;
     tcp_nodelay on;
     directio 1m;

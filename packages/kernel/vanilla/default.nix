@@ -30,7 +30,11 @@ in
 
     preConfigure = oldDrv.preConfigure or "" + ''
         makeFlagsArray+=(
-          KCFLAGS="${toString teapot.baseOptimiz}"
+          KCFLAGS="${toString [
+            "-march=${teapot.march}"
+            "-mtune=${teapot.mtune}"
+            "-pipe"
+          ]}"
         )
     '';
 
