@@ -47,8 +47,10 @@ in
           body.imports or [];
         disabledModules =
           body.disabledModules or [];
+        meta =
+          body.meta or {};
         config =
-          removeAttrs body [ "options" "imports" "disabledModules" ];
+          removeAttrs body [ "options" "imports" "disabledModules" "meta" ];
       };
 
 }
