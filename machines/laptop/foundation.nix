@@ -30,7 +30,6 @@ lib.mkMerge [
     ];
 
     boot.kernelParams = [
-        "init_on_alloc=1"
         "zswap.enabled=1"
         "zswap.compressor=lz4"
         "zswap.max_pool_percent=20"

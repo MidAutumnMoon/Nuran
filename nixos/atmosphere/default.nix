@@ -1,6 +1,6 @@
 { imports = [
 
-  ./kernel.nix
+  ./foundation.nix
 
   ./account.nix
 
