@@ -5,7 +5,7 @@
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
-        "pinned": false,
+        "pinned": true,
         "src": {
             "deepClone": false,
             "fetchSubmodules": false,
@@ -80,9 +80,9 @@
     },
     "mdbook-catppuccin": {
         "cargoLocks": null,
-        "date": "2023-03-03",
+        "date": "2023-06-16",
         "extract": {
-            "Cargo.lock": "./mdbook-catppuccin-98cf81a998a49c3176854f46c6e9a971f34b1c93/Cargo.lock"
+            "Cargo.lock": "./mdbook-catppuccin-c9445d3cd2376902483b1e2a1402feb99820f567/Cargo.lock"
         },
         "name": "mdbook-catppuccin",
         "passthru": null,
@@ -92,12 +92,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "98cf81a998a49c3176854f46c6e9a971f34b1c93",
-            "sha256": "sha256-UoKsjLjGra5XxyVD50fTkkCd5mB9fd4cH4c1MIhe7uA=",
+            "rev": "c9445d3cd2376902483b1e2a1402feb99820f567",
+            "sha256": "sha256-AUP+BvnZT7280TwhQM89P3EMelV2wP7FxlXSo8wdnHM=",
             "type": "git",
             "url": "https://github.com/catppuccin/mdBook"
         },
-        "version": "98cf81a998a49c3176854f46c6e9a971f34b1c93"
+        "version": "c9445d3cd2376902483b1e2a1402feb99820f567"
     },
     "mdbook-toc": {
         "cargoLocks": null,
@@ -141,7 +141,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-06-12",
+        "date": "2023-06-16",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -151,27 +151,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "a7e5d4238a00d5bfa5809b2860047eca2d565e62",
-            "sha256": "sha256-WKbTlrOMAOEHLAf3H8dz/c459pnmynEtyox4z/v76YM=",
+            "rev": "8376e8700b3d4f8ab96751612c3f4439a43b06f4",
+            "sha256": "sha256-eNIzZXp9DLuuhcP9UcQ9E/r7dTqUkyrDw+0LNdGIzaQ=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "a7e5d4238a00d5bfa5809b2860047eca2d565e62"
-    },
-    "noto-fonts-cjk": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "noto-fonts-cjk",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-Uo9OGyX/O62wMhs40BXZVMTA3pJseDDvUOShlI9qPu0=",
-            "type": "url",
-            "url": "https://github.com/googlefonts/noto-cjk/releases/download/Sans2.004/03_NotoSansCJK-OTC.zip"
-        },
-        "version": "Sans2.004"
+        "version": "8376e8700b3d4f8ab96751612c3f4439a43b06f4"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -194,9 +179,9 @@
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
-        "date": "2023-06-12",
+        "date": "2023-06-14",
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-8a0a98ad5324684be447ccf2e8ae1cd564491145/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-67232c301030b0ff8bcf04a45e6e6a341a3e5d81/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -206,12 +191,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "8a0a98ad5324684be447ccf2e8ae1cd564491145",
-            "sha256": "sha256-9HicMH0gfYHF60fyi/+uwagG1WuiCKVGLEmNeD0YM7g=",
+            "rev": "67232c301030b0ff8bcf04a45e6e6a341a3e5d81",
+            "sha256": "sha256-Q9b1pt06FENKSwhb9jgVrJvmAFBeFjyT9qEz2xCnloc=",
             "type": "git",
             "url": "https://github.com/shadowsocks/shadowsocks-rust"
         },
-        "version": "8a0a98ad5324684be447ccf2e8ae1cd564491145"
+        "version": "67232c301030b0ff8bcf04a45e6e6a341a3e5d81"
     },
     "tide": {
         "cargoLocks": null,
@@ -261,10 +246,30 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-8KWV4PjNUyDFYgpN7WW7GhFu68V01BfRLq4DNsjnk9Y=",
+            "sha256": "sha256-cfu7VyjANOb2G0/pGmJ/h6j/keYjy8VyTTRKOn8SQ0U=",
             "type": "url",
-            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3661/Linux-Yuzu-EA-3661.AppImage"
+            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3682/Linux-Yuzu-EA-3682.AppImage"
         },
-        "version": "EA-3661"
+        "version": "EA-3682"
+    },
+    "zhudou-sans": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "zhudou-sans",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Buernia",
+            "repo": "Zhudou-Sans",
+            "rev": "v2.000",
+            "sha256": "sha256-0OA+37atwnCqTEBoWkSusrySYbJlc9ef+6iaW97zy3U=",
+            "type": "github"
+        },
+        "version": "v2.000"
     }
 }
