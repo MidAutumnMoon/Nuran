@@ -12,8 +12,6 @@ lib.mkMerge [
     boot.initrd = {
         kernelModules = [
             "nvme"
-        ];
-        availableKernelModules = [
             "hid_generic"
             "usbhid"
             "xhci_pci"
