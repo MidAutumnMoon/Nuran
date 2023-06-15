@@ -207,7 +207,7 @@ in {
     ];
 
     kernel = p: with p; [
-      gcc_latest
+      gcc
       ncurses
       flex
       bison
