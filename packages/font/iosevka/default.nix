@@ -37,7 +37,6 @@ stdenvNoCC.mkDerivation {
         xargs -r0 --max-procs="$NIX_BUILD_CORES" -I{} \
             nerd-font-patcher \
                 --makegroups -1 \
-                --adjust-line-height \
                 --careful \
                 --outputdir  "$FontDir" {} \
         < "$FileList"
