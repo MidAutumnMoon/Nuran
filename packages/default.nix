@@ -142,9 +142,6 @@ rec {
   plasma5Packages =
     prev.plasma5Packages.overrideScope' ( callPackage ./warehouse/plasma5 {} );
 
-  mdbook-catppuccin =
-    callPackage ./warehouse/mdbook/catppuccin {};
-
   mdbook-toc =
     callPackage ./warehouse/mdbook/toc {};
 

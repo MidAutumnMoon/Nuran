@@ -167,7 +167,6 @@ in {
     cider-bubble = p: with p; [
       wrangler
       mdbook
-      mdbook-catppuccin
       mdbook-toc
       minify
     ];
