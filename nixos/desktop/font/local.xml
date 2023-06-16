@@ -2,120 +2,120 @@
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
 
-  <!-- CJK aliases -->
+    <!-- CJK aliases -->
 
-  <!-- SC -->
-  <alias>
-    <family>SimSun</family>
-    <accept> <family>Noto Sans CJK SC</family> </accept>
-  </alias>
-  <alias>
-    <family>NSimSun</family>
-    <accept> <family>Noto Sans CJK SC</family> </accept>
-  </alias>
-  <alias>
-    <family>宋体</family>
-    <accept> <family>Noto Sans CJK SC</family> </accept>
-  </alias>
-  <alias>
-    <family>新宋体</family>
-    <accept> <family>Noto Sans CJK SC</family> </accept>
-  </alias>
-  <alias>
-    <family>AR MingtiM GB</family>
-    <accept> <family>Noto Sans CJK SC</family> </accept>
-  </alias>
-  <alias>
-    <family>楷体</family>
-    <accept> <family>Noto Sans CJK SC</family> </accept>
-  </alias>
-  <alias>
-    <family>Microsoft YaHei</family>
-    <accept> <family>Noto Sans CJK SC</family> </accept>
-  </alias>
-  <alias>
-    <family>微软雅黑</family>
-    <accept> <family>Noto Sans CJK SC</family> </accept>
-  </alias>
+    <!-- SC -->
+    <alias>
+        <family>SimSun</family>
+        <accept> <family>Source Han Sans SC</family> </accept>
+    </alias>
+    <alias>
+        <family>NSimSun</family>
+        <accept> <family>Source Han Sans SC</family> </accept>
+    </alias>
+    <alias>
+        <family>宋体</family>
+        <accept> <family>Source Han Sans SC</family> </accept>
+    </alias>
+    <alias>
+        <family>新宋体</family>
+        <accept> <family>Source Han Sans SC</family> </accept>
+    </alias>
+    <alias>
+        <family>AR MingtiM GB</family>
+        <accept> <family>Source Han Sans SC</family> </accept>
+    </alias>
+    <alias>
+        <family>楷体</family>
+        <accept> <family>Source Han Sans SC</family> </accept>
+    </alias>
+    <alias>
+        <family>Microsoft YaHei</family>
+        <accept> <family>Source Han Sans SC</family> </accept>
+    </alias>
+    <alias>
+        <family>微软雅黑</family>
+        <accept> <family>Source Han Sans SC</family> </accept>
+    </alias>
 
-  <!-- TC -->
-  <alias>
-    <family>細明體</family>
-    <accept> <family>Noto Sans CJK TC</family> </accept>
-  </alias>
-  <alias>
-    <family>PMingLiU</family>
-    <accept> <family>Noto Sans CJK TC</family> </accept>
-  </alias>
-  <alias>
-    <family>新細明體</family>
-    <accept> <family>Noto Sans CJK TC</family> </accept>
-  </alias>
-  <alias>
-    <family>AR MingtiM BIG-5</family>
-    <accept> <family>Noto Sans CJK TC</family> </accept>
-  </alias>
-  <alias>
-    <family>標楷體</family>
-    <accept> <family>Noto Sans CJK TC</family> </accept>
-  </alias>
-  <alias>
-    <family>Microsoft JhengHei</family>
-    <accept> <family>Noto Sans CJK TC</family> </accept>
-  </alias>
-  <alias>
-    <family>微軟正黑體</family>
-    <accept> <family>Noto Sans CJK TC</family> </accept>
-  </alias>
+    <!-- TC -->
+    <alias>
+        <family>細明體</family>
+        <accept> <family>Source Han Sans TC</family> </accept>
+    </alias>
+    <alias>
+        <family>PMingLiU</family>
+        <accept> <family>Source Han Sans TC</family> </accept>
+    </alias>
+    <alias>
+        <family>新細明體</family>
+        <accept> <family>Source Han Sans TC</family> </accept>
+    </alias>
+    <alias>
+        <family>AR MingtiM BIG-5</family>
+        <accept> <family>Source Han Sans TC</family> </accept>
+    </alias>
+    <alias>
+        <family>標楷體</family>
+        <accept> <family>Source Han Sans TC</family> </accept>
+    </alias>
+    <alias>
+        <family>Microsoft JhengHei</family>
+        <accept> <family>Source Han Sans TC</family> </accept>
+    </alias>
+    <alias>
+        <family>微軟正黑體</family>
+        <accept> <family>Source Han Sans TC</family> </accept>
+    </alias>
 
-  <!-- JP -->
-  <alias>
-    <family>MS Gothic</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>ＭＳ ゴシック</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>MS PGothic</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>ＭＳ Ｐゴシック</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>MS UIGothic</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>Meiryo UI</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>MS Mincho</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>ＭＳ 明朝</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>AR MinchoL JIS</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>MS PMincho</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>ＭＳ Ｐ明朝</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
-  <alias>
-    <family>メイリオ</family>
-    <accept> <family>Noto Sans CJK JP</family> </accept>
-  </alias>
+    <!-- JP -->
+    <alias>
+        <family>MS Gothic</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>ＭＳ ゴシック</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>MS PGothic</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>ＭＳ Ｐゴシック</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>MS UIGothic</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>Meiryo UI</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>MS Mincho</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>ＭＳ 明朝</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>AR MinchoL JIS</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>MS PMincho</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>ＭＳ Ｐ明朝</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
+    <alias>
+        <family>メイリオ</family>
+        <accept> <family>Source Han Sans</family> </accept>
+    </alias>
 
 </fontconfig>
