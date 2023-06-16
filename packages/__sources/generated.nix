@@ -52,20 +52,6 @@
     };
     date = "2021-11-28";
   };
-  mdbook-catppuccin = {
-    pname = "mdbook-catppuccin";
-    version = "c9445d3cd2376902483b1e2a1402feb99820f567";
-    src = fetchgit {
-      url = "https://github.com/catppuccin/mdBook";
-      rev = "c9445d3cd2376902483b1e2a1402feb99820f567";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "sha256-AUP+BvnZT7280TwhQM89P3EMelV2wP7FxlXSo8wdnHM=";
-    };
-    "Cargo.lock" = builtins.readFile ./mdbook-catppuccin-c9445d3cd2376902483b1e2a1402feb99820f567/Cargo.lock;
-    date = "2023-06-16";
-  };
   mdbook-toc = {
     pname = "mdbook-toc";
     version = "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb";

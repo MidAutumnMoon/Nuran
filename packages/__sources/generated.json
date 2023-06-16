@@ -78,27 +78,6 @@
         },
         "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
     },
-    "mdbook-catppuccin": {
-        "cargoLocks": null,
-        "date": "2023-06-16",
-        "extract": {
-            "Cargo.lock": "./mdbook-catppuccin-c9445d3cd2376902483b1e2a1402feb99820f567/Cargo.lock"
-        },
-        "name": "mdbook-catppuccin",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "c9445d3cd2376902483b1e2a1402feb99820f567",
-            "sha256": "sha256-AUP+BvnZT7280TwhQM89P3EMelV2wP7FxlXSo8wdnHM=",
-            "type": "git",
-            "url": "https://github.com/catppuccin/mdBook"
-        },
-        "version": "c9445d3cd2376902483b1e2a1402feb99820f567"
-    },
     "mdbook-toc": {
         "cargoLocks": null,
         "date": "2023-06-01",
