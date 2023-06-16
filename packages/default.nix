@@ -149,6 +149,9 @@ rec {
   abcd =
     callPackage ./warehouse/abcd { flakePath = ../.; };
 
+  gtkgreet_teapot =
+    callPackage ./warehouse/gtkgreet {};
+
 
 
   /*
