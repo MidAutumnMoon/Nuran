@@ -1,88 +1,92 @@
 { pkgs, lib, ... }:
 
-let
+lib.mkMerge [
 
-  greetd-script = pkgs.writers.writeFish "greetd-script" ''
-    exec '${lib.getExe pkgs.greetd.tuigreet}' \
-      --sessions '/run/current-system/sw/share/wayland-sessions' \
-      --time \
-      --remember \
-      --remember-user-session \
-      --cmd 'startplasma-wayland'
-  '';
+( let
 
-in
+    inherit ( lib ) getExe ;
+
+    cage = getExe pkgs.cage;
+    gtkgreet = getExe pkgs.gtkgreet_teapot;
+
+    picture = pkgs.fetchurl {
+        url = "https://p.418.im/4ee3cc3c6939fdff.jpg";
+        hash = "sha256-70NDsdm75C34QYXD5rv3of8JVLJeBZw0n0PVODksXPg=";
+    };
+
+    style = pkgs.substituteAll {
+        src = ./asset/style.css;
+        inherit picture;
+    };
+
+    greetd-script = pkgs.writeShellScript "greetd-script" ''
+        exec '${cage}' -d -s -- '${gtkgreet}' \
+            --style '${style}' \
+            --command startplasma-wayland
+     '';
+
+in {
+
+    services.greetd = {
+        settings = {
+            default_session.command = greetd-script;
+        };
+        enable = true;
+    };
+
+
+    security.pam.services.greetd.enableKwallet = true;
+
+    systemd.services.greetd.serviceConfig = {
+        # "idle" slows down the login flow a lot
+        Type = lib.mkForce "simple";
+    };
+
+} )
 
 {
 
-  #
-  # Display Manager
-  #
+    programs.dconf.enable = true;
 
-  services.greetd.enable = true;
+    programs.ssh.enableAskPassword = false;
 
-  services.greetd.settings = {
-    default_session.command = greetd-script;
-  };
+    services.xserver.desktopManager.plasma5 = {
+        enable = true;
+        runUsingSystemd = true;
+        phononBackend = "vlc";
+    };
 
-  security.pam.services.greetd.enableKwallet = true;
+    environment.systemPackages =
+        with pkgs;
+        with plasma5Packages;
+        with kdeGear;
+        [
+            kde-gtk-config
+            fcitx5-qt
 
-  systemd.services.greetd.serviceConfig = {
-    # "idle" slows down the login flow a lot
-    Type = lib.mkForce "simple";
-  };
+            papirus-icon-theme
+            graphite-cursor-theme
+            breeze-gtk
 
-  systemd.tmpfiles.rules = [
-    "d /var/cache/tuigreet 0755 greeter greeter - -"
-  ];
+            unzip unrar
+            kate ark
+            qimgv
 
-
-
-  #
-  # DE
-  #
-
-  programs.dconf.enable = true;
-
-  programs.ssh.enableAskPassword = false;
-
-  services.xserver.desktopManager.plasma5 = {
-    enable = true;
-    runUsingSystemd = true;
-    phononBackend = "vlc";
-  };
-
-  environment.systemPackages =
-    with pkgs;
-    with plasma5Packages;
-    with kdeGear;
-    [
-      kde-gtk-config
-      fcitx5-qt
-
-      papirus-icon-theme
-      graphite-cursor-theme
-      breeze-gtk
-
-      unzip unrar
-      kate ark
-      qimgv
-
-      xorg.xprop
-      xdg-utils
-    ];
-
-
-
-  #
-  # IME
-  #
-
-  i18n.inputMethod.enabled = "fcitx5";
-
-  i18n.inputMethod.fcitx5.addons = with pkgs; [
-    fcitx5-mozc
-    fcitx5-chinese-addons
-  ];
+            xorg.xprop
+            xdg-utils
+        ];
 
 }
+
+{ i18n.inputMethod = {
+
+    enabled = "fcitx5";
+
+    fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-chinese-addons
+    ];
+
+}; }
+
+]
