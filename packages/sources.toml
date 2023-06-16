@@ -69,11 +69,6 @@ fetch.github = "Buernia/Zhudou-Sans"
 
 # Warehouse
 
-[mdbook-catppuccin]
-src.git = "https://github.com/catppuccin/mdBook"
-fetch.git = "https://github.com/catppuccin/mdBook"
-extract = [ "Cargo.lock" ]
-
 [mdbook-toc]
 src.git = "https://github.com/badboy/mdbook-toc"
 fetch.git = "https://github.com/badboy/mdbook-toc"
