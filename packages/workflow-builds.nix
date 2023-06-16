@@ -12,6 +12,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
     k380-fn-keys-swap
     unrar
     nginx_teapot
+    gtkgreet_teapot
   ];
 
   parallel-2 = [
