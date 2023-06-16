@@ -9,7 +9,8 @@ lib.condMod ( config.fonts.fontconfig.enable )
     enableDefaultFonts = lib.mkForce false;
 
     fonts = with pkgs; [
-        noto-fonts-cjk_teapot
+        noto-fonts
+        source-han-sans
         noto-fonts-emoji
 
         iosevka_teapot
@@ -25,15 +26,15 @@ lib.condMod ( config.fonts.fontconfig.enable )
     defaultFonts = lib.mkForce {
         sansSerif = [
             "Noto Sans"
-            "Noto Sans CJK SC"
+            "Source Han Sans SC"
         ];
         serif = [
             "Noto Sans"
-            "Noto Sans CJK SC"
+            "Source Han Sans SC"
         ];
         monospace = [
             "Hack"
-            "Iosevka Teapot"
+            "Source Han Sans SC"
         ];
     };
 
