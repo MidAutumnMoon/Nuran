@@ -130,6 +130,9 @@ rec {
   iosevka_teapot =
     callPackage ./font/iosevka {};
 
+  zhudou-sans =
+    callPackage ./font/zhudou-sans {};
+
   /*
   *
   * Things not willing to be categorized
