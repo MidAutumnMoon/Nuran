@@ -63,6 +63,10 @@ pinned = true
 src.github = "vinceliuice/Graphite-cursors"
 fetch.github = "vinceliuice/Graphite-cursors"
 
+[zhudou-sans]
+src.github = "Buernia/Zhudou-Sans"
+fetch.github = "Buernia/Zhudou-Sans"
+
 # Warehouse
 
 [mdbook-catppuccin]
