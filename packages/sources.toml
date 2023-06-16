@@ -63,11 +63,6 @@ pinned = true
 src.github = "vinceliuice/Graphite-cursors"
 fetch.github = "vinceliuice/Graphite-cursors"
 
-[noto-fonts-cjk]
-src.github_tag = "googlefonts/noto-cjk"
-src.include_regex = "Sans.*"
-fetch.url = "https://github.com/googlefonts/noto-cjk/releases/download/$ver/03_NotoSansCJK-OTC.zip"
-
 # Warehouse
 
 [mdbook-catppuccin]

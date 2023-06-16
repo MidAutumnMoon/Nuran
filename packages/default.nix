@@ -130,10 +130,6 @@ rec {
   iosevka_teapot =
     callPackage ./font/iosevka {};
 
-  noto-fonts-cjk_teapot =
-    callPackage ./font/noto-fonts-cjk {};
-
-
   /*
   *
   * Things not willing to be categorized
