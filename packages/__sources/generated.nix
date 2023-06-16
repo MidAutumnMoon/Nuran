@@ -159,10 +159,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3680";
+    version = "EA-3682";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3680/Linux-Yuzu-EA-3680.AppImage";
-      sha256 = "sha256-yEGD+a+JQRyfbU8R+O8WHblx8Vfhegrlxr9X1oofOVA=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3682/Linux-Yuzu-EA-3682.AppImage";
+      sha256 = "sha256-cfu7VyjANOb2G0/pGmJ/h6j/keYjy8VyTTRKOn8SQ0U=";
     };
   };
   zhudou-sans = {
