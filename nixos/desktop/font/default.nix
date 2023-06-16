@@ -11,6 +11,7 @@ lib.condMod ( config.fonts.fontconfig.enable )
     fonts = with pkgs; [
         noto-fonts
         source-han-sans
+        zhudou-sans
         noto-fonts-emoji
 
         iosevka_teapot
@@ -26,14 +27,17 @@ lib.condMod ( config.fonts.fontconfig.enable )
     defaultFonts = lib.mkForce {
         sansSerif = [
             "Noto Sans"
+            "Zhudou Sans"
             "Source Han Sans SC"
         ];
         serif = [
             "Noto Sans"
+            "Zhudou Sans"
             "Source Han Sans SC"
         ];
         monospace = [
             "Hack"
+            "Zhudou Sans"
             "Source Han Sans SC"
         ];
     };
