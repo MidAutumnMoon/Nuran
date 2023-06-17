@@ -5,8 +5,7 @@
   ./account.nix
 
   ./programs.nix
-  ./localezoe.nix
-  ./sysctl.nix
+  ./environment.nix
 
   ./leftover.nix
 
