@@ -1,0 +1,5 @@
+[
+
+    ./capitalize.nix
+
+]

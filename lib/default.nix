@@ -29,6 +29,7 @@ rec {
   nuran.path     = importLib ./path;
   nuran.file     = importLib ./file;
   nuran.module   = importLib ./module;
+  nuran.string   = importLib ./string;
   nuran.trivial  = importLib ./trivial;
   nuran.nixpkgs  = importLib ./nixpkgs;
 
@@ -46,6 +47,10 @@ rec {
     isModule
     flatMod condMod
     listAllModules
+    ;
+
+  inherit ( nuran.string )
+    capitalize
     ;
 
   inherit ( nuran.trivial )
