@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "40679613ff2214918559f4ac1a5ca698d2a65337";
+    version = "cfa9f5873b9db2891826b32045ac3a030d589b11";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "40679613ff2214918559f4ac1a5ca698d2a65337";
+      rev = "cfa9f5873b9db2891826b32045ac3a030d589b11";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-C88I8GGS8/ccN9SoLNal5YGcdVm9y3d7T7fx/Loh76s=";
+      sha256 = "sha256-bhN6M/aZixzk8yI0Uu8xoj3BWnwM38CAaScyfxv+BhM=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-40679613ff2214918559f4ac1a5ca698d2a65337/Cargo.lock;
-    date = "2023-06-11";
+    "Cargo.lock" = builtins.readFile ./derputils-cfa9f5873b9db2891826b32045ac3a030d589b11/Cargo.lock;
+    date = "2023-06-17";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -81,16 +81,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "8376e8700b3d4f8ab96751612c3f4439a43b06f4";
+    version = "4e63104c47132adee7d1dc678d69d80e867371bf";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "8376e8700b3d4f8ab96751612c3f4439a43b06f4";
+      rev = "4e63104c47132adee7d1dc678d69d80e867371bf";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-eNIzZXp9DLuuhcP9UcQ9E/r7dTqUkyrDw+0LNdGIzaQ=";
+      sha256 = "sha256-UCNWQjp+lRb0kId8kxFTsxdJn6mfz9pLYIKbwZKqklA=";
     };
-    date = "2023-06-16";
+    date = "2023-06-17";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -107,17 +107,17 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "67232c301030b0ff8bcf04a45e6e6a341a3e5d81";
+    version = "16cf75a2a4c31fd99214e42a59f3cdd33c706ae2";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "67232c301030b0ff8bcf04a45e6e6a341a3e5d81";
+      rev = "16cf75a2a4c31fd99214e42a59f3cdd33c706ae2";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-Q9b1pt06FENKSwhb9jgVrJvmAFBeFjyT9qEz2xCnloc=";
+      sha256 = "sha256-WiVEiFBTeilfU+2w3aUVsSrOAooPcKjw3Vswyd5oKuo=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-67232c301030b0ff8bcf04a45e6e6a341a3e5d81/Cargo.lock;
-    date = "2023-06-14";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-16cf75a2a4c31fd99214e42a59f3cdd33c706ae2/Cargo.lock;
+    date = "2023-06-16";
   };
   tide = {
     pname = "tide";
@@ -145,10 +145,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3682";
+    version = "EA-3689";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3682/Linux-Yuzu-EA-3682.AppImage";
-      sha256 = "sha256-cfu7VyjANOb2G0/pGmJ/h6j/keYjy8VyTTRKOn8SQ0U=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3689/Linux-Yuzu-EA-3689.AppImage";
+      sha256 = "sha256-Ge3gD9W5fQ7lACGDXMUCeV5qIn/u2ZAJ7vxeTLMLQKU=";
     };
   };
   zhudou-sans = {

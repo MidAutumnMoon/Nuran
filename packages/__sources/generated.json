@@ -20,9 +20,9 @@
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-06-11",
+        "date": "2023-06-17",
         "extract": {
-            "Cargo.lock": "./derputils-40679613ff2214918559f4ac1a5ca698d2a65337/Cargo.lock"
+            "Cargo.lock": "./derputils-cfa9f5873b9db2891826b32045ac3a030d589b11/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "40679613ff2214918559f4ac1a5ca698d2a65337",
-            "sha256": "sha256-C88I8GGS8/ccN9SoLNal5YGcdVm9y3d7T7fx/Loh76s=",
+            "rev": "cfa9f5873b9db2891826b32045ac3a030d589b11",
+            "sha256": "sha256-bhN6M/aZixzk8yI0Uu8xoj3BWnwM38CAaScyfxv+BhM=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "40679613ff2214918559f4ac1a5ca698d2a65337"
+        "version": "cfa9f5873b9db2891826b32045ac3a030d589b11"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -120,7 +120,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-06-16",
+        "date": "2023-06-17",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -130,12 +130,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "8376e8700b3d4f8ab96751612c3f4439a43b06f4",
-            "sha256": "sha256-eNIzZXp9DLuuhcP9UcQ9E/r7dTqUkyrDw+0LNdGIzaQ=",
+            "rev": "4e63104c47132adee7d1dc678d69d80e867371bf",
+            "sha256": "sha256-UCNWQjp+lRb0kId8kxFTsxdJn6mfz9pLYIKbwZKqklA=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "8376e8700b3d4f8ab96751612c3f4439a43b06f4"
+        "version": "4e63104c47132adee7d1dc678d69d80e867371bf"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -158,9 +158,9 @@
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
-        "date": "2023-06-14",
+        "date": "2023-06-16",
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-67232c301030b0ff8bcf04a45e6e6a341a3e5d81/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-16cf75a2a4c31fd99214e42a59f3cdd33c706ae2/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -170,12 +170,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "67232c301030b0ff8bcf04a45e6e6a341a3e5d81",
-            "sha256": "sha256-Q9b1pt06FENKSwhb9jgVrJvmAFBeFjyT9qEz2xCnloc=",
+            "rev": "16cf75a2a4c31fd99214e42a59f3cdd33c706ae2",
+            "sha256": "sha256-WiVEiFBTeilfU+2w3aUVsSrOAooPcKjw3Vswyd5oKuo=",
             "type": "git",
             "url": "https://github.com/shadowsocks/shadowsocks-rust"
         },
-        "version": "67232c301030b0ff8bcf04a45e6e6a341a3e5d81"
+        "version": "16cf75a2a4c31fd99214e42a59f3cdd33c706ae2"
     },
     "tide": {
         "cargoLocks": null,
@@ -225,11 +225,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-cfu7VyjANOb2G0/pGmJ/h6j/keYjy8VyTTRKOn8SQ0U=",
+            "sha256": "sha256-Ge3gD9W5fQ7lACGDXMUCeV5qIn/u2ZAJ7vxeTLMLQKU=",
             "type": "url",
-            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3682/Linux-Yuzu-EA-3682.AppImage"
+            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3689/Linux-Yuzu-EA-3689.AppImage"
         },
-        "version": "EA-3682"
+        "version": "EA-3689"
     },
     "zhudou-sans": {
         "cargoLocks": null,
