@@ -11,6 +11,7 @@
   lazygit
   libarchive
   nix-tree
+  libqalculate
 
   p7zip
   rclone
