@@ -10,7 +10,6 @@ create-missing = false
 
 [output.html]
 default-theme = "light"
-preferred-dark-theme = "frappe"
 mathjax-support = true
 additional-css = [
     "./theme/self.css",
