@@ -81,16 +81,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "4e63104c47132adee7d1dc678d69d80e867371bf";
+    version = "8c9dab3e0d788d44c8a2fee83a6193f5955c814e";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "4e63104c47132adee7d1dc678d69d80e867371bf";
+      rev = "8c9dab3e0d788d44c8a2fee83a6193f5955c814e";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-UCNWQjp+lRb0kId8kxFTsxdJn6mfz9pLYIKbwZKqklA=";
+      sha256 = "sha256-03r4HrhZxA16q5Lvbk3G/Hke4pxaSV2p5kd5S7obLsI=";
     };
-    date = "2023-06-17";
+    date = "2023-06-18";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -107,17 +107,17 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "16cf75a2a4c31fd99214e42a59f3cdd33c706ae2";
+    version = "b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "16cf75a2a4c31fd99214e42a59f3cdd33c706ae2";
+      rev = "b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-WiVEiFBTeilfU+2w3aUVsSrOAooPcKjw3Vswyd5oKuo=";
+      sha256 = "sha256-KwdW3Uj0ZLJEGlnSgiUJ9CXkNwMUV+8MUiy5Dned7ZU=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-16cf75a2a4c31fd99214e42a59f3cdd33c706ae2/Cargo.lock;
-    date = "2023-06-16";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8/Cargo.lock;
+    date = "2023-06-18";
   };
   tide = {
     pname = "tide";
@@ -145,10 +145,10 @@
   };
   yuzu-ea-appimage = {
     pname = "yuzu-ea-appimage";
-    version = "EA-3689";
+    version = "EA-3698";
     src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3689/Linux-Yuzu-EA-3689.AppImage";
-      sha256 = "sha256-Ge3gD9W5fQ7lACGDXMUCeV5qIn/u2ZAJ7vxeTLMLQKU=";
+      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3698/Linux-Yuzu-EA-3698.AppImage";
+      sha256 = "sha256-i5jKCON9fNMVHBeINjNOw6eddVyb2DGCiY5ghhDvMBo=";
     };
   };
   zhudou-sans = {
