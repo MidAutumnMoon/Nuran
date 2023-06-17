@@ -4,7 +4,6 @@
   ./hardware.nix
   ./networking
 
-  ./account.nix
   ./dasktop.nix
   ./environment
   ./services
