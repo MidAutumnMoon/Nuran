@@ -33,6 +33,8 @@ lib.mkMerge [
         "zswap.enabled=1"
         "zswap.compressor=lz4"
         "zswap.max_pool_percent=20"
+        "nohz_full=2-15"
+        "rcu_nocbs=2-15"
     ];
 
     hardware.cpu.amd.updateMicrocode = true;
