@@ -35,6 +35,10 @@ lib.mkMerge [
         "zswap.max_pool_percent=20"
         "nohz_full=2-15"
         "rcu_nocbs=2-15"
+        "amdgpu.deep_color=1"
+        "amdgpu.mes=1"
+        "amdgpu.mes_kiq=1"
+        "amdgpu.no_system_mem_limit=1"
     ];
 
     hardware.cpu.amd.updateMicrocode = true;
