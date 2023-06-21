@@ -4,240 +4,230 @@ final: prev:
 
 let
 
-  sources =
-    final.callPackage ./__sources/generated.nix {};
+    sources =
+        final.callPackage ./__sources/generated.nix {};
 
-  callPackage =
-    final.newScope { inherit lib sources callPackage; };
+    callPackage =
+        final.newScope { inherit lib sources callPackage; };
 
 in
 
 rec {
 
 
-  /*
-  *
-  * Things lossely categorized into "Network"
-  *
-  */
+    /*
+     *
+     * Things lossely categorized into "Network"
+     *
+     */
 
-  firefox_teapot =
-    callPackage ./network/firefox {};
+    firefox_teapot =
+        callPackage ./network/firefox {};
 
-  shadowsocks_teapot =
-    callPackage ./network/shadowsocks-rust {};
+    shadowsocks_teapot =
+        callPackage ./network/shadowsocks-rust {};
 
-  nginx_teapot =
-    callPackage ./network/nginx {};
+    nginx_teapot =
+        callPackage ./network/nginx {};
 
-  hentai-home =
-    callPackage ./network/henati-home {};
-
-
-
-  /*
-  *
-  * Text etc. "Editor"
-  *
-  */
-
-  neovim_teapot =
-    callPackage ./editor/neovim/wrapped.nix {};
+    hentai-home =
+        callPackage ./network/henati-home {};
 
 
 
-  /*
-  *
-  * Tools to work with some "Language"
-  *
-  */
+    /*
+     *
+     * Text etc. "Editor"
+     *
+     */
 
-  luajit_teapot =
-    callPackage ./language/lua/luajit { self = luajit_teapot; };
-
-  inherit ( luajit_teapot.pkgs ) moonscript;
+    neovim_teapot =
+        callPackage ./editor/neovim/wrapped.nix {};
 
 
 
-  /*
-  *
-  * "Utility"s are useful things without categorizing
-  *
-  */
+    /*
+     *
+     * Tools to work with some "Language"
+     *
+     */
 
-  derputils =
-    callPackage ./utility/derputils {};
+    luajit_teapot =
+        callPackage ./language/lua/luajit { self = luajit_teapot; };
 
-  prime-offload =
-    callPackage ./utility/prime-offload {};
-
-  k380-fn-keys-swap =
-    callPackage ./utility/k380-fn-keys-swap {};
-
-  watchgha =
-    callPackage ./utility/watchgha {};
-
-  rpgsavedecrypt =
-    callPackage ./utility/rpgsavedecrypt {};
+    inherit ( luajit_teapot.pkgs ) moonscript;
 
 
 
-  /*
-  *
-  * "Terminal" & "Shell"
-  *
-  */
+    /*
+     *
+     * "Utility"s are useful things without categorizing
+     *
+     */
 
-  fishPlugins =
-    prev.fishPlugins.overrideScope' ( callPackage ./shterm/fish-plugin {} );
+    derputils =
+        callPackage ./utility/derputils {};
 
+    prime-offload =
+        callPackage ./utility/prime-offload {};
 
+    k380-fn-keys-swap =
+        callPackage ./utility/k380-fn-keys-swap {};
 
-  /*
-  *
-  * Watch videos / play games for "Entertain"
-  *
-  */
+    watchgha =
+        callPackage ./utility/watchgha {};
 
-  yuzu_teapot =
-    prev.libsForQt5.callPackage ./entertain/yuzu { inherit sources; };
-
-
-
-  /*
-  *
-  * Suppose these are related to "Kernel"
-  *
-  */
-
-  linux_teapot =
-    callPackage ./kernel/vanilla {};
-
-  linuxPackages_teapot =
-    callPackage ./kernel/packages { kernel = linux_teapot; };
+    rpgsavedecrypt =
+        callPackage ./utility/rpgsavedecrypt {};
 
 
 
-  /*
-  *
-  * "Theme" / "Color" and "Font"
-  *
-  */
+    /*
+     *
+     * "Terminal" & "Shell"
+     *
+     */
 
-  graphite-cursor-theme =
-    callPackage ./theme/cursors/graphite-cursor-theme {};
-
-  iosevka_teapot =
-    callPackage ./font/iosevka {};
-
-  zhudou-sans =
-    callPackage ./font/zhudou-sans {};
-
-  /*
-  *
-  * Things not willing to be categorized
-  *
-  */
-
-  plasma5Packages =
-    prev.plasma5Packages.overrideScope' ( callPackage ./warehouse/plasma5 {} );
-
-  mdbook-toc =
-    callPackage ./warehouse/mdbook/toc {};
-
-  # need --impure
-  abcd =
-    callPackage ./warehouse/abcd { flakePath = ../.; };
-
-  gtkgreet_teapot =
-    callPackage ./warehouse/gtkgreet {};
+    fishPlugins =
+        prev.fishPlugins.overrideScope' ( callPackage ./shterm/fish-plugin {} );
 
 
 
-  /*
-  *
-  * Hopefully useful "Flags"
-  *
-  */
+    /*
+     *
+     * Watch videos / play games for "Entertain"
+     *
+     */
 
-  teapot.march = "x86-64-v3";
+    /*
+     *
+     * Suppose these are related to "Kernel"
+     *
+     */
 
-  teapot.mtune = "znver2";
+    linux_teapot =
+        callPackage ./kernel/vanilla {};
 
-  teapot.baseOptimiz = [
-    "-march=${teapot.march}"
-    "-mtune=${teapot.mtune}"
-    "-fno-semantic-interposition"
-    "-fomit-frame-pointer"
-    "-flto"
-    "-ftrivial-auto-var-init=zero"
-    "-fstack-clash-protection"
-    "-pipe"
-  ];
-
-  teapot.aggressiveOptimiz = lib.flatten [
-    teapot.baseOptimiz
-    "-O3"
-    "-fno-math-errno"
-    "-fno-trapping-math"
-    "-fno-signed-zeros"
-    "-fassociative-math"
-    "-freciprocal-math"
-  ];
-
-  teapot.RUSTFLAGS = [
-    "-C target-cpu=${teapot.march}"
-  ];
+    linuxPackages_teapot =
+        callPackage ./kernel/packages { kernel = linux_teapot; };
 
 
 
-  /*
-  *
-  * Play dark arts with nixpkgs' "Stdenv"
-  *
-  */
+    /*
+     *
+     * "Theme" / "Color" and "Font"
+     *
+     */
 
-  stdenvTeapot =
-    with prev.buildPackages.llvmPackages_16;
-    prev.overrideCC stdenv ( libstdcxxClang.override { inherit bintools; } );
+    graphite-cursor-theme =
+        callPackage ./theme/cursors/graphite-cursor-theme {};
 
-  # stdenvTeapot =
-  #   with prev;
-  #   useMoldLinker buildPackages.llvmPackages_16.stdenv;
+    iosevka_teapot =
+        callPackage ./font/iosevka {};
 
-  # "mkDerivationFromStdenv" is a function which accepts a stdenv
-  # as argument and returns the well-known "mkDerivation" function,
-  # the default and probably only impl is make-derivation.nix
-  #
-  # By wrapping "mkDerivationFromStdenv" any derivation can
-  # be modified using a custom $functor just before being given birth.
-  #
-  # $functor is used to overrideAttrs on derivations
-  # $stdenv is some normal stdenv, don't forget this function is
-  #         a mimic of "mkDerivationFromStdenv" whose argument is stdenv
-  # $mkDrvArgs: after accepting $stdenv the result is just
-  #             a "mkDerivation" function, this is its argument
+    zhudou-sans =
+        callPackage ./font/zhudou-sans {};
 
-  defaultMkDrvImpl =
-    with final;
-    import "${ path }/pkgs/stdenv/generic/make-derivation.nix" { inherit lib config; };
+    /*
+     *
+     * Things not willing to be categorized
+     *
+     */
 
-  overridableMkDrvImpl = mkDrvImpl: functor:
-    ( stdenv: mkDrvArgs:
-      ( ( mkDrvImpl stdenv ) mkDrvArgs ).overrideAttrs functor
-    );
+    plasma5Packages =
+        prev.plasma5Packages.overrideScope' ( callPackage ./warehouse/plasma5 {} );
 
-  overrideAttrsOnAllDrv = stdenv: functor:
-    stdenv.override ( oldArgs: {
-      mkDerivationFromStdenv = overridableMkDrvImpl
-        ( oldArgs.mkDerivationFromStdenv or defaultMkDrvImpl ) functor;
-    } );
+    mdbook-toc =
+        callPackage ./warehouse/mdbook/toc {};
 
-  # demo
-  useLLDLinker = stdenv:
-    overrideAttrsOnAllDrv stdenv ( drvAttrs: {
-      NIX_CFLAGS_LINK =
-        toString ( drvAttrs.NIX_CFLAGS_LINK or "" ) + " -fuse-ld=lld";
-    } );
+    # need --impure
+    abcd =
+        callPackage ./warehouse/abcd { flakePath = ../.; };
+
+    gtkgreet_teapot =
+        callPackage ./warehouse/gtkgreet {};
+
+
+
+    /*
+     *
+     * Hopefully useful "Flags"
+     *
+     */
+
+    teapot.march = "x86-64-v3";
+
+    teapot.mtune = "znver2";
+
+    teapot.baseOptimiz = [
+        "-march=${teapot.march}"
+        "-mtune=${teapot.mtune}"
+        "-fno-semantic-interposition"
+        "-fomit-frame-pointer"
+        "-flto"
+        "-ftrivial-auto-var-init=zero"
+        "-fstack-clash-protection"
+        "-pipe"
+    ];
+
+    teapot.aggressiveOptimiz = lib.flatten [
+        teapot.baseOptimiz
+        "-O3"
+        "-fno-math-errno"
+        "-fno-trapping-math"
+        "-fno-signed-zeros"
+        "-fassociative-math"
+        "-freciprocal-math"
+    ];
+
+    teapot.RUSTFLAGS = [
+        "-C target-cpu=${teapot.march}"
+    ];
+
+
+
+    /*
+     *
+     * Play dark arts with nixpkgs' "Stdenv"
+     *
+     */
+
+    stdenvTeapot =
+        with prev.buildPackages.llvmPackages_16;
+        prev.overrideCC stdenv ( libstdcxxClang.override { inherit bintools; } );
+
+    # "mkDerivationFromStdenv" is a function which accepts a stdenv
+    # as argument and returns the well-known "mkDerivation" function,
+    # the default and probably only impl is make-derivation.nix
+    #
+    # By wrapping "mkDerivationFromStdenv" any derivation can
+    # be modified using a custom $functor just before being given birth.
+    #
+    # $functor is used to overrideAttrs on derivations
+    # $stdenv is some normal stdenv, don't forget this function is
+    #         a mimic of "mkDerivationFromStdenv" whose argument is stdenv
+    # $mkDrvArgs: after accepting $stdenv the result is just
+    #             a "mkDerivation" function, this is its argument
+    defaultMkDrvImpl =
+        with final;
+        import "${ path }/pkgs/stdenv/generic/make-derivation.nix" { inherit lib config; };
+
+    overridableMkDrvImpl = mkDrvImpl: functor:
+        ( stdenv: mkDrvArgs:
+          ( ( mkDrvImpl stdenv ) mkDrvArgs ).overrideAttrs functor
+        );
+
+    overrideAttrsOnAllDrv = stdenv: functor:
+        stdenv.override ( oldArgs: {
+            mkDerivationFromStdenv = overridableMkDrvImpl
+                ( oldArgs.mkDerivationFromStdenv or defaultMkDrvImpl ) functor;
+        } );
+
+    # demo
+    useLLDLinker = stdenv:
+        overrideAttrsOnAllDrv stdenv ( drvAttrs: {
+            NIX_CFLAGS_LINK =
+                toString ( drvAttrs.NIX_CFLAGS_LINK or "" ) + " -fuse-ld=lld";
+        } );
 
 }

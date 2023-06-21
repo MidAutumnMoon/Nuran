@@ -46,10 +46,6 @@ fetch.git = "https://github.com/nickeb96/puffer-fish"
 
 # Entertain
 
-[yuzu-ea-appimage]
-src.github = "pineappleEA/pineapple-src"
-fetch.url = "https://github.com/pineappleEA/pineapple-src/releases/download/$ver/Linux-Yuzu-$ver.AppImage"
-
 # Kernel
 
 [cachyos-patches]
