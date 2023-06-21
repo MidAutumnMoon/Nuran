@@ -81,16 +81,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "8c9dab3e0d788d44c8a2fee83a6193f5955c814e";
+    version = "8d4a53fe6e20652946948170f2436ec520f9bdfe";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "8c9dab3e0d788d44c8a2fee83a6193f5955c814e";
+      rev = "8d4a53fe6e20652946948170f2436ec520f9bdfe";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-03r4HrhZxA16q5Lvbk3G/Hke4pxaSV2p5kd5S7obLsI=";
+      sha256 = "sha256-Wcqt+5UznQg/v3ywdvyWCXDl+nLXhsh4ukCM4XfJGrY=";
     };
-    date = "2023-06-18";
+    date = "2023-06-21";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -107,17 +107,17 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8";
+    version = "f97b0760ec4eef74c884249d01b07646367f2f07";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8";
+      rev = "f97b0760ec4eef74c884249d01b07646367f2f07";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-KwdW3Uj0ZLJEGlnSgiUJ9CXkNwMUV+8MUiy5Dned7ZU=";
+      sha256 = "sha256-zKJrFm9oyt4+Ab2wMrIWO9+Ui61/nUyXbXhWbu/21qs=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8/Cargo.lock;
-    date = "2023-06-18";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-f97b0760ec4eef74c884249d01b07646367f2f07/Cargo.lock;
+    date = "2023-06-19";
   };
   tide = {
     pname = "tide";
@@ -142,14 +142,6 @@
       sha256 = "sha256-n5fjkB4mFfKajMUzHPFnHv/kjmL3In4wGhAbeIdp/9A=";
     };
     date = "2023-05-19";
-  };
-  yuzu-ea-appimage = {
-    pname = "yuzu-ea-appimage";
-    version = "EA-3698";
-    src = fetchurl {
-      url = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3698/Linux-Yuzu-EA-3698.AppImage";
-      sha256 = "sha256-i5jKCON9fNMVHBeINjNOw6eddVyb2DGCiY5ghhDvMBo=";
-    };
   };
   zhudou-sans = {
     pname = "zhudou-sans";

@@ -120,7 +120,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-06-18",
+        "date": "2023-06-21",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -130,12 +130,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "8c9dab3e0d788d44c8a2fee83a6193f5955c814e",
-            "sha256": "sha256-03r4HrhZxA16q5Lvbk3G/Hke4pxaSV2p5kd5S7obLsI=",
+            "rev": "8d4a53fe6e20652946948170f2436ec520f9bdfe",
+            "sha256": "sha256-Wcqt+5UznQg/v3ywdvyWCXDl+nLXhsh4ukCM4XfJGrY=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "8c9dab3e0d788d44c8a2fee83a6193f5955c814e"
+        "version": "8d4a53fe6e20652946948170f2436ec520f9bdfe"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -158,9 +158,9 @@
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
-        "date": "2023-06-18",
+        "date": "2023-06-19",
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-f97b0760ec4eef74c884249d01b07646367f2f07/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -170,12 +170,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8",
-            "sha256": "sha256-KwdW3Uj0ZLJEGlnSgiUJ9CXkNwMUV+8MUiy5Dned7ZU=",
+            "rev": "f97b0760ec4eef74c884249d01b07646367f2f07",
+            "sha256": "sha256-zKJrFm9oyt4+Ab2wMrIWO9+Ui61/nUyXbXhWbu/21qs=",
             "type": "git",
             "url": "https://github.com/shadowsocks/shadowsocks-rust"
         },
-        "version": "b4f0f98138e7c5eafe390a46b06b3b8e13fe16f8"
+        "version": "f97b0760ec4eef74c884249d01b07646367f2f07"
     },
     "tide": {
         "cargoLocks": null,
@@ -215,21 +215,6 @@
             "url": "https://github.com/nedbat/watchgha"
         },
         "version": "830e536f5663147ea8fb2272773ca1377fe39d6a"
-    },
-    "yuzu-ea-appimage": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "yuzu-ea-appimage",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-i5jKCON9fNMVHBeINjNOw6eddVyb2DGCiY5ghhDvMBo=",
-            "type": "url",
-            "url": "https://github.com/pineappleEA/pineapple-src/releases/download/EA-3698/Linux-Yuzu-EA-3698.AppImage"
-        },
-        "version": "EA-3698"
     },
     "zhudou-sans": {
         "cargoLocks": null,
