@@ -13,8 +13,14 @@ pref( 'browser.aboutConfig.showWarning', false );
 ////
 //// Performanc tuning
 ////
-pref( 'browser.cache.disk.enable',     false );
-pref( 'browser.cache.disk_cache_ssla', false );
+pref( 'browser.cache.disk.enable',           false );
+pref( 'browser.cache.disk_cache_ssla',       false );
+pref( 'media.memory_cache_max_size',         32768 );;
+pref( 'browser.cache.memory.max_entry_size', -1 );
+
+pref( 'browser.privatebrowsing.forceMediaMemoryCache', true );
+
+pref( 'browser.cache.max_shutdown_io_lag', 3 );
 
 pref( 'gfx.webrender.all',                 true );
 pref( 'gfx.webrender.compositor',          true );
@@ -22,11 +28,11 @@ pref( 'gfx.webrender.enabled',             true );
 pref( 'gfx.webrender.precache-shaders',    true );
 pref( 'gfx.webrender.svg-images',          true );
 pref( 'gfx.canvas.accelerated',            true );
+pref( 'gfx.canvas.accelerated.gpu-path-size', 8 );
 pref( 'gfx.color_management.enablev4',     true );
 pref( 'gfx.color_management.native_srgb',  true );
 pref( 'gfx.offscreencanvas.enabled',       true );
 pref( 'gfx.webrender.program-binary',      true );
-pref( 'gfx.webrender.program-binary-disk', true );
 
 pref( 'layers.acceleration.force-enabled', true );
 pref( 'layers.gpu-process.enabled',        true );
@@ -47,7 +53,7 @@ pref( 'browser.sessionhistory.max_entries', 12 );
 
 pref( 'browser.tabs.min_inactive_duration_before_unload', 240000 );
 
-pref( 'dom.script_loader.bytecode_cache.strategy', -1 );
+pref( 'dom.script_loader.bytecode_cache.strategy', 0 );
 pref( 'dom.script_loader.delazification.max_size', -1 );
 
 pref( 'network.buffer.cache.count',              128 );
@@ -55,16 +61,21 @@ pref( 'network.buffer.cache.size',               262144 );
 pref( 'network.http.http2.send-buffer-size',     262144 );
 pref( 'network.http.http2.default-hpack-buffer', 262144 );
 
+pref( 'widget.dmabuf.force-enabled', true );
+pref( 'widget.dmabuf-webgl.enabled', true );
+
 
 
 ////
 //// UI & UX
 ////
-pref( 'browser.preferences.experimental',           true );
-pref( 'browser.protections_panel.infoMessage.seen', true );
-pref( 'browser.discovery.enabled',                  false );
-pref( 'browser.urlbar.quicksuggest.scenario',       'history' );
-pref( 'browser.urlbar.decodeURLsOnCopy',            true );
+pref( 'browser.preferences.experimental',                 true );
+pref( 'browser.protections_panel.infoMessage.seen',       true );
+pref( 'browser.discovery.enabled',                        false );
+pref( 'browser.urlbar.quicksuggest.scenario',             'history' );
+pref( 'browser.urlbar.suggest.quicksuggest.nonsponsored', false );
+pref( 'browser.urlbar.suggest.quicksuggest.sponsored',    false );
+pref( 'browser.urlbar.decodeURLsOnCopy',                  true );
 
 pref( 'browser.urlbar.keepPanelOpenDuringImeComposition', true );
 
@@ -74,6 +85,7 @@ pref( 'browser.urlbar.suggest.engines',     false );
 pref( 'browser.urlbar.suggest.openpage',    false );
 pref( 'browser.urlbar.suggest.topsites',    false );
 pref( 'browser.urlbar.suggest.calculator',  false );
+pref( 'browser.search.suggest.enabled',     false );
 pref( 'browser.urlbar.groupLabels.enabled', false );
 pref( 'browser.urlbar.resultMenu',          false );
 
@@ -211,6 +223,7 @@ pref( 'network.cookie.lifetimePolicy',         2 )
 pref( 'network.IDN_show_punycode', true );
 
 pref( 'dom.security.https_only_mode', true );
+pref( 'dom.security.https_only_mode_send_http_background_request', false );
 
 pref( 'security.OCSP.enabled', 1 );
 pref( 'security.OCSP.require', true );
@@ -246,12 +259,18 @@ pref( 'browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons',   fals
 pref( 'browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features', false );
 
 lockPref( 'privacy.userContext.enabled', true );
+pref( 'privacy.userContext.ui.enabled',  true );
 
 pref( 'font.system.whitelist', '' );
 
-pref( 'browser.region.network.url', '' )
+pref( 'browser.region.network.url',    '' )
 pref( 'browser.region.update.enabled', false )
-pref( 'browser.region.update.region', 'JP' )
+pref( 'browser.region.update.region',  'JP' )
+
+pref( 'browser.places.speculativeConnect.enabled', false );
+pref( 'browser.urlbar.speculativeConnect.enabled', false );
+
+pref( 'middlemouse.contentLoadURL', false );
 
 
 
