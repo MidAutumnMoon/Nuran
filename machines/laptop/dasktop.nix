@@ -4,26 +4,33 @@ lib.mkMerge [
 
 ( let
 
-    inherit ( lib ) getExe ;
+    inherit ( lib ) getExe;
+
+    inherit ( pkgs )
+        copyPathToStore
+        writeShellScript
+        ;
 
     cage = getExe pkgs.cage;
     gtkgreet = getExe pkgs.gtkgreet_teapot;
+    rnchoose = "${pkgs.derputils}/bin/rnchoose";
 
-    picture = pkgs.fetchurl {
-        url = "https://p.418.im/4ee3cc3c6939fdff.jpg";
-        hash = "sha256-70NDsdm75C34QYXD5rv3of8JVLJeBZw0n0PVODksXPg=";
-    };
+    pictures =
+        pkgs.callPackage ./asset/picture.nix {};
 
-    style = pkgs.substituteAll {
-        src = ./asset/style.css;
-        inherit picture;
-    };
+    styleRandomPic = writeShellScript "greetd-style" ''
+        declare -r \
+            Picture="$( ${rnchoose} --stdin < "${pictures}" )"
+        exec sed \
+            "s|@picture@|$Picture|g" \
+            "${copyPathToStore ./asset/style.css}"
+    '';
 
-    greetd-script = pkgs.writeShellScript "greetd-script" ''
+    greetd-script = writeShellScript "greetd-script" ''
         exec '${cage}' -d -s -- '${gtkgreet}' \
-            --style '${style}' \
+            --style <( "${styleRandomPic}" ) \
             --command startplasma-wayland
-     '';
+    '';
 
 in {
 
