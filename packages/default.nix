@@ -52,13 +52,6 @@ rec {
      *
      */
 
-    luajit_teapot =
-        callPackage ./language/lua/luajit { self = luajit_teapot; };
-
-    inherit ( luajit_teapot.pkgs ) moonscript;
-
-
-
     /*
      *
      * "Utility"s are useful things without categorizing

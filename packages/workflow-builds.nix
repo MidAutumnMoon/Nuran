@@ -19,6 +19,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
     plasma5Packages.kwallet-pam
     watchgha
     nvfetcher_git
+    neovim_teapot
   ];
 
   parallel-3 = [
@@ -38,12 +39,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
 
   go-things = [
     sops-install-secrets
-  ];
-
-  lua-things = [
-    neovim_teapot
-    luajit_teapot
-    moonscript
   ];
 
 }

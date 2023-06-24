@@ -6,7 +6,6 @@
   teapot,
 
   stdenvTeapot,
-  luajit_teapot,
 }:
 
 
@@ -15,8 +14,6 @@ lib.onceride neovim-unwrapped
 ( _: {
 
   stdenv = stdenvTeapot;
-
-  lua = luajit_teapot;
 
 } )
 

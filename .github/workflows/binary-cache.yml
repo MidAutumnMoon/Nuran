@@ -25,7 +25,6 @@ jobs:
           - rust-things
           - rust-heavy-things
           - go-things
-          - lua-things
 
     runs-on: ubuntu-latest
 
