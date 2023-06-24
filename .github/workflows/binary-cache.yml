@@ -71,6 +71,6 @@ jobs:
         run: |
           fish __scripts/do-build.fish 'packages/workflow-builds.nix' '${{ matrix.task-name }}'
 
-      - name: "Cleanup"
-        if: always()
-        run: nix-collect-garbage -d
+      # - name: "Cleanup"
+      #   if: always()
+      #   run: nix-collect-garbage -d
