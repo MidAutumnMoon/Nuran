@@ -1,6 +1,6 @@
 # Setup NixOS using systemd-nspawn
 
-<!-- toc -->
+<img src="./header.png" width="100%"/>
 
 - <https://hub.nspawn.org/images/> provides NixOS tarball
     - Has a sane default configuration.nix
