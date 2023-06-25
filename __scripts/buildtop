@@ -1,0 +1,8 @@
+#!/usr/bin/env fish
+
+set -l Hostname "$argv[1]"
+
+command nix build \
+    --print-build-logs \
+    --option narinfo-cache-negative-ttl 0 \
+    ".#nixosConfigurations.$Hostname.config.system.build.toplevel"
