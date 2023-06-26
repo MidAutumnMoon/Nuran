@@ -5,7 +5,7 @@
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
-        "pinned": false,
+        "pinned": true,
         "src": {
             "deepClone": false,
             "fetchSubmodules": false,
@@ -120,7 +120,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-06-25",
+        "date": "2023-06-26",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -130,12 +130,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685",
-            "sha256": "sha256-LUXD8F+N0B0L6VTm5eBL8wIlc+Ajn/ai09Oa7O10PPU=",
+            "rev": "cd6458123fb4859e47ffcd144ebbddf389a09610",
+            "sha256": "sha256-Ch9RqH6KZtUXhdRWLL13zUwVWEj2Gi0iStYJCpxckh0=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685"
+        "version": "cd6458123fb4859e47ffcd144ebbddf389a09610"
     },
     "puffer-fish": {
         "cargoLocks": null,
