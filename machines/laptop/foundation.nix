@@ -83,4 +83,8 @@ lib.mkMerge [
 
 } )
 
+{
+    powerManagement.cpuFreqGovernor = "ondemand";
+}
+
 ]
