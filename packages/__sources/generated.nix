@@ -3,30 +3,30 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "fee3f21363842f7e559a64fe36fabe38be569d3e";
+    version = "6ebd6a6de9f445ad517d562b7f9b4d81c5293194";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "fee3f21363842f7e559a64fe36fabe38be569d3e";
+      rev = "6ebd6a6de9f445ad517d562b7f9b4d81c5293194";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-/r4GxD0ssRhDfcy2Xb5zNKblucTDg4RCietpyTJX8SI=";
+      sha256 = "sha256-Yo2rB1HA2RFELkgvViSa23wg1d04ttd9vq58LoprDNI=";
     };
-    date = "2023-06-23";
+    date = "2023-07-06";
   };
   derputils = {
     pname = "derputils";
-    version = "1a803519309f254d628036409ca697b7b8ee4705";
+    version = "975af6f112dd6aeb6257cbf5964f59e2ef8451f4";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "1a803519309f254d628036409ca697b7b8ee4705";
+      rev = "975af6f112dd6aeb6257cbf5964f59e2ef8451f4";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-yKLbiFuuJ2xUzCHLgQw2jEY975BMpO4tkE2j7yQlzvk=";
+      sha256 = "sha256-SO+TxpNcvwzm/hfA7P7PDK+U38wp3kjZm9ElrHHOAbg=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-1a803519309f254d628036409ca697b7b8ee4705/Cargo.lock;
-    date = "2023-06-24";
+    "Cargo.lock" = builtins.readFile ./derputils-975af6f112dd6aeb6257cbf5964f59e2ef8451f4/Cargo.lock;
+    date = "2023-07-17";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -37,6 +37,14 @@
       rev = "2021-11-26";
       fetchSubmodules = false;
       sha256 = "sha256-Kopl2NweYrq9rhw+0EUMhY/pfGo4g387927TZAhI5/A=";
+    };
+  };
+  ibm-plex = {
+    pname = "ibm-plex";
+    version = "v6.3.0";
+    src = fetchurl {
+      url = "https://github.com/IBM/plex/releases/download/v6.3.0/OpenType.zip";
+      sha256 = "sha256-ghayzpmcOnBzmx/fnQXdMRUp1DW2uZgrLjnApbGC+lQ=";
     };
   };
   k380-fn-keys-swap = {
@@ -54,17 +62,17 @@
   };
   mdbook-toc = {
     pname = "mdbook-toc";
-    version = "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb";
+    version = "53e8bcef6e516d33a32dd610a5c5d8b7b7d98606";
     src = fetchgit {
       url = "https://github.com/badboy/mdbook-toc";
-      rev = "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb";
+      rev = "53e8bcef6e516d33a32dd610a5c5d8b7b7d98606";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-89pwp1qEsG6xQgMwKBSo82q80rufNnxa/o7dujar4IE=";
+      sha256 = "sha256-Z3ZspXD7M3VVi70+dRz7NhO6msw5htmPRX6VzhA9NPY=";
     };
-    "Cargo.lock" = builtins.readFile ./mdbook-toc-9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb/Cargo.lock;
-    date = "2023-06-01";
+    "Cargo.lock" = builtins.readFile ./mdbook-toc-53e8bcef6e516d33a32dd610a5c5d8b7b7d98606/Cargo.lock;
+    date = "2023-07-18";
   };
   moonscript = {
     pname = "moonscript";
@@ -81,16 +89,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685";
+    version = "f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685";
+      rev = "f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-LUXD8F+N0B0L6VTm5eBL8wIlc+Ajn/ai09Oa7O10PPU=";
+      sha256 = "sha256-Xlz18WVgO3w/O5cUsQoh1uq38c/Rm3GPnOuoXVsgeXY=";
     };
-    date = "2023-06-25";
+    date = "2023-07-23";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -107,41 +115,26 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "f97b0760ec4eef74c884249d01b07646367f2f07";
-    src = fetchgit {
-      url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "f97b0760ec4eef74c884249d01b07646367f2f07";
+    version = "v1.15.4";
+    src = fetchFromGitHub {
+      owner = "shadowsocks";
+      repo = "shadowsocks-rust";
+      rev = "v1.15.4";
       fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "sha256-zKJrFm9oyt4+Ab2wMrIWO9+Ui61/nUyXbXhWbu/21qs=";
+      sha256 = "sha256-Tdh6lGk93hGuR+L2cytVoKYfRHrmuNo9OtKqQaeCMx0=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-f97b0760ec4eef74c884249d01b07646367f2f07/Cargo.lock;
-    date = "2023-06-19";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.15.4/Cargo.lock;
   };
   tide = {
     pname = "tide";
-    version = "v5.5.1";
+    version = "v5.6.0";
     src = fetchFromGitHub {
       owner = "IlanCosman";
       repo = "tide";
-      rev = "v5.5.1";
+      rev = "v5.6.0";
       fetchSubmodules = false;
-      sha256 = "sha256-vi4sYoI366FkIonXDlf/eE2Pyjq7E/kOKBrQS+LtE+M=";
+      sha256 = "sha256-cCI1FDpvajt1vVPUd/WvsjX/6BJm6X1yFPjqohmo1rI=";
     };
-  };
-  watchgha = {
-    pname = "watchgha";
-    version = "830e536f5663147ea8fb2272773ca1377fe39d6a";
-    src = fetchgit {
-      url = "https://github.com/nedbat/watchgha";
-      rev = "830e536f5663147ea8fb2272773ca1377fe39d6a";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "sha256-n5fjkB4mFfKajMUzHPFnHv/kjmL3In4wGhAbeIdp/9A=";
-    };
-    date = "2023-05-19";
   };
   zhudou-sans = {
     pname = "zhudou-sans";
