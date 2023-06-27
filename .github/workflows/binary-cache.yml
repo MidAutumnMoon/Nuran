@@ -43,7 +43,7 @@ jobs:
           nix_path: "nixpkgs=channel:nixpkgs-unstable"
 
       - name: "Magic Nix Cache"
-        uses: DeterminateSystems/magic-nix-cache-action@v1
+        uses: DeterminateSystems/magic-nix-cache-action@v2
 
       - name: "Install tools"
         run: |
