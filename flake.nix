@@ -101,7 +101,7 @@ in {
      */
 
     nixosConfigurations = {
-        lyfua = machine { toplevel = ./machines/laptop; };
+        reuuko = machine { toplevel = ./machines/laptop; };
     };
 
     homeModules = with flakes; [
@@ -122,7 +122,7 @@ in {
             meta = {
                 nixpkgs = pkgsBrew."x86_64-linux";
             };
-            lyfua.deployment = {
+            reuuko.deployment = {
                 allowLocalDeployment = true;
                 targetHost = "localhost";
                 targetPort = 47128;
