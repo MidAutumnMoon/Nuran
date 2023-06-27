@@ -1,7 +1,7 @@
 {
     "cachyos-patches": {
         "cargoLocks": null,
-        "date": "2023-06-23",
+        "date": "2023-06-27",
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
@@ -11,18 +11,18 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "fee3f21363842f7e559a64fe36fabe38be569d3e",
-            "sha256": "sha256-/r4GxD0ssRhDfcy2Xb5zNKblucTDg4RCietpyTJX8SI=",
+            "rev": "dc5cd526ce0ae0fbb907b539c87a8563fdcf3112",
+            "sha256": "sha256-ru3R+t/A5qy0y64gsoNzXq0PHKqo61StvNe1kHQEkb4=",
             "type": "git",
             "url": "https://github.com/CachyOS/kernel-patches/"
         },
-        "version": "fee3f21363842f7e559a64fe36fabe38be569d3e"
+        "version": "dc5cd526ce0ae0fbb907b539c87a8563fdcf3112"
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-06-24",
+        "date": "2023-06-27",
         "extract": {
-            "Cargo.lock": "./derputils-1a803519309f254d628036409ca697b7b8ee4705/Cargo.lock"
+            "Cargo.lock": "./derputils-05643f416ff469bf917805357e5d2655218b12a8/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "1a803519309f254d628036409ca697b7b8ee4705",
-            "sha256": "sha256-yKLbiFuuJ2xUzCHLgQw2jEY975BMpO4tkE2j7yQlzvk=",
+            "rev": "05643f416ff469bf917805357e5d2655218b12a8",
+            "sha256": "sha256-7GBQ+4RnJt9UP5C1JV9/HC+bMByqmK6/L9vgc8eEJkM=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "1a803519309f254d628036409ca697b7b8ee4705"
+        "version": "05643f416ff469bf917805357e5d2655218b12a8"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -58,6 +58,21 @@
             "type": "github"
         },
         "version": "2021-11-26"
+    },
+    "ibm-plex": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "ibm-plex",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-ghayzpmcOnBzmx/fnQXdMRUp1DW2uZgrLjnApbGC+lQ=",
+            "type": "url",
+            "url": "https://github.com/IBM/plex/releases/download/v6.3.0/OpenType.zip"
+        },
+        "version": "v6.3.0"
     },
     "k380-fn-keys-swap": {
         "cargoLocks": null,
@@ -120,7 +135,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-06-25",
+        "date": "2023-06-28",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -130,12 +145,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685",
-            "sha256": "sha256-LUXD8F+N0B0L6VTm5eBL8wIlc+Ajn/ai09Oa7O10PPU=",
+            "rev": "42f9573e5da64d6eb8e0dd9ccfefadb68773202c",
+            "sha256": "sha256-xxG+sHufpIVh7bj5/crZ5LjbaEwtZ9lMDcyTHXE4P1o=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685"
+        "version": "42f9573e5da64d6eb8e0dd9ccfefadb68773202c"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -158,9 +173,9 @@
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
-        "date": "2023-06-19",
+        "date": "2023-06-27",
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-f97b0760ec4eef74c884249d01b07646367f2f07/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-fb2192bb8d499033b60f807c321bd840d459e1a5/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -170,12 +185,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "f97b0760ec4eef74c884249d01b07646367f2f07",
-            "sha256": "sha256-zKJrFm9oyt4+Ab2wMrIWO9+Ui61/nUyXbXhWbu/21qs=",
+            "rev": "fb2192bb8d499033b60f807c321bd840d459e1a5",
+            "sha256": "sha256-+9ZW596XwI0O8YSUEAHOi+o556ZWd8BPnUrqUOQpvPs=",
             "type": "git",
             "url": "https://github.com/shadowsocks/shadowsocks-rust"
         },
-        "version": "f97b0760ec4eef74c884249d01b07646367f2f07"
+        "version": "fb2192bb8d499033b60f807c321bd840d459e1a5"
     },
     "tide": {
         "cargoLocks": null,

@@ -3,30 +3,30 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "fee3f21363842f7e559a64fe36fabe38be569d3e";
+    version = "dc5cd526ce0ae0fbb907b539c87a8563fdcf3112";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "fee3f21363842f7e559a64fe36fabe38be569d3e";
+      rev = "dc5cd526ce0ae0fbb907b539c87a8563fdcf3112";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-/r4GxD0ssRhDfcy2Xb5zNKblucTDg4RCietpyTJX8SI=";
+      sha256 = "sha256-ru3R+t/A5qy0y64gsoNzXq0PHKqo61StvNe1kHQEkb4=";
     };
-    date = "2023-06-23";
+    date = "2023-06-27";
   };
   derputils = {
     pname = "derputils";
-    version = "1a803519309f254d628036409ca697b7b8ee4705";
+    version = "05643f416ff469bf917805357e5d2655218b12a8";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "1a803519309f254d628036409ca697b7b8ee4705";
+      rev = "05643f416ff469bf917805357e5d2655218b12a8";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-yKLbiFuuJ2xUzCHLgQw2jEY975BMpO4tkE2j7yQlzvk=";
+      sha256 = "sha256-7GBQ+4RnJt9UP5C1JV9/HC+bMByqmK6/L9vgc8eEJkM=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-1a803519309f254d628036409ca697b7b8ee4705/Cargo.lock;
-    date = "2023-06-24";
+    "Cargo.lock" = builtins.readFile ./derputils-05643f416ff469bf917805357e5d2655218b12a8/Cargo.lock;
+    date = "2023-06-27";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -37,6 +37,14 @@
       rev = "2021-11-26";
       fetchSubmodules = false;
       sha256 = "sha256-Kopl2NweYrq9rhw+0EUMhY/pfGo4g387927TZAhI5/A=";
+    };
+  };
+  ibm-plex = {
+    pname = "ibm-plex";
+    version = "v6.3.0";
+    src = fetchurl {
+      url = "https://github.com/IBM/plex/releases/download/v6.3.0/OpenType.zip";
+      sha256 = "sha256-ghayzpmcOnBzmx/fnQXdMRUp1DW2uZgrLjnApbGC+lQ=";
     };
   };
   k380-fn-keys-swap = {
@@ -81,16 +89,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685";
+    version = "42f9573e5da64d6eb8e0dd9ccfefadb68773202c";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685";
+      rev = "42f9573e5da64d6eb8e0dd9ccfefadb68773202c";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-LUXD8F+N0B0L6VTm5eBL8wIlc+Ajn/ai09Oa7O10PPU=";
+      sha256 = "sha256-xxG+sHufpIVh7bj5/crZ5LjbaEwtZ9lMDcyTHXE4P1o=";
     };
-    date = "2023-06-25";
+    date = "2023-06-28";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -107,17 +115,17 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "f97b0760ec4eef74c884249d01b07646367f2f07";
+    version = "fb2192bb8d499033b60f807c321bd840d459e1a5";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "f97b0760ec4eef74c884249d01b07646367f2f07";
+      rev = "fb2192bb8d499033b60f807c321bd840d459e1a5";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-zKJrFm9oyt4+Ab2wMrIWO9+Ui61/nUyXbXhWbu/21qs=";
+      sha256 = "sha256-+9ZW596XwI0O8YSUEAHOi+o556ZWd8BPnUrqUOQpvPs=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-f97b0760ec4eef74c884249d01b07646367f2f07/Cargo.lock;
-    date = "2023-06-19";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-fb2192bb8d499033b60f807c321bd840d459e1a5/Cargo.lock;
+    date = "2023-06-27";
   };
   tide = {
     pname = "tide";
