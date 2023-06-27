@@ -1,7 +1,7 @@
 {
     "cachyos-patches": {
         "cargoLocks": null,
-        "date": "2023-06-23",
+        "date": "2023-10-09",
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
@@ -11,18 +11,18 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "fee3f21363842f7e559a64fe36fabe38be569d3e",
-            "sha256": "sha256-/r4GxD0ssRhDfcy2Xb5zNKblucTDg4RCietpyTJX8SI=",
+            "rev": "234809738eeea5ab4ea41ae7f825292c21bd12d1",
+            "sha256": "sha256-IprxQJX75WtxjOWxBtv3tc6O70dEgVyysFC4Z0DioNk=",
             "type": "git",
             "url": "https://github.com/CachyOS/kernel-patches/"
         },
-        "version": "fee3f21363842f7e559a64fe36fabe38be569d3e"
+        "version": "234809738eeea5ab4ea41ae7f825292c21bd12d1"
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-06-24",
+        "date": "2023-10-02",
         "extract": {
-            "Cargo.lock": "./derputils-1a803519309f254d628036409ca697b7b8ee4705/Cargo.lock"
+            "Cargo.lock": "./derputils-430a266ae11c47c74e7fcb7b1a4379502265c747/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "1a803519309f254d628036409ca697b7b8ee4705",
-            "sha256": "sha256-yKLbiFuuJ2xUzCHLgQw2jEY975BMpO4tkE2j7yQlzvk=",
+            "rev": "430a266ae11c47c74e7fcb7b1a4379502265c747",
+            "sha256": "sha256-ncDPGV+fAzs/lnj5/wOoRROqECJqcPc43LB7v8yZozI=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "1a803519309f254d628036409ca697b7b8ee4705"
+        "version": "430a266ae11c47c74e7fcb7b1a4379502265c747"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -59,6 +59,21 @@
         },
         "version": "2021-11-26"
     },
+    "ibm-plex": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "ibm-plex",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-ghayzpmcOnBzmx/fnQXdMRUp1DW2uZgrLjnApbGC+lQ=",
+            "type": "url",
+            "url": "https://github.com/IBM/plex/releases/download/v6.3.0/OpenType.zip"
+        },
+        "version": "v6.3.0"
+    },
     "k380-fn-keys-swap": {
         "cargoLocks": null,
         "date": "2021-11-28",
@@ -77,27 +92,6 @@
             "url": "https://github.com/jergusg/k380-function-keys-conf/"
         },
         "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
-    },
-    "mdbook-toc": {
-        "cargoLocks": null,
-        "date": "2023-06-01",
-        "extract": {
-            "Cargo.lock": "./mdbook-toc-9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb/Cargo.lock"
-        },
-        "name": "mdbook-toc",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb",
-            "sha256": "sha256-89pwp1qEsG6xQgMwKBSo82q80rufNnxa/o7dujar4IE=",
-            "type": "git",
-            "url": "https://github.com/badboy/mdbook-toc"
-        },
-        "version": "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb"
     },
     "moonscript": {
         "cargoLocks": null,
@@ -120,7 +114,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-06-25",
+        "date": "2023-10-11",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -130,12 +124,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685",
-            "sha256": "sha256-LUXD8F+N0B0L6VTm5eBL8wIlc+Ajn/ai09Oa7O10PPU=",
+            "rev": "37da0bc0c63083f79d2fbf4622a9b3fd47c415df",
+            "sha256": "sha256-E1VDABUn05niU3cxkoSpfek/LxiRgV6q0XAPUSVJYBI=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "e59cf3b3a9ee0f9e9b4d2e01059dbdf185eb5685"
+        "version": "37da0bc0c63083f79d2fbf4622a9b3fd47c415df"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -158,9 +152,9 @@
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
-        "date": "2023-06-19",
+        "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-f97b0760ec4eef74c884249d01b07646367f2f07/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.16.2/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -170,12 +164,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "f97b0760ec4eef74c884249d01b07646367f2f07",
-            "sha256": "sha256-zKJrFm9oyt4+Ab2wMrIWO9+Ui61/nUyXbXhWbu/21qs=",
-            "type": "git",
-            "url": "https://github.com/shadowsocks/shadowsocks-rust"
+            "owner": "shadowsocks",
+            "repo": "shadowsocks-rust",
+            "rev": "v1.16.2",
+            "sha256": "sha256-TE1pGLS77WpaT0J0rUllihmHY5nOHzxd1LMsNjptXrg=",
+            "type": "github"
         },
-        "version": "f97b0760ec4eef74c884249d01b07646367f2f07"
+        "version": "v1.16.2"
     },
     "tide": {
         "cargoLocks": null,
@@ -191,30 +186,11 @@
             "name": null,
             "owner": "IlanCosman",
             "repo": "tide",
-            "rev": "v5.5.1",
-            "sha256": "sha256-vi4sYoI366FkIonXDlf/eE2Pyjq7E/kOKBrQS+LtE+M=",
+            "rev": "v6.0.1",
+            "sha256": "sha256-oLD7gYFCIeIzBeAW1j62z5FnzWAp3xSfxxe7kBtTLgA=",
             "type": "github"
         },
-        "version": "v5.5.1"
-    },
-    "watchgha": {
-        "cargoLocks": null,
-        "date": "2023-05-19",
-        "extract": null,
-        "name": "watchgha",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "830e536f5663147ea8fb2272773ca1377fe39d6a",
-            "sha256": "sha256-n5fjkB4mFfKajMUzHPFnHv/kjmL3In4wGhAbeIdp/9A=",
-            "type": "git",
-            "url": "https://github.com/nedbat/watchgha"
-        },
-        "version": "830e536f5663147ea8fb2272773ca1377fe39d6a"
+        "version": "v6.0.1"
     },
     "zhudou-sans": {
         "cargoLocks": null,
