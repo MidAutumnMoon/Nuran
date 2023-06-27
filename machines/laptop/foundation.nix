@@ -7,7 +7,7 @@ lib.mkMerge [
 {
 
     boot.kernelPackages =
-        lib.mkForce pkgs.linuxPackages_6_3;
+        lib.mkForce pkgs.linuxPackages_teapot;
 
     boot.initrd = {
         kernelModules = [
@@ -16,7 +16,6 @@ lib.mkMerge [
             "usbhid"
             "xhci_pci"
             "xhci_hcd"
-            "amdgpu"
         ];
         includeDefaultModules = false;
     };
@@ -27,7 +26,8 @@ lib.mkMerge [
     ];
 
     boot.kernelModules = [
-       "configs"
+        "amdgpu"
+        "configs"
     ];
 
     boot.kernelParams = [
