@@ -2,10 +2,10 @@
 
   ./foundation.nix
   ./hardware.nix
-  ./networking
+  ./networking.nix
+  ./environment.nix
 
   ./dasktop.nix
-  ./environment
   ./services
   ./virtcontar
 

@@ -7,7 +7,7 @@ lib.mkMerge [
 {
 
     boot.kernelPackages =
-        lib.mkForce pkgs.linuxPackages_teapot;
+        lib.mkForce pkgs.linuxPackages_6_3;
 
     boot.initrd = {
         kernelModules = [
@@ -16,6 +16,7 @@ lib.mkMerge [
             "usbhid"
             "xhci_pci"
             "xhci_hcd"
+            "amdgpu"
         ];
         includeDefaultModules = false;
     };
@@ -26,7 +27,7 @@ lib.mkMerge [
     ];
 
     boot.kernelModules = [
-        "configs"
+       "configs"
     ];
 
     boot.kernelParams = [
@@ -52,14 +53,8 @@ lib.mkMerge [
     };
 
     boot.initrd.luks = {
-        cryptoModules = [
-            "aes"
-            "aes_generic"
-            "xts"
-            "sha512"
-        ];
-        devices."lyfua" = {
-            device = "/dev/disk/by-uuid/fcdf1ea7-8aa1-4dd6-9271-c010612fca41";
+        devices."reuuko" = {
+            device = "/dev/disk/by-uuid/73533ebf-8f78-4725-95b5-d8627670380c";
             bypassWorkqueues = true;
             allowDiscards = true;
         };
@@ -70,57 +65,20 @@ lib.mkMerge [
 
 # Filesystem
 
-( let
-
-    device = "/dev/mapper/lyfua";
-
-    baseOption =
-        [ "defaults" "compress-force=zstd:2" "noatime" "discard=async" ];
-
-    subvol =
-        name: baseOption ++ [ "subvol=${name}" ];
-
-in {
+( {
 
     fileSystems."/" = {
-        device = "none";
-        fsType = "tmpfs";
-        options = [ "defaults" "size=16G" "mode=755" ];
-    };
-
-    fileSystems."/home" = {
-        inherit device;
-        fsType = "btrfs";
-        options = subvol "home";
-    };
-
-    fileSystems."/nix" = {
-        inherit device;
-        fsType = "btrfs";
-        options = subvol "nix";
-    };
-
-    fileSystems."/persist" = {
-        inherit device;
-        fsType = "btrfs";
-        neededForBoot = true;
-        options = subvol "persist";
-    };
-
-    fileSystems."/var" = {
-        inherit device;
-        fsType = "btrfs";
-        options = subvol "var";
+        device = "/dev/disk/by-uuid/c6f0db12-df94-466c-b6f6-a5629cbec666";
+        fsType = "xfs";
     };
 
     fileSystems."/boot" = {
-        device = "/dev/disk/by-uuid/FD5E-3536";
+        device = "/dev/disk/by-uuid/BF50-E761";
         fsType = "vfat";
-        options = [ "defaults" ];
     };
 
     swapDevices = [
-        { device = "/dev/disk/by-uuid/a70dc6c5-5746-4587-bb58-b809af148645"; }
+        { device = "/dev/disk/by-uuid/e77a4a82-7a65-4d97-81d2-599b2be8778e"; }
     ];
 
 } )
