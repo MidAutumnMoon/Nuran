@@ -10,7 +10,7 @@
 
 let
 
-    baseKernel = pkgs.linux_6_3;
+    baseKernel = pkgs.linux_6_4;
 
 in
 
@@ -30,11 +30,11 @@ in
 
     preConfigure = oldDrv.preConfigure or "" + ''
         makeFlagsArray+=(
-          KCFLAGS="${toString [
+          KCFLAGS="${ toString [
             "-march=${teapot.march}"
             "-mtune=${teapot.mtune}"
             "-pipe"
-          ]}"
+          ] }"
         )
     '';
 
