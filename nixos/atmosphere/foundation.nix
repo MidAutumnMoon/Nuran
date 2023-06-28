@@ -15,6 +15,7 @@
         "dev.tty.ldisc_autoload" = 0;
         "kernel.kexec_load_disabled" = 1;
         "vm.max_map_count" = 2147483642;
+        "kernel.sysrq" = 1;
     };
 
 }; }
