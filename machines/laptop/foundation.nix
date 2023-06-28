@@ -34,8 +34,6 @@ lib.mkMerge [
         "zswap.enabled=1"
         "zswap.compressor=lz4"
         "zswap.max_pool_percent=20"
-        "iommu=off"
-        "amd_iommu=off"
     ];
 
     hardware.cpu.amd.updateMicrocode = true;
@@ -66,6 +64,8 @@ lib.mkMerge [
 # Filesystem
 
 ( {
+
+    services.fstrim.enable = true;
 
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/c6f0db12-df94-466c-b6f6-a5629cbec666";
