@@ -20,6 +20,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
     watchgha
     nvfetcher_git
     neovim_teapot
+    ibm-plex_teapot
   ];
 
   parallel-3 = [

@@ -63,6 +63,10 @@ fetch.github = "vinceliuice/Graphite-cursors"
 src.github = "Buernia/Zhudou-Sans"
 fetch.github = "Buernia/Zhudou-Sans"
 
+[ibm-plex]
+src.github = "IBM/plex"
+fetch.url = "https://github.com/IBM/plex/releases/download/$ver/OpenType.zip"
+
 # Warehouse
 
 [mdbook-toc]

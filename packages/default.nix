@@ -121,6 +121,9 @@ rec {
     zhudou-sans =
         callPackage ./font/zhudou-sans {};
 
+    ibm-plex_teapot =
+        callPackage ./font/ibm-plex {};
+
     /*
      *
      * Things not willing to be categorized
