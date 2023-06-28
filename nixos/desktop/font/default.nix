@@ -13,11 +13,10 @@ lib.condMod ( config.fonts.fontconfig.enable )
         source-han-sans
         zhudou-sans
         noto-fonts-emoji
+        ibm-plex_teapot
 
         iosevka_teapot
         hack-font
-
-        ibm-plex
     ];
 
 }; }
