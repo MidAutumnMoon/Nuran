@@ -26,32 +26,10 @@ end
 
 
 #
-# 2) Set GitHub PAT to avoid rate limiting
-#
-
-set --local NixConf "/etc/nix/nix.conf"
-
-set --query GITHUB_TOKEN
-    or begin
-        echo 'Required env GITHUB_TOKEN not set'
-        exit 1
-    end
-
-sudo sed --in-place --expression \
-    "\$aaccess-tokens = github.com=$GITHUB_TOKEN" \
-    "$NixConf"
-
-
-
-#
-# 3) Verify
+# 2) Verify
 #
 
 sudo systemctl daemon-reload
 sudo systemctl restart nix-daemon
 
 systemctl cat nix-daemon
-
-grep -i --quiet "$GITHUB_TOKEN" "$NixConf"
-    and echo "PAT hopefully set"
-
