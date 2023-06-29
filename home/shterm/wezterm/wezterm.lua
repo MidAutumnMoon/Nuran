@@ -33,6 +33,8 @@ config.line_height = 1.12
 config.use_cap_height_to_scale_fallback_fonts = true
 config.warn_about_missing_glyphs = false
 
+config.unicode_version = 14
+
 
 --
 -- Appearance
