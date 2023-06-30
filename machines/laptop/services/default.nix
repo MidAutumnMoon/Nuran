@@ -3,5 +3,6 @@
   ./all.nix
 
   ./rclone
+  ./polkit
 
 ]; }
