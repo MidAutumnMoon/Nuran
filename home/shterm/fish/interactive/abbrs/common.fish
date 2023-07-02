@@ -4,3 +4,5 @@ abbr -a sc screen
 abbr -a lz lazygit
 
 abbr -a - 'cd -'
+
+abbr -a ldd libtree
