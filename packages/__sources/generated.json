@@ -5,7 +5,7 @@
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
-        "pinned": false,
+        "pinned": true,
         "src": {
             "deepClone": false,
             "fetchSubmodules": false,
@@ -20,9 +20,9 @@
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-06-27",
+        "date": "2023-07-03",
         "extract": {
-            "Cargo.lock": "./derputils-05643f416ff469bf917805357e5d2655218b12a8/Cargo.lock"
+            "Cargo.lock": "./derputils-bd24074f51683cecb62f07f158cd27373d6db7aa/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "05643f416ff469bf917805357e5d2655218b12a8",
-            "sha256": "sha256-7GBQ+4RnJt9UP5C1JV9/HC+bMByqmK6/L9vgc8eEJkM=",
+            "rev": "bd24074f51683cecb62f07f158cd27373d6db7aa",
+            "sha256": "sha256-V0L7k55pECwtZwMNy8dNUEnSxwROL5N5TwBaMfs+Sr8=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "05643f416ff469bf917805357e5d2655218b12a8"
+        "version": "bd24074f51683cecb62f07f158cd27373d6db7aa"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -135,7 +135,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-06-28",
+        "date": "2023-07-02",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -145,12 +145,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "42f9573e5da64d6eb8e0dd9ccfefadb68773202c",
-            "sha256": "sha256-xxG+sHufpIVh7bj5/crZ5LjbaEwtZ9lMDcyTHXE4P1o=",
+            "rev": "4fd852b8cb88ed035203d3f9ae2e6a8258244974",
+            "sha256": "sha256-rMkt9AJruebELK+8RrJPJ4+9T7CNuulZqUhpv0mQn2I=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "42f9573e5da64d6eb8e0dd9ccfefadb68773202c"
+        "version": "4fd852b8cb88ed035203d3f9ae2e6a8258244974"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -173,9 +173,9 @@
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
-        "date": "2023-06-27",
+        "date": "2023-07-01",
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-fb2192bb8d499033b60f807c321bd840d459e1a5/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-59c0af07cdc266db6126d8f6ca9fc7176b96496d/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -185,12 +185,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "fb2192bb8d499033b60f807c321bd840d459e1a5",
-            "sha256": "sha256-+9ZW596XwI0O8YSUEAHOi+o556ZWd8BPnUrqUOQpvPs=",
+            "rev": "59c0af07cdc266db6126d8f6ca9fc7176b96496d",
+            "sha256": "sha256-a3XtdofoeNVpW+/YjdyllSDulmBV4M7BjMDtyZbACTE=",
             "type": "git",
             "url": "https://github.com/shadowsocks/shadowsocks-rust"
         },
-        "version": "fb2192bb8d499033b60f807c321bd840d459e1a5"
+        "version": "59c0af07cdc266db6126d8f6ca9fc7176b96496d"
     },
     "tide": {
         "cargoLocks": null,
@@ -214,7 +214,7 @@
     },
     "watchgha": {
         "cargoLocks": null,
-        "date": "2023-05-19",
+        "date": "2023-07-02",
         "extract": null,
         "name": "watchgha",
         "passthru": null,
@@ -224,12 +224,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "830e536f5663147ea8fb2272773ca1377fe39d6a",
-            "sha256": "sha256-n5fjkB4mFfKajMUzHPFnHv/kjmL3In4wGhAbeIdp/9A=",
+            "rev": "5a423c3e45705b01e25a2323a99e8a27080d9a4a",
+            "sha256": "sha256-w4IKheCU027wWr85qngeOxO5OQ1HsMPwuB1hSbfQqV0=",
             "type": "git",
             "url": "https://github.com/nedbat/watchgha"
         },
-        "version": "830e536f5663147ea8fb2272773ca1377fe39d6a"
+        "version": "5a423c3e45705b01e25a2323a99e8a27080d9a4a"
     },
     "zhudou-sans": {
         "cargoLocks": null,
