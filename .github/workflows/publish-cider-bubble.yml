@@ -40,6 +40,9 @@ jobs:
             substituters = https://cache.nixos.org/ https://nuirrce.cachix.org/
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk=
 
+      - name: "Magic Nix Cache"
+        uses: DeterminateSystems/magic-nix-cache-action@v2
+
       - name: Build Cider Bubble
         run: |
           nix develop .#cider-bubble -c -- \
