@@ -1,38 +1,39 @@
 {
-  lib,
-  sources,
-  python3Packages,
+    lib,
+    sources,
+    python3Packages,
 }:
 
 with python3Packages;
 
 buildPythonApplication rec {
 
-  pname = "watchgha";
-  version = "unstable";
+    pname = "watchgha";
+    version = "unstable";
 
-  format = "pyproject";
+    format = "pyproject";
 
-  inherit ( sources.${pname} ) src;
-
-
-  nativeBuildInputs = [
-    setuptools
-  ];
-
-  propagatedBuildInputs = [
-    click
-    exceptiongroup
-    httpx
-    rich
-    trio
-  ];
+    inherit ( sources.${pname} ) src;
 
 
-  meta = {
-    mainProgram = "watch_gha_runs";
-    homepage = "https://github.com/nedbat/watchgha/";
-    license = lib.licenses.asl20;
-  };
+    nativeBuildInputs = [
+        setuptools
+    ];
+
+    propagatedBuildInputs = [
+        click
+        exceptiongroup
+        httpx
+        rich
+        trio
+        dulwich
+    ];
+
+
+    meta = {
+        mainProgram = "watch_gha_runs";
+        homepage = "https://github.com/nedbat/watchgha/";
+        license = lib.licenses.asl20;
+    };
 
 }
