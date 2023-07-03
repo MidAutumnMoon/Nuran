@@ -2,92 +2,90 @@
 
 let
 
-  inherit ( pkgs ) writeText writers;
+    inherit ( pkgs )
+        writeText
+        writeShellScript;
 
-  inherit ( writers ) writeFish;
+    allowedSigners = writeText "git-allowed-signers" ''
+        me@418.im ${nixosConfig.nudata.pubkeys.self}
+    '';
 
-  allowedSigners = writeText "git-allowed-signers" ''
-    me@418.im ${nixosConfig.nudata.pubkeys.self}
-  '';
+    watchghaWrapper = writeShellScript "watchgha" ''
+        export GITHUB_TOKEN="$( cat ${secrets.github_token.path} )"
+        exec "${lib.getExe pkgs.watchgha}"
+    '';
 
-  watchghaWrapper = writeFish "watchgha" ''
-    set -lx GITHUB_TOKEN "$( cat ${secrets.github_token.path} )"
-    ${lib.getExe pkgs.watchgha} \
-      "$( git remote get-url origin )" \
-      "$( git rev-parse --abbrev-ref HEAD )"
-  '';
-
-  secrets = nixosConfig.sops.secrets;
+    secrets = nixosConfig.sops.secrets;
 
 in
 
 
 { imports = [
 
-  ./delta.nix
+    ./delta.nix
 
 ]; xdg.configFile."git/config".text = ''
 
-  [user]
-    email = "me@418.im"
-    name = "MidAutumnMoon"
+    [user]
+        email = "me@418.im"
+        name = "MidAutumnMoon"
 
-  [merge]
-    conflictstyle = "diff3"
+    [merge]
+        conflictstyle = "diff3"
 
-  [diff]
-    mnemonicPrefix = true
+    [diff]
+        mnemonicPrefix = true
 
-  [pull]
-    rebase = "merges"
+    [pull]
+        rebase = "merges"
 
-  [status]
-    showUntrackedFiles = "all"
+    [status]
+        showUntrackedFiles = "all"
 
-  [init]
-    defaultBranch = "master"
+    [init]
+        defaultBranch = "master"
 
-  [core]
-    quotePath = false
+    [core]
+        quotePath = false
 
-  [http]
-    proxy = "${nixosConfig.networking.proxy.httpProxy}"
+    [http]
+        proxy = "${nixosConfig.networking.proxy.httpProxy}"
 
-  [credential]
-    helper = "store --file=${secrets."git_credentials".path}"
+    [credential]
+        helper = "store --file=${secrets."git_credentials".path}"
 
-  [gc]
-    auto = 0
-
-
-  # Alias
-
-  [alias]
-
-    workflow-watch = "!${watchghaWrapper}"
-
-    kill-reflog = "reflog expire --all --expire=now --expire-unreachable=now"
+    [gc]
+        auto = 0
 
 
-  # Signing
+    # Alias
 
-  [user]
-    signingKey = "${secrets."id_teapot.pub".path}"
+    [alias]
 
-  [gpg]
-    format = "ssh"
+        workflow-watch = "!${watchghaWrapper}"
 
-  [gpg "ssh"]
-    allowedSignersFile = "${allowedSigners}"
+        kill-reflog = "reflog expire --all --expire=now --expire-unreachable=now"
 
-  [commit]
-    gpgSign = true
 
-  [tag]
-    gpgSign = true
+    # Signing
+
+    [user]
+        signingKey = "${secrets."id_teapot.pub".path}"
+
+    [gpg]
+        format = "ssh"
+
+    [gpg "ssh"]
+        allowedSignersFile = "${allowedSigners}"
+
+    [commit]
+        gpgSign = true
+
+    [tag]
+        gpgSign = true
 
 ''; home.packages = with pkgs; [
 
-  git
+    git
 
 ]; }
