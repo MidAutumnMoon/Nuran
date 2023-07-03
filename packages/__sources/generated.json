@@ -135,7 +135,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-07-02",
+        "date": "2023-07-03",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -145,12 +145,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "4fd852b8cb88ed035203d3f9ae2e6a8258244974",
-            "sha256": "sha256-rMkt9AJruebELK+8RrJPJ4+9T7CNuulZqUhpv0mQn2I=",
+            "rev": "f771d6247147b393238fe57065a96fb5e9635358",
+            "sha256": "sha256-168IJ7XR40+RcnI5DdLfKw9y93oO1yU7msGSaftNmOI=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "4fd852b8cb88ed035203d3f9ae2e6a8258244974"
+        "version": "f771d6247147b393238fe57065a96fb5e9635358"
     },
     "puffer-fish": {
         "cargoLocks": null,
