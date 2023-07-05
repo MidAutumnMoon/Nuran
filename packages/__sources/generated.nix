@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "bd24074f51683cecb62f07f158cd27373d6db7aa";
+    version = "69fbbdd67aaac9c990d00ac56ee4792a26a3614c";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "bd24074f51683cecb62f07f158cd27373d6db7aa";
+      rev = "69fbbdd67aaac9c990d00ac56ee4792a26a3614c";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-V0L7k55pECwtZwMNy8dNUEnSxwROL5N5TwBaMfs+Sr8=";
+      sha256 = "sha256-jZSKiEpi63o6GVV6q0MOszEFZT5W8flYDALpHsMTrLk=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-bd24074f51683cecb62f07f158cd27373d6db7aa/Cargo.lock;
-    date = "2023-07-03";
+    "Cargo.lock" = builtins.readFile ./derputils-69fbbdd67aaac9c990d00ac56ee4792a26a3614c/Cargo.lock;
+    date = "2023-07-05";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -89,16 +89,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "f771d6247147b393238fe57065a96fb5e9635358";
+    version = "b2e8c0df2062f765a4cf7d96379c5f0f19393dfd";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "f771d6247147b393238fe57065a96fb5e9635358";
+      rev = "b2e8c0df2062f765a4cf7d96379c5f0f19393dfd";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-168IJ7XR40+RcnI5DdLfKw9y93oO1yU7msGSaftNmOI=";
+      sha256 = "sha256-u0OZu1TrekAmZw/xhjMYrsqt8o0rGSpssCuhq8Uc9A0=";
     };
-    date = "2023-07-03";
+    date = "2023-07-05";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -115,27 +115,27 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "59c0af07cdc266db6126d8f6ca9fc7176b96496d";
+    version = "32de79eeb7f3b0867ee415b16f5ead0df8a750ef";
     src = fetchgit {
       url = "https://github.com/shadowsocks/shadowsocks-rust";
-      rev = "59c0af07cdc266db6126d8f6ca9fc7176b96496d";
+      rev = "32de79eeb7f3b0867ee415b16f5ead0df8a750ef";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-a3XtdofoeNVpW+/YjdyllSDulmBV4M7BjMDtyZbACTE=";
+      sha256 = "sha256-RRr54W9t1re3KKVqz1QM7SEUOyCB2xYC1D/PpmD07/E=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-59c0af07cdc266db6126d8f6ca9fc7176b96496d/Cargo.lock;
-    date = "2023-07-01";
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-32de79eeb7f3b0867ee415b16f5ead0df8a750ef/Cargo.lock;
+    date = "2023-07-03";
   };
   tide = {
     pname = "tide";
-    version = "v5.5.1";
+    version = "v5.6.0";
     src = fetchFromGitHub {
       owner = "IlanCosman";
       repo = "tide";
-      rev = "v5.5.1";
+      rev = "v5.6.0";
       fetchSubmodules = false;
-      sha256 = "sha256-vi4sYoI366FkIonXDlf/eE2Pyjq7E/kOKBrQS+LtE+M=";
+      sha256 = "sha256-cCI1FDpvajt1vVPUd/WvsjX/6BJm6X1yFPjqohmo1rI=";
     };
   };
   watchgha = {
