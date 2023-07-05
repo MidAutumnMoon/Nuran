@@ -14,6 +14,8 @@
     libqalculate
 
     p7zip
+    unzrip
+    unrar
     rclone
 
     firefox_teapot

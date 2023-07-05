@@ -75,11 +75,8 @@ in {
             graphite-cursor-theme
             breeze-gtk
 
-            unzip unrar
             kate ark
             qimgv
-
-            xorg.xprop
             xdg-utils
         ];
 
