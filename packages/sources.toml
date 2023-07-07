@@ -3,8 +3,8 @@
 # Network
 
 [shadowsocks-rust]
-src.git = "https://github.com/shadowsocks/shadowsocks-rust"
-fetch.git = "https://github.com/shadowsocks/shadowsocks-rust"
+src.github = "shadowsocks/shadowsocks-rust"
+fetch.github = "shadowsocks/shadowsocks-rust"
 extract = [ "Cargo.lock" ]
 
 # Editor
