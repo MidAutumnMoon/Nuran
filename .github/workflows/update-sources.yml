@@ -36,9 +36,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: fish __scripts/configure-daemon.fish
 
-      - name: "Magic Nix Cache"
-        uses: DeterminateSystems/magic-nix-cache-action@v2
-
       - name: Run nvfetcher
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

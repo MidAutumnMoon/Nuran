@@ -51,9 +51,6 @@ jobs:
           pushFilter: |
             (NVIDIA.*\.run)|(-source|vendor\..*|go-modules|-crate-|.tar.gz)
 
-      - name: "Magic Nix Cache"
-        uses: DeterminateSystems/magic-nix-cache-action@v2
-
       - name: "Install tools"
         run: |
           nix-env -f '<nixpkgs>' -iA \
