@@ -1,42 +1,42 @@
 {
-  lib,
-  pkgs,
+    lib,
+    pkgs,
 
-  flakePath,
-  flake ? builtins.getFlake ( toString flakePath ),
+    flakePath,
+    flake ? builtins.getFlake ( toString flakePath ),
 }:
 
 let
 
-  serviceName = "abcd";
+    serviceName = "abcd";
 
-  callPackage =
-    pkgs.newScope { inherit lib serviceName config; };
+    callPackage =
+        pkgs.newScope { inherit lib serviceName config; };
 
-  config = callPackage ./config.nix {
-    inherit flake;
-    nixosName = "lyfua";
-  };
+    config = callPackage ./config.nix {
+        inherit flake;
+        nixosName = "reuuko";
+    };
 
-  callService =
-    path: ( callPackage path {} ).service;
+    callService =
+        path: ( callPackage path {} ).service;
 
 in
 
 pkgs.portableService {
 
-  pname = serviceName;
-  version = "dev";
+    pname = serviceName;
+    version = "dev";
 
-  units = [
-    ( callService ./coredns )
-    ( callService ./shadowsocks )
-    ( callService ./hysteria )
-  ];
+    units = [
+        ( callService ./coredns )
+        ( callService ./shadowsocks )
+        ( callService ./hysteria )
+    ];
 
-  symlinks =
-    [ { object = "${pkgs.cacert}/etc/ssl"; symlink = "/etc/ssl"; } ];
+    symlinks =
+        [ { object = "${pkgs.cacert}/etc/ssl"; symlink = "/etc/ssl"; } ];
 
-  squash-compression = "zstd";
+    squash-compression = "zstd";
 
 }
