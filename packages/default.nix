@@ -67,9 +67,6 @@ rec {
     k380-fn-keys-swap =
         callPackage ./utility/k380-fn-keys-swap {};
 
-    watchgha =
-        callPackage ./utility/watchgha {};
-
     rpgsavedecrypt =
         callPackage ./utility/rpgsavedecrypt {};
 

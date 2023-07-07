@@ -1,18 +1,12 @@
-{ lib, nixosConfig, pkgs, ... }:
+{ nixosConfig, pkgs, ... }:
 
 let
 
     inherit ( pkgs )
-        writeText
-        writeShellScript;
+        writeText;
 
     allowedSigners = writeText "git-allowed-signers" ''
         me@418.im ${nixosConfig.nudata.pubkeys.self}
-    '';
-
-    watchghaWrapper = writeShellScript "watchgha" ''
-        export GITHUB_TOKEN="$( cat ${secrets.github_token.path} )"
-        exec "${lib.getExe pkgs.watchgha}"
     '';
 
     secrets = nixosConfig.sops.secrets;
@@ -61,8 +55,6 @@ in
     # Alias
 
     [alias]
-
-        workflow-watch = "!${watchghaWrapper}"
 
         kill-reflog = "reflog expire --all --expire=now --expire-unreachable=now"
 
