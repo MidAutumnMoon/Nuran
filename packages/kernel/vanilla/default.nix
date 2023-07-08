@@ -26,16 +26,21 @@ in
         baseKernel.kernelPatches
         ++ callPackage ./patches.nix {};
 
-} ).overrideDerivation ( oldDrv: {
+} ).overrideDerivation ( oldDrv: let
+
+    KCFLAGS = toString [
+        "-march=${teapot.march}"
+        "-mtune=${teapot.mtune}"
+        "-pipe"
+    ];
+
+in {
 
     preConfigure = oldDrv.preConfigure or "" + ''
         makeFlagsArray+=(
-          KCFLAGS="${ toString [
-            "-march=${teapot.march}"
-            "-mtune=${teapot.mtune}"
-            "-pipe"
-          ] }"
+            KCFLAGS="${KCFLAGS}"
         )
+        export ZSTD_CLEVEL=19
     '';
 
 } )
