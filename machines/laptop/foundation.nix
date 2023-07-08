@@ -20,11 +20,6 @@ lib.mkMerge [
         includeDefaultModules = false;
     };
 
-    boot.blacklistedKernelModules = [
-        "nouveau"
-        "i2c_nvidia_gpu"
-    ];
-
     boot.kernelModules = [
         "amdgpu"
         "configs"
