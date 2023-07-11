@@ -60,7 +60,10 @@ lib.mkMerge [
 
 ( {
 
-    services.fstrim.enable = true;
+    services =  {
+        fstrim.enable = true;
+        lvm.enable = false;
+    };
 
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/c6f0db12-df94-466c-b6f6-a5629cbec666";
