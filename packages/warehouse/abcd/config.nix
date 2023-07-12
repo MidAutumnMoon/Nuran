@@ -20,19 +20,15 @@ let
 
     secrets = config.sops.secrets;
 
-in builtins.foldl' ( a: b: a // b ) {} [
+in
 
 {
     dns_addr =
-        config.nudata.services.dnscrypt.listen_addr;
-}
+        config.nudata.services.dns.listen_addr;
 
-{
     ss_password = readSecret "ss_password";
     ss_port_a = 39082;
-}
 
-{
     hy_domain = "io.99923b948eaf5bcd.io";
     hy_port = 40875;
     hy_obfs = readSecret "hy_obfs";
@@ -40,5 +36,3 @@ in builtins.foldl' ( a: b: a // b ) {} [
     hy_cert = copySecret "hy_server_crt";
     hy_key = copySecret "hy_server_key";
 }
-
-]
