@@ -47,21 +47,18 @@ jobs:
         with:
           name: "nuirrce"
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-          cachixArgs: "-c7"
+          cachixArgs: -c 16 -j 2 --omit-deriver
           pushFilter: |
-            (NVIDIA.*\.run)|(-source|vendor\..*|go-modules|-crate-|.tar.gz)
+            (NVIDIA.*\.run)|(-source|vendor\..*|go-modules|-crate-|\.tar.*$)
 
       - name: "Install tools"
         run: |
-          nix-env -f '<nixpkgs>' -iA \
-            'nix-build-uncached' 'fish'
+          nix-env -f '<nixpkgs>' -iA 'nix-build-uncached' 'fish'
 
       # - name: "Freeup bloats"
       #   run: fish __scripts/cleansing.fish light
 
       - name: "Configure nix daemon"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: fish __scripts/configure-daemon.fish
 
       - name: "Update workspace flake"
@@ -69,7 +66,9 @@ jobs:
 
       - name: "Run build"
         run: |
-          fish __scripts/do-build.fish 'packages/workflow-builds.nix' '${{ matrix.task-name }}'
+          fish __scripts/do-build.fish \
+            'packages/workflow-builds.nix' \
+            '${{ matrix.task-name }}'
 
       # - name: "Cleanup"
       #   if: always()
