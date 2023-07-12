@@ -33,6 +33,8 @@ lib.mkMerge [
     environment.systemPackages = [
         pkgs.libimobiledevice
     ];
+
+    systemd.services.ModemManager.enable = false;
 }
 
 {
