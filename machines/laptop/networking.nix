@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 
 lib.mkMerge [
 
@@ -9,6 +9,7 @@ lib.mkMerge [
     networkmanager = {
         enable = true;
         plugins = lib.mkForce [];
+        wifi.backend = "iwd";
     };
 
     proxy = {

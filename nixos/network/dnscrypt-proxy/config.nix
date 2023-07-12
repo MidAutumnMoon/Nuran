@@ -1,72 +1,61 @@
-{ lib, config }:
+{ lib, config, pkgs }:
 
 let
 
-  inherit ( config.nudata.services.dnscrypt )
-    listen_addr listen_addr6;
+    generator = pkgs.formats.toml {};
 
 in
 
-''
-server_names = [
-  'cloudflare6',
-  'quad9',
-  'iij'
-]
+generator.generate "dnscrypt-config" rec {
 
-listen_addresses = [
-  '${listen_addr}:53',
-  '[${listen_addr6}]:53'
-]
-
-require_dnssec = true
+    listen_addresses =
+        config.nudata.services.dns.listen;
 
 
-timeout = 5000
-
-keepalive = 60
-
-lb_estimator = true
+    server_names = lib.attrNames static;
+    require_dnssec = true;
 
 
-log_level = 2
-
-use_syslog = true
-
-
-bootstrap_resolvers = [ '223.5.5.5:53' ]
-
-ignore_system_dns = true
-
-netprobe_timeout = 60
-
-netprobe_address = '223.5.5.5:53'
-
-cache = true
-
-cache_size = 4096
+    timeout = 5000;
+    keepalive = 60;
+    lb_estimator = true;
 
 
-
-[query_log]
-
-file = "/dev/stdout"
-
-ignored_qtypes = [ 'DNSKEY', 'NS' ]
+    log_level = 2;
+    use_syslog = true;
 
 
-[sources]
+    bootstrap_resolvers = [
+        "223.5.5.5:53"
+    ];
+
+    ignore_system_dns = true;
+    netprobe_timeout = 60;
+    netprobe_address = "223.5.5.5:53";
+
+    cache = true;
+    cache_size = 4096;
 
 
-[static.cloudflare6]
-stamp = 'sdns://AgcAAAAAAAAAFlsyNjA2OjQ3MDA6NDcwMDo6MTAwMV0AEmRucy5jbG91ZGZsYXJlLmNvbQovZG5zLXF1ZXJ5'
+    query_log = {
+        file = "/dev/stdout";
+        ignored_qtypes = [ "DNSKEY" "NS" ];
+    };
 
-[static.quad9]
-stamp = 'sdns://AgcAAAAAAAAADVsyNjIwOmZlOjpmZV0ADWRucy5xdWFkOS5uZXQKL2Rucy1xdWVyeQ'
 
-[static.iij]
-stamp = 'sdns://AgcAAAAAAAAACjEwMy4yLjU3LjYAEXB1YmxpYy5kbnMuaWlqLmpwCi9kbnMtcXVlcnk'
+    sources = {};
 
-# vim: ft=toml:
 
-''
+    static.cloudflare6 = {
+        stamp = "sdns://AgcAAAAAAAAAFlsyNjA2OjQ3MDA6NDcwMDo6MTAwMV0AEmRucy5jbG91ZGZsYXJlLmNvbQovZG5zLXF1ZXJ5";
+    };
+
+    static.quad9 = {
+        stamp = "sdns://AgcAAAAAAAAADVsyNjIwOmZlOjpmZV0ADWRucy5xdWFkOS5uZXQKL2Rucy1xdWVyeQ";
+    };
+
+    static.iij = {
+        stamp = "sdns://AgcAAAAAAAAACjEwMy4yLjU3LjYAEXB1YmxpYy5kbnMuaWlqLmpwCi9kbnMtcXVlcnk";
+    };
+
+}

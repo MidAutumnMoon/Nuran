@@ -2,31 +2,33 @@
 
 let
 
-  dnscryptProgram =
-    lib.getExe pkgs.dnscrypt-proxy2;
+    dnscryptExe =
+        lib.getExe pkgs.dnscrypt-proxy2;
 
-  configFile =
-    pkgs.writeText "dnscrypt-config" ( import ./config.nix { inherit lib config; } );
+    configFile = pkgs.callPackage ./config.nix {
+        inherit lib pkgs config;
+    };
 
 in
 
+lib.mkIf config.role.personal
+
 { systemd.services."dnscrypt-proxy" = {
 
-  description = "dnscrypt-proxy";
+    description = "dnscrypt-proxy";
 
-  after = [ "network.target" ];
-  wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
 
-}; systemd.services."dnscrypt-proxy".serviceConfig = {
+    serviceConfig = {
+        DynamicUser = true;
+        SystemCallFilter = "@system-service";
+        AmbientCapabilities = "CAP_NET_BIND_SERVICE";
 
-  DynamicUser = true;
-  SystemCallFilter = "@system-service";
+        RuntimeDirectory = "dnscrypt-proxy";
+        StateDirectory = "dnscrypt-proxy";
 
-  AmbientCapabilities = "CAP_NET_BIND_SERVICE";
-
-  RuntimeDirectory = "dnscrypt-proxy";
-  StateDirectory = "dnscrypt-proxy";
-
-  ExecStart = "${dnscryptProgram} -config ${configFile}";
+        ExecStart = "${dnscryptExe} -config ${configFile}";
+    };
 
 }; }
