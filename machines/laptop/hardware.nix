@@ -52,6 +52,7 @@
     hardware.nvidia = {
         nvidiaSettings = false;
         modesetting.enable = true;
+        open = true;
     };
 
     hardware.nvidia.powerManagement = {
