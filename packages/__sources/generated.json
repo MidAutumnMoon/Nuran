@@ -20,9 +20,9 @@
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-07-07",
+        "date": "2023-07-13",
         "extract": {
-            "Cargo.lock": "./derputils-2e5dad0f5bb48049bddc07afae5d23441d56cc32/Cargo.lock"
+            "Cargo.lock": "./derputils-cbfa282514b5bbe6cf6305d5793be4fa2d03452f/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "2e5dad0f5bb48049bddc07afae5d23441d56cc32",
-            "sha256": "sha256-CoIO/pvNXbOz75FYDcpPx8hXprEA95wjgGbSFmhNLlo=",
+            "rev": "cbfa282514b5bbe6cf6305d5793be4fa2d03452f",
+            "sha256": "sha256-IkAvNLKwnQCxE/Sp+wA88+snp4xFYX7Sl/Szc6e3q28=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "2e5dad0f5bb48049bddc07afae5d23441d56cc32"
+        "version": "cbfa282514b5bbe6cf6305d5793be4fa2d03452f"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -135,7 +135,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-07-08",
+        "date": "2023-07-13",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -145,12 +145,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "fbeef0d4ef1aadc4e50b9f33946cf4dca8ca6b62",
-            "sha256": "sha256-nLJ/TfVjKOZEWaqGh97qo8Tbm6ChajuCNYGQgbnn+Sw=",
+            "rev": "a3f4598226c4d01e4fbc41181a1ad21793862fe3",
+            "sha256": "sha256-yLgqQAIxp8YmZNZnsztGMW7KhDVKvaQ77U9fBxdr1Ig=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "fbeef0d4ef1aadc4e50b9f33946cf4dca8ca6b62"
+        "version": "a3f4598226c4d01e4fbc41181a1ad21793862fe3"
     },
     "puffer-fish": {
         "cargoLocks": null,
