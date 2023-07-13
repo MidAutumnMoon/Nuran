@@ -177,12 +177,8 @@ in {
             pkg-config
         ];
 
-        rust-gtk4 = p: with p; [
-            cairo
-            gtk4
-            gdk-pixbuf
-            pango
-            libadwaita
+        rust-sdl = p: with p; [
+            SDL2
         ] ++ ( self.shellRecipes.rust p );
 
         picno = p: with p; [
