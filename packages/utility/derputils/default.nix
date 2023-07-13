@@ -1,28 +1,33 @@
 {
-  lib,
-  sources,
-  teapot,
+    lib,
+    sources,
+    teapot,
 
-  rustPlatform,
+    rustPlatform,
+
+    SDL2,
 }:
 
 rustPlatform.buildRustPackage rec {
 
-  pname = "derputils";
+    pname = "derputils";
+    version = "unstable";
 
-  version = "unstable";
+    inherit ( sources.${pname} ) src;
+    inherit ( teapot ) RUSTFLAGS;
 
-  inherit ( sources.${ pname } ) src;
-
-  cargoLock.lockFileContents =
-    sources.${ pname }."Cargo.lock";
+    cargoLock.lockFileContents =
+        sources.${pname}."Cargo.lock";
 
 
-  inherit ( teapot ) RUSTFLAGS;
+    buildInputs = [
+        SDL2
+    ];
 
-  meta = {
-      homepage = "https://github.com/MidAutumnMoon/derputils";
-      license = lib.licenses.mit;
+
+    meta = {
+        homepage = "https://github.com/MidAutumnMoon/derputils";
+        license = lib.licenses.mit;
     };
 
 }
