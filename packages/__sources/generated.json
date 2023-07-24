@@ -20,9 +20,9 @@
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-07-14",
+        "date": "2023-07-17",
         "extract": {
-            "Cargo.lock": "./derputils-4350e9268c16e186a648fa7b84f116dc174a7693/Cargo.lock"
+            "Cargo.lock": "./derputils-975af6f112dd6aeb6257cbf5964f59e2ef8451f4/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "4350e9268c16e186a648fa7b84f116dc174a7693",
-            "sha256": "sha256-LxJ5m/PErt4CG5czcPTnoKXAy3YtFeWR3A8utoe/n+A=",
+            "rev": "975af6f112dd6aeb6257cbf5964f59e2ef8451f4",
+            "sha256": "sha256-SO+TxpNcvwzm/hfA7P7PDK+U38wp3kjZm9ElrHHOAbg=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "4350e9268c16e186a648fa7b84f116dc174a7693"
+        "version": "975af6f112dd6aeb6257cbf5964f59e2ef8451f4"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -95,9 +95,9 @@
     },
     "mdbook-toc": {
         "cargoLocks": null,
-        "date": "2023-06-01",
+        "date": "2023-07-18",
         "extract": {
-            "Cargo.lock": "./mdbook-toc-9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb/Cargo.lock"
+            "Cargo.lock": "./mdbook-toc-53e8bcef6e516d33a32dd610a5c5d8b7b7d98606/Cargo.lock"
         },
         "name": "mdbook-toc",
         "passthru": null,
@@ -107,12 +107,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb",
-            "sha256": "sha256-89pwp1qEsG6xQgMwKBSo82q80rufNnxa/o7dujar4IE=",
+            "rev": "53e8bcef6e516d33a32dd610a5c5d8b7b7d98606",
+            "sha256": "sha256-Z3ZspXD7M3VVi70+dRz7NhO6msw5htmPRX6VzhA9NPY=",
             "type": "git",
             "url": "https://github.com/badboy/mdbook-toc"
         },
-        "version": "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb"
+        "version": "53e8bcef6e516d33a32dd610a5c5d8b7b7d98606"
     },
     "moonscript": {
         "cargoLocks": null,
@@ -135,7 +135,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-07-17",
+        "date": "2023-07-23",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -145,12 +145,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "b60a2ab4cb7bb7d86dcda1dfe2396a9eda384e35",
-            "sha256": "sha256-ch4cs+mBlEZSmNrfmW6+87ApIsutlXSDlBr0JX/4UV8=",
+            "rev": "f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11",
+            "sha256": "sha256-Xlz18WVgO3w/O5cUsQoh1uq38c/Rm3GPnOuoXVsgeXY=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "b60a2ab4cb7bb7d86dcda1dfe2396a9eda384e35"
+        "version": "f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11"
     },
     "puffer-fish": {
         "cargoLocks": null,

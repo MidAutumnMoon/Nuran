@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "4350e9268c16e186a648fa7b84f116dc174a7693";
+    version = "975af6f112dd6aeb6257cbf5964f59e2ef8451f4";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "4350e9268c16e186a648fa7b84f116dc174a7693";
+      rev = "975af6f112dd6aeb6257cbf5964f59e2ef8451f4";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-LxJ5m/PErt4CG5czcPTnoKXAy3YtFeWR3A8utoe/n+A=";
+      sha256 = "sha256-SO+TxpNcvwzm/hfA7P7PDK+U38wp3kjZm9ElrHHOAbg=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-4350e9268c16e186a648fa7b84f116dc174a7693/Cargo.lock;
-    date = "2023-07-14";
+    "Cargo.lock" = builtins.readFile ./derputils-975af6f112dd6aeb6257cbf5964f59e2ef8451f4/Cargo.lock;
+    date = "2023-07-17";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -62,17 +62,17 @@
   };
   mdbook-toc = {
     pname = "mdbook-toc";
-    version = "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb";
+    version = "53e8bcef6e516d33a32dd610a5c5d8b7b7d98606";
     src = fetchgit {
       url = "https://github.com/badboy/mdbook-toc";
-      rev = "9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb";
+      rev = "53e8bcef6e516d33a32dd610a5c5d8b7b7d98606";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-89pwp1qEsG6xQgMwKBSo82q80rufNnxa/o7dujar4IE=";
+      sha256 = "sha256-Z3ZspXD7M3VVi70+dRz7NhO6msw5htmPRX6VzhA9NPY=";
     };
-    "Cargo.lock" = builtins.readFile ./mdbook-toc-9c1ad00448a6110b2d164aac0c32a98a0e0b2ccb/Cargo.lock;
-    date = "2023-06-01";
+    "Cargo.lock" = builtins.readFile ./mdbook-toc-53e8bcef6e516d33a32dd610a5c5d8b7b7d98606/Cargo.lock;
+    date = "2023-07-18";
   };
   moonscript = {
     pname = "moonscript";
@@ -89,16 +89,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "b60a2ab4cb7bb7d86dcda1dfe2396a9eda384e35";
+    version = "f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "b60a2ab4cb7bb7d86dcda1dfe2396a9eda384e35";
+      rev = "f2ce31d3dc1c728c33c0910e1a9970f0eb2e3f11";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-ch4cs+mBlEZSmNrfmW6+87ApIsutlXSDlBr0JX/4UV8=";
+      sha256 = "sha256-Xlz18WVgO3w/O5cUsQoh1uq38c/Rm3GPnOuoXVsgeXY=";
     };
-    date = "2023-07-17";
+    date = "2023-07-23";
   };
   puffer-fish = {
     pname = "puffer-fish";
