@@ -62,17 +62,17 @@
   };
   mdbook-toc = {
     pname = "mdbook-toc";
-    version = "53e8bcef6e516d33a32dd610a5c5d8b7b7d98606";
+    version = "61c9ab5ee41b86253849f06c2c4d0819505129d4";
     src = fetchgit {
       url = "https://github.com/badboy/mdbook-toc";
-      rev = "53e8bcef6e516d33a32dd610a5c5d8b7b7d98606";
+      rev = "61c9ab5ee41b86253849f06c2c4d0819505129d4";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-Z3ZspXD7M3VVi70+dRz7NhO6msw5htmPRX6VzhA9NPY=";
+      sha256 = "sha256-F0dIqtDEOVUXlWhmXKPOaJTEuA3Tl3h0vaEu7VsBo7s=";
     };
-    "Cargo.lock" = builtins.readFile ./mdbook-toc-53e8bcef6e516d33a32dd610a5c5d8b7b7d98606/Cargo.lock;
-    date = "2023-07-18";
+    "Cargo.lock" = builtins.readFile ./mdbook-toc-61c9ab5ee41b86253849f06c2c4d0819505129d4/Cargo.lock;
+    date = "2023-08-05";
   };
   moonscript = {
     pname = "moonscript";
@@ -89,16 +89,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "996dd36c77321ea91758b5996d152a2f37af99dd";
+    version = "ef44e597294e4d0d9128ef69b6aa7481a54e17cb";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "996dd36c77321ea91758b5996d152a2f37af99dd";
+      rev = "ef44e597294e4d0d9128ef69b6aa7481a54e17cb";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-f4mS1Y47Nq4WRMa58azu7NC1kOMVwvKUwrpk12AQbo4=";
+      sha256 = "sha256-3guCxms5dJSQVEGsJ8xwuaO60ItrRjec6Y3LzE43IpU=";
     };
-    date = "2023-07-29";
+    date = "2023-08-05";
   };
   puffer-fish = {
     pname = "puffer-fish";
