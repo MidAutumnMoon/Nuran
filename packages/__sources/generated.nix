@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "41acac4c6fd2cac33fff6598ab63d2273ee90c6c";
+    version = "e2f6d7ac0a80cbe47d2e865d16d7a3dce905fbfa";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "41acac4c6fd2cac33fff6598ab63d2273ee90c6c";
+      rev = "e2f6d7ac0a80cbe47d2e865d16d7a3dce905fbfa";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-657Y0JnqImK8UNlU0CRPDq2+6cxF4lTmaVvJSPE0By0=";
+      sha256 = "sha256-+JXSwcoJGnCFEZQJdo4BmYjWxuuWAHmLojqr96jlMQE=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-41acac4c6fd2cac33fff6598ab63d2273ee90c6c/Cargo.lock;
-    date = "2023-07-24";
+    "Cargo.lock" = builtins.readFile ./derputils-e2f6d7ac0a80cbe47d2e865d16d7a3dce905fbfa/Cargo.lock;
+    date = "2023-08-10";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -89,16 +89,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "ef44e597294e4d0d9128ef69b6aa7481a54e17cb";
+    version = "dd09630a2124ce53edfd19bf6fab0f0cbae3ad13";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "ef44e597294e4d0d9128ef69b6aa7481a54e17cb";
+      rev = "dd09630a2124ce53edfd19bf6fab0f0cbae3ad13";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-3guCxms5dJSQVEGsJ8xwuaO60ItrRjec6Y3LzE43IpU=";
+      sha256 = "sha256-VhFtS1OpLD86EhtX9ejXKWia7lL0QtG5ptHGVK+GenE=";
     };
-    date = "2023-08-05";
+    date = "2023-08-14";
   };
   puffer-fish = {
     pname = "puffer-fish";
