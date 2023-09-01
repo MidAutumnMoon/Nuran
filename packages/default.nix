@@ -130,9 +130,6 @@ rec {
     plasma5Packages =
         prev.plasma5Packages.overrideScope' ( callPackage ./warehouse/plasma5 {} );
 
-    mdbook-toc =
-        callPackage ./warehouse/mdbook/toc {};
-
     # need --impure
     abcd =
         callPackage ./warehouse/abcd { flakePath = ../.; };
