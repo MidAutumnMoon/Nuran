@@ -93,27 +93,6 @@
         },
         "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
     },
-    "mdbook-toc": {
-        "cargoLocks": null,
-        "date": "2023-08-25",
-        "extract": {
-            "Cargo.lock": "./mdbook-toc-5c454c02336cd0af935ce7d3f5a041e0a2fac5ae/Cargo.lock"
-        },
-        "name": "mdbook-toc",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "5c454c02336cd0af935ce7d3f5a041e0a2fac5ae",
-            "sha256": "sha256-gWmV34Ye0TjTyDfWOiByTIWBIDzPbn83vxUDa5U8QHc=",
-            "type": "git",
-            "url": "https://github.com/badboy/mdbook-toc"
-        },
-        "version": "5c454c02336cd0af935ce7d3f5a041e0a2fac5ae"
-    },
     "moonscript": {
         "cargoLocks": null,
         "date": "2023-06-23",
@@ -135,7 +114,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-08-28",
+        "date": "2023-09-01",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -145,12 +124,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "3a876bd41b235065663c38b0d9f3bdc8868eebc4",
-            "sha256": "sha256-aMlsEogwmwNGbxcetKiHjIZdr1xBNIvlbO6DYh4clkU=",
+            "rev": "7bf0963d48ec76b1cdeee55edc8f2053eca87367",
+            "sha256": "sha256-BVuZqgOgLCDZuAWXJib85miLJUVZA3EFfiLUCpxeg7E=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "3a876bd41b235065663c38b0d9f3bdc8868eebc4"
+        "version": "7bf0963d48ec76b1cdeee55edc8f2053eca87367"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -175,7 +154,7 @@
         "cargoLocks": null,
         "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-v1.16.0/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.16.1/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -187,11 +166,11 @@
             "name": null,
             "owner": "shadowsocks",
             "repo": "shadowsocks-rust",
-            "rev": "v1.16.0",
-            "sha256": "sha256-kJqJpYjgN49qV/JLfUfmd/f9UjhiM1HOwSONELl2bOk=",
+            "rev": "v1.16.1",
+            "sha256": "sha256-h/2zHxgp8sXcUOpmtneoAX0hNt19pObfyGW3wIzQNxc=",
             "type": "github"
         },
-        "version": "v1.16.0"
+        "version": "v1.16.1"
     },
     "tide": {
         "cargoLocks": null,

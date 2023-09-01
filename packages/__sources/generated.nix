@@ -60,20 +60,6 @@
     };
     date = "2021-11-28";
   };
-  mdbook-toc = {
-    pname = "mdbook-toc";
-    version = "5c454c02336cd0af935ce7d3f5a041e0a2fac5ae";
-    src = fetchgit {
-      url = "https://github.com/badboy/mdbook-toc";
-      rev = "5c454c02336cd0af935ce7d3f5a041e0a2fac5ae";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "sha256-gWmV34Ye0TjTyDfWOiByTIWBIDzPbn83vxUDa5U8QHc=";
-    };
-    "Cargo.lock" = builtins.readFile ./mdbook-toc-5c454c02336cd0af935ce7d3f5a041e0a2fac5ae/Cargo.lock;
-    date = "2023-08-25";
-  };
   moonscript = {
     pname = "moonscript";
     version = "fbd8ad48737651114a3d3a672b9f8f8b3a7022b7";
@@ -89,16 +75,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "3a876bd41b235065663c38b0d9f3bdc8868eebc4";
+    version = "7bf0963d48ec76b1cdeee55edc8f2053eca87367";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "3a876bd41b235065663c38b0d9f3bdc8868eebc4";
+      rev = "7bf0963d48ec76b1cdeee55edc8f2053eca87367";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-aMlsEogwmwNGbxcetKiHjIZdr1xBNIvlbO6DYh4clkU=";
+      sha256 = "sha256-BVuZqgOgLCDZuAWXJib85miLJUVZA3EFfiLUCpxeg7E=";
     };
-    date = "2023-08-28";
+    date = "2023-09-01";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -115,15 +101,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.16.0";
+    version = "v1.16.1";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.16.0";
+      rev = "v1.16.1";
       fetchSubmodules = false;
-      sha256 = "sha256-kJqJpYjgN49qV/JLfUfmd/f9UjhiM1HOwSONELl2bOk=";
+      sha256 = "sha256-h/2zHxgp8sXcUOpmtneoAX0hNt19pObfyGW3wIzQNxc=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.16.0/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.16.1/Cargo.lock;
   };
   tide = {
     pname = "tide";
