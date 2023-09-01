@@ -156,13 +156,6 @@ in {
             rsync
         ];
 
-        cider-bubble = p: with p; [
-            wrangler
-            mdbook
-            mdbook-toc
-            minify
-        ];
-
         rust = p: with p; [
             rustc
             cargo
