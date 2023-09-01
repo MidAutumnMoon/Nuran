@@ -12,13 +12,21 @@ let
         config
         ;
 
+    # readSecret =
+    #     name: lib.fileContents secrets.${name}.path;
+
+    # copySecret =
+    #     name: copyPathToStore secrets.${name}.path;
+
     readSecret =
-        name: lib.fileContents secrets.${name}.path;
+        name: lib.fileContents ( secrets + "/${name}" );
 
     copySecret =
-        name: copyPathToStore secrets.${name}.path;
+        name: copyPathToStore ( secrets + "/${name}" );
 
-    secrets = config.sops.secrets;
+    # secrets = config.sops.secrets;
+
+    secrets = /home/teapot/.local/state/secrets;
 
 in
 
