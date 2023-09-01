@@ -31,7 +31,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
 
     rust-things = [
         derputils
-        mdbook-toc
         colmena_git
         nil
     ];

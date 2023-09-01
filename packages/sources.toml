@@ -64,8 +64,3 @@ src.github = "IBM/plex"
 fetch.url = "https://github.com/IBM/plex/releases/download/$ver/OpenType.zip"
 
 # Warehouse
-
-[mdbook-toc]
-src.git = "https://github.com/badboy/mdbook-toc"
-fetch.git = "https://github.com/badboy/mdbook-toc"
-extract = [ "Cargo.lock" ]
