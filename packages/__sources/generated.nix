@@ -75,16 +75,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "7bf0963d48ec76b1cdeee55edc8f2053eca87367";
+    version = "c431d820e7be1c511d3d16e89cdffaa21b7909fa";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "7bf0963d48ec76b1cdeee55edc8f2053eca87367";
+      rev = "c431d820e7be1c511d3d16e89cdffaa21b7909fa";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-BVuZqgOgLCDZuAWXJib85miLJUVZA3EFfiLUCpxeg7E=";
+      sha256 = "sha256-VfV7Uq3Q9SvZZKJjDJoAEXjtuqKTcjngNe0NTe2nvNo=";
     };
-    date = "2023-09-01";
+    date = "2023-09-04";
   };
   puffer-fish = {
     pname = "puffer-fish";
