@@ -33,6 +33,9 @@ rec {
     hentai-home =
         callPackage ./network/henati-home {};
 
+    coredns_teapot =
+        callPackage ./network/coredns {};
+
 
 
     /*
