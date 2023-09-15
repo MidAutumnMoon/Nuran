@@ -3,13 +3,19 @@
   config,
 
   lib,
+  callPackage,
   writeText,
   substituteAll,
   runCommand,
 
-  hysteria,
   cue,
 }:
+
+let
+
+    hysteria = callPackage ./v1.nix {};
+
+in
 
 rec {
 
