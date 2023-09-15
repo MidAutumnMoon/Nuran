@@ -7,7 +7,7 @@
   substituteAll,
   writeText,
 
-  coredns,
+  coredns_teapot,
 }:
 
 rec {
@@ -28,7 +28,7 @@ rec {
 
     [Service]
     Type = simple
-    ExecStart = ${lib.getExe coredns} -conf ${corefile}
+    ExecStart = ${lib.getExe coredns_teapot} -conf ${corefile}
     Restart = on-failure
 
     [Install]
