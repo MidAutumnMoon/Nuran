@@ -699,9 +699,9 @@ dependencies = [
 
 [[package]]
 name = "qrcode-generator"
-version = "4.1.8"
+version = "4.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fc713c23eb7e1a5f18b84e72be88b82a617ee25783a524a38f0caa4c986b2d76"
+checksum = "1d06cb9646c7a14096231a2474d7f21e5e8c13de090c68d13bde6157cfe7f159"
 dependencies = [
  "html-escape",
  "qrcodegen",
@@ -935,9 +935,9 @@ dependencies = [
 
 [[package]]
 name = "ulid"
-version = "1.0.1"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f9d3475df4ff8a8f7804c0fc3394b44fdcfc4fb635717bf05fbb7c41c83a376"
+checksum = "7e37c4b6cbcc59a8dcd09a6429fbc7890286bcbb79215cea7b38a3c4c0921d93"
 dependencies = [
  "rand",
 ]
