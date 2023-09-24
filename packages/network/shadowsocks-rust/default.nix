@@ -1,4 +1,7 @@
 {
+    pkgs,
+    system,
+
     lib,
     sources,
     teapot,
@@ -6,7 +9,21 @@
     rustPlatform
 }:
 
-rustPlatform.buildRustPackage rec {
+let
+
+    config = let
+        musl = lib.systems.examples.musl64;
+    in {
+        inherit system;
+        crossSystem = musl // { rustc = musl; };
+    };
+
+
+    muslPower = import pkgs.path config;
+
+in
+
+muslPower.rustPlatform.buildRustPackage rec {
 
     pname = "shadowsocks-rust";
 
@@ -28,10 +45,8 @@ rustPlatform.buildRustPackage rec {
         "service"
         "trust-dns"
         "local-http"
-        "local-tunnel"
         "dns-over-tls"
         "dns-over-https"
-        "mimalloc"
         "multi-threaded"
         "aead-cipher-2022"
         "logging"
