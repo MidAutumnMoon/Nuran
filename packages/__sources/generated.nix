@@ -75,16 +75,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "9cadbf1d36b63f53f0de48c8c5ff6c752ff05d70";
+    version = "ac1c23442fd2688f89d75310b8c769e91d81e715";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "9cadbf1d36b63f53f0de48c8c5ff6c752ff05d70";
+      rev = "ac1c23442fd2688f89d75310b8c769e91d81e715";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-RQ/2aN5+f9OD12+ari1iTqm7YiAGwRVSJd417bgCdWE=";
+      sha256 = "sha256-bZoAgCIgalYHhlyP34ri1R1dnSjCW6+RBZfcM7xY7wY=";
     };
-    date = "2023-09-18";
+    date = "2023-09-24";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -101,15 +101,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.16.1";
+    version = "v1.16.2";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.16.1";
+      rev = "v1.16.2";
       fetchSubmodules = false;
-      sha256 = "sha256-h/2zHxgp8sXcUOpmtneoAX0hNt19pObfyGW3wIzQNxc=";
+      sha256 = "sha256-TE1pGLS77WpaT0J0rUllihmHY5nOHzxd1LMsNjptXrg=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.16.1/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.16.2/Cargo.lock;
   };
   tide = {
     pname = "tide";
