@@ -133,10 +133,6 @@ rec {
     plasma5Packages =
         prev.plasma5Packages.overrideScope' ( callPackage ./warehouse/plasma5 {} );
 
-    # need --impure
-    abcd =
-        callPackage ./warehouse/abcd { flakePath = ../.; };
-
     gtkgreet_teapot =
         callPackage ./warehouse/gtkgreet {};
 
