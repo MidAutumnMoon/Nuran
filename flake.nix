@@ -75,6 +75,9 @@ in {
 
     inherit lib;
 
+    morningBrew = pkgsBrew;
+
+
     /*
      *
      * Overlays & packages
