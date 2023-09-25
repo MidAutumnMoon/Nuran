@@ -23,18 +23,4 @@ in
   "git_credentials" = forTeapot ./git_token.yml;
   "nix_token_config" = forTeapot ./git_token.yml;
 
-
-  # abcd portable service
-
-  "ss_password" = forTeapot ./abcd.yml;
-
-  "hy_obfs" = forTeapot ./abcd.yml;
-  "hy_auth" = forTeapot ./abcd.yml;
-
-  # "hy_ca_key" = forTeapot ./abcd.yml;
-  "hy_ca_crt" = forTeapot ./abcd.yml;
-  "hy_server_key" = forTeapot ./abcd.yml;
-  "hy_server_crt" = forTeapot ./abcd.yml;
-
-
 }; }
