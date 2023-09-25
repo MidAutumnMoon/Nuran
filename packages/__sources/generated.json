@@ -124,12 +124,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "ac1c23442fd2688f89d75310b8c769e91d81e715",
-            "sha256": "sha256-bZoAgCIgalYHhlyP34ri1R1dnSjCW6+RBZfcM7xY7wY=",
+            "rev": "db51548036ebe4b01c5b78aeca7a76aa71ab4fbe",
+            "sha256": "sha256-yd7LRuyD3n0FmPe8xcOYIRKnw4pOuZmVmdwwgAbp0Zs=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "ac1c23442fd2688f89d75310b8c769e91d81e715"
+        "version": "db51548036ebe4b01c5b78aeca7a76aa71ab4fbe"
     },
     "puffer-fish": {
         "cargoLocks": null,
