@@ -54,6 +54,11 @@ muslPower.rustPlatform.buildRustPackage rec {
     ];
 
 
+    stripAllList = [
+        "bin"
+    ];
+
+
     meta = {
         homepage = "https://github.com/shadowsocks/shadowsocks-rust";
         license = lib.licenses.mit;
