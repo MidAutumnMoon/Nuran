@@ -6,7 +6,7 @@
 let
 
   cachyPatches =
-    sources."cachyos-patches".src + "/6.4";
+    sources."cachyos-patches".src + "/6.5";
 
   patch =
     name: patch: { inherit name patch; };
