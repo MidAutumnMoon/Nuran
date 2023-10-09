@@ -16,17 +16,17 @@
   };
   derputils = {
     pname = "derputils";
-    version = "55dcee5d29efd03c8b5e54f80e46db0fd72ad02f";
+    version = "430a266ae11c47c74e7fcb7b1a4379502265c747";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "55dcee5d29efd03c8b5e54f80e46db0fd72ad02f";
+      rev = "430a266ae11c47c74e7fcb7b1a4379502265c747";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-a059rDUcxsH30H0dqEM62pzsUmNln2D6Y9+8m+/ersU=";
+      sha256 = "sha256-ncDPGV+fAzs/lnj5/wOoRROqECJqcPc43LB7v8yZozI=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-55dcee5d29efd03c8b5e54f80e46db0fd72ad02f/Cargo.lock;
-    date = "2023-09-11";
+    "Cargo.lock" = builtins.readFile ./derputils-430a266ae11c47c74e7fcb7b1a4379502265c747/Cargo.lock;
+    date = "2023-10-02";
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -75,16 +75,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "09a17f91d0d362c6e58bfdbe3ccdeacffb0b44b9";
+    version = "61f1e992ce984371a8d570c4dbb34ff759f5751a";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "09a17f91d0d362c6e58bfdbe3ccdeacffb0b44b9";
+      rev = "61f1e992ce984371a8d570c4dbb34ff759f5751a";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-A4uq0CrAYXOccHZn3u5vsaXPNesgE9Nplba5AFMmXoI=";
+      sha256 = "sha256-6XOqkRR6vvJmpyUctLnGwTyrUQ0LRAscm4bB7w92J/0=";
     };
-    date = "2023-10-02";
+    date = "2023-10-08";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -113,13 +113,13 @@
   };
   tide = {
     pname = "tide";
-    version = "v5.6.0";
+    version = "v6.0.1";
     src = fetchFromGitHub {
       owner = "IlanCosman";
       repo = "tide";
-      rev = "v5.6.0";
+      rev = "v6.0.1";
       fetchSubmodules = false;
-      sha256 = "sha256-cCI1FDpvajt1vVPUd/WvsjX/6BJm6X1yFPjqohmo1rI=";
+      sha256 = "sha256-oLD7gYFCIeIzBeAW1j62z5FnzWAp3xSfxxe7kBtTLgA=";
     };
   };
   zhudou-sans = {
