@@ -20,9 +20,9 @@
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-09-11",
+        "date": "2023-10-02",
         "extract": {
-            "Cargo.lock": "./derputils-55dcee5d29efd03c8b5e54f80e46db0fd72ad02f/Cargo.lock"
+            "Cargo.lock": "./derputils-430a266ae11c47c74e7fcb7b1a4379502265c747/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "55dcee5d29efd03c8b5e54f80e46db0fd72ad02f",
-            "sha256": "sha256-a059rDUcxsH30H0dqEM62pzsUmNln2D6Y9+8m+/ersU=",
+            "rev": "430a266ae11c47c74e7fcb7b1a4379502265c747",
+            "sha256": "sha256-ncDPGV+fAzs/lnj5/wOoRROqECJqcPc43LB7v8yZozI=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "55dcee5d29efd03c8b5e54f80e46db0fd72ad02f"
+        "version": "430a266ae11c47c74e7fcb7b1a4379502265c747"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -114,7 +114,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-10-02",
+        "date": "2023-10-08",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -124,12 +124,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "09a17f91d0d362c6e58bfdbe3ccdeacffb0b44b9",
-            "sha256": "sha256-A4uq0CrAYXOccHZn3u5vsaXPNesgE9Nplba5AFMmXoI=",
+            "rev": "61f1e992ce984371a8d570c4dbb34ff759f5751a",
+            "sha256": "sha256-6XOqkRR6vvJmpyUctLnGwTyrUQ0LRAscm4bB7w92J/0=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "09a17f91d0d362c6e58bfdbe3ccdeacffb0b44b9"
+        "version": "61f1e992ce984371a8d570c4dbb34ff759f5751a"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -186,11 +186,11 @@
             "name": null,
             "owner": "IlanCosman",
             "repo": "tide",
-            "rev": "v5.6.0",
-            "sha256": "sha256-cCI1FDpvajt1vVPUd/WvsjX/6BJm6X1yFPjqohmo1rI=",
+            "rev": "v6.0.1",
+            "sha256": "sha256-oLD7gYFCIeIzBeAW1j62z5FnzWAp3xSfxxe7kBtTLgA=",
             "type": "github"
         },
-        "version": "v5.6.0"
+        "version": "v6.0.1"
     },
     "zhudou-sans": {
         "cargoLocks": null,
