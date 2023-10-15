@@ -27,7 +27,7 @@ muslPower.rustPlatform.buildRustPackage rec {
 
     pname = "shadowsocks-rust";
 
-    inherit ( sources.${ pname } )
+    inherit ( sources.${pname} )
         src version;
 
     inherit ( teapot ) RUSTFLAGS;
@@ -43,7 +43,7 @@ muslPower.rustPlatform.buildRustPackage rec {
 
     buildFeatures = [
         "service"
-        "trust-dns"
+        "hickory-dns"
         "local-http"
         "dns-over-tls"
         "dns-over-https"
@@ -54,9 +54,7 @@ muslPower.rustPlatform.buildRustPackage rec {
     ];
 
 
-    stripAllList = [
-        "bin"
-    ];
+    stripAllList = [ "bin" ];
 
 
     meta = {

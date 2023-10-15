@@ -25,7 +25,7 @@ rec {
         callPackage ./network/firefox {};
 
     shadowsocks_teapot =
-        callPackage ./network/shadowsocks-rust {};
+        callPackage ./network/shadowsocks {};
 
     nginx_teapot =
         callPackage ./network/nginx {};
