@@ -1,7 +1,7 @@
 {
     "cachyos-patches": {
         "cargoLocks": null,
-        "date": "2023-10-09",
+        "date": "2023-10-13",
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
@@ -11,18 +11,18 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "234809738eeea5ab4ea41ae7f825292c21bd12d1",
-            "sha256": "sha256-IprxQJX75WtxjOWxBtv3tc6O70dEgVyysFC4Z0DioNk=",
+            "rev": "80d939c7fb385e4ec3a4139174c0da35b418cb9b",
+            "sha256": "sha256-CLbDhXGI6EGsgZvr/oRXU0k0F0bV2T/t64iCAo+yhpg=",
             "type": "git",
             "url": "https://github.com/CachyOS/kernel-patches/"
         },
-        "version": "234809738eeea5ab4ea41ae7f825292c21bd12d1"
+        "version": "80d939c7fb385e4ec3a4139174c0da35b418cb9b"
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-10-02",
+        "date": "2023-10-12",
         "extract": {
-            "Cargo.lock": "./derputils-430a266ae11c47c74e7fcb7b1a4379502265c747/Cargo.lock"
+            "Cargo.lock": "./derputils-7287e811f1b3d09aae37dbb7156c55b486620ce5/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "430a266ae11c47c74e7fcb7b1a4379502265c747",
-            "sha256": "sha256-ncDPGV+fAzs/lnj5/wOoRROqECJqcPc43LB7v8yZozI=",
+            "rev": "7287e811f1b3d09aae37dbb7156c55b486620ce5",
+            "sha256": "sha256-0IJZ3SsdsM5KA5ZX/sqW1M0BlU8evfEe8bOj3v+Y1EE=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "430a266ae11c47c74e7fcb7b1a4379502265c747"
+        "version": "7287e811f1b3d09aae37dbb7156c55b486620ce5"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -114,7 +114,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-10-11",
+        "date": "2023-10-15",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -124,12 +124,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "37da0bc0c63083f79d2fbf4622a9b3fd47c415df",
-            "sha256": "sha256-E1VDABUn05niU3cxkoSpfek/LxiRgV6q0XAPUSVJYBI=",
+            "rev": "aa62579a684277d86b1f4a7588464e0ec4227b94",
+            "sha256": "sha256-L9O5VbYOyVaCD5tBfZcx651d/5YWpJDxXXYFREO/Nb8=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "37da0bc0c63083f79d2fbf4622a9b3fd47c415df"
+        "version": "aa62579a684277d86b1f4a7588464e0ec4227b94"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -154,7 +154,7 @@
         "cargoLocks": null,
         "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-v1.16.2/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.17.0/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -166,11 +166,11 @@
             "name": null,
             "owner": "shadowsocks",
             "repo": "shadowsocks-rust",
-            "rev": "v1.16.2",
-            "sha256": "sha256-TE1pGLS77WpaT0J0rUllihmHY5nOHzxd1LMsNjptXrg=",
+            "rev": "v1.17.0",
+            "sha256": "sha256-Vl6COgVADAfeR0X3dFV4SHnFi0pRDw4GQv417j8+3MM=",
             "type": "github"
         },
-        "version": "v1.16.2"
+        "version": "v1.17.0"
     },
     "tide": {
         "cargoLocks": null,
