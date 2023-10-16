@@ -3,16 +3,16 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "80d939c7fb385e4ec3a4139174c0da35b418cb9b";
+    version = "c37824698c2defed7838b5e460a7fd9031a5cc3b";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "80d939c7fb385e4ec3a4139174c0da35b418cb9b";
+      rev = "c37824698c2defed7838b5e460a7fd9031a5cc3b";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-CLbDhXGI6EGsgZvr/oRXU0k0F0bV2T/t64iCAo+yhpg=";
+      sha256 = "sha256-FL42F2DCSRoVRiEcWtK4+6kw8a/EbuOLnjVg2jwJM0E=";
     };
-    date = "2023-10-13";
+    date = "2023-10-15";
   };
   derputils = {
     pname = "derputils";
@@ -75,14 +75,14 @@
   };
   neovim = {
     pname = "neovim";
-    version = "aa62579a684277d86b1f4a7588464e0ec4227b94";
+    version = "0a3505eb9df8d57a9a0bcecf02bb3dda1c8edd29";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "aa62579a684277d86b1f4a7588464e0ec4227b94";
+      rev = "0a3505eb9df8d57a9a0bcecf02bb3dda1c8edd29";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-L9O5VbYOyVaCD5tBfZcx651d/5YWpJDxXXYFREO/Nb8=";
+      sha256 = "sha256-U05SKhEQH+hOtp1uOON6yNwTYoJjjcTfKYYd4cAsGK4=";
     };
     date = "2023-10-15";
   };

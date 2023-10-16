@@ -1,7 +1,7 @@
 {
     "cachyos-patches": {
         "cargoLocks": null,
-        "date": "2023-10-13",
+        "date": "2023-10-15",
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
@@ -11,12 +11,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "80d939c7fb385e4ec3a4139174c0da35b418cb9b",
-            "sha256": "sha256-CLbDhXGI6EGsgZvr/oRXU0k0F0bV2T/t64iCAo+yhpg=",
+            "rev": "c37824698c2defed7838b5e460a7fd9031a5cc3b",
+            "sha256": "sha256-FL42F2DCSRoVRiEcWtK4+6kw8a/EbuOLnjVg2jwJM0E=",
             "type": "git",
             "url": "https://github.com/CachyOS/kernel-patches/"
         },
-        "version": "80d939c7fb385e4ec3a4139174c0da35b418cb9b"
+        "version": "c37824698c2defed7838b5e460a7fd9031a5cc3b"
     },
     "derputils": {
         "cargoLocks": null,
@@ -124,12 +124,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "aa62579a684277d86b1f4a7588464e0ec4227b94",
-            "sha256": "sha256-L9O5VbYOyVaCD5tBfZcx651d/5YWpJDxXXYFREO/Nb8=",
+            "rev": "0a3505eb9df8d57a9a0bcecf02bb3dda1c8edd29",
+            "sha256": "sha256-U05SKhEQH+hOtp1uOON6yNwTYoJjjcTfKYYd4cAsGK4=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "aa62579a684277d86b1f4a7588464e0ec4227b94"
+        "version": "0a3505eb9df8d57a9a0bcecf02bb3dda1c8edd29"
     },
     "puffer-fish": {
         "cargoLocks": null,
