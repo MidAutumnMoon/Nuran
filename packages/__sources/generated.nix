@@ -3,16 +3,16 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "c37824698c2defed7838b5e460a7fd9031a5cc3b";
+    version = "2852024547882c009880a8020091d3e6a978e302";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "c37824698c2defed7838b5e460a7fd9031a5cc3b";
+      rev = "2852024547882c009880a8020091d3e6a978e302";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-FL42F2DCSRoVRiEcWtK4+6kw8a/EbuOLnjVg2jwJM0E=";
+      sha256 = "sha256-vesQRTALNES6Dn7lWo0qFtdaXHqPIyQQ3ytJ1JlQ8KU=";
     };
-    date = "2023-10-15";
+    date = "2023-10-22";
   };
   derputils = {
     pname = "derputils";
@@ -62,29 +62,29 @@
   };
   moonscript = {
     pname = "moonscript";
-    version = "fbd8ad48737651114a3d3a672b9f8f8b3a7022b7";
+    version = "65c7b152f05efd79c8d65fd6a3be2fb28b50ce52";
     src = fetchgit {
       url = "https://github.com/leafo/moonscript";
-      rev = "fbd8ad48737651114a3d3a672b9f8f8b3a7022b7";
+      rev = "65c7b152f05efd79c8d65fd6a3be2fb28b50ce52";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-FquMjV09oguN2ruDqQqgI5DjqzEmnF4aa+O0OMulhgs=";
+      sha256 = "sha256-jrbKvARNEWsWnMk0hK60TA4yFhw1nl4gl0cNF4BtLsQ=";
     };
-    date = "2023-06-23";
+    date = "2023-10-18";
   };
   neovim = {
     pname = "neovim";
-    version = "0a3505eb9df8d57a9a0bcecf02bb3dda1c8edd29";
+    version = "bc850ba2a090a9a4733a82a7555a5a70264ce1ac";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "0a3505eb9df8d57a9a0bcecf02bb3dda1c8edd29";
+      rev = "bc850ba2a090a9a4733a82a7555a5a70264ce1ac";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-U05SKhEQH+hOtp1uOON6yNwTYoJjjcTfKYYd4cAsGK4=";
+      sha256 = "sha256-RnB3zq9nXwsJmu7y0aI30lcMkxfn8tNW2UXb0fUQpBw=";
     };
-    date = "2023-10-15";
+    date = "2023-10-22";
   };
   puffer-fish = {
     pname = "puffer-fish";
