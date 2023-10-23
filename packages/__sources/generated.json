@@ -1,7 +1,7 @@
 {
     "cachyos-patches": {
         "cargoLocks": null,
-        "date": "2023-10-15",
+        "date": "2023-10-22",
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
@@ -11,18 +11,18 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "c37824698c2defed7838b5e460a7fd9031a5cc3b",
-            "sha256": "sha256-FL42F2DCSRoVRiEcWtK4+6kw8a/EbuOLnjVg2jwJM0E=",
+            "rev": "2852024547882c009880a8020091d3e6a978e302",
+            "sha256": "sha256-vesQRTALNES6Dn7lWo0qFtdaXHqPIyQQ3ytJ1JlQ8KU=",
             "type": "git",
             "url": "https://github.com/CachyOS/kernel-patches/"
         },
-        "version": "c37824698c2defed7838b5e460a7fd9031a5cc3b"
+        "version": "2852024547882c009880a8020091d3e6a978e302"
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-10-12",
+        "date": "2023-10-23",
         "extract": {
-            "Cargo.lock": "./derputils-7287e811f1b3d09aae37dbb7156c55b486620ce5/Cargo.lock"
+            "Cargo.lock": "./derputils-d716a8ca94deda015e1fdd7f46f27fa01f65ab23/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "7287e811f1b3d09aae37dbb7156c55b486620ce5",
-            "sha256": "sha256-0IJZ3SsdsM5KA5ZX/sqW1M0BlU8evfEe8bOj3v+Y1EE=",
+            "rev": "d716a8ca94deda015e1fdd7f46f27fa01f65ab23",
+            "sha256": "sha256-1afWGtVh5fZFYZSNdq+u6mNhWpHQU/f7XsnsflYRHxM=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "7287e811f1b3d09aae37dbb7156c55b486620ce5"
+        "version": "d716a8ca94deda015e1fdd7f46f27fa01f65ab23"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -93,28 +93,9 @@
         },
         "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
     },
-    "moonscript": {
-        "cargoLocks": null,
-        "date": "2023-06-23",
-        "extract": null,
-        "name": "moonscript",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "fbd8ad48737651114a3d3a672b9f8f8b3a7022b7",
-            "sha256": "sha256-FquMjV09oguN2ruDqQqgI5DjqzEmnF4aa+O0OMulhgs=",
-            "type": "git",
-            "url": "https://github.com/leafo/moonscript"
-        },
-        "version": "fbd8ad48737651114a3d3a672b9f8f8b3a7022b7"
-    },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-10-15",
+        "date": "2023-10-23",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -124,12 +105,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "0a3505eb9df8d57a9a0bcecf02bb3dda1c8edd29",
-            "sha256": "sha256-U05SKhEQH+hOtp1uOON6yNwTYoJjjcTfKYYd4cAsGK4=",
+            "rev": "5e5f5174e3faa862a9bc353aa7da41487911140b",
+            "sha256": "sha256-OnTV0X72QFxPeE67vTt7LObPxEaDeZI/Sy6eSVCmagE=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "0a3505eb9df8d57a9a0bcecf02bb3dda1c8edd29"
+        "version": "5e5f5174e3faa862a9bc353aa7da41487911140b"
     },
     "puffer-fish": {
         "cargoLocks": null,
