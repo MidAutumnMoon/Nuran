@@ -153,12 +153,6 @@ in {
             nvfetcher_git
         ];
 
-        numinus = p: with p; [
-            moonscript
-            watchexec
-            rsync
-        ];
-
         rust = p: with p; [
             rustc
             cargo
