@@ -15,10 +15,6 @@ fetch.git = "https://github.com/neovim/neovim"
 
 # Language
 
-[moonscript]
-src.git = "https://github.com/leafo/moonscript"
-fetch.git = "https://github.com/leafo/moonscript"
-
 # Utility
 
 [derputils]
