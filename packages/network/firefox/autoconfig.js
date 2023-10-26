@@ -43,10 +43,8 @@ pref( 'media.ffmpeg.vaapi.enabled',                  true );
 pref( 'media.hardware-video-decoding.force-enabled', true );
 pref( 'media.gpu-process-decoder',                   true );
 
-pref( 'network.dnsCacheEntries', 800 );
 pref( 'network.http.max-connections', 900 );
 pref( 'network.http.max-persistent-connections-per-proxy',  64 );
-pref( 'network.http.max-persistent-connections-per-server', 64 );
 pref( 'network.http.request.max-start-delay', 0 );
 
 pref( 'browser.sessionhistory.max_entries', 12 );
@@ -58,11 +56,7 @@ pref( 'dom.script_loader.delazification.max_size', -1 );
 
 pref( 'network.buffer.cache.count',              128 );
 pref( 'network.buffer.cache.size',               262144 );
-pref( 'network.http.http2.send-buffer-size',     262144 );
 pref( 'network.http.http2.default-hpack-buffer', 262144 );
-
-pref( 'widget.dmabuf.force-enabled', true );
-pref( 'widget.dmabuf-webgl.enabled', true );
 
 
 
@@ -343,5 +337,4 @@ pref( 'accessibility.typeaheadfind.manual',    false );
 pref( 'accessibility.browsewithcaret_shortcut.enabled', false );
 
 pref( 'dom.ipc.forkserver.enable', true );
-
 pref( 'network.early-hints.enabled', true );
