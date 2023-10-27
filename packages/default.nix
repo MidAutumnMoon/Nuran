@@ -36,6 +36,9 @@ rec {
     dnsproxy =
         callPackage ./network/dnsproxy {};
 
+    hysteria =
+        callPackage ./network/hysteria {};
+
 
 
     /*
