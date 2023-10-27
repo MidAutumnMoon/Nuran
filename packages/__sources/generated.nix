@@ -3,16 +3,16 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "2852024547882c009880a8020091d3e6a978e302";
+    version = "768e188be44ac61b1bcdb94edb3df86a7ad7ba82";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "2852024547882c009880a8020091d3e6a978e302";
+      rev = "768e188be44ac61b1bcdb94edb3df86a7ad7ba82";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-vesQRTALNES6Dn7lWo0qFtdaXHqPIyQQ3ytJ1JlQ8KU=";
+      sha256 = "sha256-p0Eo00wz/5kv+mmJDoJYatAv5/xarcewuajdtK3roqc=";
     };
-    date = "2023-10-22";
+    date = "2023-10-27";
   };
   derputils = {
     pname = "derputils";
@@ -27,6 +27,14 @@
     };
     "Cargo.lock" = builtins.readFile ./derputils-d716a8ca94deda015e1fdd7f46f27fa01f65ab23/Cargo.lock;
     date = "2023-10-23";
+  };
+  dnsproxy = {
+    pname = "dnsproxy";
+    version = "v0.56.3";
+    src = fetchurl {
+      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.56.3/dnsproxy-linux-amd64-v0.56.3.tar.gz";
+      sha256 = "sha256-7xXq6FH5TMk/bYFeOYAlWmP4iABr5RUjIw5l29S9V6o=";
+    };
   };
   graphite-cursors = {
     pname = "graphite-cursors";
@@ -62,16 +70,16 @@
   };
   neovim = {
     pname = "neovim";
-    version = "5e5f5174e3faa862a9bc353aa7da41487911140b";
+    version = "add1b10b79011d1af61419a63cc8ef4645f45bbf";
     src = fetchgit {
       url = "https://github.com/neovim/neovim";
-      rev = "5e5f5174e3faa862a9bc353aa7da41487911140b";
+      rev = "add1b10b79011d1af61419a63cc8ef4645f45bbf";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-OnTV0X72QFxPeE67vTt7LObPxEaDeZI/Sy6eSVCmagE=";
+      sha256 = "sha256-uDeWmmiWa5g5LVCGeBQgqf+FFBzvDVeMlEMcAF5cTds=";
     };
-    date = "2023-10-23";
+    date = "2023-10-27";
   };
   puffer-fish = {
     pname = "puffer-fish";
