@@ -11,6 +11,10 @@ extract = [ "Cargo.lock" ]
 src.github = "AdguardTeam/dnsproxy"
 fetch.url = "https://github.com/AdguardTeam/dnsproxy/releases/download/$ver/dnsproxy-linux-amd64-$ver.tar.gz"
 
+[hysteria]
+src.github = "apernet/hysteria"
+fetch.url = "https://github.com/apernet/hysteria/releases/download/$ver/hysteria-linux-amd64-avx"
+
 # Editor
 
 [neovim]
