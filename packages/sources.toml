@@ -7,6 +7,10 @@ src.github = "shadowsocks/shadowsocks-rust"
 fetch.github = "shadowsocks/shadowsocks-rust"
 extract = [ "Cargo.lock" ]
 
+[dnsproxy]
+src.github = "AdguardTeam/dnsproxy"
+fetch.url = "https://github.com/AdguardTeam/dnsproxy/releases/download/$ver/dnsproxy-linux-amd64-$ver.tar.gz"
+
 # Editor
 
 [neovim]
