@@ -17,10 +17,6 @@ fetch.url = "https://github.com/apernet/hysteria/releases/download/$ver/hysteria
 
 # Editor
 
-[neovim]
-src.git = "https://github.com/neovim/neovim"
-fetch.git = "https://github.com/neovim/neovim"
-
 # Language
 
 # Utility
