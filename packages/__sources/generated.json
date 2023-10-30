@@ -1,7 +1,7 @@
 {
     "cachyos-patches": {
         "cargoLocks": null,
-        "date": "2023-10-27",
+        "date": "2023-10-28",
         "extract": null,
         "name": "cachyos-patches",
         "passthru": null,
@@ -11,12 +11,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "768e188be44ac61b1bcdb94edb3df86a7ad7ba82",
-            "sha256": "sha256-p0Eo00wz/5kv+mmJDoJYatAv5/xarcewuajdtK3roqc=",
+            "rev": "7b8cf7c800c3aab6e81e9c791bf27a8c21e520bf",
+            "sha256": "sha256-FG9uCVxtkFwXPx/G9MWhh9IaiMEc6BNosxugpF4yFrU=",
             "type": "git",
             "url": "https://github.com/CachyOS/kernel-patches/"
         },
-        "version": "768e188be44ac61b1bcdb94edb3df86a7ad7ba82"
+        "version": "7b8cf7c800c3aab6e81e9c791bf27a8c21e520bf"
     },
     "derputils": {
         "cargoLocks": null,
@@ -83,11 +83,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-jyNQ1NQArML6J5hmFGEqaV6ErD/SMXeUGIZ/xTBFAME=",
+            "sha256": "sha256-Jm4prpUC6CyemZY525eO1K3oSBVifxa4+ylGaX6/G3E=",
             "type": "url",
-            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.1.1/hysteria-linux-amd64-avx"
+            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.2.0/hysteria-linux-amd64-avx"
         },
-        "version": "app/v2.1.1"
+        "version": "app/v2.2.0"
     },
     "ibm-plex": {
         "cargoLocks": null,
@@ -125,7 +125,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2023-10-27",
+        "date": "2023-10-29",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -135,12 +135,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "add1b10b79011d1af61419a63cc8ef4645f45bbf",
-            "sha256": "sha256-uDeWmmiWa5g5LVCGeBQgqf+FFBzvDVeMlEMcAF5cTds=",
+            "rev": "8405649f92a8a8eb254944eca15e8b0169cbb6fb",
+            "sha256": "sha256-jYYlGbOzSDpwrRj7PrELJS9s5BCEq5ZGe+xuz0wPgDk=",
             "type": "git",
             "url": "https://github.com/neovim/neovim"
         },
-        "version": "add1b10b79011d1af61419a63cc8ef4645f45bbf"
+        "version": "8405649f92a8a8eb254944eca15e8b0169cbb6fb"
     },
     "puffer-fish": {
         "cargoLocks": null,
