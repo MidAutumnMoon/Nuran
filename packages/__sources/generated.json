@@ -20,9 +20,9 @@
     },
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-10-23",
+        "date": "2023-10-30",
         "extract": {
-            "Cargo.lock": "./derputils-d716a8ca94deda015e1fdd7f46f27fa01f65ab23/Cargo.lock"
+            "Cargo.lock": "./derputils-2760288af3f84c5aeef6b5d714fbdfee0e9d8561/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -32,12 +32,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "d716a8ca94deda015e1fdd7f46f27fa01f65ab23",
-            "sha256": "sha256-1afWGtVh5fZFYZSNdq+u6mNhWpHQU/f7XsnsflYRHxM=",
+            "rev": "2760288af3f84c5aeef6b5d714fbdfee0e9d8561",
+            "sha256": "sha256-VyOiLobtN3B0T6z/AJJ1wDqrpZ2q0QE1VyPUV+q/psQ=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "d716a8ca94deda015e1fdd7f46f27fa01f65ab23"
+        "version": "2760288af3f84c5aeef6b5d714fbdfee0e9d8561"
     },
     "dnsproxy": {
         "cargoLocks": null,
@@ -122,25 +122,6 @@
             "url": "https://github.com/jergusg/k380-function-keys-conf/"
         },
         "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
-    },
-    "neovim": {
-        "cargoLocks": null,
-        "date": "2023-10-29",
-        "extract": null,
-        "name": "neovim",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "8405649f92a8a8eb254944eca15e8b0169cbb6fb",
-            "sha256": "sha256-jYYlGbOzSDpwrRj7PrELJS9s5BCEq5ZGe+xuz0wPgDk=",
-            "type": "git",
-            "url": "https://github.com/neovim/neovim"
-        },
-        "version": "8405649f92a8a8eb254944eca15e8b0169cbb6fb"
     },
     "puffer-fish": {
         "cargoLocks": null,
