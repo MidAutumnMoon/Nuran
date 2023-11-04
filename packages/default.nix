@@ -173,7 +173,7 @@ rec {
     ];
 
     teapot.RUSTFLAGS = [
-        "-C target-cpu=${teapot.march}"
+        "-Ctarget-cpu=${teapot.march}"
     ];
 
 

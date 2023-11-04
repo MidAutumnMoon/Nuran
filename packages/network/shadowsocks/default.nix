@@ -5,8 +5,6 @@
     lib,
     sources,
     teapot,
-
-    rustPlatform
 }:
 
 let
@@ -30,9 +28,12 @@ muslPower.rustPlatform.buildRustPackage rec {
     inherit ( sources.${pname} )
         src version;
 
-    inherit ( teapot ) RUSTFLAGS;
 
     doCheck = false;
+
+    RUSTFLAGS = [
+        "-Ctarget-cpu=x86-64-v2"
+    ];
 
 
     cargoLock = {
