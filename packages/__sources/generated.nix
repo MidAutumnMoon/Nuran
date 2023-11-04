@@ -3,16 +3,16 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "7b8cf7c800c3aab6e81e9c791bf27a8c21e520bf";
+    version = "ea4aa71f452203bc7be29ca8ccd2b1ca16ecee14";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "7b8cf7c800c3aab6e81e9c791bf27a8c21e520bf";
+      rev = "ea4aa71f452203bc7be29ca8ccd2b1ca16ecee14";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-FG9uCVxtkFwXPx/G9MWhh9IaiMEc6BNosxugpF4yFrU=";
+      sha256 = "sha256-RqM/FFF+kdRFQ22yfhWHOcxZb4GDLZ1VNCaTYMAHuoA=";
     };
-    date = "2023-10-28";
+    date = "2023-11-03";
   };
   derputils = {
     pname = "derputils";
@@ -51,8 +51,8 @@
     pname = "hysteria";
     version = "app/v2.2.0";
     src = fetchurl {
-      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.0/hysteria-linux-amd64-avx";
-      sha256 = "sha256-Jm4prpUC6CyemZY525eO1K3oSBVifxa4+ylGaX6/G3E=";
+      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.0/hysteria-linux-amd64";
+      sha256 = "sha256-TZnFEbFNJ2+dvt6UQaoH9QDjg+ZE1CjjgnnHVrgqMys=";
     };
   };
   ibm-plex = {
