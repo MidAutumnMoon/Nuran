@@ -3,16 +3,16 @@
 {
   cachyos-patches = {
     pname = "cachyos-patches";
-    version = "ea4aa71f452203bc7be29ca8ccd2b1ca16ecee14";
+    version = "ea7c01e99a6defd5d2e49a54fcbc34691defc4f8";
     src = fetchgit {
       url = "https://github.com/CachyOS/kernel-patches/";
-      rev = "ea4aa71f452203bc7be29ca8ccd2b1ca16ecee14";
+      rev = "ea7c01e99a6defd5d2e49a54fcbc34691defc4f8";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-RqM/FFF+kdRFQ22yfhWHOcxZb4GDLZ1VNCaTYMAHuoA=";
+      sha256 = "sha256-hUF9gIaIP4sZ7DIlc2kxLvCoR3Sg+LY98J+HqzizjuU=";
     };
-    date = "2023-11-03";
+    date = "2023-11-08";
   };
   derputils = {
     pname = "derputils";
@@ -30,10 +30,10 @@
   };
   dnsproxy = {
     pname = "dnsproxy";
-    version = "v0.56.3";
+    version = "v0.57.2";
     src = fetchurl {
-      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.56.3/dnsproxy-linux-amd64-v0.56.3.tar.gz";
-      sha256 = "sha256-7xXq6FH5TMk/bYFeOYAlWmP4iABr5RUjIw5l29S9V6o=";
+      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.57.2/dnsproxy-linux-amd64-v0.57.2.tar.gz";
+      sha256 = "sha256-BcJVHQzF0l9Ylq/asqqVjK9q5KojhwAzhwZQnSUBqtw=";
     };
   };
   graphite-cursors = {
