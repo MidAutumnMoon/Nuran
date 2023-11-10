@@ -44,11 +44,6 @@ fetch.git = "https://github.com/nickeb96/puffer-fish"
 
 # Kernel
 
-[cachyos-patches]
-src.git = "https://github.com/CachyOS/kernel-patches/"
-fetch.git = "https://github.com/CachyOS/kernel-patches/"
-#pinned = true
-
 # Color & Themes & Font
 
 [graphite-cursors]
