@@ -1,23 +1,4 @@
 {
-    "cachyos-patches": {
-        "cargoLocks": null,
-        "date": "2023-11-08",
-        "extract": null,
-        "name": "cachyos-patches",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "ea7c01e99a6defd5d2e49a54fcbc34691defc4f8",
-            "sha256": "sha256-hUF9gIaIP4sZ7DIlc2kxLvCoR3Sg+LY98J+HqzizjuU=",
-            "type": "git",
-            "url": "https://github.com/CachyOS/kernel-patches/"
-        },
-        "version": "ea7c01e99a6defd5d2e49a54fcbc34691defc4f8"
-    },
     "derputils": {
         "cargoLocks": null,
         "date": "2023-10-30",
@@ -48,11 +29,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-BcJVHQzF0l9Ylq/asqqVjK9q5KojhwAzhwZQnSUBqtw=",
+            "sha256": "sha256-A3mWhVUG1opxI6kpgmjWoY1TUja/aAebiKGn2hhqkGQ=",
             "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.57.2/dnsproxy-linux-amd64-v0.57.2.tar.gz"
+            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.57.3/dnsproxy-linux-amd64-v0.57.3.tar.gz"
         },
-        "version": "v0.57.2"
+        "version": "v0.57.3"
     },
     "graphite-cursors": {
         "cargoLocks": null,
