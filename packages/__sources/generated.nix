@@ -17,10 +17,10 @@
   };
   dnsproxy = {
     pname = "dnsproxy";
-    version = "v0.57.3";
+    version = "v0.58.0";
     src = fetchurl {
-      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.57.3/dnsproxy-linux-amd64-v0.57.3.tar.gz";
-      sha256 = "sha256-A3mWhVUG1opxI6kpgmjWoY1TUja/aAebiKGn2hhqkGQ=";
+      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.58.0/dnsproxy-linux-amd64-v0.58.0.tar.gz";
+      sha256 = "sha256-uToSt20hlSjxLKgAXrWr7IqArYqEu4N6rxkP2IMIcLw=";
     };
   };
   graphite-cursors = {
