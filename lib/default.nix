@@ -26,7 +26,6 @@ in
 rec {
 
     nuran.path     = activateLib ./path;
-    nuran.file     = activateLib ./file;
     nuran.module   = activateLib ./module;
     nuran.string   = activateLib ./string;
     nuran.trivial  = activateLib ./trivial;
@@ -36,10 +35,6 @@ rec {
         isDir
         listAllFiles listAllDirs
         hasExtension
-    ;
-
-    inherit ( nuran.file )
-        readSomeFiles readAllFiles
     ;
 
     inherit ( nuran.module )
