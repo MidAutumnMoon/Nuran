@@ -2,68 +2,67 @@ self: super:
 
 let
 
-  # Each single lib is a file contains
-  # a list of paths to more files each of
-  # which is a function that accepts one
-  # argument, the lib fixed-point itself,
-  # and returns a attrset of something.
-  #
-  # Then the list of returned attrset
-  # is got foldl-ed using '//'.
+    # Each single lib is a file contains
+    # a list of paths to more files each of
+    # which is a function that accepts one
+    # argument, the lib fixed-point itself,
+    # and returns a attrset of something.
+    #
+    # Then the list of returned attrset
+    # is got foldl-ed using '//'.
 
-  lib = self;
+    lib = self;
 
-  mergeListOfAttrs =
-    builtins.foldl' ( a: b: a // b ) {};
+    mergeListOfAttrs =
+        builtins.foldl' ( a: b: a // b ) {};
 
-  importParts =
-    dir: map import ( import dir );
+    importParts = dir: map import ( import dir );
 
-  importLib =
-    dir: mergeListOfAttrs ( map ( f: f lib ) ( importParts dir ) );
+    activateLib =
+        dir: mergeListOfAttrs ( map ( f: f lib ) ( importParts dir ) );
 
 in
 
 rec {
 
-  nuran.path     = importLib ./path;
-  nuran.file     = importLib ./file;
-  nuran.module   = importLib ./module;
-  nuran.string   = importLib ./string;
-  nuran.trivial  = importLib ./trivial;
-  nuran.nixpkgs  = importLib ./nixpkgs;
+    nuran.path     = activateLib ./path;
+    nuran.file     = activateLib ./file;
+    nuran.module   = activateLib ./module;
+    nuran.string   = activateLib ./string;
+    nuran.trivial  = activateLib ./trivial;
+    nuran.nixpkgs  = activateLib ./nixpkgs;
 
-  inherit ( nuran.path )
-    isDir isFile
-    listAllFiles listAllDirs
-    hasExtension
+    inherit ( nuran.path )
+        isDir
+        listAllFiles listAllDirs
+        hasExtension
     ;
 
-  inherit ( nuran.file )
-    readSomeFiles readAllFiles
+    inherit ( nuran.file )
+        readSomeFiles readAllFiles
     ;
 
-  inherit ( nuran.module )
-    isModule
-    flatMod condMod
-    listAllModules
+    inherit ( nuran.module )
+        isModule
+        flatMod condMod
+        listAllModules
     ;
 
-  inherit ( nuran.string )
-    capitalize
+    inherit ( nuran.string )
+        capitalize
     ;
 
-  inherit ( nuran.trivial )
-    doNothing
-    assembleSystem
-    adoptColmena
+    inherit ( nuran.trivial )
+        doNothing
+        assembleSystem
+        adoptColmena
     ;
 
-  inherit ( nuran.nixpkgs )
-    removePatches
-    onceride oncerideDrv
-    brewNixpkgs
-    brewShells
+    inherit ( nuran.nixpkgs )
+        removePatches
+        onceride oncerideDrv
+        brewNixpkgs
+        brewShells
     ;
 
 }
