@@ -1,72 +1,77 @@
 lib:
 
+
 let
 
-  inherit ( builtins )
-    attrNames
-    concatMap
-    readDir
+    inherit ( builtins )
+        attrNames
+        concatMap
+        readDir
     ;
 
-  inherit ( lib.nuran.path )
-    isDir
+    inherit ( lib.nuran.path )
+        isDir
     ;
 
 
-  # listDirNames :: path -> [ string ]
-  listDirNames =
-    parent:
-      let children = readDir parent; in
-      concatMap ( name:
-        if children.${ name } == "directory" then
-          [ name ]
-        else
-          []
-      ) ( attrNames children );
-
-  # listDirs :: path -> [ path ]
-  listDirs =
-    toplevel:
-      map ( path: toplevel + ( "/" + path ) ) ( listDirNames toplevel );
+    # onlyDirs :: path -> [ string ]
+    #
+    # Hand rolling "lib.filterAttrs" because
+    # using it casts a slight performance penalty.
+    #
+    _listOnlyDirs = parent:
+        let children = readDir parent; in
+        concatMap ( childname:
+            if children.${childname} == "directory" then
+                [ childname ]
+            else
+                []
+        ) ( attrNames children );
 
 
-  # _listAllDirs :: path -> [ path ]
-  #
-  # Raw "listAllDirs" without type checking
-  # to increase the speed.
-  #
-  _listAllDirs =
-    toplevel:
-      let subdirs = listDirs toplevel; in
-      if subdirs == []
-      then [ toplevel ]
-      else [ toplevel ] ++ ( concatMap _listAllDirs subdirs );
+    # listDirs :: path -> [ path ]
+    #
+    # Construct "path"s from child dir names.
+    #
+    # Similar to _listOnlyDirs, not using
+    # "lib.path.append" because of performance concers.
+    #
+    listOnlyDirs = entry:
+        map ( n: entry + ( "/" + n ) ) ( _listOnlyDirs entry );
+
+
+    # _listAllDirs :: path -> [ path ]
+    #
+    # Unsafe (no type assertion) "listAllDirs"
+    # in order to increase the speed.
+    #
+    _listAllDirs = entry:
+        [ entry ] ++ (
+            concatMap _listAllDirs ( listOnlyDirs entry )
+        );
 
 in
 
 {
 
-  # listAllDirs :: path -> [ path ]
-  #
-  # Traverse the $toplevel from up to bottom
-  # and find every directories under it.
-  #
-  # Benchmark: 180ms runs on whole nixpkgs,
-  # with kernel 6.1 & btrfs. Not too shabby :)
-  #
-  listAllDirs =
-    toplevel:
-      assert isDir toplevel;
-      _listAllDirs toplevel;
+    # listAllDirs :: path -> [ path ]
+    #
+    # Traverse the $entry recursively
+    # and collect every directories inside it.
+    #
+    # Benchmark: avg. 180ms when testing against nixpkgs,
+    # (.git directory removed) on kernel 6.1 & btrfs.
+    #
+    # Not too shabby :)
+    #
+    listAllDirs = entry:
+        assert isDir entry;
+        _listAllDirs entry;
 
 
-  # listAllFiles :: path -> [ path ]
-  #
-  # Walk through $toplevel and list every regular files.
-  #
-  listAllFiles =
-    toplevel:
-      assert isDir toplevel;
-      lib.filesystem.listFilesRecursive toplevel;
+    # listAllFiles :: path -> [ path ]
+    listAllFiles = entry:
+        assert isDir entry;
+        lib.filesystem.listFilesRecursive entry;
 
 }
