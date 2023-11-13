@@ -1,67 +1,53 @@
 lib:
 
+
 let
 
-  inherit ( builtins )
-    isAttrs
+    inherit ( builtins )
+        isAttrs
     ;
 
-  inherit ( lib.nuran.module )
-    flatMod
+    inherit ( lib.nuran.module )
+        flatMod
     ;
-
-  _condMod =
-    cond: body:
-      body // { config = lib.mkIf cond body.config; };
 
 in
 
 {
 
-  # condMod :: bool -> attrset -> attrset
-  #
-  # A wrapper of the "config = mkIf" pattern
-  # to help reducing the nested attrsets.
-  #
-  # The $cond is a boolean which will be
-  # the first argument of mkIf,
-  # and the $body is an attrset that may come
-  # with different shapes.
-  #
-  #
-  # 1)
-  # The basic form of $body may just be
-  # a normal module, e.g.
-  #
-  #   condMod cond {
-  #     services.hello.niceDay = true;
-  #   }
-  #
-  # and vice versa.
-  #
-  #
-  # 2)
-  # Since condMod uses "flatMod" under the
-  # hood, the $body may contain "imports"
-  # and/or "options" fields.
-  #
-  # Something like this is ok.
-  #
-  #   condMod cond {
-  #     options.rocks =
-  #       rick = mkOption ...;
-  #     programs.vlc.volume = 100;
-  #   }
-  #
-  # The confusing part is that "options"
-  # and "imports" aren't effected by
-  # the $cond, but still looks like to
-  # be guarded by it.
-  #
-  condMod =
-    cond: body:
-      # $cond shouldn't be type checked
-      assert isAttrs body;
-      _condMod cond ( flatMod body );
+    # condMod :: bool -> attrset -> attrset
+    #
+    # Combined "mkIf" and "flatMod" to unclutter
+    # modules futhermore.
+    #
+    # $cond will be passed to mkIf as-is
+    # $body will go through "flatMod"
+    #
+    #
+    # Usage:
+    #
+    #   condMod config.happy {
+    #       programs.greeting.enable = true;
+    #   }
+    #
+    #
+    # One gotcha is that
+    # when mixing "options" or "imports" etc.
+    # non-"config" fields in condMod body yields
+    #
+    #   condMod $cond {
+    #       options.rocks = ...;
+    #       programs.vlc.volume = 100;
+    #   }
+    #
+    # which may cause confusion where "options"
+    # seems to be guarded by "cond" while it's not.
+    #
+    condMod = cond: body:
+        assert isAttrs body;
+        let unflattened = flatMod body; in
+        unflattened // {
+            config = lib.mkIf cond unflattened.config;
+        };
 
 }

@@ -1,10 +1,11 @@
 lib:
 
+
 let
 
-  inherit ( lib )
-    isPath
-    pathExists
+    inherit ( builtins )
+        isPath
+        pathExists
     ;
 
 in
@@ -13,10 +14,10 @@ in
 
     # isModule :: path -> bool
     #
-    # A module is a directory who has
-    # a default.nix. Files are just modules.
+    # A module is a directory containing a default.nix,
+    # despite its content.
     #
-    isModule =
-      path: isPath path && pathExists ( path + "/default.nix" );
+    isModule = path:
+        isPath path && pathExists ( path + "/default.nix" );
 
 }

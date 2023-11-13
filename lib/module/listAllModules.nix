@@ -1,18 +1,19 @@
 lib:
 
+
 let
 
-  inherit ( builtins )
-    filter
+    inherit ( builtins )
+        filter
     ;
 
-  inherit ( lib.nuran.path )
-    isDir
-    listAllDirs
+    inherit ( lib.nuran.path )
+        isDir
+        listAllDirs
     ;
 
-  inherit ( lib.nuran.module )
-    isModule
+    inherit ( lib.nuran.module )
+        isModule
     ;
 
 in
@@ -20,13 +21,12 @@ in
 {
 
 
-  # listAllModules :: path -> [ path ]
-  #
-  # List the path of folders which isModule.
-  #
-  listAllModules =
-    toplevel:
-      assert isDir toplevel;
-      filter isModule ( listAllDirs toplevel );
+    # listAllModules :: path -> [ path ]
+    #
+    # Alllll the modules.
+    #
+    listAllModules = entry:
+      assert isDir entry;
+      filter isModule ( listAllDirs entry );
 
 }
