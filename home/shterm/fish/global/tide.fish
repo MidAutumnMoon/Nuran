@@ -27,7 +27,7 @@ __set_tide_variable right_prompt items \
 # Items
 #
 
-__set_tide_variable character icon '○'
+__set_tide_variable character icon '+'
 __set_tide_variable character color '005FD7'
 __set_tide_variable character color_failure 'FF0000'
 
