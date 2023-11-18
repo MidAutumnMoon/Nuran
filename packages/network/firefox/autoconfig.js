@@ -26,13 +26,11 @@ pref( 'gfx.webrender.all',                 true );
 pref( 'gfx.webrender.compositor',          true );
 pref( 'gfx.webrender.enabled',             true );
 pref( 'gfx.webrender.precache-shaders',    true );
-pref( 'gfx.webrender.svg-images',          true );
 pref( 'gfx.canvas.accelerated',            true );
 pref( 'gfx.canvas.accelerated.gpu-path-size', 8 );
 pref( 'gfx.color_management.enablev4',     true );
 pref( 'gfx.color_management.native_srgb',  true );
 pref( 'gfx.offscreencanvas.enabled',       true );
-pref( 'gfx.webrender.program-binary',      true );
 
 pref( 'layers.acceleration.force-enabled', true );
 pref( 'layers.gpu-process.enabled',        true );
@@ -48,15 +46,15 @@ pref( 'network.http.max-persistent-connections-per-proxy',  64 );
 pref( 'network.http.request.max-start-delay', 0 );
 
 pref( 'browser.sessionhistory.max_entries', 12 );
-
-pref( 'browser.tabs.min_inactive_duration_before_unload', 240000 );
-
-pref( 'dom.script_loader.bytecode_cache.strategy', 0 );
-pref( 'dom.script_loader.delazification.max_size', -1 );
+pref( 'browser.tabs.min_inactive_duration_before_unload', 24000 );
 
 pref( 'network.buffer.cache.count',              128 );
 pref( 'network.buffer.cache.size',               262144 );
 pref( 'network.http.http2.default-hpack-buffer', 262144 );
+
+pref( 'accessibility.force_disabled', 1 );
+
+pref( 'dom.ipc.forkserver.enable', true );
 
 
 
@@ -154,9 +152,6 @@ lockPref( 'browser.send_pings.require_same_host', true );
 pref( 'dom.enable_performance',                   false );
 pref( 'dom.enable_performance_navigation_timing', false );
 pref( 'dom.enable_performance_observer',          false );
-
-pref( 'dom.webnotifications.enabled', false );
-
 pref( 'dom.battery.enabled',        false );
 pref( 'dom.enable_user_timing',     false );
 pref( 'dom.enable_event_timing',    false );
@@ -245,8 +240,6 @@ pref( 'javascript.options.baselinejit.threshold', 50 );
 pref( 'javascript.options.ion.threshold', 500 );
 pref( 'javascript.options.ion.frequent_bailout_threshold', 15 );
 
-pref( 'extensions.getAddons.cache.enabled', false );
-
 pref( 'browser.newtabpage.activity-stream.default.sites', '' );
 pref( 'browser.newtabpage.activity-stream.discoverystream.enabled', false );
 pref( 'browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons',   false );
@@ -320,8 +313,6 @@ pref( 'privacy.cpd.sessions',    true );
 ////
 //// Whatever
 ////
-pref( 'media.rdd-vpx.enabled', false );
-
 pref( 'browser.uitour.enabled', false );
 pref( 'browser.shell.checkDefaultBrowser', false );
 pref( 'browser.shell.shortcutFavicons',    false );
@@ -335,6 +326,3 @@ pref( 'accessibility.typeaheadfind.autostart', false );
 pref( 'accessibility.typeaheadfind.manual',    false );
 
 pref( 'accessibility.browsewithcaret_shortcut.enabled', false );
-
-pref( 'dom.ipc.forkserver.enable', true );
-pref( 'network.early-hints.enabled', true );
