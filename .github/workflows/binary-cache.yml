@@ -1,76 +1,62 @@
 name: "Teapot's binary cache"
 
+
 on:
-  workflow_dispatch:
-  push:
-    paths:
-      - 'flake.*'
-      - 'packages/**'
-  schedule:
-    #- cron: "0 */4 * * *"
-    - cron: "0 0 */2 * *"
+    workflow_dispatch:
+    push:
+        paths:
+        - 'flake.*'
+        - 'packages/**'
+    schedule:
+        #- cron: "0 */4 * * *"
+        - cron: "0 0 */2 * *"
 
 
 jobs:
 
-  build-cache:
+    build-n-cache:
 
-    strategy:
-      fail-fast: false
-      matrix:
-        task-name:
-          - kernels-modules
-          - parallel-1
-          - parallel-2
-          - parallel-3
-          - rust-things
-          - rust-heavy-things
-          - go-things
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                task-name:
+                - kernels-modules
+                - parallel-1
+                - parallel-2
+                - parallel-3
+                - rust-things
+                - rust-heavy-things
+                - go-things
 
-    defaults:
-      run:
-        shell: bash
 
-    steps:
+        defaults:
+            run: { shell: bash }
 
-      - name: "Checkout"
-        uses: actions/checkout@v4
+        steps:
 
-      - name: "Setup nix"
-        uses: cachix/install-nix-action@v23
-        with:
-          nix_path: "nixpkgs=channel:nixpkgs-unstable"
+        - name: Checkout
+          uses: actions/checkout@v4
 
-      - name: "Setup cachix"
-        uses: cachix/cachix-action@master
-        with:
-          name: "nuirrce"
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-          cachixArgs: -c 16 -j 2 --omit-deriver
-          pushFilter: |
-            (NVIDIA.*\.run)|(-source|vendor\..*|go-modules|-crate-|\.tar.*$)
+        - name: Setup nix
+          uses: MidAutumnMoon/spheti-action/nix@master
 
-      - name: "Install tools"
-        run: |
-          nix-env -f '<nixpkgs>' -iA 'nix-build-uncached' 'fish'
+        - name: Setup cachix
+          uses: cachix/cachix-action@master
+          with:
+            installCommand: "nix profile install nixpkgs#cachix"
+            name: "nuirrce"
+            authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+            cachixArgs: -c 16 -j 2 --omit-deriver
+            pushFilter: |
+                (NVIDIA.*\.run)|(-source|vendor\..*|go-modules|-crate-|\.tar.*$)
 
-      # - name: "Freeup bloats"
-      #   run: fish __scripts/cleansing.fish light
+        - name: Update workspace flake
+          run: nix flake update
 
-      - name: "Configure nix daemon"
-        run: fish __scripts/configure-daemon.fish
-
-      - name: "Update workspace flake"
-        run: nix flake update
-
-      - name: "Run build"
-        run: |
-          fish __scripts/do-build.fish \
-            'packages/workflow-builds.nix' \
-            '${{ matrix.task-name }}'
-
-      # - name: "Cleanup"
-      #   if: always()
-      #   run: nix-collect-garbage -d
+        - name: Run build
+          run: |
+            fish __scripts/do-build.fish \
+              'packages/workflow-builds.nix' \
+              '${{ matrix.task-name }}'
