@@ -2,15 +2,13 @@
 
 There is no sanity.
 
+## Notes to setup GitHub Actions environment
 
-## Steps to provision GitHub Action
+### Permission
+1. Find `Actions/General` in Settings.
+2. Select `Read and write permissions` under Workflow permissions.
+3. Enable `Allow Github Actions to create...pull requests`.
 
-1. Action permission
-    1. Find Action/Runners under Settings
-    2. Find "Workflow permissions"
-    3. Allow read/write
-    4. Toggle "...Action to create...pull requests"
-
-2. Cachix
-    1. Obtain auth token from Cachix dashboard
-    2. Create a secret named `CACHIX_AUTH_TOKEN` with that token as content
+### Cachix
+1. Obtain the token from Cachix dashboard.
+2. Put the token in a secret named `CACHIX_AUTH_TOKEN`.
