@@ -64,11 +64,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-TZnFEbFNJ2+dvt6UQaoH9QDjg+ZE1CjjgnnHVrgqMys=",
+            "sha256": "sha256-fGxwKv2k76akQ9QORcpSY2UN/QAJCLzhjVS7s+73ikU=",
             "type": "url",
-            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.2.0/hysteria-linux-amd64"
+            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.2.1/hysteria-linux-amd64"
         },
-        "version": "app/v2.2.0"
+        "version": "app/v2.2.1"
     },
     "ibm-plex": {
         "cargoLocks": null,
