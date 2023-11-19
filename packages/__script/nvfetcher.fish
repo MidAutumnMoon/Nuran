@@ -4,30 +4,52 @@
 # Positional script options
 #
 # 1: path leading to a nvfetcher config file
-# 2: (optional) "force" to ignore pins during updating
 #
+# 2: Github token
+#
+# 3: (optional) "force" to ignore pins during updating
+#
+
+set -l Usage "\
+./nvfetcher.fish sources.toml github-token [force]
+
+sources.toml: TOML nvfetcher config
+github-token: avoid ratelimiting
+[force]: update ignoring \"pinned\" in config\
+"
 
 if test ( count $argv ) -lt 1
     echo "Not enough cmdline options"
     exit ( false )
 end
 
-set -l Config ( cat "$argv[1]" | string collect )
+set -l Config "$( cat $argv[1] )"
 
-set -l ForceMode "$argv[2]"
+set -l GithubToken "$argv[2]"
+
+set -l ForceMode "$argv[3]"
+
+
+if test "$GithubToken" = ""
+    echo "Need Github token"
+    exit ( false )
+end
+
 
 
 #
 # Prepare env
 #
 
-set -l FishPath ( status fish-path )
+set -l FishExe ( status fish-path )
 
-set -l ScriptPath ( status filename | path resolve )
+set -l ThisScriptPath ( status filename | path resolve )
 
-set -l ScriptDir ( path dirname -- "$ScriptPath" )
+set -l SourceDir ( begin
+    set -l this_dir ( path dirname -- "$ThisScriptPath" )
+    path resolve -- "$this_dir/../__sources"
+end )
 
-set -l SourceDir ( path resolve -- "$ScriptDir/../__sources" )
 
 
 #
@@ -38,7 +60,8 @@ if not set --query NvfetcherDevshell
 
     set -lx NvfetcherDevshell ( true )
 
-    nix develop .#nuclage -c "$FishPath" "$ScriptPath" $argv
+    nix develop \
+        .#nuclage -c "$FishExe" "$ThisScriptPath" $argv
 
     exit $status
 
@@ -52,11 +75,13 @@ if test $ForceMode = "force"
 end
 
 
+
 #
 # Remove stale files
 #
 
 find "$SourceDir" -mindepth 1 ! -name 'generated.*' -delete
+
 
 
 #
@@ -66,27 +91,12 @@ find "$SourceDir" -mindepth 1 ! -name 'generated.*' -delete
 set -l Keyfile ( mktemp --suffix ".toml" )
 set -l NvfetcherKeyfileOption
 
-set -l GithubTokenFile
-set -l GithubToken
-
-if set --query XDG_CONFIG_HOME
-    set GithubTokenFile "$XDG_CONFIG_HOME/nvfetcher/github_token"
-else
-    set GithubTokenFile "$HOME/.config/nvfetcher/github_token"
-end
-
-if not test -f "$GithubTokenFile"
-    echo "Put Github access token in <$GithubTokenFile>"
-    exit ( false )
-end
-
-set GithubToken ( tr -cd '[:print:]' < "$GithubTokenFile" )
-
 printf "%s\n" \
     "[keys]" \
     "github = \"$GithubToken\"" > "$Keyfile"
 
 set -a NvfetcherKeyfileOption "--keyfile" "$Keyfile"
+
 
 
 #
@@ -103,6 +113,7 @@ nvfetcher \
     $NvfetcherKeyfileOption
 
 set NvfetcherExitStatus $status
+
 
 
 #
