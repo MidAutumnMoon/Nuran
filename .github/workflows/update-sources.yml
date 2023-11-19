@@ -1,64 +1,56 @@
 name: "Update sources"
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 6 * * 1"
+    workflow_dispatch:
+    schedule:
+        - cron: "0 6 * * 1"
 
 jobs:
 
-  update-sources:
+    update-sources:
 
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        shell: bash
+        defaults:
+            run: { shell: bash }
 
-    steps:
+        steps:
 
-      - name: Checkout repo
-        uses: actions/checkout@v4
+            - name: Checkout repo
+              uses: actions/checkout@v4
 
-      - name: Setup nix
-        uses: cachix/install-nix-action@v23
-        with:
-          nix_path: "nixpkgs=channel:nixpkgs-unstable"
-          extra_nix_config: |
-            substituters = https://cache.nixos.org/ https://nuirrce.cachix.org/
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk=
+            - name: Setup nix
+              uses: MidAutumnMoon/spheti-action/nix@master
+              with:
+                cachix-url: "https://nuirrce.cachix.org/"
+                cachix-pubkey: "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
 
-      - name: Install required tools
-        run: nix-env -f '<nixpkgs>' -iA 'fish'
+            - name: Install required tools
+              run: |
+                # empty
 
-      - name: Configure nix-daemon
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: fish __scripts/configure-daemon.fish
+            - name: Run nvfetcher
+              run: |
+                fish "packages/__script/nvfetcher.fish" \
+                    "packages/sources.toml" \
+                    "${{ github.token }}" \
+                | tee "/tmp/nvfetcher_outputs"
 
-      - name: Run nvfetcher
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p "$HOME/.config/nvfetcher"
-          printf "$GITHUB_TOKEN" > "$HOME/.config/nvfetcher/github_token"
-          fish 'packages/__script/nvfetcher' 'packages/sources.toml' | tee /tmp/nvfetcher_outputs
-          sed --in-place '0,/^Changes/d' /tmp/nvfetcher_outputs
+            # The holyf Bash will hunt you to death and burn your house to ash
+            # if you'd dare to do something with the mf multiline string
+            - name: Read nvfetcher outputs so that we can have a nice PR
+              id: nvfetcher_outputs
+              uses: juliangruber/read-file-action@v1
+              with:
+                path: "/tmp/nvfetcher_outputs"
 
-      # Ass in the pain to do this using the holyf bash
-      - name: Read nvfetcher changes
-        id: version_changes
-        uses: andstor/file-reader-action@v1
-        with:
-          path: "/tmp/nvfetcher_outputs"
-
-      - name: Open PR
-        uses: peter-evans/create-pull-request@v5
-        with:
-          delete-branch: true
-          title: "sources: update [bot]"
-          commit-message: "sources: update [bot]"
-          committer: "GitHub <noreply@github.com>"
-          author: "GitHub <noreply@github.com>"
-          body: |
-            ${{ steps.version_changes.outputs.contents }}
+            - name: Open PR
+              uses: peter-evans/create-pull-request@v5
+              with:
+                delete-branch: true
+                title: "sources: update [bot]"
+                commit-message: "sources: update [bot]"
+                committer: "GitHub <noreply@github.com>"
+                author: "GitHub <noreply@github.com>"
+                body: |
+                  ${{ steps.nvfetcher_outputs.outputs.content }}
