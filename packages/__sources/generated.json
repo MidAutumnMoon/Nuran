@@ -1,9 +1,9 @@
 {
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-11-15",
+        "date": "2023-11-20",
         "extract": {
-            "Cargo.lock": "./derputils-6687f9ae2a16f64b17adc332e55975b80b4f0694/Cargo.lock"
+            "Cargo.lock": "./derputils-1d5d8a5f430a9bf530052441c094cc8f9d18e1b2/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "6687f9ae2a16f64b17adc332e55975b80b4f0694",
-            "sha256": "sha256-jmOyjtEVQNOHEdU2cvIwJmjqPMDP+NsUT4kJiYWuY8M=",
+            "rev": "1d5d8a5f430a9bf530052441c094cc8f9d18e1b2",
+            "sha256": "sha256-0TShPigrwpb5nQiATp5pmS89ENJsu+e9jlaYsQfOPH8=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "6687f9ae2a16f64b17adc332e55975b80b4f0694"
+        "version": "1d5d8a5f430a9bf530052441c094cc8f9d18e1b2"
     },
     "dnsproxy": {
         "cargoLocks": null,
@@ -29,11 +29,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-9dXM/MuBxQahpg+wEoeMlP6hGqb0UtRX2hb0aQY37no=",
+            "sha256": "sha256-Ad0K489JB82rwg4sJxVClSEtDE0Gs8yYCgociyK1RqY=",
             "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.59.0/dnsproxy-linux-amd64-v0.59.0.tar.gz"
+            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.59.1/dnsproxy-linux-amd64-v0.59.1.tar.gz"
         },
-        "version": "v0.59.0"
+        "version": "v0.59.1"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -64,11 +64,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-fGxwKv2k76akQ9QORcpSY2UN/QAJCLzhjVS7s+73ikU=",
+            "sha256": "sha256-4al1G06Z6imjeK3iXaNKJ2DYRMT5lyvyLxqJ7Huo4fQ=",
             "type": "url",
-            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.2.1/hysteria-linux-amd64"
+            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.2.2/hysteria-linux-amd64"
         },
-        "version": "app/v2.2.1"
+        "version": "app/v2.2.2"
     },
     "ibm-plex": {
         "cargoLocks": null,

@@ -3,24 +3,24 @@
 {
   derputils = {
     pname = "derputils";
-    version = "6687f9ae2a16f64b17adc332e55975b80b4f0694";
+    version = "1d5d8a5f430a9bf530052441c094cc8f9d18e1b2";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "6687f9ae2a16f64b17adc332e55975b80b4f0694";
+      rev = "1d5d8a5f430a9bf530052441c094cc8f9d18e1b2";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-jmOyjtEVQNOHEdU2cvIwJmjqPMDP+NsUT4kJiYWuY8M=";
+      sha256 = "sha256-0TShPigrwpb5nQiATp5pmS89ENJsu+e9jlaYsQfOPH8=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-6687f9ae2a16f64b17adc332e55975b80b4f0694/Cargo.lock;
-    date = "2023-11-15";
+    "Cargo.lock" = builtins.readFile ./derputils-1d5d8a5f430a9bf530052441c094cc8f9d18e1b2/Cargo.lock;
+    date = "2023-11-20";
   };
   dnsproxy = {
     pname = "dnsproxy";
-    version = "v0.59.0";
+    version = "v0.59.1";
     src = fetchurl {
-      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.59.0/dnsproxy-linux-amd64-v0.59.0.tar.gz";
-      sha256 = "sha256-9dXM/MuBxQahpg+wEoeMlP6hGqb0UtRX2hb0aQY37no=";
+      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.59.1/dnsproxy-linux-amd64-v0.59.1.tar.gz";
+      sha256 = "sha256-Ad0K489JB82rwg4sJxVClSEtDE0Gs8yYCgociyK1RqY=";
     };
   };
   graphite-cursors = {
@@ -36,10 +36,10 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.2.1";
+    version = "app/v2.2.2";
     src = fetchurl {
-      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.1/hysteria-linux-amd64";
-      sha256 = "sha256-fGxwKv2k76akQ9QORcpSY2UN/QAJCLzhjVS7s+73ikU=";
+      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.2/hysteria-linux-amd64";
+      sha256 = "sha256-4al1G06Z6imjeK3iXaNKJ2DYRMT5lyvyLxqJ7Huo4fQ=";
     };
   };
   ibm-plex = {
