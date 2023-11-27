@@ -56,6 +56,8 @@ lib.mkMerge [
         "nixpkgs=${toString flakes.nixpkgs}"
         "nixos=${toString flakes.nixpkgs}"
     ];
+
+    nix.channel.enable = false;
 }
 
 ]
