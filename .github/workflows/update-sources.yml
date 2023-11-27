@@ -31,7 +31,7 @@ jobs:
 
         - name: Run nvfetcher
           run: |
-            fish "packages/__script/nvfetcher.fish" \
+            fish "packages/__scripts/nvfetcher.fish" \
                 "packages/sources.toml" \
                 "${{ github.token }}" \
             | tee "/tmp/nvfetcher_outputs"

@@ -16,6 +16,8 @@ jobs:
 
     build-n-cache:
 
+        name: "Build & Cache"
+
         runs-on: ubuntu-latest
 
         strategy:
@@ -53,10 +55,13 @@ jobs:
                 (NVIDIA.*\.run)|(npm-deps|-source|vendor\..*|go-modules|-crate-|\.tar.*$)
 
         - name: Update workspace flake
-          run: nix flake update
+          run: |
+            nix flake update
 
         - name: Run build
           run: |
-            fish __scripts/do-build.fish \
-              'packages/workflow-builds.nix' \
-              '${{ matrix.task-name }}'
+            pushd "packages"
+            fish "__scripts/builder.fish" \
+                "workflow-builds.nix" \
+                "${{ matrix.task-name }}"
+            popd
