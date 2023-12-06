@@ -29,11 +29,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-Ad0K489JB82rwg4sJxVClSEtDE0Gs8yYCgociyK1RqY=",
+            "sha256": "sha256-BeEZHr7Yx0LnbZ9tKLRDDSw0rwKEmz8cpyrqJjdaGsE=",
             "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.59.1/dnsproxy-linux-amd64-v0.59.1.tar.gz"
+            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.60.0/dnsproxy-linux-amd64-v0.60.0.tar.gz"
         },
-        "version": "v0.59.1"
+        "version": "v0.60.0"
     },
     "graphite-cursors": {
         "cargoLocks": null,
