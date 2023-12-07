@@ -17,10 +17,9 @@ pref( 'browser.cache.disk.enable',           false );
 pref( 'browser.cache.disk_cache_ssla',       false );
 pref( 'media.memory_cache_max_size',         32768 );;
 pref( 'browser.cache.memory.max_entry_size', -1 );
+pref( 'browser.cache.max_shutdown_io_lag',   3 );
 
 pref( 'browser.privatebrowsing.forceMediaMemoryCache', true );
-
-pref( 'browser.cache.max_shutdown_io_lag', 3 );
 
 pref( 'gfx.webrender.all',                 true );
 pref( 'gfx.webrender.compositor',          true );
@@ -39,22 +38,20 @@ pref( 'layers.gpu-process.force-enabled',  true );
 pref( 'media.ffvpx.enabled',                         false );
 pref( 'media.ffmpeg.vaapi.enabled',                  true );
 pref( 'media.hardware-video-decoding.force-enabled', true );
-pref( 'media.gpu-process-decoder',                   true );
 
-pref( 'network.http.max-connections', 900 );
+pref( 'network.http.max-persistent-connections-per-server',  8 );
 pref( 'network.http.max-persistent-connections-per-proxy',  64 );
-pref( 'network.http.request.max-start-delay', 0 );
+pref( 'network.buffer.cache.size',  65536 );
 
-pref( 'browser.sessionhistory.max_entries', 12 );
+pref( 'browser.sessionhistory.max_entries', 8 );
 pref( 'browser.tabs.min_inactive_duration_before_unload', 24000 );
 
-pref( 'network.buffer.cache.count',              128 );
-pref( 'network.buffer.cache.size',               262144 );
-pref( 'network.http.http2.default-hpack-buffer', 262144 );
-
 pref( 'accessibility.force_disabled', 1 );
-
 pref( 'dom.ipc.forkserver.enable', true );
+
+pref( 'javascript.options.blinterp.threshold', 5 );
+pref( 'javascript.options.baselinejit.threshold', 50 );
+pref( 'javascript.options.ion.threshold', 5000 );
 
 
 
@@ -98,11 +95,6 @@ pref( 'general.disable_button.default_browser', true );
 
 pref( 'widget.non-native-theme.gtk.scrollbar.allow-buttons', true );
 
-pref( 'widget.use-xdg-desktop-portal.file-picker',  1 );
-pref( 'widget.use-xdg-desktop-portal.mime-handler', 1 );
-pref( 'widget.use-xdg-desktop-portal.location',     1 );
-pref( 'widget.use-xdg-desktop-portal.settings',     1 );
-
 pref( 'security.insecure_password.ui.enabled',              true );
 pref( 'security.insecure_field_warning.contextual.enabled', true );
 
@@ -112,21 +104,6 @@ pref( 'browser.fixup.alternate.enabled', false )
 pref( 'devtools.theme', 'dark' );
 
 pref( 'browser.urlbar.autoFill.adaptiveHistory.enabled', true );
-pref( 'browser.urlbar.autoFill.adaptiveHistory.minCharsThreshold', 0 );
-
-pref( 'browser.display.show_image_placeholders', true );
-
-
-
-////
-//// Extra features
-////
-pref( 'layout.animation.prerender.partial', true );
-pref( 'layout.css.cascade-layers.enabled',  true );
-pref( 'layout.css.color-mix.enabled',       true );
-pref( 'layout.css.cross-fade.enabled',      true );
-pref( 'layout.css.math-depth.enabled',      true );
-pref( 'layout.css.motion-path-ray.enabled', true );
 
 
 
@@ -159,17 +136,13 @@ pref( 'dom.enable_resource_timing', false );
 pref( 'dom.netinfo.enabled',        false );
 pref( 'dom.network.enabled',        false );
 pref( 'dom.telephony.enabled',      false );
-pref( 'dom.gamepad.enabled',        false );
 pref( 'dom.vr.enabled',             false );
 pref( 'dom.webaudio.enabled',       true );
 pref( 'dom.allow_cut_copy',         true );
 pref( 'dom.webshare.enabled',       false );
-pref( 'dom.vibrator.enabled',       false );
 
 pref( 'media.webspeech.recognition.enable', false );
 pref( 'media.webspeech.synth.enabled',      false );
-
-pref( 'fission.autostart', true );
 
 pref( 'intl.accept_languages', 'en-US, en' );
 pref( 'intl.locale.requested', 'en-US' );
@@ -187,7 +160,6 @@ pref( 'media.getusermedia.screensharing.enabled',     false );
 pref( 'media.getusermedia.audiocapture.enabled',      false );
 
 pref( 'network.dns.disablePrefetch',    true );
-pref( 'network.dns.blockDotOnion',      true );
 pref( 'network.predictor.enabled',      false );
 pref( 'network.prefetch-next',          false );
 pref( 'network.proxy.socks_remote_dns', true );
@@ -232,13 +204,6 @@ pref( 'network.http.referer.XOriginTrimmingPolicy', 2 );
 pref( 'browser.search.countryCode', 'US' );
 pref( 'browser.search.region',      'US' );
 pref( 'browser.search.geoip.url',   '' );
-
-pref( 'javascript.use_us_english_locale', true );
-
-pref( 'javascript.options.blinterp.threshold', 5 );
-pref( 'javascript.options.baselinejit.threshold', 50 );
-pref( 'javascript.options.ion.threshold', 500 );
-pref( 'javascript.options.ion.frequent_bailout_threshold', 15 );
 
 pref( 'browser.newtabpage.activity-stream.default.sites', '' );
 pref( 'browser.newtabpage.activity-stream.discoverystream.enabled', false );
