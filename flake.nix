@@ -23,11 +23,6 @@ inputs = {
         inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvfetcher = {
-        url = "github:berberman/nvfetcher";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Some modules
 
     impermanence.url =
@@ -150,7 +145,7 @@ in {
         ];
 
         nuclage = p: with p; [
-            nvfetcher_git
+            nvfetcher
         ];
 
         rust = p: with p; [

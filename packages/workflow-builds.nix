@@ -20,7 +20,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
 
     parallel-2 = [
         plasma5Packages.kwallet-pam
-        nvfetcher_git
         neovim_teapot
         ibm-plex_teapot
     ];
