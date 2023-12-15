@@ -151,7 +151,8 @@ rec {
 
     teapot.mtune = "znver2";
 
-    teapot.baseOptimiz = [
+    teapot.optimiz = [
+        "-O3"
         "-march=${teapot.march}"
         "-mtune=${teapot.mtune}"
         "-fno-semantic-interposition"
@@ -159,21 +160,13 @@ rec {
         "-flto"
         "-ftrivial-auto-var-init=zero"
         "-fstack-clash-protection"
+        "-mpclmul"
         "-pipe"
-    ];
-
-    teapot.aggressiveOptimiz = lib.flatten [
-        teapot.baseOptimiz
-        "-O3"
-        "-fno-math-errno"
-        "-fno-trapping-math"
-        "-fno-signed-zeros"
-        "-fassociative-math"
-        "-freciprocal-math"
     ];
 
     teapot.RUSTFLAGS = [
         "-Ctarget-cpu=${teapot.march}"
+        "-Copt-level=3"
     ];
 
 

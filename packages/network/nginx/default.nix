@@ -59,7 +59,7 @@ lib.onceride nginxMainline
 
     preBuild = oldAttrs.preBuild or "" + ''
         makeFlagsArray+=(
-            CFLAGS="${toString teapot.aggressiveOptimiz}"
+            CFLAGS="${toString teapot.optimiz}"
         )
     '';
 
