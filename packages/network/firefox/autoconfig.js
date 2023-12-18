@@ -76,7 +76,8 @@ pref( 'browser.urlbar.suggest.topsites',    false );
 pref( 'browser.urlbar.suggest.calculator',  false );
 pref( 'browser.search.suggest.enabled',     false );
 pref( 'browser.urlbar.groupLabels.enabled', false );
-pref( 'browser.urlbar.resultMenu',          false );
+
+pref( 'browser.urlbar.resultMenu.keyboardAccessible', false );
 
 pref( 'toolkit.tabbox.switchByScrolling', true );
 pref( 'browser.tabs.insertAfterCurrent',  true );
