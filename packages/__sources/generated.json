@@ -1,9 +1,9 @@
 {
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-12-11",
+        "date": "2023-12-18",
         "extract": {
-            "Cargo.lock": "./derputils-2248810eff0ac68db18d582733b942feea73b847/Cargo.lock"
+            "Cargo.lock": "./derputils-cad8500da8ac541254055c726abb9bf49e775e11/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "2248810eff0ac68db18d582733b942feea73b847",
-            "sha256": "sha256-nLevjQlWIgNYN6zWKBf1UITJH3GYbnXngf47SCXQJgk=",
+            "rev": "cad8500da8ac541254055c726abb9bf49e775e11",
+            "sha256": "sha256-0ju5sQdXnq9Ebc8Vr/YDf913swvvl8QVSUUh+EIqFc4=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "2248810eff0ac68db18d582733b942feea73b847"
+        "version": "cad8500da8ac541254055c726abb9bf49e775e11"
     },
     "dnsproxy": {
         "cargoLocks": null,
@@ -29,11 +29,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-7yQwvyumi9fAfK1xE/96Xdo1gOhG2sea5bKGA7JifBM=",
+            "sha256": "sha256-P7yTRa4OryhEwwlKkACXCyprVcn1aOipfPe6I16zvac=",
             "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.60.1/dnsproxy-linux-amd64-v0.60.1.tar.gz"
+            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.61.0/dnsproxy-linux-amd64-v0.61.0.tar.gz"
         },
-        "version": "v0.60.1"
+        "version": "v0.61.0"
     },
     "graphite-cursors": {
         "cargoLocks": null,
