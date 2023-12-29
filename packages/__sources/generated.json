@@ -1,9 +1,9 @@
 {
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-12-18",
+        "date": "2023-12-25",
         "extract": {
-            "Cargo.lock": "./derputils-cad8500da8ac541254055c726abb9bf49e775e11/Cargo.lock"
+            "Cargo.lock": "./derputils-27a879c875834b9f8153ccd6abee2d17fa216035/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "cad8500da8ac541254055c726abb9bf49e775e11",
-            "sha256": "sha256-0ju5sQdXnq9Ebc8Vr/YDf913swvvl8QVSUUh+EIqFc4=",
+            "rev": "27a879c875834b9f8153ccd6abee2d17fa216035",
+            "sha256": "sha256-HGcKXhLYwglSqXAc3vJTczrof1lBQaRhmTPuhp2XYcs=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "cad8500da8ac541254055c726abb9bf49e775e11"
+        "version": "27a879c875834b9f8153ccd6abee2d17fa216035"
     },
     "dnsproxy": {
         "cargoLocks": null,
@@ -29,11 +29,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-P7yTRa4OryhEwwlKkACXCyprVcn1aOipfPe6I16zvac=",
+            "sha256": "sha256-2kgdo6oIYSfiHfbFevRu9qEZuZlQlNscn/+TV2fT4Hk=",
             "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.61.0/dnsproxy-linux-amd64-v0.61.0.tar.gz"
+            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.61.1/dnsproxy-linux-amd64-v0.61.1.tar.gz"
         },
-        "version": "v0.61.0"
+        "version": "v0.61.1"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -159,11 +159,11 @@
             "name": null,
             "owner": "IlanCosman",
             "repo": "tide",
-            "rev": "v6.0.1",
-            "sha256": "sha256-oLD7gYFCIeIzBeAW1j62z5FnzWAp3xSfxxe7kBtTLgA=",
+            "rev": "v6.1.1",
+            "sha256": "sha256-ZyEk/WoxdX5Fr2kXRERQS1U1QHH3oVSyBQvlwYnEYyc=",
             "type": "github"
         },
-        "version": "v6.0.1"
+        "version": "v6.1.1"
     },
     "zhudou-sans": {
         "cargoLocks": null,
