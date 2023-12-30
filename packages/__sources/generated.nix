@@ -36,10 +36,10 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.2.2";
+    version = "app/v2.2.3";
     src = fetchurl {
-      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.2/hysteria-linux-amd64";
-      sha256 = "sha256-4al1G06Z6imjeK3iXaNKJ2DYRMT5lyvyLxqJ7Huo4fQ=";
+      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.3/hysteria-linux-amd64";
+      sha256 = "sha256-Y2kdoxdAcIW51qKfDFxM5tR3IsD1zEKXgrRi34WOWaw=";
     };
   };
   ibm-plex = {
