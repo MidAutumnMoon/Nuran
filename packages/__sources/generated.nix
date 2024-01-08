@@ -3,17 +3,17 @@
 {
   derputils = {
     pname = "derputils";
-    version = "27a879c875834b9f8153ccd6abee2d17fa216035";
+    version = "4aac5f0f1335709a7f91c545b57b008e7e4c9278";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "27a879c875834b9f8153ccd6abee2d17fa216035";
+      rev = "4aac5f0f1335709a7f91c545b57b008e7e4c9278";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-HGcKXhLYwglSqXAc3vJTczrof1lBQaRhmTPuhp2XYcs=";
+      sha256 = "sha256-b3s9np2inWgnFe1blf7SyOYFESpGA4h/XOM+spBLdHM=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-27a879c875834b9f8153ccd6abee2d17fa216035/Cargo.lock;
-    date = "2023-12-25";
+    "Cargo.lock" = builtins.readFile ./derputils-4aac5f0f1335709a7f91c545b57b008e7e4c9278/Cargo.lock;
+    date = "2024-01-01";
   };
   dnsproxy = {
     pname = "dnsproxy";

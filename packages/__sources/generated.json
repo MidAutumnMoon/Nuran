@@ -1,9 +1,9 @@
 {
     "derputils": {
         "cargoLocks": null,
-        "date": "2023-12-25",
+        "date": "2024-01-01",
         "extract": {
-            "Cargo.lock": "./derputils-27a879c875834b9f8153ccd6abee2d17fa216035/Cargo.lock"
+            "Cargo.lock": "./derputils-4aac5f0f1335709a7f91c545b57b008e7e4c9278/Cargo.lock"
         },
         "name": "derputils",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "27a879c875834b9f8153ccd6abee2d17fa216035",
-            "sha256": "sha256-HGcKXhLYwglSqXAc3vJTczrof1lBQaRhmTPuhp2XYcs=",
+            "rev": "4aac5f0f1335709a7f91c545b57b008e7e4c9278",
+            "sha256": "sha256-b3s9np2inWgnFe1blf7SyOYFESpGA4h/XOM+spBLdHM=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/derputils"
         },
-        "version": "27a879c875834b9f8153ccd6abee2d17fa216035"
+        "version": "4aac5f0f1335709a7f91c545b57b008e7e4c9278"
     },
     "dnsproxy": {
         "cargoLocks": null,
