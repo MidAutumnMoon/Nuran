@@ -3,24 +3,24 @@
 {
   derputils = {
     pname = "derputils";
-    version = "4aac5f0f1335709a7f91c545b57b008e7e4c9278";
+    version = "cd9723859d399bcccf06450b2ef90f1d49be3579";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/derputils";
-      rev = "4aac5f0f1335709a7f91c545b57b008e7e4c9278";
+      rev = "cd9723859d399bcccf06450b2ef90f1d49be3579";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-b3s9np2inWgnFe1blf7SyOYFESpGA4h/XOM+spBLdHM=";
+      sha256 = "sha256-JWSmLs1/q+ovIHIAl9lf8tLOKp1i20IvyEaPCApgNQY=";
     };
-    "Cargo.lock" = builtins.readFile ./derputils-4aac5f0f1335709a7f91c545b57b008e7e4c9278/Cargo.lock;
-    date = "2024-01-01";
+    "Cargo.lock" = builtins.readFile ./derputils-cd9723859d399bcccf06450b2ef90f1d49be3579/Cargo.lock;
+    date = "2024-01-11";
   };
   dnsproxy = {
     pname = "dnsproxy";
-    version = "v0.61.1";
+    version = "v0.62.0";
     src = fetchurl {
-      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.61.1/dnsproxy-linux-amd64-v0.61.1.tar.gz";
-      sha256 = "sha256-2kgdo6oIYSfiHfbFevRu9qEZuZlQlNscn/+TV2fT4Hk=";
+      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.62.0/dnsproxy-linux-amd64-v0.62.0.tar.gz";
+      sha256 = "sha256-5MIPIxMskQQ+EWUhDfYeKujAt3A8qV7/iBwJrLwke7U=";
     };
   };
   graphite-cursors = {
