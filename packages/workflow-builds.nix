@@ -1,5 +1,5 @@
 with builtins;
-with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
+with ( getFlake (toString ../.) ).pkgsBrewMaster."${currentSystem}";
 
 {
 

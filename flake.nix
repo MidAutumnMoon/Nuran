@@ -68,9 +68,10 @@ outputs = { self, nixpkgs, ... } @ flakes: let
 
 in {
 
+    /*
+     * My cute lib
+     */
     inherit lib;
-
-    morningBrew = pkgsBrew;
 
 
     /*
@@ -85,11 +86,12 @@ in {
     overlays.reexport =
         import ./packages/reexport.nix { inherit flakes; };
 
-    legacyPackages =
-        let
-            pkgsBrewMaster =
-                lib.brewNixpkgs flakes.nixpkgs-master { inherit config overlays; };
-        in pkgsBrewMaster lib.id;
+    inherit pkgsBrew;
+
+    pkgsBrewMaster =
+        ( lib.brewNixpkgs
+            flakes.nixpkgs-master { inherit config overlays; }
+        ) lib.id;
 
 
     /*
