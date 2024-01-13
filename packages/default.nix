@@ -14,7 +14,6 @@ in
 
 rec {
 
-
     /*
      * Web facing services and other network
      * related things.
@@ -28,13 +27,6 @@ rec {
 
     shadowsocks_teapot =
         callPackage ./sh/shadowsocks {};
-
-    dnsproxy =
-        callPackage ./network/dnsproxy {};
-
-    hysteria =
-        callPackage ./network/hysteria {};
-
 
     /*
      * Terminals, shells and other things used in
@@ -55,7 +47,6 @@ rec {
     prime-offload =
         callPackage ./pr/prime-offload {};
 
-
     /*
      * Desktop, GUI, graohics etc. things.
      *
@@ -72,7 +63,6 @@ rec {
     plasma5Packages =
         callPackage ./pl/plasma5 { old = prev.plasma5Packages; };
 
-
     /*
      * Linux kernel and modules and packages for it.
      */
@@ -82,7 +72,6 @@ rec {
 
     linuxPackages_teapot =
         callPackage ./ke/kernel/packages { kernel = linux_teapot; };
-
 
     /*
      * Themes, colors, fonts, styles, etc.
@@ -101,7 +90,6 @@ rec {
     zhudou-sans =
         callPackage ./zh/zhudou-sans {};
 
-
     /*
      * Services-ish things, which are neither used
      * in command line nor have a GUI.
@@ -110,12 +98,13 @@ rec {
     k380-fn-keys-swap =
         callPackage ./k3/k380-fn-keys-swap {};
 
-
     /*
      * Things that no clear category they are
      * falling into.
      */
 
+     prvn-pkgs =
+        callPackage ./pr/prvn-pkgs {};
 
     /*
      * Optimization flags. Mostly unused.
@@ -164,7 +153,7 @@ rec {
     #
     # $functor is used to overrideAttrs on derivations
     # $stdenv is some normal stdenv, don't forget this function is
-    #         a mimic of "mkDerivationFromStdenv" whose 
+    #         a mimic of "mkDerivationFromStdenv" whose
     #         argument is stdenv
     # $mkDrvArgs: after accepting $stdenv the result is just
     #             a "mkDerivation" function, this is its argument

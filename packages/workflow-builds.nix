@@ -16,7 +16,7 @@ with ( getFlake (toString ../.) ).pkgsBrewMaster."${currentSystem}";
         unrar
         nginx_teapot
         gtkgreet_teapot
-    ];
+    ] ++ prvn-pkgs.all;
 
     parallel-2 = [
         plasma5Packages.kwallet-pam
