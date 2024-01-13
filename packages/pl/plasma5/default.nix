@@ -9,7 +9,7 @@ old.overrideScope ( _self: prev: {
     kwallet-pam =
         prev.kwallet-pam.overrideAttrs ( oldAttrs: {
             # In spirit of NixOS/nixpkgs/pull/220100
-            patches = [ ./temporary.patch ];
+            patches = [ ./kwallet.patch ];
         } );
 
     kdeGear = prev.kdeGear.overrideScope ( _self: _prev: {
