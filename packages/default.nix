@@ -16,22 +16,18 @@ rec {
 
 
     /*
-     *
-     * Things lossely categorized into "Network"
-     *
+     * Web facing services and other network
+     * related things.
      */
 
-    firefox_teapot =
-        callPackage ./network/firefox {};
-
-    shadowsocks_teapot =
-        callPackage ./network/shadowsocks {};
+    hentai-home =
+        callPackage ./he/henati-home {};
 
     nginx_teapot =
-        callPackage ./network/nginx {};
+        callPackage ./ng/nginx {};
 
-    hentai-home =
-        callPackage ./network/henati-home {};
+    shadowsocks_teapot =
+        callPackage ./sh/shadowsocks {};
 
     dnsproxy =
         callPackage ./network/dnsproxy {};
@@ -40,111 +36,89 @@ rec {
         callPackage ./network/hysteria {};
 
 
-
     /*
+     * Terminals, shells and other things used in
+     * that environment like CLI/TUI tools or multiplexers.
      *
-     * Text etc. "Editor"
-     *
-     */
-
-    neovim_teapot =
-        callPackage ./editor/neovim/wrapped.nix {};
-
-
-
-    /*
-     *
-     * Tools to work with some "Language"
-     *
-     */
-
-    /*
-     *
-     * "Utility"s are useful things without categorizing
-     *
+     * Basically everything in Linux uh?
      */
 
     derputils =
-        callPackage ./utility/derputils {};
-
-    prime-offload =
-        callPackage ./utility/prime-offload {};
-
-    k380-fn-keys-swap =
-        callPackage ./utility/k380-fn-keys-swap {};
-
-    rpgsavedecrypt =
-        callPackage ./utility/rpgsavedecrypt {};
-
-
-
-    /*
-     *
-     * "Terminal" & "Shell"
-     *
-     */
+        callPackage ./de/derputils {};
 
     fishPlugins =
-        prev.fishPlugins.overrideScope' ( callPackage ./shterm/fish-plugin {} );
+        callPackage ./fi/fish/plugins { old = prev.fishPlugins; };
 
+    neovim_teapot =
+        callPackage ./ne/neovim {};
+
+    prime-offload =
+        callPackage ./pr/prime-offload {};
 
 
     /*
+     * Desktop, GUI, graohics etc. things.
      *
-     * Watch videos / play games for "Entertain"
-     *
+     * Does terminal emulator belongs to this
+     * category or the previous one? Hmmm...
      */
 
+    firefox_teapot =
+        callPackage ./fi/firefox {};
+
+    gtkgreet_teapot =
+        callPackage ./gt/gtkgreet {};
+
+    plasma5Packages =
+        callPackage ./pl/plasma5 { old = prev.plasma5Packages; };
+
+
     /*
-     *
-     * Suppose these are related to "Kernel"
-     *
+     * Linux kernel and modules and packages for it.
      */
 
     linux_teapot =
-        callPackage ./kernel/vanilla {};
+        callPackage ./ke/kernel/vanilla {};
 
     linuxPackages_teapot =
-        callPackage ./kernel/packages { kernel = linux_teapot; };
-
+        callPackage ./ke/kernel/packages { kernel = linux_teapot; };
 
 
     /*
-     *
-     * "Theme" / "Color" and "Font"
-     *
+     * Themes, colors, fonts, styles, etc.
+     * colorful and fancy things.
      */
 
     graphite-cursor-theme =
-        callPackage ./theme/cursors/graphite-cursor-theme {};
-
-    iosevka_teapot =
-        callPackage ./font/iosevka {};
-
-    zhudou-sans =
-        callPackage ./font/zhudou-sans {};
+        callPackage ./gr/graphite-cursor-theme {};
 
     ibm-plex_teapot =
-        callPackage ./font/ibm-plex {};
+        callPackage ./ib/ibm-plex {};
+
+    iosevka_teapot =
+        callPackage ./io/iosevka {};
+
+    zhudou-sans =
+        callPackage ./zh/zhudou-sans {};
+
 
     /*
-     *
-     * Things not willing to be categorized
-     *
+     * Services-ish things, which are neither used
+     * in command line nor have a GUI.
      */
 
-    plasma5Packages =
-        prev.plasma5Packages.overrideScope' ( callPackage ./warehouse/plasma5 {} );
-
-    gtkgreet_teapot =
-        callPackage ./warehouse/gtkgreet {};
-
+    k380-fn-keys-swap =
+        callPackage ./k3/k380-fn-keys-swap {};
 
 
     /*
-     *
-     * Hopefully useful "Flags"
-     *
+     * Things that no clear category they are
+     * falling into.
+     */
+
+
+    /*
+     * Optimization flags. Mostly unused.
      */
 
     teapot.march = "x86-64-v3";
@@ -172,14 +146,14 @@ rec {
 
 
     /*
-     *
-     * Play dark arts with nixpkgs' "Stdenv"
-     *
+     * Whatever the thing is.
      */
 
     stdenvTeapot =
         with prev.buildPackages.llvmPackages_16;
-        prev.overrideCC stdenv ( libstdcxxClang.override { inherit bintools; } );
+        prev.overrideCC stdenv ( libstdcxxClang.override {
+            inherit bintools;
+        } );
 
     # "mkDerivationFromStdenv" is a function which accepts a stdenv
     # as argument and returns the well-known "mkDerivation" function,
@@ -190,12 +164,14 @@ rec {
     #
     # $functor is used to overrideAttrs on derivations
     # $stdenv is some normal stdenv, don't forget this function is
-    #         a mimic of "mkDerivationFromStdenv" whose argument is stdenv
+    #         a mimic of "mkDerivationFromStdenv" whose 
+    #         argument is stdenv
     # $mkDrvArgs: after accepting $stdenv the result is just
     #             a "mkDerivation" function, this is its argument
-    defaultMkDrvImpl =
-        with final;
-        import "${ path }/pkgs/stdenv/generic/make-derivation.nix" { inherit lib config; };
+    defaultMkDrvImpl = with final;
+        import "${path}/pkgs/stdenv/generic/make-derivation.nix" {
+            inherit lib config;
+        };
 
     overridableMkDrvImpl = mkDrvImpl: functor:
         ( stdenv: mkDrvArgs:
@@ -205,14 +181,16 @@ rec {
     overrideAttrsOnAllDrv = stdenv: functor:
         stdenv.override ( oldArgs: {
             mkDerivationFromStdenv = overridableMkDrvImpl
-                ( oldArgs.mkDerivationFromStdenv or defaultMkDrvImpl ) functor;
+                ( oldArgs.mkDerivationFromStdenv or defaultMkDrvImpl )
+                functor;
         } );
 
     # demo
     useLLDLinker = stdenv:
         overrideAttrsOnAllDrv stdenv ( drvAttrs: {
             NIX_CFLAGS_LINK =
-                toString ( drvAttrs.NIX_CFLAGS_LINK or "" ) + " -fuse-ld=lld";
+                toString ( drvAttrs.NIX_CFLAGS_LINK or "" )
+                + " -fuse-ld=lld";
         } );
 
 }

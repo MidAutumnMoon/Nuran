@@ -17,11 +17,10 @@ let
         stripRoot = false;
     };
 
-    headlessMinimalJre =
-        jre_minimal.override {
-            jdk = jre_headless;
-            modules = [ "java.base" "jdk.crypto.ec" ];
-        };
+    minimalJre = jre_minimal.override {
+        jdk = jre_headless;
+        modules = [ "java.base" "jdk.crypto.ec" ];
+    };
 
 in
 
@@ -31,11 +30,9 @@ stdenvNoCC.mkDerivation ( drvSelf: {
 
     inherit src version;
 
-    buildInputs = [ headlessMinimalJre ];
-
     lanuchScript = ''
         #!/bin/sh
-        ${headlessMinimalJre}/bin/java \
+        ${minimalJre}/bin/java \
             -Xms128m -Xmx2G \
             -XX:+UnlockExperimentalVMOptions \
             -XX:-UseG1GC \
@@ -48,9 +45,15 @@ stdenvNoCC.mkDerivation ( drvSelf: {
     passAsFile = [ "lanuchScript" ];
 
     installPhase = ''
-        mkdir --parent "$out"/{lib/${drvSelf.pname}/,bin/}
-        install -Dm755 "$lanuchScriptPath" "$out/bin/${drvSelf.pname}"
-        install -Dm644 "$src/HentaiAtHome.jar" "$out/lib/${drvSelf.pname}"
+        mkdir -p "$out"/{lib/${drvSelf.pname}/,bin/}
+
+        install -Dm755 \
+            "$lanuchScriptPath" \
+            "$out/bin/${drvSelf.pname}"
+
+        install -Dm644 \
+            "$src/HentaiAtHome.jar" \
+            "$out/lib/${drvSelf.pname}"
     '';
 
 

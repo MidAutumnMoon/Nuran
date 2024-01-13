@@ -7,8 +7,7 @@ index e8fbc27..141b47d 100644
  const static char *kwalletd = NULL;
  const static char *socketPath = NULL;
 -static int force_run = 0;
-+// Wait for https://github.com/NixOS/nixpkgs/pull/220100
 +static int force_run = 1;
- 
+
  const static char * const kwalletPamDataKey = "kwallet5_key";
  const static char * const logPrefix = "pam_kwallet5";

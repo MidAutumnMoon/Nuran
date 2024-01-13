@@ -93,6 +93,8 @@ in {
             flakes.nixpkgs-master { inherit config overlays; }
         ) lib.id;
 
+    legacyPackages = self.pkgsBrewMaster;
+
 
     /*
      *
