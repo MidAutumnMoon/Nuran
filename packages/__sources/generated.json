@@ -1,24 +1,18 @@
 {
-    "derputils": {
+    "caddy": {
         "cargoLocks": null,
-        "date": "2024-01-11",
-        "extract": {
-            "Cargo.lock": "./derputils-cd9723859d399bcccf06450b2ef90f1d49be3579/Cargo.lock"
-        },
-        "name": "derputils",
+        "date": null,
+        "extract": null,
+        "name": "caddy",
         "passthru": null,
         "pinned": false,
         "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
             "name": null,
-            "rev": "cd9723859d399bcccf06450b2ef90f1d49be3579",
-            "sha256": "sha256-JWSmLs1/q+ovIHIAl9lf8tLOKp1i20IvyEaPCApgNQY=",
-            "type": "git",
-            "url": "https://github.com/MidAutumnMoon/derputils"
+            "sha256": "sha256-vUTXo+PuAGz9LlyBsxYna6grSdFdr97Yyp3H8W9zlhU=",
+            "type": "url",
+            "url": "https://github.com/MidAutumnMoon/Nuran/releases/download/caddy-v2.7.6-24.01.22.59-12f6e1537ae88d22/caddy"
         },
-        "version": "cd9723859d399bcccf06450b2ef90f1d49be3579"
+        "version": "caddy-v2.7.6-24.01.22.59-12f6e1537ae88d22"
     },
     "dnsproxy": {
         "cargoLocks": null,
@@ -29,11 +23,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-5MIPIxMskQQ+EWUhDfYeKujAt3A8qV7/iBwJrLwke7U=",
+            "sha256": "sha256-hwKyl4SQfP+leg7CKw2g4jsynI/9JBpBWzwOVrGzpxU=",
             "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.62.0/dnsproxy-linux-amd64-v0.62.0.tar.gz"
+            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.63.1/dnsproxy-linux-amd64-v0.63.1.tar.gz"
         },
-        "version": "v0.62.0"
+        "version": "v0.63.1"
     },
     "graphite-cursors": {
         "cargoLocks": null,
