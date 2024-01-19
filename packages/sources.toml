@@ -21,10 +21,10 @@ fetch.url = "https://github.com/apernet/hysteria/releases/download/$ver/hysteria
 
 # Utility
 
-[derputils]
-src.git = "https://github.com/MidAutumnMoon/derputils"
-fetch.git = "https://github.com/MidAutumnMoon/derputils"
-extract = [ "Cargo.lock" ]
+# [derputils]
+# src.git = "https://github.com/MidAutumnMoon/derputils"
+# fetch.git = "https://github.com/MidAutumnMoon/derputils"
+# extract = [ "Cargo.lock" ]
 
 [k380-fn-keys-swap]
 src.git = "https://github.com/jergusg/k380-function-keys-conf/"

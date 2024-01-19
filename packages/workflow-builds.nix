@@ -29,7 +29,7 @@ with ( getFlake (toString ../.) ).pkgsBrewMaster."${currentSystem}";
     ];
 
     rust-things = [
-        derputils
+        # derputils
         colmena_git
         nil
     ];
