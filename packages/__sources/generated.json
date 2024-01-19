@@ -1,11 +1,11 @@
 {
-    "derputils": {
+    "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-01-11",
+        "date": "2024-02-05",
         "extract": {
-            "Cargo.lock": "./derputils-cd9723859d399bcccf06450b2ef90f1d49be3579/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-ecbc682c342139807729481fa09293bd9bd593a6/Cargo.lock"
         },
-        "name": "derputils",
+        "name": "TeapotInOri",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "cd9723859d399bcccf06450b2ef90f1d49be3579",
-            "sha256": "sha256-JWSmLs1/q+ovIHIAl9lf8tLOKp1i20IvyEaPCApgNQY=",
+            "rev": "ecbc682c342139807729481fa09293bd9bd593a6",
+            "sha256": "sha256-6JgUITwTt9EmXcb/aXLK9YSenS+j3kQH9MJHle8JSwQ=",
             "type": "git",
-            "url": "https://github.com/MidAutumnMoon/derputils"
+            "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "cd9723859d399bcccf06450b2ef90f1d49be3579"
+        "version": "ecbc682c342139807729481fa09293bd9bd593a6"
     },
     "dnsproxy": {
         "cargoLocks": null,
@@ -28,12 +28,17 @@
         "passthru": null,
         "pinned": false,
         "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
             "name": null,
-            "sha256": "sha256-5MIPIxMskQQ+EWUhDfYeKujAt3A8qV7/iBwJrLwke7U=",
-            "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.62.0/dnsproxy-linux-amd64-v0.62.0.tar.gz"
+            "owner": "AdguardTeam",
+            "repo": "dnsproxy",
+            "rev": "v0.64.1",
+            "sha256": "sha256-w5eGMf6noQh8K2TlHmT7Qj/pU96J3Y1qrn4inrQ2FL4=",
+            "type": "github"
         },
-        "version": "v0.62.0"
+        "version": "v0.64.1"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -64,11 +69,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-Y2kdoxdAcIW51qKfDFxM5tR3IsD1zEKXgrRi34WOWaw=",
+            "sha256": "sha256-KROIKpa6Ts235QTSYMpaCy1sCi2RbxRhVsVOp0R5kKQ=",
             "type": "url",
-            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.2.3/hysteria-linux-amd64"
+            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.2.4/hysteria-linux-amd64"
         },
-        "version": "app/v2.2.3"
+        "version": "app/v2.2.4"
     },
     "ibm-plex": {
         "cargoLocks": null,
@@ -79,11 +84,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-ghayzpmcOnBzmx/fnQXdMRUp1DW2uZgrLjnApbGC+lQ=",
+            "sha256": "sha256-6OUCgjqcbH3anrsXEMX2xAAdtKsVBn2ew3Om05hE/B0=",
             "type": "url",
-            "url": "https://github.com/IBM/plex/releases/download/v6.3.0/OpenType.zip"
+            "url": "https://github.com/IBM/plex/releases/download/v6.4.0/OpenType.zip"
         },
-        "version": "v6.3.0"
+        "version": "v6.4.0"
     },
     "k380-fn-keys-swap": {
         "cargoLocks": null,
@@ -127,7 +132,7 @@
         "cargoLocks": null,
         "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-v1.17.1/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.17.2/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -139,11 +144,11 @@
             "name": null,
             "owner": "shadowsocks",
             "repo": "shadowsocks-rust",
-            "rev": "v1.17.1",
-            "sha256": "sha256-2Y/tdO6vk7zE0mm9p7dL/Uq1qj/yLuelIRFMt2hxO6M=",
+            "rev": "v1.17.2",
+            "sha256": "sha256-SmY1WotaiRGlr51TlrBlchbjEQB4nVVN9stk5LEHUy8=",
             "type": "github"
         },
-        "version": "v1.17.1"
+        "version": "v1.17.2"
     },
     "tide": {
         "cargoLocks": null,
