@@ -88,12 +88,11 @@ in {
 
     inherit pkgsBrew;
 
-    pkgsBrewMaster =
-        ( lib.brewNixpkgs
-            flakes.nixpkgs-master { inherit config overlays; }
-        ) lib.id;
+    pkgsBrewMaster = lib.brewNixpkgs
+        flakes.nixpkgs-master { inherit config overlays; };
 
-    legacyPackages = self.pkgsBrewMaster;
+    legacyPackages =
+        self.pkgsBrewMaster lib.id;
 
 
     /*
