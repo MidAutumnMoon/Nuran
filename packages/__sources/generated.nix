@@ -3,10 +3,10 @@
 {
   caddy = {
     pname = "caddy";
-    version = "caddy-v2.7.6-24.01.22.35-3935594466b7d7ed";
+    version = "caddy-v2.7.6-24.01.22.59-12f6e1537ae88d22";
     src = fetchurl {
-      url = "https://github.com/MidAutumnMoon/Nuran/releases/download/caddy-v2.7.6-24.01.22.35-3935594466b7d7ed/caddy";
-      sha256 = "sha256-S9YqqKaBBuPMc7H40gl3oX3IjDKKyCzHo8uaYEyD4NI=";
+      url = "https://github.com/MidAutumnMoon/Nuran/releases/download/caddy-v2.7.6-24.01.22.59-12f6e1537ae88d22/caddy";
+      sha256 = "sha256-vUTXo+PuAGz9LlyBsxYna6grSdFdr97Yyp3H8W9zlhU=";
     };
   };
   dnsproxy = {
