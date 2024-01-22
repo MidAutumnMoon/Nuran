@@ -16,6 +16,7 @@ jobs:
 
         env:
             HASH_METHOD: xxh64sum
+            OUTPUT_CADDY: caddy
 
         steps:
 
@@ -27,10 +28,14 @@ jobs:
 
         - name: Install tools
           run: |
-            nix profile install nixpkgs#xxHash
+            nix profile install nixpkgs#{fish,xxHash,jq,xcaddy}
             # Create shims for xxhash
             sudo ln -s "$(which xxhsum)" "/usr/local/bin/$HASH_METHOD"
 
+        - name: Build with xcaddy
+          run: |
+            fish packages/__scripts/xcaddy-build.fish
+
         - name: Try
           run: |
-            $HASH_METHOD --help
+            $HASH_METHOD $OUTPUT_CADDY
