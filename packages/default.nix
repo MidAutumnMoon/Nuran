@@ -19,6 +19,9 @@ rec {
      * related things.
      */
 
+    caddy_teapot =
+        callPackage ./ca/caddy {};
+
     hentai-home =
         callPackage ./he/henati-home {};
 
