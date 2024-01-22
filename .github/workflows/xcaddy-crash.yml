@@ -53,7 +53,7 @@ jobs:
 
             gh release list --limit 1000 | grep --quiet "$hash"
 
-            gh release create "$release_name" \
+            echo release create "$release_name" \
                     --repo "MidAutumnMoon/Nuran" \
                     --title "$release_name" \
                     --latest \
