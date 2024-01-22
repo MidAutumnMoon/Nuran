@@ -1,25 +1,4 @@
 {
-    "derputils": {
-        "cargoLocks": null,
-        "date": "2024-01-11",
-        "extract": {
-            "Cargo.lock": "./derputils-cd9723859d399bcccf06450b2ef90f1d49be3579/Cargo.lock"
-        },
-        "name": "derputils",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "cd9723859d399bcccf06450b2ef90f1d49be3579",
-            "sha256": "sha256-JWSmLs1/q+ovIHIAl9lf8tLOKp1i20IvyEaPCApgNQY=",
-            "type": "git",
-            "url": "https://github.com/MidAutumnMoon/derputils"
-        },
-        "version": "cd9723859d399bcccf06450b2ef90f1d49be3579"
-    },
     "dnsproxy": {
         "cargoLocks": null,
         "date": null,
@@ -29,11 +8,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-5MIPIxMskQQ+EWUhDfYeKujAt3A8qV7/iBwJrLwke7U=",
+            "sha256": "sha256-MzYGYZyYosvmjper8rX1DqQuCxqbSz6IvJpLZv8e55Y=",
             "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.62.0/dnsproxy-linux-amd64-v0.62.0.tar.gz"
+            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.63.0/dnsproxy-linux-amd64-v0.63.0.tar.gz"
         },
-        "version": "v0.62.0"
+        "version": "v0.63.0"
     },
     "graphite-cursors": {
         "cargoLocks": null,
