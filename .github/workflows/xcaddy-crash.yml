@@ -1,0 +1,67 @@
+name: "Build custom Caddy"
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "0 0 */7 * *"
+
+jobs:
+
+    xcaddy-crash:
+
+        runs-on: ubuntu-latest
+
+        defaults:
+            run: { shell: bash }
+
+        env:
+            HASH_METHOD: xxh64sum
+            OUTPUT_CADDY: caddy
+
+        steps:
+
+        - name: Checkout repo
+          uses: actions/checkout@v4
+
+        - name: Setup nix
+          uses: MidAutumnMoon/spheti-action/nix@master
+
+        - name: Install tools
+          run: |
+            nix profile install nixpkgs#{fish,xxHash,jq,xcaddy}
+            # Create shims for xxhash
+            sudo ln -s "$(which xxhsum)" "/usr/local/bin/$HASH_METHOD"
+
+        - name: Build with xcaddy
+          id: xcaddy-build
+          # outputs:
+          # - "caddy_hash": $HASH_METHOD of the built caddy
+          # - "caddy_version": version of the targeted caddy
+          run: |
+            fish packages/__scripts/xcaddy-build.fish
+
+        - name: Upload release
+          env:
+            GH_TOKEN: ${{ github.token }}
+            GITHUB_TOKEN: ${{ github.token }}
+          run: |
+            # Grab info
+            version="${{ steps.xcaddy-build.outputs.caddy_version }}"
+            hash="${{ steps.xcaddy-build.outputs.caddy_hash }}"
+            date="$( date '+%y.%m.%d.%M' )"
+            release_name="caddy-${version}-${date}-${hash}"
+
+            if gh release list --limit 1000 | grep --quiet "$hash"
+            then
+                # status == 0 means grep has matched somthing
+                # with the hash, which in turn means the caddy
+                # just built is identical to one of the previous ones
+                echo "Caddy with hash ${hash} already uploaded"
+            else
+                gh release create "$release_name" \
+                    --repo "MidAutumnMoon/Nuran" \
+                    --title "$release_name" \
+                    --latest \
+                    --notes "Caddy ${version} built on ${date}. Hash: ${hash}" \
+                    "$OUTPUT_CADDY"
+            fi
