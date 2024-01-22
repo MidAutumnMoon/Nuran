@@ -1,0 +1,36 @@
+name: "Build custom Caddy"
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "0 0 */7 * *"
+
+jobs:
+
+    update-sources:
+
+        runs-on: ubuntu-latest
+
+        defaults:
+            run: { shell: bash }
+
+        env:
+            HASH_METHOD: xxh64sum
+
+        steps:
+
+        - name: Checkout repo
+          uses: actions/checkout@v4
+
+        - name: Setup nix
+          uses: MidAutumnMoon/spheti-action/nix@master
+
+        - name: Install tools
+          run: |
+            nix profile install nixpkgs#{xxHash}
+            # Create shims for xxhash
+            sudo ln -s "$(which xxhsum)" "/usr/local/bin/$HASH_METHOD"
+
+        - name: Try
+          run: |
+            $HASH_METHOD --help
