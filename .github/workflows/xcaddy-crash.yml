@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-    update-sources:
+    xcaddy-crash:
 
         runs-on: ubuntu-latest
 
@@ -49,5 +49,12 @@ jobs:
 
         - name: Try
           run: |
-            echo "${{ steps.xcaddy-build.outputs.caddy_version }}"
-            echo "${{ steps.caddy-hash.outputs.caddy_hash }}"
+            version="${{ steps.xcaddy-build.outputs.caddy_version }}"
+            hash="${{ steps.caddy-hash.outputs.caddy_hash }}"
+            date"$( date '+%y.%m.%d' )"
+            release_name="caddy-${version}-${date}-${hash}"
+            gh release create "$release_name" \
+                --title "$release_name" \
+                --latest \
+                --notes "Caddy ${version} built on ${date}. Hash: ${hash}" \
+                $OUTPUT_CADDY
