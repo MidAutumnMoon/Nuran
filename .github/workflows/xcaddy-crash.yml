@@ -41,6 +41,8 @@ jobs:
             fish packages/__scripts/xcaddy-build.fish
 
         - name: Upload release
+          env:
+            GH_TOKEN: ${{ github.token }}
           run: |
             # Grab info
             version="${{ steps.xcaddy-build.outputs.caddy_version }}"
