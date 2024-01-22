@@ -24,6 +24,10 @@ set -l OutputCaddy "$OUTPUT_CADDY" # exported in workflow
 
 GuardVar OutputCaddy
 
+set -l HashMethod "$HASH_METHOD" # exported in workflow
+
+GuardVar HashMethod
+
 set -l Meta "$(
     command nix eval --json \
         .#caddy_teapot.meta \
@@ -85,4 +89,9 @@ command xcaddy build $Version \
 # Finish up
 #
 
+set -l Hash (
+    $HashMethod $OutputCaddy | awk '{print $1}'
+)
+
+echo "caddy_hash=$Hash" >> "$GITHUB_OUTPUT"
 echo "caddy_version=$Version" >> "$GITHUB_OUTPUT"

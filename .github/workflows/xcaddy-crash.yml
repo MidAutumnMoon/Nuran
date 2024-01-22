@@ -35,26 +35,31 @@ jobs:
         - name: Build with xcaddy
           id: xcaddy-build
           # outputs:
+          # - "caddy_hash": $HASH_METHOD of the built caddy
           # - "caddy_version": version of the targeted caddy
           run: |
             fish packages/__scripts/xcaddy-build.fish
 
-        - name: Hash
-          id: caddy-hash
-          # outputs:
-          # - "caddy_hash": $HASH_METHOD of the built caddy
+        - name: Upload release
           run: |
-            hash="$( $HASH_METHOD $OUTPUT_CADDY | awk '{print $1}' )"
-            echo "caddy_hash=$hash" >> "$GITHUB_OUTPUT"
-
-        - name: Try
-          run: |
+            # Grab info
             version="${{ steps.xcaddy-build.outputs.caddy_version }}"
-            hash="${{ steps.caddy-hash.outputs.caddy_hash }}"
-            date"$( date '+%y.%m.%d' )"
+            hash="${{ steps.xcaddy-build.outputs.caddy_hash }}"
+            date="$( date '+%y.%m.%d.%M' )"
             release_name="caddy-${version}-${date}-${hash}"
-            gh release create "$release_name" \
-                --title "$release_name" \
-                --latest \
-                --notes "Caddy ${version} built on ${date}. Hash: ${hash}" \
-                $OUTPUT_CADDY
+
+            gh release list --limit 1000 | grep --quiet "$hash"
+
+            if [[ $? -eq 0 ]]
+            then
+                # status == 0 means grep has matched somthing
+                # with the hash, which in turn means the caddy
+                # just built is identical to one of the previous ones
+                echo "Caddy with hash ${hash} already uploaded"
+            else
+                gh release create "$release_name" \
+                    --title "$release_name" \
+                    --latest \
+                    --notes "Caddy ${version} built on ${date}. Hash: ${hash}" \
+                    $OUTPUT_CADDY
+            fi
