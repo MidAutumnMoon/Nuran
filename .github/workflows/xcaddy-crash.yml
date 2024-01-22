@@ -43,6 +43,7 @@ jobs:
         - name: Upload release
           env:
             GH_TOKEN: ${{ github.token }}
+            GITHUB_TOKEN: ${{ github.token }}
           run: |
             # Grab info
             version="${{ steps.xcaddy-build.outputs.caddy_version }}"
@@ -60,8 +61,9 @@ jobs:
                 echo "Caddy with hash ${hash} already uploaded"
             else
                 gh release create "$release_name" \
+                    --repo "MidAutumnMoon/Nuran" \
                     --title "$release_name" \
                     --latest \
                     --notes "Caddy ${version} built on ${date}. Hash: ${hash}" \
-                    $OUTPUT_CADDY
+                    "$OUTPUT_CADDY"
             fi
