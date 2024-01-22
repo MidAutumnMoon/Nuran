@@ -53,17 +53,19 @@ jobs:
 
             gh release list --limit 1000 | grep --quiet "$hash"
 
-            if [[ $? -eq 0 ]]
-            then
-                # status == 0 means grep has matched somthing
-                # with the hash, which in turn means the caddy
-                # just built is identical to one of the previous ones
-                echo "Caddy with hash ${hash} already uploaded"
-            else
-                gh release create "$release_name" \
+            gh release create "$release_name" \
                     --repo "MidAutumnMoon/Nuran" \
                     --title "$release_name" \
                     --latest \
                     --notes "Caddy ${version} built on ${date}. Hash: ${hash}" \
                     "$OUTPUT_CADDY"
-            fi
+
+            # if [[ $? -eq 0 ]]
+            # then
+            #     # status == 0 means grep has matched somthing
+            #     # with the hash, which in turn means the caddy
+            #     # just built is identical to one of the previous ones
+            #     echo "Caddy with hash ${hash} already uploaded"
+            # else
+
+            # fi
