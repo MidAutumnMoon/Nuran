@@ -15,6 +15,11 @@ fetch.url = "https://github.com/AdguardTeam/dnsproxy/releases/download/$ver/dnsp
 src.github = "apernet/hysteria"
 fetch.url = "https://github.com/apernet/hysteria/releases/download/$ver/hysteria-linux-amd64"
 
+[caddy]
+src.github = "MidAutumnMoon/Nuran"
+src.include_regex = "caddy.*"
+fetch.url = "https://github.com/MidAutumnMoon/Nuran/releases/download/$ver/caddy"
+
 # Editor
 
 # Language

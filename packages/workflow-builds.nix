@@ -16,6 +16,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         unrar
         nginx_teapot
         gtkgreet_teapot
+        caddy_teapot
     ] ++ prvn-pkgs.all;
 
     parallel-2 = [
