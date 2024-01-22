@@ -27,7 +27,7 @@ jobs:
 
         - name: Install tools
           run: |
-            nix profile install nixpkgs#{xxHash}
+            nix profile install nixpkgs#xxHash
             # Create shims for xxhash
             sudo ln -s "$(which xxhsum)" "/usr/local/bin/$HASH_METHOD"
 
