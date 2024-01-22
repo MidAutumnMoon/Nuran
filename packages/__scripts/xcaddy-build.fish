@@ -77,5 +77,12 @@ set -l WithPlugins (
 )
 
 command xcaddy build $Version \
-    --output "$OutputCaddy"
+    --output "$OutputCaddy" \
     $WithPlugins
+
+
+#
+# Finish up
+#
+
+echo "caddy_version=$Version" >> "$GITHUB_OUTPUT"

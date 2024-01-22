@@ -33,9 +33,21 @@ jobs:
             sudo ln -s "$(which xxhsum)" "/usr/local/bin/$HASH_METHOD"
 
         - name: Build with xcaddy
+          id: xcaddy-build
+          # outputs:
+          # - "caddy_version": version of the targeted caddy
           run: |
             fish packages/__scripts/xcaddy-build.fish
 
+        - name: Hash
+          id: caddy-hash
+          # outputs:
+          # - "caddy_hash": $HASH_METHOD of the built caddy
+          run: |
+            hash="$( $HASH_METHOD $OUTPUT_CADDY | awk '{print $1}' )"
+            echo "caddy_hash=$hash" >> "$GITHUB_OUTPUT"
+
         - name: Try
           run: |
-            $HASH_METHOD $OUTPUT_CADDY
+            echo "${{ steps.xcaddy-build.outputs.caddy_version }}"
+            echo "${{ steps.caddy-hash.outputs.caddy_hash }}"
