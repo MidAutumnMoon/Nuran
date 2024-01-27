@@ -30,18 +30,18 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.2.3";
+    version = "app/v2.2.4";
     src = fetchurl {
-      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.3/hysteria-linux-amd64";
-      sha256 = "sha256-Y2kdoxdAcIW51qKfDFxM5tR3IsD1zEKXgrRi34WOWaw=";
+      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.4/hysteria-linux-amd64";
+      sha256 = "sha256-KROIKpa6Ts235QTSYMpaCy1sCi2RbxRhVsVOp0R5kKQ=";
     };
   };
   ibm-plex = {
     pname = "ibm-plex";
-    version = "v6.3.0";
+    version = "v6.4.0";
     src = fetchurl {
-      url = "https://github.com/IBM/plex/releases/download/v6.3.0/OpenType.zip";
-      sha256 = "sha256-ghayzpmcOnBzmx/fnQXdMRUp1DW2uZgrLjnApbGC+lQ=";
+      url = "https://github.com/IBM/plex/releases/download/v6.4.0/OpenType.zip";
+      sha256 = "sha256-6OUCgjqcbH3anrsXEMX2xAAdtKsVBn2ew3Om05hE/B0=";
     };
   };
   k380-fn-keys-swap = {
