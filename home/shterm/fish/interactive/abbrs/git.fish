@@ -8,6 +8,7 @@ abbr -a ga   "git add"
 abbr -a gaa  "git add --all"
 abbr -a gau  "git add --update"
 abbr -a gapa "git add --patch"
+abbr -a gan  "git add --intent-to-add"
 
 abbr -a gap "git apply"
 
@@ -105,6 +106,7 @@ abbr -a grss "git restore --source"
 abbr -a gs "git show"
 
 abbr -a gss "git status -s"
+abbr -a gS "git status -s"
 
 abbr -a gsta "git stash"
 #abbr -g gstd "git stash drop"
