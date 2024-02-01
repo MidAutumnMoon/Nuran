@@ -17,7 +17,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         nginx_teapot
         gtkgreet_teapot
         caddy_teapot
-    ] ++ prvn-pkgs.all;
+    ];
 
     parallel-2 = [
         plasma5Packages.kwallet-pam
@@ -34,7 +34,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         colmena_git
         nil
         shadowsocks_teapot
-    ];
+    ] ++ prvn-pkgs.all;
 
     go-things = [
         sops-install-secrets
