@@ -132,7 +132,6 @@ rec {
 
     teapot.RUSTFLAGS = [
         "-Ctarget-cpu=${teapot.march}"
-        "-Copt-level=3"
     ];
 
 

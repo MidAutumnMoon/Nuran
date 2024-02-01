@@ -1,44 +1,30 @@
 {
-    pkgs,
-    system,
+    pkgsStatic,
 
     lib,
     sources,
-    teapot,
 }:
 
-let
-
-    config = let
-        musl = lib.systems.examples.musl64;
-    in {
-        inherit system;
-        crossSystem = musl // { rustc = musl; };
-    };
-
-
-    muslPower = import pkgs.path config;
-
-in
-
-muslPower.rustPlatform.buildRustPackage rec {
+pkgsStatic.rustPlatform.buildRustPackage rec {
 
     pname = "shadowsocks-rust";
 
     inherit ( sources.${pname} )
         src version;
 
+    cargoLock.lockFileContents =
+        sources.${pname}."Cargo.lock";
+
 
     doCheck = false;
 
-    RUSTFLAGS = [
-        "-Ctarget-cpu=x86-64-v2"
-    ];
+    stripAllList = [ "bin" ];
 
 
-    cargoLock = {
-        lockFileContents = sources.${pname}."Cargo.lock";
-    };
+    RUSTFLAGS = [ "-Ctarget-cpu=x86-64-v2" ];
+
+    CARGO_PROFILE_release_LTO = "thin";
+
 
     buildNoDefaultFeatures = true;
 
@@ -48,14 +34,13 @@ muslPower.rustPlatform.buildRustPackage rec {
         "local-http"
         "dns-over-tls"
         "dns-over-https"
+        "dns-over-h3"
         "multi-threaded"
         "aead-cipher-2022"
         "logging"
         "security-replay-attack-detect"
+        "jemalloc"
     ];
-
-
-    stripAllList = [ "bin" ];
 
 
     meta = {
