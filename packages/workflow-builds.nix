@@ -33,9 +33,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         # derputils
         colmena_git
         nil
-    ];
-
-    rust-heavy-things = [
         shadowsocks_teapot
     ];
 
