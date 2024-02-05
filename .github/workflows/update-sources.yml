@@ -46,7 +46,7 @@ jobs:
           with: { path: "/tmp/nvfetcher_outputs" }
 
         - name: Open PR
-          uses: peter-evans/create-pull-request@v5
+          uses: peter-evans/create-pull-request@v6
           with:
             add-paths: "packages"
             delete-branch: true
