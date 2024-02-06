@@ -147,10 +147,6 @@ in {
             ssh-to-age
         ];
 
-        nuclage = p: with p; [
-            nvfetcher
-        ];
-
         rust = p: with p; [
             rustc
             cargo

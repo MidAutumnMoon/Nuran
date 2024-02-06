@@ -20,4 +20,9 @@ in {
         path = ./binary-cache-builder.rb;
     };
 
+    nvfetcher-driver = self.rubyMiner {
+        path = ./nvfetcher-driver.rb;
+        runtimeDeps = with pkgs; [ which nvfetcher ];
+    };
+
 } )
