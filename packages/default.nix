@@ -15,6 +15,13 @@ in
 rec {
 
     /*
+     * Put it above all sections because
+     * I would forget this things otheriwse.
+     */
+
+    nuranScripts = callPackage ./__scripts {};
+
+    /*
      * Web facing services and other network
      * related things.
      */

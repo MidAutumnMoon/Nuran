@@ -23,7 +23,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                task-name:
+                subject:
                 - kernels-modules
                 - parallel-1
                 - parallel-2
@@ -34,9 +34,6 @@ jobs:
 
         defaults:
             run: { shell: bash }
-
-        env:
-            CACHIX_AUTH_TOKEN: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
         steps:
 
@@ -52,7 +49,7 @@ jobs:
             installCommand: "nix profile install nixpkgs/nixos-23.11#cachix"
             name: "nuirrce"
             authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-            cachixArgs: -c 16 -j 2 --omit-deriver
+            cachixArgs: -c 16 -j 3 --omit-deriver
             pushFilter: |
                 (NVIDIA.*\.run)|(npm-deps|-source|vendor\..*|go-modules|-crate-|\.tar.*$)
 
@@ -62,8 +59,6 @@ jobs:
 
         - name: Run build
           run: |
-            pushd "packages"
-            fish "__scripts/builder.fish" \
-                "workflow-builds.nix" \
-                "${{ matrix.task-name }}"
-            popd
+              nix run --print-build-logs \
+                .#nuranScripts.binary-cache-builder -- \
+                "packages/manifest.nix" "${{ matrix.subject }}"
