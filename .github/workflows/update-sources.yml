@@ -6,9 +6,7 @@ on:
         - cron: "0 6 * * 1"
 
 jobs:
-
     update-sources:
-
         runs-on: ubuntu-latest
 
         defaults:
@@ -16,7 +14,7 @@ jobs:
 
         steps:
 
-        - name: Checkout repo
+        - name: Checkout
           uses: actions/checkout@v4
 
         - name: Setup nix
@@ -25,15 +23,11 @@ jobs:
             cachix-url: "https://nuirrce.cachix.org/"
             cachix-pubkey: "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
 
-        - name: Install required tools
-          run: |
-            # empty
-
         - name: Run nvfetcher
           run: |
-            fish "packages/__scripts/nvfetcher.fish" \
-                "packages/sources.toml" \
-                "${{ github.token }}" \
+            pushd "packages"
+            nix run --print-build-logs \
+                .#nuranScripts.nvfetcher-driver -- "sources.toml" "__sources" "${{ github.token }}" \
             | tee "/tmp/nvfetcher_outputs"
             # strip outputs
             sed --in-place '0,/^Changes/d' "/tmp/nvfetcher_outputs"
