@@ -1,5 +1,3 @@
-#!/usr/bin/env -S sh -c 'exec `dirname $0`/__script/nvfetcher.fish "$0" "$@"'
-
 # Network
 
 [shadowsocks-rust]
