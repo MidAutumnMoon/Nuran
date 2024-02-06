@@ -24,10 +24,10 @@ fetch.url = "https://github.com/MidAutumnMoon/Nuran/releases/download/$ver/caddy
 
 # Utility
 
-# [derputils]
-# src.git = "https://github.com/MidAutumnMoon/derputils"
-# fetch.git = "https://github.com/MidAutumnMoon/derputils"
-# extract = [ "Cargo.lock" ]
+[TeapotInOri]
+src.git = "https://github.com/MidAutumnMoon/TeapotInOri"
+fetch.git = "https://github.com/MidAutumnMoon/TeapotInOri"
+extract = [ "Cargo.lock" ]
 
 [k380-fn-keys-swap]
 src.git = "https://github.com/jergusg/k380-function-keys-conf/"

@@ -24,20 +24,22 @@ jobs:
             cachix-pubkey: "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
 
         - name: Run nvfetcher
+          id: nvfetcher_results
           run: |
             pushd "packages"
+            declare -r TEMP="$(mktemp)"
+
             nix run --print-build-logs \
                 .#nuranScripts.nvfetcher-driver -- "sources.toml" "__sources" "${{ github.token }}" \
-            | tee "/tmp/nvfetcher_outputs"
-            # strip outputs
-            sed --in-place '0,/^Changes/d' "/tmp/nvfetcher_outputs"
+            | tee "$TEMP"
 
-        # The holyf Bash will hunt you to death and burn your house to ash
-        # if you'd dare to do something with the mf multiline string
-        - name: Read nvfetcher outputs so that we can have a nice PR
-          id: nvfetcher_outputs
-          uses: juliangruber/read-file-action@v1
-          with: { path: "/tmp/nvfetcher_outputs" }
+            # just pivot away you f* bash
+            {
+                echo "content<<WHEREDOC"
+                # only needs the changes in the PR
+                sed '0,/^Changes/d' "$TEMP"
+                echo "WHEREDOC"
+            } >> "$GITHUB_OUTPUT"
 
         - name: Open PR
           uses: peter-evans/create-pull-request@v6
@@ -48,4 +50,4 @@ jobs:
             commit-message: "sources: update [bot]"
             committer: "GitHub <noreply@github.com>"
             author: "GitHub <noreply@github.com>"
-            body: ${{ steps.nvfetcher_outputs.outputs.content }}
+            body: ${{ steps.nvfetcher_results.outputs.content }}
