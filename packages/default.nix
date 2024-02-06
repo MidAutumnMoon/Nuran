@@ -19,7 +19,7 @@ rec {
      * I would forget this things otheriwse.
      */
 
-    nuranScripts = callPackage ./__scripts {};
+    nuranScripts = callPackage ./__tools {};
 
     /*
      * Web facing services and other network
