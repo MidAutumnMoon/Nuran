@@ -3,13 +3,13 @@ name: "Teapot's binary cache"
 
 on:
     workflow_dispatch:
-    push:
-        paths:
-        - 'flake.*'
-        - 'packages/**'
-    schedule:
-        #- cron: "0 */4 * * *"
-        - cron: "0 0 */2 * *"
+    # push:
+    #     paths:
+    #     - 'flake.*'
+    #     - 'packages/**'
+    # schedule:
+    #     #- cron: "0 */4 * * *"
+    #     - cron: "0 0 */2 * *"
 
 
 jobs:
