@@ -18,9 +18,12 @@
   dnsproxy = {
     pname = "dnsproxy";
     version = "v0.64.1";
-    src = fetchurl {
-      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.64.1/dnsproxy-linux-amd64-v0.64.1.tar.gz";
-      sha256 = "sha256-Hym/sSPUBp2+E3hGOb18zqy9f3RPpQhn47/3kulrdns=";
+    src = fetchFromGitHub {
+      owner = "AdguardTeam";
+      repo = "dnsproxy";
+      rev = "v0.64.1";
+      fetchSubmodules = false;
+      sha256 = "sha256-w5eGMf6noQh8K2TlHmT7Qj/pU96J3Y1qrn4inrQ2FL4=";
     };
   };
   graphite-cursors = {
