@@ -13,15 +13,6 @@ fetch.url = "https://github.com/AdguardTeam/dnsproxy/releases/download/$ver/dnsp
 src.github = "apernet/hysteria"
 fetch.url = "https://github.com/apernet/hysteria/releases/download/$ver/hysteria-linux-amd64"
 
-[caddy]
-src.github = "MidAutumnMoon/Nuran"
-src.include_regex = "caddy.*"
-fetch.url = "https://github.com/MidAutumnMoon/Nuran/releases/download/$ver/caddy"
-
-# Editor
-
-# Language
-
 # Utility
 
 [TeapotInOri]
@@ -43,10 +34,6 @@ fetch.github = "IlanCosman/tide"
 src.git = "https://github.com/nickeb96/puffer-fish"
 fetch.git = "https://github.com/nickeb96/puffer-fish"
 
-# Entertain
-
-# Kernel
-
 # Color & Themes & Font
 
 [graphite-cursors]
@@ -60,5 +47,3 @@ fetch.github = "Buernia/Zhudou-Sans"
 [ibm-plex]
 src.github = "IBM/plex"
 fetch.url = "https://github.com/IBM/plex/releases/download/$ver/OpenType.zip"
-
-# Warehouse
