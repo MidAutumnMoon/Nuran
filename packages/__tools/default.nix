@@ -25,4 +25,8 @@ in {
         runtimeDeps = with pkgs; [ which nvfetcher ];
     };
 
+    goaway-vendorhash = self.rubyMiner {
+        path = ./goaway-vendorhash.rb;
+    };
+
 } )
