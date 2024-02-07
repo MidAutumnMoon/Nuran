@@ -16,7 +16,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         unrar
         nginx_teapot
         gtkgreet_teapot
-        caddy_teapot
     ];
 
     parallel-2 = [
@@ -38,6 +37,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
 
     go-things = [
         sops-install-secrets
+        caddy_teapot
     ];
 
 }
