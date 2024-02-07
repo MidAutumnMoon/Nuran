@@ -23,6 +23,7 @@ jobs:
             cachix-url: "https://nuirrce.cachix.org/"
             cachix-pubkey: "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
 
+
         - name: Run nvfetcher
           id: nvfetcher_results
           run: |
@@ -41,15 +42,40 @@ jobs:
                 echo "WHEREDOC"
             } >> "$GITHUB_OUTPUT"
 
+            popd
+
+
+        - name: Update vendorHashes
+          id: update_vendorhashes
+          env:
+              GV_DEBUG: "1"
+          run: |
+              pushd "packages"
+
+              declare -r Manifest=$( nix eval .#vendorhash.manifest --json | jq -r '.[]' )
+
+              echo "content<<WHEREDOC" >> "$GITHUB_OUTPUT"
+
+              for pkg in $Manifest; do
+                attr=".#${pkg}"
+                outfile="__vendorhash/${pkg}"
+                mkdir -p $(dirname $outfile)
+                diff="$( nix run --print-build-logs \
+                    .#nuranScripts.goaway-vendorhash -- "$attr" "$outfile" )"
+                [[ -n "$diff" ]] && {
+                    echo "${pkg}: ${diff}" >> "$GITHUB_OUTPUT"
+                }
+              done
+
+              echo "WHEREDOC" >> "$GITHUB_OUTPUT"
+
+
         - name: Open PR
           uses: peter-evans/create-pull-request@v6
           with:
             add-paths: "packages"
-            delete-branch: true
             title: "sources: update [bot]"
             commit-message: "sources: update [bot]"
-            committer: "GitHub <noreply@github.com>"
-            author: "GitHub <noreply@github.com>"
             body: |
                 ## nvfetcher results
                 ${{ steps.nvfetcher_results.outputs.content }}
