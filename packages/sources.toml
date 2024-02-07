@@ -7,7 +7,7 @@ extract = [ "Cargo.lock" ]
 
 [dnsproxy]
 src.github = "AdguardTeam/dnsproxy"
-fetch.url = "https://github.com/AdguardTeam/dnsproxy/releases/download/$ver/dnsproxy-linux-amd64-$ver.tar.gz"
+fetch.github = "AdguardTeam/dnsproxy"
 
 [hysteria]
 src.github = "apernet/hysteria"

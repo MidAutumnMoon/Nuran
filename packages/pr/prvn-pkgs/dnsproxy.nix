@@ -1,23 +1,31 @@
 {
     sources,
-    stdenv,
+    vendorhash,
 
-    upx-pack,
+    buildGoModule,
 }:
 
-stdenv.mkDerivation ( drvSelf: {
+# stdenv.mkDerivation ( drvSelf: {
+#     name = "dnsproxy";
+#     inherit ( sources.${drvSelf.name} )
+#         src
+#     ;
+#     nativeBuildInputs = [ upx-pack ];
+#     installPhase = ''
+#         mkdir -p "$out/bin"
+#         upx-pack "dnsproxy" "$out/bin/dnsproxy"
+#     '';
+# } )
 
-    name = "dnsproxy";
+let self = buildGoModule rec {
 
-    inherit ( sources.${drvSelf.name} )
-        src
+    pname = "dnsproxy";
+
+    inherit ( sources.${pname} )
+        src version
     ;
 
-    nativeBuildInputs = [ upx-pack ];
+    proxyVendor = true;
+    vendorHash = vendorhash."prvn-pkgs.dnsproxy";
 
-    installPhase = ''
-        mkdir -p "$out/bin"
-        upx-pack "dnsproxy" "$out/bin/dnsproxy"
-    '';
-
-} )
+}; in self
