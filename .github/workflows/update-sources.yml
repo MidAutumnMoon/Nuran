@@ -50,4 +50,6 @@ jobs:
             commit-message: "sources: update [bot]"
             committer: "GitHub <noreply@github.com>"
             author: "GitHub <noreply@github.com>"
-            body: ${{ steps.nvfetcher_results.outputs.content }}
+            body: |
+                ## nvfetcher results
+                ${{ steps.nvfetcher_results.outputs.content }}
