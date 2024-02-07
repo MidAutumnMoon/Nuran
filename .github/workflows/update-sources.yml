@@ -23,6 +23,7 @@ jobs:
             cachix-url: "https://nuirrce.cachix.org/"
             cachix-pubkey: "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
 
+
         - name: Run nvfetcher
           id: nvfetcher_results
           run: |
@@ -41,15 +42,61 @@ jobs:
                 echo "WHEREDOC"
             } >> "$GITHUB_OUTPUT"
 
+            popd
+
+
+        - name: Update vendorHashes
+          id: update_vendorhashes
+          env:
+              GV_DEBUG: "1"
+          run: |
+              pushd "packages"
+
+              # Produces lines of "attrpath,outfile_name" from the manifest
+              declare -r Manifests=$( nix eval .#vendorhash.manifest --json \
+                    | jq -r 'to_entries[] | "\(.key),\(.value)"' )
+
+              echo $Manifests
+
+              echo "content<<WHEREDOC" >> "$GITHUB_OUTPUT"
+
+              for mf in $Manifests; do
+                # peak memoment of junk bash
+                IFS="," read -ra Splitted <<< "$mf"
+                Attrpath="${Splitted[0]}"
+                OutfileName="${Splitted[1]}"
+
+                [[ -n "$Attrpath" && -n "$OutfileName" ]] || {
+                    echo "::error::The junk bash can't split strings by comma"
+                    exit 1
+                }
+
+                Outfile="__vendorhash/${OutfileName}"
+
+                mkdir -p "$( dirname $Outfile )"
+                touch "$Outfile"
+                git add --all --intent-to-add
+
+                Outs="$( nix run --print-build-logs \
+                    .#nuranScripts.goaway-vendorhash -- ".#$Attrpath" "$Outfile" )"
+
+                [[ -n "$Outs" ]] && {
+                    echo "${OutfileName}: ${Outs}" >> "$GITHUB_OUTPUT"
+                }
+              done
+
+              echo "WHEREDOC" >> "$GITHUB_OUTPUT"
+
+
         - name: Open PR
           uses: peter-evans/create-pull-request@v6
           with:
             add-paths: "packages"
-            delete-branch: true
             title: "sources: update [bot]"
             commit-message: "sources: update [bot]"
-            committer: "GitHub <noreply@github.com>"
-            author: "GitHub <noreply@github.com>"
             body: |
                 ## nvfetcher results
                 ${{ steps.nvfetcher_results.outputs.content }}
+
+                ## vendorHash updates
+                ${{ steps.update_vendorhashes.outputs.content }}

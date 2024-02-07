@@ -1,34 +1,48 @@
 {
-    sources,
-    stdenvNoCC,
+    lib,
+    vendorhash,
+    buildGoModule,
+
     caddy,
 }:
 
-stdenvNoCC.mkDerivation ( drvSelf: {
+let
 
-    pname = "caddy";
-    version = caddy.version;
+    plugins = [
+        "github.com/caddy-dns/cloudflare"
+    ];
 
+    # main.go has following structure
+    #
+    # package main
+    # import (
+    #     cadyxx "xxx"
+    #     _ "caddy/modules/standard"
+    #  )
+    #  main() { xxx }
+    #
+    # where the closing ")" of import is on its
+    # own line, so prepending to that that line
+    # is also adding things to import
+    addPlugins = lib.concatStringsSep "\n" (
+        lib.flip map plugins ( p: ''
+            sed -i \
+                '/^)$/i_ "${p}"' \
+                "cmd/caddy/main.go"
+        '' )
+    );
 
-    buildCommand = ''
-        install -Dm755 \
-            "${sources.${drvSelf.pname}.src}" \
-            "$out/bin/${drvSelf.pname}"
-    '';
+    proxyBuilder = args: buildGoModule ( args // {
+        GOAMD64 = "v3";
+        CGO_ENABLED = false;
+        proxyVendor = true;
+        vendorHash = vendorhash."caddy";
+        preBuild = ''
+            ${addPlugins}
+            go mod tidy -v
+        '';
+    } );
 
+in
 
-    meta = {
-
-        mainProgram = drvSelf.pname;
-
-        caddyVer = "v${caddy.version}";
-
-        caddyPlugins = [
-            "github.com/caddy-dns/cloudflare"
-        ];
-
-        caddyBuildEnv = [ "GOAMD64=v3" ];
-
-    };
-
-} )
+caddy.override { buildGoModule = proxyBuilder; }
