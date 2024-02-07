@@ -1,18 +1,24 @@
 {
-    "caddy": {
+    "TeapotInOri": {
         "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "caddy",
+        "date": "2024-02-05",
+        "extract": {
+            "Cargo.lock": "./TeapotInOri-ecbc682c342139807729481fa09293bd9bd593a6/Cargo.lock"
+        },
+        "name": "TeapotInOri",
         "passthru": null,
         "pinned": false,
         "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
             "name": null,
-            "sha256": "sha256-XcAuYi4v25tjH/YfKLHkSLm5mLLoZHrpcET38RyTecw=",
-            "type": "url",
-            "url": "https://github.com/MidAutumnMoon/Nuran/releases/download/caddy-v2.7.6-24.01.29.39-45132fd51e8869ed/caddy"
+            "rev": "ecbc682c342139807729481fa09293bd9bd593a6",
+            "sha256": "sha256-6JgUITwTt9EmXcb/aXLK9YSenS+j3kQH9MJHle8JSwQ=",
+            "type": "git",
+            "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "caddy-v2.7.6-24.01.29.39-45132fd51e8869ed"
+        "version": "ecbc682c342139807729481fa09293bd9bd593a6"
     },
     "dnsproxy": {
         "cargoLocks": null,
