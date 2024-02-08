@@ -28,15 +28,10 @@
         "passthru": null,
         "pinned": false,
         "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
             "name": null,
-            "owner": "AdguardTeam",
-            "repo": "dnsproxy",
-            "rev": "v0.64.1",
-            "sha256": "sha256-w5eGMf6noQh8K2TlHmT7Qj/pU96J3Y1qrn4inrQ2FL4=",
-            "type": "github"
+            "sha256": "sha256-Hym/sSPUBp2+E3hGOb18zqy9f3RPpQhn47/3kulrdns=",
+            "type": "url",
+            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.64.1/dnsproxy-linux-amd64-v0.64.1.tar.gz"
         },
         "version": "v0.64.1"
     },
@@ -132,7 +127,7 @@
         "cargoLocks": null,
         "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-v1.17.2/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.18.0/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -144,11 +139,11 @@
             "name": null,
             "owner": "shadowsocks",
             "repo": "shadowsocks-rust",
-            "rev": "v1.17.2",
-            "sha256": "sha256-SmY1WotaiRGlr51TlrBlchbjEQB4nVVN9stk5LEHUy8=",
+            "rev": "v1.18.0",
+            "sha256": "sha256-vW1Q3pqVXR3yn2wixhDZE1QsMmUfKswaGZ6JbJAZ5VM=",
             "type": "github"
         },
-        "version": "v1.17.2"
+        "version": "v1.18.0"
     },
     "tide": {
         "cargoLocks": null,
