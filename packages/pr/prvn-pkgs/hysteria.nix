@@ -1,26 +1,34 @@
 {
-    sources,
-    stdenvNoCC,
+    buildGoModule,
+    runCommand,
+    pkgsHostHost,
 
+    hysteria,
     upx-pack,
 }:
 
-stdenvNoCC.mkDerivation ( drvSelf: {
+let
 
-    name = "hysteria";
+    builder = args: buildGoModule ( args // {
+        GOAMD64 = "v2";
+        CGO_ENABLED = 0;
+    } );
 
-    inherit ( sources.${drvSelf.name} )
-        src
-    ;
+    myHysteria =
+        pkgsHostHost.hysteria.override { buildGoModule = builder; };
 
-    dontUnpack = true;
+in
+
+runCommand "hysteria" {
 
     nativeBuildInputs = [ upx-pack ];
 
-    installPhase = ''
-        mkdir -p "$out/bin"
-        install -Dm755 "$src" "hysteria"
-        upx-pack "hysteria" "$out/bin/hysteria"
-    '';
+    meta = { inherit myHysteria; };
 
-} )
+} ''
+    mkdir -pv "$out/bin"
+
+    upx-pack \
+        "${myHysteria}/bin/hysteria" \
+        "$out/bin/hysteria"
+''
