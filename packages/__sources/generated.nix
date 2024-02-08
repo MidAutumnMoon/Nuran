@@ -18,12 +18,9 @@
   dnsproxy = {
     pname = "dnsproxy";
     version = "v0.64.1";
-    src = fetchFromGitHub {
-      owner = "AdguardTeam";
-      repo = "dnsproxy";
-      rev = "v0.64.1";
-      fetchSubmodules = false;
-      sha256 = "sha256-w5eGMf6noQh8K2TlHmT7Qj/pU96J3Y1qrn4inrQ2FL4=";
+    src = fetchurl {
+      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.64.1/dnsproxy-linux-amd64-v0.64.1.tar.gz";
+      sha256 = "sha256-Hym/sSPUBp2+E3hGOb18zqy9f3RPpQhn47/3kulrdns=";
     };
   };
   graphite-cursors = {
@@ -81,15 +78,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.17.2";
+    version = "v1.18.0";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.17.2";
+      rev = "v1.18.0";
       fetchSubmodules = false;
-      sha256 = "sha256-SmY1WotaiRGlr51TlrBlchbjEQB4nVVN9stk5LEHUy8=";
+      sha256 = "sha256-vW1Q3pqVXR3yn2wixhDZE1QsMmUfKswaGZ6JbJAZ5VM=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.17.2/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.18.0/Cargo.lock;
   };
   tide = {
     pname = "tide";
