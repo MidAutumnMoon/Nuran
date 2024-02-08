@@ -55,21 +55,6 @@
         },
         "version": "2021-11-26"
     },
-    "hysteria": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "hysteria",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-KROIKpa6Ts235QTSYMpaCy1sCi2RbxRhVsVOp0R5kKQ=",
-            "type": "url",
-            "url": "https://github.com/apernet/hysteria/releases/download/app/v2.2.4/hysteria-linux-amd64"
-        },
-        "version": "app/v2.2.4"
-    },
     "ibm-plex": {
         "cargoLocks": null,
         "date": null,

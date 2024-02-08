@@ -34,14 +34,6 @@
       sha256 = "sha256-Kopl2NweYrq9rhw+0EUMhY/pfGo4g387927TZAhI5/A=";
     };
   };
-  hysteria = {
-    pname = "hysteria";
-    version = "app/v2.2.4";
-    src = fetchurl {
-      url = "https://github.com/apernet/hysteria/releases/download/app/v2.2.4/hysteria-linux-amd64";
-      sha256 = "sha256-KROIKpa6Ts235QTSYMpaCy1sCi2RbxRhVsVOp0R5kKQ=";
-    };
-  };
   ibm-plex = {
     pname = "ibm-plex";
     version = "v6.4.0";
