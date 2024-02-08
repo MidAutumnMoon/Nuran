@@ -15,18 +15,18 @@ in {
         callPackage ./upx.nix {};
 
     all = with self; [
-        dnsproxy
-        ssserver
-        hysteria
+        pn-dnsproxy
+        pn-ssserver
+        pn-hysteria
     ];
 
-    dnsproxy =
+    pn-dnsproxy =
         callPackage ./dnsproxy.nix {};
 
-    ssserver =
+    pn-ssserver =
         callPackage ./ssserver.nix {};
 
-    hysteria =
+    pn-hysteria =
         callPackage ./hysteria.nix {};
 
 } )
