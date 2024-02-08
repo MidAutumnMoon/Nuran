@@ -1,26 +1,20 @@
 {
-    stdenv,
-    upx-pack,
-    which,
+    runCommand,
 
+    upx-pack,
     shadowsocks_teapot,
 }:
 
-stdenv.mkDerivation ( drvSelf: {
+runCommand "ssserver" {
 
-    name = "ssserver";
+    nativeBuildInputs = [ upx-pack ];
 
-    nativeBuildInputs = [
-        upx-pack
-        which
-    ];
+    meta = { inherit shadowsocks_teapot; };
 
-    strictDeps = true;
+} ''
+    mkdir -pv "$out/bin"
 
-    buildCommand = ''
-        mkdir -p "$out/bin"
-        upx-pack "${shadowsocks_teapot}/bin/ssserver" \
-            "$out/bin/ssserver"
-    '';
-
-} )
+    upx-pack \
+        "${shadowsocks_teapot}/bin/ssserver" \
+        "$out/bin/ssserver"
+''
