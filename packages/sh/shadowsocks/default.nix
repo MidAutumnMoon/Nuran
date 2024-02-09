@@ -1,7 +1,8 @@
 {
+    lib,
+    stdenv,
     pkgsStatic,
 
-    lib,
     sources,
 }:
 
@@ -21,7 +22,8 @@ pkgsStatic.rustPlatform.buildRustPackage rec {
     stripAllList = [ "bin" ];
 
 
-    RUSTFLAGS = [ "-Ctarget-cpu=x86-64-v2" ];
+    RUSTFLAGS = with stdenv;
+        lib.optional hostPlatform.isx86_64 "-Ctarget-cpu=x86-64-v2";
 
     CARGO_PROFILE_release_LTO = "thin";
 
