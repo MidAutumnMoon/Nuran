@@ -23,9 +23,10 @@ builtins.listToAttrs (
 
 ) // {
 
-    manifest = [
-        "caddy_teapot"
-        "prvn-pkgs.pn-dnsproxy"
-    ];
+    # attrpath = outfile_name
+    manifest = {
+        "caddy_teapot" = "caddy";
+        "prvn-pkgs.pn-dnsproxy" = "dnsproxy";
+    };
 
 }

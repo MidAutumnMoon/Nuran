@@ -52,22 +52,36 @@ jobs:
           run: |
               pushd "packages"
 
-              declare -r Manifest=$( nix eval .#vendorhash.manifest --json | jq -r '.[]' )
+              # Produces lines of "attrpath,outfile_name" from the manifest
+              declare -r Manifests=$( nix eval .#vendorhash.manifest --json \
+                    | jq -r 'to_entries[] | "\(.key),\(.value)"' )
+
+              echo $Manifests
 
               echo "content<<WHEREDOC" >> "$GITHUB_OUTPUT"
 
-              for pkg in $Manifest; do
-                # all sorts of donkey patching
-                attr=".#${pkg}"
-                outfile="__vendorhash/${pkg}"
-                mkdir -p $(dirname $outfile)
-                touch "$outfile"
-                git add --all .
+              for mf in $Manifests; do
+                # peak memoment of junk bash
+                IFS="," read -ra Splitted <<< "$mf"
+                Attrpath="${Splitted[0]}"
+                OutfileName="${Splitted[1]}"
 
-                diff="$( nix run --print-build-logs \
-                    .#nuranScripts.goaway-vendorhash -- "$attr" "$outfile" )"
-                [[ -n "$diff" ]] && {
-                    echo "${pkg}: ${diff}" >> "$GITHUB_OUTPUT"
+                [[ -n "$Attrpath" && -n "$OutfileName" ]] || {
+                    echo "::error::The junk bash can't split strings by comma"
+                    exit 1
+                }
+
+                Outfile="__vendorhash/${OutfileName}"
+
+                mkdir -p "$( dirname $Outfile )"
+                touch "$Outfile"
+                git add --all --intent-to-add
+
+                Outs="$( nix run --print-build-logs \
+                    .#nuranScripts.goaway-vendorhash -- ".#$Attrpath" "$Outfile" )"
+
+                [[ -n "$Outs" ]] && {
+                    echo "${OutfileName}: ${Outs}" >> "$GITHUB_OUTPUT"
                 }
               done
 

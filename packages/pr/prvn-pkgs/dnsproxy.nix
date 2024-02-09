@@ -22,7 +22,7 @@ let
             sha256 = "sha256-w5eGMf6noQh8K2TlHmT7Qj/pU96J3Y1qrn4inrQ2FL4=";
         };
 
-        vendorHash = vendorhash."prvn-pkgs.dnsproxy";
+        vendorHash = vendorhash."dnsproxy";
         proxyVendor = true;
 
         ldflags = let
