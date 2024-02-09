@@ -36,7 +36,7 @@ let
         GOAMD64 = "v3";
         CGO_ENABLED = false;
         proxyVendor = true;
-        vendorHash = vendorhash.caddy_teapot;
+        vendorHash = vendorhash."caddy";
         preBuild = ''
             ${addPlugins}
             go mod tidy -v
