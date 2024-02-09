@@ -1,9 +1,9 @@
 {
     "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-02-05",
+        "date": "2024-02-09",
         "extract": {
-            "Cargo.lock": "./TeapotInOri-ecbc682c342139807729481fa09293bd9bd593a6/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-19f19af31d291f2732dd24c2b5a6adea9f657f5d/Cargo.lock"
         },
         "name": "TeapotInOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "ecbc682c342139807729481fa09293bd9bd593a6",
-            "sha256": "sha256-6JgUITwTt9EmXcb/aXLK9YSenS+j3kQH9MJHle8JSwQ=",
+            "rev": "19f19af31d291f2732dd24c2b5a6adea9f657f5d",
+            "sha256": "sha256-YAcIBZfMtr9enlLsU1K8IfEQnBm2jxMs9YZ2Zr/TjwQ=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "ecbc682c342139807729481fa09293bd9bd593a6"
+        "version": "19f19af31d291f2732dd24c2b5a6adea9f657f5d"
     },
     "dnsproxy": {
         "cargoLocks": null,
@@ -28,10 +28,15 @@
         "passthru": null,
         "pinned": false,
         "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
             "name": null,
-            "sha256": "sha256-Hym/sSPUBp2+E3hGOb18zqy9f3RPpQhn47/3kulrdns=",
-            "type": "url",
-            "url": "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.64.1/dnsproxy-linux-amd64-v0.64.1.tar.gz"
+            "owner": "AdguardTeam",
+            "repo": "dnsproxy",
+            "rev": "v0.64.1",
+            "sha256": "sha256-w5eGMf6noQh8K2TlHmT7Qj/pU96J3Y1qrn4inrQ2FL4=",
+            "type": "github"
         },
         "version": "v0.64.1"
     },
