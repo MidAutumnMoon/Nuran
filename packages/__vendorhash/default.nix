@@ -25,6 +25,7 @@ builtins.listToAttrs (
 
     manifest = [
         "caddy_teapot"
+        "prvn-pkgs.pn-dnsproxy"
     ];
 
 }
