@@ -3,24 +3,27 @@
 {
   TeapotInOri = {
     pname = "TeapotInOri";
-    version = "ecbc682c342139807729481fa09293bd9bd593a6";
+    version = "19f19af31d291f2732dd24c2b5a6adea9f657f5d";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/TeapotInOri";
-      rev = "ecbc682c342139807729481fa09293bd9bd593a6";
+      rev = "19f19af31d291f2732dd24c2b5a6adea9f657f5d";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-6JgUITwTt9EmXcb/aXLK9YSenS+j3kQH9MJHle8JSwQ=";
+      sha256 = "sha256-YAcIBZfMtr9enlLsU1K8IfEQnBm2jxMs9YZ2Zr/TjwQ=";
     };
-    "Cargo.lock" = builtins.readFile ./TeapotInOri-ecbc682c342139807729481fa09293bd9bd593a6/Cargo.lock;
-    date = "2024-02-05";
+    "Cargo.lock" = builtins.readFile ./TeapotInOri-19f19af31d291f2732dd24c2b5a6adea9f657f5d/Cargo.lock;
+    date = "2024-02-09";
   };
   dnsproxy = {
     pname = "dnsproxy";
     version = "v0.64.1";
-    src = fetchurl {
-      url = "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.64.1/dnsproxy-linux-amd64-v0.64.1.tar.gz";
-      sha256 = "sha256-Hym/sSPUBp2+E3hGOb18zqy9f3RPpQhn47/3kulrdns=";
+    src = fetchFromGitHub {
+      owner = "AdguardTeam";
+      repo = "dnsproxy";
+      rev = "v0.64.1";
+      fetchSubmodules = false;
+      sha256 = "sha256-w5eGMf6noQh8K2TlHmT7Qj/pU96J3Y1qrn4inrQ2FL4=";
     };
   };
   graphite-cursors = {
