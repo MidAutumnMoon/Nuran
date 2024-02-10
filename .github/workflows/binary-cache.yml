@@ -51,7 +51,7 @@ jobs:
             authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
             cachixArgs: -c 16 -j 3 --omit-deriver
             pushFilter: |
-                (NVIDIA.*\.run)|(npm-deps|-source|vendor\..*|go-modules|-crate-|\.tar.*$)
+                (NVIDIA.*\.run)|(npm-deps|-source|vendor\..*|\.tar.*$)
 
         - name: Update workspace flake
           run: |
