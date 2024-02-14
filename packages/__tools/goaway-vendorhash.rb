@@ -1,5 +1,7 @@
 #!/usr/bin/env -S ruby
 
+# frozen_string_literal: true
+
 # This is what you get for choosing a braindead language
 # and its ecosystem.
 #
@@ -21,27 +23,39 @@ abort "Wrong number of command options, requires 2" \
 ATTRIBUTE = ARGV.shift
 STATEFILE = ARGV.shift
 
-def debug_p( *vs )
+def debug_p( *values )
     # in 3.4 use "it" instead of "_1"
-    vs.each { STDERR.puts _1.inspect } \
-        if ENV.has_key? "GV_DEBUG"
+    values.each { warn _1.inspect } if ENV.key? "GV_DEBUG"
 end
 
 
+# Holds prev and curr hash, alongside with some
+# helper methods.
 class VendorHashRecord
     attr_reader :prev, :curr
-    def initialize() @prev = nil; @curr = nil end
-    def prev=(v) @prev = v.strip end
-    def curr=(v) @curr = v.strip end
+
+    def initialize
+        @prev = nil; @curr = nil
+    end
+
+    def prev=( value )
+        @prev = value.strip
+    end
+
+    def curr=( value )
+        @curr = value.strip
+    end
+
     def same? = @prev == @curr
-    def diff = %{"#{@prev}" → "#{@curr}"}
+
+    def diff = %("#{@prev}" → "#{@curr}")
 end
 
 hash_record = VendorHashRecord.new
 
 
 if not File.file? STATEFILE
-    FileUtils.mkdir_p( File.dirname STATEFILE )
+    FileUtils.mkdir_p( File.dirname( STATEFILE ) )
     FileUtils.touch STATEFILE
 end
 
@@ -81,15 +95,15 @@ debug_p SEARCHED_LINES
 
 
 abort "The thing that is hard to describe is not go-modules" \
-    unless SEARCHED_LINES.any? { _1.match? \
-        %r{fixed-output derivation.*go-modules\.drv}
-    }
+    unless SEARCHED_LINES.any? do
+        _1.match?( /fixed-output derivation.*go-modules\.drv/ )
+    end
 
 hash_record.curr = SEARCHED_LINES.each do |line|
     # hardcoded sha256 here because since epoch no other
     # hash methods have ever been used
     matches = line.match \
-        %r{got:.*(?<hash>sha256-[[[:alpha:]][[:digit:]]+\/]{43}=)}
+        %r{got:.*(?<hash>sha256-[[[:alpha:]][[:digit:]]+/]{43}=)}
 
     next if matches.nil?
 

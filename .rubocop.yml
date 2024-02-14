@@ -1,0 +1,31 @@
+# Also my personal system-wide rubocop configuration.
+
+AllCops:
+    TargetRubyVersion: 3.3
+
+Layout/IndentationWidth:
+    Width: 4
+
+Layout/EmptyLines:
+    Enabled: false
+
+Layout/SpaceInsideParens:
+    EnforcedStyle: space
+
+Layout/EmptyLineBetweenDefs:
+    NumberOfEmptyLines: [ 1, 6 ]
+
+Style/StringLiterals:
+    Enabled: false
+
+Style/Semicolon:
+    Enabled: false
+
+Style/NegatedIf:
+    Enabled: false
+
+Style/Not:
+    Enabled: false
+
+Style/RegexpLiteral:
+    EnforcedStyle: mixed

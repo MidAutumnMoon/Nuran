@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 # $this MANIFEST OUTPUTDIR GH_TOKEN
 #
 # MANIFEST: the toml file feeded to nvfetcher
@@ -7,6 +9,7 @@
 # GH_TOKEN: Github token for avoiding ratelimiting
 
 require "tempfile"
+require "English"
 
 abort "Wrong number of command options, requires 3" \
     if ARGV.size != 3
@@ -16,7 +19,7 @@ OUTPUTDIR = ARGV.shift
 GH_TOKEN = ARGV.shift
 
 abort "nvfetcher not found" \
-    unless -> { `which nvfetcher 2> /dev/null`; $?.success? }.call
+    unless -> { `which nvfetcher 2> /dev/null`; $CHILD_STATUS.success? }.call
 
 
 # Remove stale files
@@ -28,7 +31,7 @@ RUN
 
 # Generate nvfetcher keyfile with github token
 
-KEYFILE = Tempfile.new %w{nvfetcher .toml}
+KEYFILE = Tempfile.new %w[nvfetcher .toml]
 
 KEYFILE.write <<~CFG
     [keys]

@@ -1,5 +1,7 @@
 #!/usr/bin/env -S ruby
 
+# frozen_string_literal: true
+
 # $this MANIFEST SUBJECT
 #
 # MANIFEST: a nix file evaluating to a an attrset, with each
@@ -13,7 +15,7 @@ abort "Wrong number of command options, need 2" \
 MANIFEST = ARGV.shift
 SUBJECT = ARGV.shift
 
-abort %{Manifest "#{MANIFEST}" is not a file} \
+abort %(Manifest "#{MANIFEST}" is not a file) \
     unless File.file? MANIFEST
 
 system <<~SCRIPT
