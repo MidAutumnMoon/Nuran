@@ -22,6 +22,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         plasma5Packages.kwallet-pam
         neovim_teapot
         ibm-plex_teapot
+        ruby_teapot
     ];
 
     parallel-3 = [
