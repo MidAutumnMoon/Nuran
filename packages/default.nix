@@ -156,7 +156,7 @@ rec {
      */
 
     stdenvTeapot =
-        with prev.buildPackages.llvmPackages_16;
+        with prev.buildPackages.llvmPackages_17;
         prev.overrideCC stdenv ( libstdcxxClang.override {
             inherit bintools;
         } );
