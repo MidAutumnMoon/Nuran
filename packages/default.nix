@@ -115,6 +115,13 @@ rec {
         callPackage ./k3/k380-fn-keys-swap {};
 
     /*
+     * Languages and their toolchinas>
+     */
+
+    ruby_teapot =
+        callPackage ./ru/ruby {};
+
+    /*
      * Things that no clear category they are
      * falling into.
      */
