@@ -1,4 +1,6 @@
 {
+    callPackage,
+
     lib,
     makeBinaryWrapper,
     ruby_3_3,
@@ -22,5 +24,9 @@ lib.onceride ruby_3_3
             --set-default "RUBY_YJIT_ENABLE" 1 \
             --prefix "MALLOC_CONF" "," "background_thread:true"
     '';
+
+    passthru = old.passthru // {
+        brewed = callPackage ./brewed.nix {};
+    };
 
 } )
