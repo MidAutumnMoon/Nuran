@@ -1,4 +1,6 @@
 {
+    callPackage,
+
     lib,
     makeBinaryWrapper,
     ruby_3_3,
@@ -21,5 +23,9 @@ lib.onceride ruby_3_3
                 "${placeholder "devdoc"}/lib/ruby/site_ruby" \
             --set-default "RUBY_YJIT_ENABLE" 1
     '';
+
+    passthru = old.passthru // {
+        brewed = callPackage ./brewed.nix {};
+    };
 
 } )

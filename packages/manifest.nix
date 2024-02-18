@@ -23,6 +23,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         neovim_teapot
         ibm-plex_teapot
         ruby_teapot
+        ruby_teapot.brewed
     ];
 
     parallel-3 = [
