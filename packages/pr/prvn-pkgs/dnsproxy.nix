@@ -5,12 +5,12 @@
     runCommand,
 
     upx-pack,
-    buildGoModule,
+    buildGo122Module,
 }:
 
 let
 
-    dnsproxy = buildGoModule rec {
+    dnsproxy = buildGo122Module rec {
         pname = "dnsproxy";
 
         inherit ( sources.${pname} )

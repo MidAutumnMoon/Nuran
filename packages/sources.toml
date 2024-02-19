@@ -6,9 +6,7 @@ fetch.github = "shadowsocks/shadowsocks-rust"
 extract = [ "Cargo.lock" ]
 
 [dnsproxy]
-# src.github = "AdguardTeam/dnsproxy"
-# TODO: resume when Go 1.21.7 gets out of staging
-src.cmd = "echo v0.64.1"
+src.github = "AdguardTeam/dnsproxy"
 fetch.github = "AdguardTeam/dnsproxy"
 
 # Utility
