@@ -1,9 +1,9 @@
 {
     "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-02-16",
+        "date": "2024-02-26",
         "extract": {
-            "Cargo.lock": "./TeapotInOri-ac57f031363dabb440130c299b34ab63de48fb60/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-c3fccf83af67ce60fa641304c0bba0f2bb0897da/Cargo.lock"
         },
         "name": "TeapotInOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "ac57f031363dabb440130c299b34ab63de48fb60",
-            "sha256": "sha256-8CV1/QTa1guAhg/fjxbkVqsJOqnDIczs/Ir6MOJgJYc=",
+            "rev": "c3fccf83af67ce60fa641304c0bba0f2bb0897da",
+            "sha256": "sha256-auHmjxVkurvlVMZlGJf57+DaS4OBjmu9+f664LPihrQ=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "ac57f031363dabb440130c299b34ab63de48fb60"
+        "version": "c3fccf83af67ce60fa641304c0bba0f2bb0897da"
     },
     "dnsproxy": {
         "cargoLocks": null,
@@ -34,11 +34,11 @@
             "name": null,
             "owner": "AdguardTeam",
             "repo": "dnsproxy",
-            "rev": "v0.65.0",
-            "sha256": "sha256-TE33gwEfOLWa32lHM7gWsrtUsVX0B5pWtxMfyD36AyQ=",
+            "rev": "v0.65.2",
+            "sha256": "sha256-+82dYFk5mN1p17++2Yg3GCLe8Ud4KbZIGgdfaTepEBw=",
             "type": "github"
         },
-        "version": "v0.65.0"
+        "version": "v0.65.2"
     },
     "graphite-cursors": {
         "cargoLocks": null,

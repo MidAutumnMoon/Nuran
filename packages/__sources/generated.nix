@@ -3,27 +3,27 @@
 {
   TeapotInOri = {
     pname = "TeapotInOri";
-    version = "ac57f031363dabb440130c299b34ab63de48fb60";
+    version = "c3fccf83af67ce60fa641304c0bba0f2bb0897da";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/TeapotInOri";
-      rev = "ac57f031363dabb440130c299b34ab63de48fb60";
+      rev = "c3fccf83af67ce60fa641304c0bba0f2bb0897da";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-8CV1/QTa1guAhg/fjxbkVqsJOqnDIczs/Ir6MOJgJYc=";
+      sha256 = "sha256-auHmjxVkurvlVMZlGJf57+DaS4OBjmu9+f664LPihrQ=";
     };
-    "Cargo.lock" = builtins.readFile ./TeapotInOri-ac57f031363dabb440130c299b34ab63de48fb60/Cargo.lock;
-    date = "2024-02-16";
+    "Cargo.lock" = builtins.readFile ./TeapotInOri-c3fccf83af67ce60fa641304c0bba0f2bb0897da/Cargo.lock;
+    date = "2024-02-26";
   };
   dnsproxy = {
     pname = "dnsproxy";
-    version = "v0.65.0";
+    version = "v0.65.2";
     src = fetchFromGitHub {
       owner = "AdguardTeam";
       repo = "dnsproxy";
-      rev = "v0.65.0";
+      rev = "v0.65.2";
       fetchSubmodules = false;
-      sha256 = "sha256-TE33gwEfOLWa32lHM7gWsrtUsVX0B5pWtxMfyD36AyQ=";
+      sha256 = "sha256-+82dYFk5mN1p17++2Yg3GCLe8Ud4KbZIGgdfaTepEBw=";
     };
   };
   graphite-cursors = {
