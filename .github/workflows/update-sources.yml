@@ -23,6 +23,9 @@ jobs:
             cachix-url: "https://nuirrce.cachix.org/"
             cachix-pubkey: "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
 
+        - name: Update flakes
+          run: |
+              nix flake update
 
         - name: Run nvfetcher
           id: nvfetcher_results
@@ -43,7 +46,6 @@ jobs:
             } >> "$GITHUB_OUTPUT"
 
             popd
-
 
         - name: Update vendorHashes
           id: update_vendorhashes
@@ -86,7 +88,6 @@ jobs:
               done
 
               echo "WHEREDOC" >> "$GITHUB_OUTPUT"
-
 
         - name: Open PR
           uses: peter-evans/create-pull-request@v6
