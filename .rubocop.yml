@@ -2,6 +2,7 @@
 
 AllCops:
     TargetRubyVersion: 3.3
+    NewCops: enable
 
 Layout/IndentationWidth:
     Width: 4
