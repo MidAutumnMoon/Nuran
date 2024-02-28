@@ -18,5 +18,5 @@ let
 in
 
 ruby.withPackages ( p: with p;
-    withDocs ( [ rubocop ] ++ moreGems )
+    withDocs ( [ rake rubocop ] ++ moreGems )
 )
