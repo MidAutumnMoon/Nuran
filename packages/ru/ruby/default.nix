@@ -1,14 +1,18 @@
 {
-    callPackage,
-
     lib,
+    callPackage,
     makeBinaryWrapper,
+
     ruby_3_3,
+    defaultGemConfig,
+
+    moreGemsConfig ? {},
 }:
 
 lib.onceride ruby_3_3
 
 ( _: {
+    defaultGemConfig = defaultGemConfig // moreGemsConfig;
     jemallocSupport = true;
 } )
 

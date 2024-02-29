@@ -1,11 +1,11 @@
 {
     lib,
     ruby_teapot,
+
+    liburing,
 }:
 
 let
-
-    ruby = ruby_teapot;
 
     withDocs = map (
         g: g.override { document = [ "ri" ]; }
@@ -14,6 +14,14 @@ let
     moreGems = lib.filter lib.isDerivation (
         lib.attrValues ( ruby.buildGems ( import ./gemset.nix ) )
     );
+
+    moreGemsConfig = {
+        io-event = attrs: { buildInputs = [ liburing ]; };
+    };
+
+    ruby = ruby_teapot.override {
+        inherit moreGemsConfig;
+    };
 
 in
 
