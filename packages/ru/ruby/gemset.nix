@@ -10,16 +10,6 @@
     };
     version = "2.8.2";
   };
-  colorize = {
-    groups = ["default"];
-    platforms = [];
-    source = {
-      remotes = ["https://rubygems.org"];
-      sha256 = "0dy8ryhcdzgmbvj7jpa1qq3bhhk1m7a2pz6ip0m6dxh30rzj7d9h";
-      type = "gem";
-    };
-    version = "1.1.0";
-  };
   console = {
     dependencies = ["fiber-annotation" "fiber-local" "json"];
     groups = ["default"];
@@ -70,6 +60,16 @@
       type = "gem";
     };
     version = "2.7.1";
+  };
+  rainbow = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0smwg4mii0fm38pyb5fddbmrdpifwv22zv3d3px2xx497am93503";
+      type = "gem";
+    };
+    version = "3.1.1";
   };
   timers = {
     groups = ["default"];

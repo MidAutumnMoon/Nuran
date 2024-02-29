@@ -8,7 +8,7 @@ HERE = __dir__
 
 GEMFILE = <<~FILE
     source 'https://rubygems.org'
-    gem "colorize"
+    gem "rainbow"
     gem "async"
 FILE
 
