@@ -96,7 +96,7 @@
     },
     "puffer-fish": {
         "cargoLocks": null,
-        "date": "2023-03-15",
+        "date": "2024-03-03",
         "extract": null,
         "name": "puffer-fish",
         "passthru": null,
@@ -106,12 +106,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "5d3cb25e0d63356c3342fb3101810799bb651b64",
-            "sha256": "sha256-aPxEHSXfiJJXosIm7b3Pd+yFnyz43W3GXyUB5BFAF54=",
+            "rev": "12d062eae0ad24f4ec20593be845ac30cd4b5923",
+            "sha256": "sha256-2niYj0NLfmVIQguuGTA7RrPIcorJEPkxhH6Dhcy+6Bk=",
             "type": "git",
             "url": "https://github.com/nickeb96/puffer-fish"
         },
-        "version": "5d3cb25e0d63356c3342fb3101810799bb651b64"
+        "version": "12d062eae0ad24f4ec20593be845ac30cd4b5923"
     },
     "shadowsocks-rust": {
         "cargoLocks": null,

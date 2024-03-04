@@ -60,16 +60,16 @@
   };
   puffer-fish = {
     pname = "puffer-fish";
-    version = "5d3cb25e0d63356c3342fb3101810799bb651b64";
+    version = "12d062eae0ad24f4ec20593be845ac30cd4b5923";
     src = fetchgit {
       url = "https://github.com/nickeb96/puffer-fish";
-      rev = "5d3cb25e0d63356c3342fb3101810799bb651b64";
+      rev = "12d062eae0ad24f4ec20593be845ac30cd4b5923";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-aPxEHSXfiJJXosIm7b3Pd+yFnyz43W3GXyUB5BFAF54=";
+      sha256 = "sha256-2niYj0NLfmVIQguuGTA7RrPIcorJEPkxhH6Dhcy+6Bk=";
     };
-    date = "2023-03-15";
+    date = "2024-03-03";
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
