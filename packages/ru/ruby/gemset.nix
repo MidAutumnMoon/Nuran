@@ -5,10 +5,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "17df1p6z3dhs5p8qpb477sqwpswbrnkrbqlk2d2ch3af4ghnsxf9";
+      sha256 = "0ww7hd45nsgd00jcdrf9rj8yz0gcjhx6p8ssxfrafm70qbmph0s6";
       type = "gem";
     };
-    version = "2.8.2";
+    version = "2.9.0";
   };
   console = {
     dependencies = ["fiber-annotation" "fiber-local" "json"];
@@ -46,10 +46,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "00x221cf1dnk36ba0mjb7s3h2ap11rpns1cw18ry5jksmldqq5a0";
+      sha256 = "1p4hkqd21rwvv7bavsrgb56ywn03vbrvg804rzq5rwxrhvnqdcb7";
       type = "gem";
     };
-    version = "1.4.4";
+    version = "1.5.1";
   };
   json = {
     groups = ["default"];
