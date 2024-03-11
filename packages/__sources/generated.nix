@@ -17,13 +17,13 @@
   };
   dnsproxy = {
     pname = "dnsproxy";
-    version = "v0.65.2";
+    version = "v0.66.0";
     src = fetchFromGitHub {
       owner = "AdguardTeam";
       repo = "dnsproxy";
-      rev = "v0.65.2";
+      rev = "v0.66.0";
       fetchSubmodules = false;
-      sha256 = "sha256-+82dYFk5mN1p17++2Yg3GCLe8Ud4KbZIGgdfaTepEBw=";
+      sha256 = "sha256-6cTqAKhPtSNlUHe/DqzrxjjxwfRc4Zn79h5CBLgqchA=";
     };
   };
   graphite-cursors = {
