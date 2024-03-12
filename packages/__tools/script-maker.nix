@@ -25,8 +25,6 @@ stdenvNoCC.mkDerivation ( drvSelf: {
 
     strictDeps = true;
     dontUnpack = true;
-    preferLocalBuild = true;
-    allowSubstitutes = false;
 
     __outfile = "${placeholder "out"}/bin/${drvSelf.name}";
 
