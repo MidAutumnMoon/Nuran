@@ -4,22 +4,25 @@ AllCops:
     TargetRubyVersion: 3.3
     NewCops: enable
 
-Layout/IndentationWidth:
-    Width: 4
-
 Layout/EmptyLines:
     Enabled: false
-
-Layout/SpaceInsideParens:
-    EnforcedStyle: space
 
 Layout/EmptyLineBetweenDefs:
     NumberOfEmptyLines: [ 1, 6 ]
 
-Style/StringLiterals:
+Layout/IndentationWidth:
+    Width: 4
+
+Layout/SpaceInsideParens:
+    EnforcedStyle: space
+
+Style/Documentation:
     Enabled: false
 
 Style/Semicolon:
+    Enabled: false
+
+Style/StringLiterals:
     Enabled: false
 
 Style/NegatedIf:
