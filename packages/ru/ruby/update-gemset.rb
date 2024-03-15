@@ -3,21 +3,39 @@
 # frozen_string_literal: true
 
 require "tmpdir"
+require "pathname"
 
-HERE = __dir__
+HERE = Pathname.new __dir__
 
 GEMFILE = <<~FILE
     source 'https://rubygems.org'
-    gem "rainbow"
+    gem "amazing_print"
     gem "async"
+    gem "irb"
+    gem "rainbow"
+    gem "rake"
+    gem "rubocop"
 FILE
 
-Dir.mktmpdir do |tmpdir|
-    ENV["HOME"] = tmpdir
+abort "bundix not found" \
+    unless system "bundix --version", out: File::NULL
 
-    gemfile = File.join( tmpdir, "Gemfile" )
-    gemlock = File.join( tmpdir, "Gemfile.lock" )
-    gemset = File.join( HERE, "gemset.nix" )
+class Pathname
+    alias to_str to_s
+end
+
+Dir.mktmpdir do |t|
+    tmpdir = Pathname.new t
+
+    ENV["HOME"] = tmpdir
+    ENV["XDG_CACHE_HOME"] = tmpdir / "cache"
+    ENV["BUNDLE_USER_CONFIG"] = tmpdir / "bundle.cfg"
+    ENV["BUNDLE_USER_CACHE"] = tmpdir / "bundle.cache"
+    ENV["BUNDLE_USER_PLUGIN"] = tmpdir / "bundle.data"
+
+    gemfile = tmpdir / "Gemfile"
+    gemlock = tmpdir / "Gemfile.lock"
+    gemset = HERE / "gemset.nix"
 
     File.write gemfile, GEMFILE
 

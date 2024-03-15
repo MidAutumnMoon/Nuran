@@ -7,24 +7,20 @@
 
 let
 
-    withDocs = map (
-        g: g.override { document = [ "ri" ]; }
-    );
-
-    moreGems = lib.filter lib.isDerivation (
-        lib.attrValues ( ruby.buildGems ( import ./gemset.nix ) )
-    );
-
     moreGemsConfig = {
-        io-event = attrs: { buildInputs = [ liburing ]; };
+        io-event = _: { buildInputs = [ liburing ]; };
     };
 
     ruby = ruby_teapot.override {
         inherit moreGemsConfig;
     };
 
+    moreGems = lib.filter lib.isDerivation (
+        lib.attrValues ( ruby.buildGems ./gemset.nix )
+    );
+
 in
 
-ruby.withPackages ( p: with p;
-    withDocs ( [ rake rubocop ] ++ moreGems )
+ruby.withPackages ( _:
+    map ( g: g.override { document = [ "ri" ]; } ) moreGems
 )
