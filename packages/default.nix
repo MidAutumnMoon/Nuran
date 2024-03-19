@@ -76,9 +76,6 @@ rec {
     gtkgreet_teapot =
         callPackage ./gt/gtkgreet {};
 
-    plasma5Packages =
-        callPackage ./pl/plasma5 { old = prev.plasma5Packages; };
-
     /*
      * Linux kernel and modules and packages for it.
      */
