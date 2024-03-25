@@ -18,7 +18,7 @@ SUBJECT = ARGV.shift
 abort %(Manifest "#{MANIFEST}" is not a file) \
     unless File.file? MANIFEST
 
-system <<~SCRIPT
+system <<~SCRIPT or abort "Failed to run nix build"
     nix build --file "#{MANIFEST}" \
         "#{SUBJECT}" \
         --print-build-logs \
