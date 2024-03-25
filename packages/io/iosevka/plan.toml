@@ -1,12 +1,11 @@
-[buildPlans.iosevka-teapot]
+[buildPlans.IosevkaTeapot]
 family = "Iosevka Teapot"
 spacing = "fontconfig-mono"
 serifs = "slab"
-no-cv-ss = true
-export-glyph-names = false
-no-ligation = true
+noCvSs = true
+exportGlyphNames = false
 
-[buildPlans.iosevka-teapot.variants.design]
+[buildPlans.IosevkaTeapot.variants.design]
 capital-z = "straight-serifed"
 f = "flat-hook-serifed"
 x = "curly-serifless"
@@ -16,29 +15,29 @@ at = "threefold-tall"
 dollar = "open"
 percent = "rings-segmented-slash"
 
-[buildPlans.iosevka-teapot.variants.italic]
+[buildPlans.IosevkaTeapot.variants.italic]
 x = "curly-serifless"
 z = "cursive"
 
-[buildPlans.iosevka-teapot.variants.oblique]
+[buildPlans.IosevkaTeapot.variants.oblique]
 x = "curly-serifless"
 
-[buildPlans.iosevka-teapot.weights.light]
+[buildPlans.IosevkaTeapot.weights.Light]
 shape = 300
 menu = 300
 css = 300
 
-[buildPlans.iosevka-teapot.weights.regular]
+[buildPlans.IosevkaTeapot.weights.Regular]
 shape = 400
 menu = 400
 css = 400
 
-[buildPlans.iosevka-teapot.weights.medium]
+[buildPlans.IosevkaTeapot.weights.Medium]
 shape = 500
 menu = 500
 css = 500
 
-[buildPlans.iosevka-teapot.weights.bold]
+[buildPlans.IosevkaTeapot.weights.Bold]
 shape = 700
 menu = 700
 css = 700

@@ -8,7 +8,7 @@
 let
 
     myIosevka = iosevka.override {
-        set = "teapot";
+        set = "Teapot";
         privateBuildPlan =
             builtins.readFile ./plan.toml;
     };
