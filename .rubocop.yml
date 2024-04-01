@@ -25,6 +25,9 @@ Style/Semicolon:
 Style/StringLiterals:
     Enabled: false
 
+Style/TrailingCommaInArrayLiteral:
+    EnforcedStyleForMultiline: consistent_comma
+
 Style/NegatedIf:
     Enabled: false
 
