@@ -34,11 +34,11 @@
             "name": null,
             "owner": "AdguardTeam",
             "repo": "dnsproxy",
-            "rev": "v0.66.0",
-            "sha256": "sha256-6cTqAKhPtSNlUHe/DqzrxjjxwfRc4Zn79h5CBLgqchA=",
+            "rev": "v0.67.0",
+            "sha256": "sha256-CqEvGE1MSll+khEFvH8Y0q4XyxbTjwNRr9h9FKf5Kfs=",
             "type": "github"
         },
-        "version": "v0.66.0"
+        "version": "v0.67.0"
     },
     "graphite-cursors": {
         "cargoLocks": null,
