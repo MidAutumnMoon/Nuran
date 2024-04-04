@@ -18,6 +18,7 @@ in {
         pn-ssserver
         pn-hysteria
         pn-dnscrypt
+        pn-doh-server
     ];
 
     pn-ssserver =
@@ -28,5 +29,8 @@ in {
 
     pn-dnscrypt =
         callPackage ./dnscrypt.nix {};
+
+    pn-doh-server =
+        callPackage ./doh-server.nix {};
 
 } )
