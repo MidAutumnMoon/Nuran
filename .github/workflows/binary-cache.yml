@@ -44,9 +44,9 @@ jobs:
           uses: MidAutumnMoon/spheti-action/nix@master
 
         - name: Setup cachix
-          uses: cachix/cachix-action@master
+          uses: cachix/cachix-action@v14
           with:
-            installCommand: "nix profile install nixpkgs/master#cachix"
+            installCommand: "nix profile install nixpkgs#cachix"
             name: "nuirrce"
             authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
             cachixArgs: -c 16 -j 3 --omit-deriver
