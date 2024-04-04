@@ -18,6 +18,7 @@ in {
         pn-dnsproxy
         pn-ssserver
         pn-hysteria
+        pn-dnscrypt
     ];
 
     pn-dnsproxy =
@@ -28,5 +29,8 @@ in {
 
     pn-hysteria =
         callPackage ./hysteria.nix {};
+
+    pn-dnscrypt =
+        callPackage ./dnscrypt.nix {};
 
 } )
