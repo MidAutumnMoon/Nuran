@@ -18,12 +18,9 @@
   doh-server = {
     pname = "doh-server";
     version = "0.9.9";
-    src = fetchFromGitHub {
-      owner = "DNSCrypt";
-      repo = "doh-server";
-      rev = "0.9.9";
-      fetchSubmodules = false;
-      sha256 = "sha256-e+zr67h6MIfII+Z28Gs6sxXdSF2A1x7i265LGHSq014=";
+    src = fetchurl {
+      url = "https://github.com/DNSCrypt/doh-server/releases/download/0.9.9/doh-proxy_0.9.9_linux-x86_64.tar.bz2";
+      sha256 = "sha256-MSt/tuokBA7+wPILVpFz1JxGAyauxtnGrxSDboJXH5w=";
     };
   };
   graphite-cursors = {
