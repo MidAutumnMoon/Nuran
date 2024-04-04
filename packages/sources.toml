@@ -5,10 +5,6 @@ src.github = "shadowsocks/shadowsocks-rust"
 fetch.github = "shadowsocks/shadowsocks-rust"
 extract = [ "Cargo.lock" ]
 
-[dnsproxy]
-src.github = "AdguardTeam/dnsproxy"
-fetch.github = "AdguardTeam/dnsproxy"
-
 # Utility
 
 [TeapotInOri]

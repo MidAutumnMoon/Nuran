@@ -26,7 +26,6 @@ builtins.listToAttrs (
     # attrpath = outfile_name
     manifest = {
         "caddy_teapot" = "caddy";
-        "prvn-pkgs.pn-dnsproxy.meta.dnsproxy" = "dnsproxy";
     };
 
 }
