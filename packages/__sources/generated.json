@@ -20,6 +20,26 @@
         },
         "version": "780a59d4c1ca4350958f4228c3202889622319a9"
     },
+    "doh-server": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "doh-server",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "DNSCrypt",
+            "repo": "doh-server",
+            "rev": "0.9.9",
+            "sha256": "sha256-e+zr67h6MIfII+Z28Gs6sxXdSF2A1x7i265LGHSq014=",
+            "type": "github"
+        },
+        "version": "0.9.9"
+    },
     "graphite-cursors": {
         "cargoLocks": null,
         "date": null,
