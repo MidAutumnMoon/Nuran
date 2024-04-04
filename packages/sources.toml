@@ -5,6 +5,10 @@ src.github = "shadowsocks/shadowsocks-rust"
 fetch.github = "shadowsocks/shadowsocks-rust"
 extract = [ "Cargo.lock" ]
 
+[doh-server]
+src.github = "DNSCrypt/doh-server"
+fetch.github = "DNSCrypt/doh-server"
+
 # Utility
 
 [TeapotInOri]
