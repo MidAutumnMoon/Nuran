@@ -15,17 +15,6 @@
     "Cargo.lock" = builtins.readFile ./TeapotInOri-780a59d4c1ca4350958f4228c3202889622319a9/Cargo.lock;
     date = "2024-03-31";
   };
-  dnsproxy = {
-    pname = "dnsproxy";
-    version = "v0.67.0";
-    src = fetchFromGitHub {
-      owner = "AdguardTeam";
-      repo = "dnsproxy";
-      rev = "v0.67.0";
-      fetchSubmodules = false;
-      sha256 = "sha256-CqEvGE1MSll+khEFvH8Y0q4XyxbTjwNRr9h9FKf5Kfs=";
-    };
-  };
   graphite-cursors = {
     pname = "graphite-cursors";
     version = "2021-11-26";

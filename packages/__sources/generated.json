@@ -20,26 +20,6 @@
         },
         "version": "780a59d4c1ca4350958f4228c3202889622319a9"
     },
-    "dnsproxy": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "dnsproxy",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "AdguardTeam",
-            "repo": "dnsproxy",
-            "rev": "v0.67.0",
-            "sha256": "sha256-CqEvGE1MSll+khEFvH8Y0q4XyxbTjwNRr9h9FKf5Kfs=",
-            "type": "github"
-        },
-        "version": "v0.67.0"
-    },
     "graphite-cursors": {
         "cargoLocks": null,
         "date": null,
