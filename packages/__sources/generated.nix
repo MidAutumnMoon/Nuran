@@ -15,6 +15,17 @@
     "Cargo.lock" = builtins.readFile ./TeapotInOri-780a59d4c1ca4350958f4228c3202889622319a9/Cargo.lock;
     date = "2024-03-31";
   };
+  doh-server = {
+    pname = "doh-server";
+    version = "0.9.9";
+    src = fetchFromGitHub {
+      owner = "DNSCrypt";
+      repo = "doh-server";
+      rev = "0.9.9";
+      fetchSubmodules = false;
+      sha256 = "sha256-e+zr67h6MIfII+Z28Gs6sxXdSF2A1x7i265LGHSq014=";
+    };
+  };
   graphite-cursors = {
     pname = "graphite-cursors";
     version = "2021-11-26";
