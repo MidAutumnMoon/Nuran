@@ -13,10 +13,7 @@ GEMFILE = <<~FILE
     gem "async"
     gem "irb"
     gem "rainbow"
-    gem "rake"
     gem "rubocop"
-    gem "tty-prompt"
-    gem "xdg"
 FILE
 
 abort "bundix not found" \
