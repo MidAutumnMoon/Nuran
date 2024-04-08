@@ -1,9 +1,37 @@
 {
+    lib,
+    stdenv,
+    doh-proxy-rust,
+
     runCommand,
+    pkgsStatic,
 
     upx-pack,
-    sources,
 }:
+
+let mine = lib.onceride doh-proxy-rust
+
+( _: {
+
+    rustPlatform = pkgsStatic.rustPlatform;
+
+} )
+
+( _: {
+
+    doCheck = false;
+
+    stripAllList = [ "bin" ];
+
+    RUSTFLAGS = with stdenv;
+        lib.optional hostPlatform.isx86_64 "-Ctarget-cpu=x86-64-v2";
+
+    buildNoDefaultFeatures = true;
+    buildFeatures = [];
+
+} );
+
+in
 
 runCommand "doh-server" {
 
@@ -12,9 +40,7 @@ runCommand "doh-server" {
 } ''
     mkdir -pv "$out/bin"
 
-    tar xvf "${sources.doh-server.src}"
-
     upx-pack \
-        "doh-proxy/doh-proxy" \
+        "${mine}/bin/doh-proxy" \
         "$out/bin/doh-server"
 ''
