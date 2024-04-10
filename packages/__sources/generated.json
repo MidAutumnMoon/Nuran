@@ -1,9 +1,9 @@
 {
     "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-04-08",
+        "date": "2024-04-10",
         "extract": {
-            "Cargo.lock": "./TeapotInOri-b402994d507bd8e826315daf9cf4484f5f773433/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-14679a58dd69f0b5ff7228ed6430094809aeb640/Cargo.lock"
         },
         "name": "TeapotInOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "b402994d507bd8e826315daf9cf4484f5f773433",
-            "sha256": "sha256-0ukqoZPBizDLCMl3N6TTajLJEuGQtE4XGOxJbs47wro=",
+            "rev": "14679a58dd69f0b5ff7228ed6430094809aeb640",
+            "sha256": "sha256-x7WAUsJ/oK1lYV/WAz7CrtMlg5EuanV6kwgaaFgoRWI=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "b402994d507bd8e826315daf9cf4484f5f773433"
+        "version": "14679a58dd69f0b5ff7228ed6430094809aeb640"
     },
     "doh-server": {
         "cargoLocks": null,
