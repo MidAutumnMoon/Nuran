@@ -20,5 +20,9 @@ in {
         buildInputs = [ pkgs.SDL2 ];
     };
 
+    latoori = generic {
+        pname = "latoori";
+    };
+
 } )
 
