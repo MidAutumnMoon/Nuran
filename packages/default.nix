@@ -51,8 +51,8 @@ rec {
      * Basically everything in Linux uh?
      */
 
-    derputils =
-        callPackage ./de/derputils {};
+    teapotinori =
+        callPackage ./te/teapotinori {};
 
     fishPlugins =
         callPackage ./fi/fish/plugins { old = prev.fishPlugins; };
