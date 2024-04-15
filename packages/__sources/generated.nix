@@ -3,16 +3,16 @@
 {
   TeapotInOri = {
     pname = "TeapotInOri";
-    version = "6d74d46c518458141659c223f92825ba7eb02090";
+    version = "81161a757c23edc1f799bf5f6fbece9e826a6744";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/TeapotInOri";
-      rev = "6d74d46c518458141659c223f92825ba7eb02090";
+      rev = "81161a757c23edc1f799bf5f6fbece9e826a6744";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-dugtAV9F29mEzDFMUqhUIvFRWu2uyD9SaL5deKKw6eU=";
+      sha256 = "sha256-lNnndRZa/HVsdk7R518kgxo4aTYNGzZHgxFnf4/3R8I=";
     };
-    "Cargo.lock" = builtins.readFile ./TeapotInOri-6d74d46c518458141659c223f92825ba7eb02090/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./TeapotInOri-81161a757c23edc1f799bf5f6fbece9e826a6744/Cargo.lock;
     date = "2024-04-11";
   };
   doh-server = {
