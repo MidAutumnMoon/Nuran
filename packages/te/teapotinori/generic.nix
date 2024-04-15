@@ -41,6 +41,8 @@ rustOfChoice.buildRustPackage {
 
     buildAndTestSubdir = subdir;
 
+    useNextest = true;
+
     meta = {
         homepage = "https://github.com/MidAutumnMoon/TeapotInOri";
         license = lib.licenses.gpl3;
