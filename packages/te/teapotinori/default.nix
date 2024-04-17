@@ -14,6 +14,7 @@ in {
     all = with self; [
         derputils
         latoori
+        rpgdemake
     ];
 
     derputils = generic {
@@ -24,6 +25,10 @@ in {
     latoori = generic {
         pname = "latoori";
         static = true;
+    };
+
+    rpgdemake = generic {
+        pname = "rpgdemake";
     };
 
 } )
