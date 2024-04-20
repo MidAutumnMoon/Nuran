@@ -29,6 +29,7 @@ jobs:
                 - parallel-2
                 - parallel-3
                 - rust-things
+                - rust-things-2
                 - go-things
 
 

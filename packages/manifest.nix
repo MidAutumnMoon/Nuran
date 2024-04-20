@@ -30,13 +30,16 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
     ];
 
     rust-things = [
-        colmena_git
-        nil
         shadowsocks_teapot
     ]
         ++ prvn-pkgs.all
         ++ teapotinori.all
     ;
+
+    rust-things-2 = [
+        colmena_git
+        nil
+    ];
 
     go-things = [
         sops-install-secrets
