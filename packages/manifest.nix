@@ -33,13 +33,14 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         shadowsocks_teapot
     ]
         ++ prvn-pkgs.all
-        ++ teapotinori.all
     ;
 
     rust-things-2 = [
         colmena_git
         nil
-    ];
+    ]
+        ++ teapotinori.all
+    ;
 
     go-things = [
         sops-install-secrets
