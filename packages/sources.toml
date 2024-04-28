@@ -9,6 +9,10 @@ extract = [ "Cargo.lock" ]
 src.github = "DNSCrypt/doh-server"
 fetch.url = "https://github.com/DNSCrypt/doh-server/releases/download/$ver/doh-proxy_$ver_linux-x86_64.tar.bz2"
 
+[hysteria]
+src.github = "apernet/hysteria"
+fetch.github = "apernet/hysteria"
+
 # Utility
 
 [TeapotInOri]
