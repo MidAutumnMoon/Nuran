@@ -1,9 +1,9 @@
 {
     "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-04-22",
+        "date": "2024-04-27",
         "extract": {
-            "Cargo.lock": "./TeapotInOri-69ae4b0d848c992d244812ef8ac4633dec31f307/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-c3b55d67b2018588608617376912d0a52d57708b/Cargo.lock"
         },
         "name": "TeapotInOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "69ae4b0d848c992d244812ef8ac4633dec31f307",
-            "sha256": "sha256-bgyyhjDdGKxgQrBFj9Q5rXz48x6fD+x6mA4KvEDDOjw=",
+            "rev": "c3b55d67b2018588608617376912d0a52d57708b",
+            "sha256": "sha256-UuzvDcFVWR68Ugn3ZcYwAOBLpDf0RB4mOTmho5t8GUs=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "69ae4b0d848c992d244812ef8ac4633dec31f307"
+        "version": "c3b55d67b2018588608617376912d0a52d57708b"
     },
     "doh-server": {
         "cargoLocks": null,
@@ -54,6 +54,26 @@
             "type": "github"
         },
         "version": "2021-11-26"
+    },
+    "hysteria": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "hysteria",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "apernet",
+            "repo": "hysteria",
+            "rev": "app/v2.4.2",
+            "sha256": "sha256-UvWHfJQU9VqVwtiYTEjqo7z1+ADzk8ni1d5GjZMeX/M=",
+            "type": "github"
+        },
+        "version": "app/v2.4.2"
     },
     "ibm-plex": {
         "cargoLocks": null,
