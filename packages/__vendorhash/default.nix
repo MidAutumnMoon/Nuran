@@ -26,6 +26,7 @@ builtins.listToAttrs (
     # attrpath = outfile_name
     manifest = {
         "caddy_teapot" = "caddy";
+        "hysteria_teapot" = "hysteria";
     };
 
 }
