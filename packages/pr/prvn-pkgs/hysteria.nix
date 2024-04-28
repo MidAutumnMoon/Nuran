@@ -1,33 +1,20 @@
 {
-    buildGoModule,
     runCommand,
 
-    hysteria,
+    hysteria_teapot,
     upx-pack,
 }:
-
-let
-
-    builder = args: buildGoModule ( args // {
-        GOAMD64 = "v2";
-        CGO_ENABLED = 0;
-    } );
-
-    myHysteria =
-        hysteria.override { buildGoModule = builder; };
-
-in
 
 runCommand "hysteria" {
 
     nativeBuildInputs = [ upx-pack ];
 
-    meta = { inherit myHysteria; };
+    passthru = { inherit hysteria_teapot; };
 
 } ''
     mkdir -pv "$out/bin"
 
     upx-pack \
-        "${myHysteria}/bin/hysteria" \
+        "${hysteria_teapot}/bin/hysteria" \
         "$out/bin/hysteria"
 ''
