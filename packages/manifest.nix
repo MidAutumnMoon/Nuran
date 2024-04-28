@@ -29,13 +29,14 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         iosevka_teapot
     ];
 
-    rust-things = [
+    some-things = [
         shadowsocks_teapot
+        hysteria_teapot
     ]
         ++ prvn-pkgs.all
     ;
 
-    rust-things-2 = [
+    rust-things = [
         colmena_git
         nil
     ]

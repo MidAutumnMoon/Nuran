@@ -28,8 +28,8 @@ jobs:
                 - parallel-1
                 - parallel-2
                 - parallel-3
+                - some-things
                 - rust-things
-                - rust-things-2
                 - go-things
 
 

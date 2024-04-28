@@ -44,6 +44,9 @@ rec {
     shadowsocks_teapot =
         callPackage ./sh/shadowsocks {};
 
+    hysteria_teapot =
+        callPackage ./hy/hysteria {};
+
     /*
      * Terminals, shells and other things used in
      * that environment like CLI/TUI tools or multiplexers.
