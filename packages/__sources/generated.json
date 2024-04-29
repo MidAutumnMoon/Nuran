@@ -69,11 +69,11 @@
             "name": null,
             "owner": "apernet",
             "repo": "hysteria",
-            "rev": "app/v2.4.2",
-            "sha256": "sha256-UvWHfJQU9VqVwtiYTEjqo7z1+ADzk8ni1d5GjZMeX/M=",
+            "rev": "app/v2.4.3",
+            "sha256": "sha256-4i3bXtg7WCSPDE7fUWVJnOOFNGLAo1F/a2wbuUH785o=",
             "type": "github"
         },
-        "version": "app/v2.4.2"
+        "version": "app/v2.4.3"
     },
     "ibm-plex": {
         "cargoLocks": null,
