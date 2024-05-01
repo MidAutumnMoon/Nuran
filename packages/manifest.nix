@@ -36,10 +36,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         ++ prvn-pkgs.all
     ;
 
-    rust-things = [
-        colmena_git
-        nil
-    ]
+    rust-things = [ ]
         ++ teapotinori.all
     ;
 

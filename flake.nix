@@ -18,11 +18,6 @@ inputs = {
         inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nil-lsp = {
-        url = "github:oxalica/nil";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Some modules
 
     impermanence.url =
@@ -142,7 +137,7 @@ in {
         default = self.shellRecipes.nuran;
 
         nuran = p: with p; [
-            colmena_git
+            colmena
             sops
             ssh-to-age
         ];

@@ -24,11 +24,5 @@ with flakes;
         sops-install-secrets
     ;
 
-    colmena_git =
-        selectPackage colmena "colmena";
-
-    nil =
-        selectPackage nil-lsp "nil";
-
 }
 
