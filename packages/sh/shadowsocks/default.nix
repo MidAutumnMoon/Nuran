@@ -34,14 +34,11 @@ pkgsStatic.rustPlatform.buildRustPackage rec {
         "service"
         "hickory-dns"
         "local-http"
-        "dns-over-tls"
-        "dns-over-https"
-        "dns-over-h3"
         "multi-threaded"
         "aead-cipher-2022"
         "logging"
         "security-replay-attack-detect"
-        "jemalloc"
+        "mimalloc"
     ];
 
 
