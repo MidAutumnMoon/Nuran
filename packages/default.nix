@@ -150,13 +150,12 @@ rec {
     ];
 
 
-
     /*
      * Whatever the thing is.
      */
 
     stdenvTeapot =
-        with prev.buildPackages.llvmPackages_17;
+        with prev.buildPackages.llvmPackages_18;
         prev.overrideCC stdenv ( libstdcxxClang.override {
             inherit bintools;
         } );
