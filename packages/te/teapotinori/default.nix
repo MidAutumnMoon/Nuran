@@ -12,15 +12,15 @@ lib.makeScope newScope ( self: let
 in {
 
     all = with self; [
-        derputils
+        # derputils
         latoori
         rpgdemake
     ];
 
-    derputils = generic {
-        pname = "derputils";
-        buildInputs = [ pkgs.SDL2 ];
-    };
+    # derputils = generic {
+    #     pname = "derputils";
+    #     buildInputs = [ pkgs.SDL2 ];
+    # };
 
     latoori = generic {
         pname = "latoori";
