@@ -2,7 +2,6 @@
     lib,
     teapot,
     callPackage,
-    stdenvTeapot,
 
     nginxMainline,
     nginxModules,
@@ -34,8 +33,6 @@ in
 lib.onceride nginxMainline
 
 ( oldArgs: {
-
-    stdenv = stdenvTeapot;
 
     modules = teapotModules ++ selectedModules;
 

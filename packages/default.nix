@@ -154,10 +154,6 @@ rec {
      * Whatever the thing is.
      */
 
-    stdenvTeapot =
-        with prev.buildPackages.llvmPackages_18;
-        prev.overrideCC stdenv ( libstdcxxClang.override {
-            inherit bintools;
         } );
 
     # "mkDerivationFromStdenv" is a function which accepts a stdenv

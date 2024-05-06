@@ -1,12 +1,11 @@
 {
     lib,
     sources,
-
+    stdenv,
     runtimeShell,
-    stdenvTeapot,
 }:
 
-stdenvTeapot.mkDerivation ( drvSelf: {
+stdenv.mkDerivation ( drvSelf: {
 
     pname = "k380-fn-keys-swap";
 
