@@ -13,7 +13,7 @@ let mine = lib.onceride doh-proxy-rust
 
 ( _: {
 
-    rustPlatform = pkgsStatic.rustPlatform;
+    rustPlatform = pkgsStatic.rustTeapot;
 
 } )
 

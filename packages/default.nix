@@ -154,7 +154,12 @@ rec {
      * Whatever the thing is.
      */
 
-        } );
+    rustTeapot = with final; makeRustPlatform ( let
+        toolchain = stableRustToolchain;
+    in {
+        rustc = toolchain;
+        cargo = toolchain;
+    } );
 
     # "mkDerivationFromStdenv" is a function which accepts a stdenv
     # as argument and returns the well-known "mkDerivation" function,

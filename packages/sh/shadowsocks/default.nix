@@ -6,15 +6,17 @@
     sources,
 }:
 
-pkgsStatic.rustPlatform.buildRustPackage rec {
+pkgsStatic.rustTeapot.buildRustPackage rec {
 
     pname = "shadowsocks-rust";
 
     inherit ( sources.${pname} )
-        src version;
+        src version
+    ;
 
     cargoLock.lockFileContents =
-        sources.${pname}."Cargo.lock";
+        sources.${pname}."Cargo.lock"
+    ;
 
 
     doCheck = false;

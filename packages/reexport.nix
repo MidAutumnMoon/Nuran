@@ -24,5 +24,19 @@ with flakes;
         sops-install-secrets
     ;
 
+
+    stableRustToolchain = let
+        inherit ( packagesFrom fenix )
+            stable
+            targets
+            combine
+        ;
+        musl = targets.x86_64-unknown-linux-musl;
+    in combine [
+        stable.rustc
+        stable.cargo
+        musl.stable.rust-std
+    ];
+
 }
 

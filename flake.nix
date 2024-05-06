@@ -1,5 +1,4 @@
 {
-
 description = "MidAutumnMoon's system collection, aka the Nuran.";
 
 
@@ -15,6 +14,13 @@ inputs = {
 
     colmena = {
         url = "github:zhaofengli/colmena";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Some toolchains
+
+    fenix = {
+        url = "github:nix-community/fenix";
         inputs.nixpkgs.follows = "nixpkgs";
     };
 

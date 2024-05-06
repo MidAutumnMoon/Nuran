@@ -1,8 +1,7 @@
 {
     lib,
     sources,
-
-    rustPlatform,
+    rustTeapot,
     pkgsStatic,
 }:
 
@@ -10,6 +9,7 @@
     pname,
     subdir ? pname,
     static ? false,
+    check ? true,
 
     buildInputs ? []
 }:
@@ -18,14 +18,9 @@ let
 
     source = sources."TeapotInOri";
 
-    rustOfChoice =
-        if static
-        then pkgsStatic.rustPlatform
-        else rustPlatform;
-
 in
 
-rustOfChoice.buildRustPackage {
+pkgsStatic.rustTeapot.buildRustPackage {
 
     inherit
         pname
@@ -36,12 +31,18 @@ rustOfChoice.buildRustPackage {
 
     inherit ( source ) src;
 
+
     cargoLock.lockFileContents =
-        source."Cargo.lock";
+        source."Cargo.lock"
+    ;
+
 
     buildAndTestSubdir = subdir;
 
     useNextest = true;
+
+    doCheck = check;
+
 
     meta = {
         homepage = "https://github.com/MidAutumnMoon/TeapotInOri";
