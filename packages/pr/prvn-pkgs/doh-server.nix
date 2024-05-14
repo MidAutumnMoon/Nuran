@@ -24,7 +24,7 @@ let mine = lib.onceride doh-proxy-rust
     stripAllList = [ "bin" ];
 
     RUSTFLAGS = with stdenv;
-        lib.optional hostPlatform.isx86_64 "-Ctarget-cpu=x86-64-v2";
+        lib.optional hostPlatform.isx86_64 "-Ctarget-cpu=x86-64-v3";
 
     buildNoDefaultFeatures = true;
     buildFeatures = [];

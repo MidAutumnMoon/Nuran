@@ -9,7 +9,7 @@
 let
 
     builder = args: buildGoModule ( args // {
-        GOAMD64 = "v2";
+        GOAMD64 = "v3";
         CGO_ENABLED = 0;
     } );
 
