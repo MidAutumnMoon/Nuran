@@ -1,8 +1,11 @@
 {
     lib,
     sources,
+    stdenv,
+
     rustTeapot,
     pkgsStatic,
+
 }:
 
 {
@@ -42,6 +45,10 @@ pkgsStatic.rustTeapot.buildRustPackage {
     useNextest = true;
 
     doCheck = check;
+
+
+    RUSTFLAGS = with stdenv;
+        lib.optional hostPlatform.isx86_64 "-Ctarget-cpu=x86-64-v3";
 
 
     meta = {
