@@ -3,17 +3,17 @@
 {
   TeapotInOri = {
     pname = "TeapotInOri";
-    version = "870e4af917816854b2857b0854cfa0b13ce5be20";
+    version = "502452eef14a34c6c83ed4f57b2981853f75edca";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/TeapotInOri";
-      rev = "870e4af917816854b2857b0854cfa0b13ce5be20";
+      rev = "502452eef14a34c6c83ed4f57b2981853f75edca";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-yh4/l6lyZKZwT/zV/BinUZheELKFz0VAPo9vEFYsVyA=";
+      sha256 = "sha256-1I+a4gAgY4CbIfcs5LgGqY1KJ1pErHwn+UNsYtylLJg=";
     };
-    "Cargo.lock" = builtins.readFile ./TeapotInOri-870e4af917816854b2857b0854cfa0b13ce5be20/Cargo.lock;
-    date = "2024-05-13";
+    "Cargo.lock" = builtins.readFile ./TeapotInOri-502452eef14a34c6c83ed4f57b2981853f75edca/Cargo.lock;
+    date = "2024-05-17";
   };
   doh-server = {
     pname = "doh-server";
@@ -36,13 +36,13 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.4.3";
+    version = "app/v2.4.4";
     src = fetchFromGitHub {
       owner = "apernet";
       repo = "hysteria";
-      rev = "app/v2.4.3";
+      rev = "app/v2.4.4";
       fetchSubmodules = false;
-      sha256 = "sha256-4i3bXtg7WCSPDE7fUWVJnOOFNGLAo1F/a2wbuUH785o=";
+      sha256 = "sha256-p6h9cZYSxyMgLaVASnbHk6Bjdt6tTqj/9vhTS/CaiWA=";
     };
   };
   ibm-plex = {
