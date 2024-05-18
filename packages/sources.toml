@@ -45,5 +45,6 @@ src.github = "Buernia/Zhudou-Sans"
 fetch.github = "Buernia/Zhudou-Sans"
 
 [ibm-plex]
-src.github = "IBM/plex"
+# src.github = "IBM/plex"
+src.manual = "v6.4.0"
 fetch.url = "https://github.com/IBM/plex/releases/download/$ver/OpenType.zip"
