@@ -26,7 +26,8 @@ with flakes;
 
 
     stableRustToolchain = let
-        inherit ( packagesFrom fenix )
+        system = final.buildPlatform.system;
+        inherit ( fenix.packages.${system} )
             stable
             targets
             combine
