@@ -4,8 +4,6 @@
     stdenv,
 
     rustTeapot,
-    pkgsStatic,
-
 }:
 
 {
@@ -23,7 +21,7 @@ let
 
 in
 
-pkgsStatic.rustTeapot.buildRustPackage {
+rustTeapot.buildRustPackage {
 
     inherit
         pname
