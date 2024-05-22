@@ -79,6 +79,17 @@
     };
     date = "2024-03-03";
   };
+  rust-analyzer = {
+    pname = "rust-analyzer";
+    version = "2024-05-20";
+    src = fetchFromGitHub {
+      owner = "rust-lang";
+      repo = "rust-analyzer";
+      rev = "2024-05-20";
+      fetchSubmodules = false;
+      sha256 = "sha256-NJgrwLiLGHDrCia5AeIvZUHUY7xYGVryee0/9D3Ir1I=";
+    };
+  };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
     version = "v1.18.4";

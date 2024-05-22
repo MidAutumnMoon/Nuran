@@ -128,6 +128,26 @@
         },
         "version": "12d062eae0ad24f4ec20593be845ac30cd4b5923"
     },
+    "rust-analyzer": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "rust-analyzer",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "rust-lang",
+            "repo": "rust-analyzer",
+            "rev": "2024-05-20",
+            "sha256": "sha256-NJgrwLiLGHDrCia5AeIvZUHUY7xYGVryee0/9D3Ir1I=",
+            "type": "github"
+        },
+        "version": "2024-05-20"
+    },
     "shadowsocks-rust": {
         "cargoLocks": null,
         "date": null,
