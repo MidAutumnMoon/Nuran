@@ -121,6 +121,9 @@ rec {
     ruby_teapot =
         callPackage ./ru/ruby {};
 
+    rust-analyzer_teapot =
+        callPackage ./ru/rust-analyzer {};
+
     /*
      * Things that no clear category they are
      * falling into.

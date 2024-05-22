@@ -24,6 +24,11 @@ extract = [ "Cargo.lock" ]
 src.git = "https://github.com/jergusg/k380-function-keys-conf/"
 fetch.git = "https://github.com/jergusg/k380-function-keys-conf/"
 
+[rust-analyzer]
+src.github = "rust-lang/rust-analyzer"
+fetch.github = "rust-lang/rust-analyzer"
+cargo_locks = [ "Cargo.lock" ]
+
 # Shterm
 
 [tide]

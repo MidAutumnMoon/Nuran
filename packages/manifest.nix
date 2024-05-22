@@ -36,7 +36,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         ++ prvn-pkgs.all
     ;
 
-    rust-things = [ ]
+    rust-things = [ rust-analyzer_teapot ]
         ++ teapotinori.all
     ;
 
