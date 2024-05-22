@@ -40,8 +40,6 @@ rustTeapot.buildRustPackage {
 
     buildAndTestSubdir = subdir;
 
-    useNextest = true;
-
     doCheck = check;
 
 
