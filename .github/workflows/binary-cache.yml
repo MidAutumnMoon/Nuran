@@ -45,7 +45,7 @@ jobs:
           uses: MidAutumnMoon/spheti-action/nix@master
 
         - name: Setup cachix
-          uses: cachix/cachix-action@v15
+          uses: cachix/cachix-action@v14
           with:
             installCommand: "nix profile install nixpkgs#cachix"
             name: "nuirrce"
