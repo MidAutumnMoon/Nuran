@@ -1,9 +1,9 @@
 {
     "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-05-17",
+        "date": "2024-05-24",
         "extract": {
-            "Cargo.lock": "./TeapotInOri-502452eef14a34c6c83ed4f57b2981853f75edca/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-b9d7119e0897f31ec93a4343c7344701eda569bf/Cargo.lock"
         },
         "name": "TeapotInOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "502452eef14a34c6c83ed4f57b2981853f75edca",
-            "sha256": "sha256-1I+a4gAgY4CbIfcs5LgGqY1KJ1pErHwn+UNsYtylLJg=",
+            "rev": "b9d7119e0897f31ec93a4343c7344701eda569bf",
+            "sha256": "sha256-zMOaRHvvcB0d6TMmoncRhoY2WdEVIoTYQDo/KRzkBu8=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "502452eef14a34c6c83ed4f57b2981853f75edca"
+        "version": "b9d7119e0897f31ec93a4343c7344701eda569bf"
     },
     "doh-server": {
         "cargoLocks": null,
@@ -157,7 +157,7 @@
         "cargoLocks": null,
         "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-v1.18.4/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.19.0/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -169,11 +169,11 @@
             "name": null,
             "owner": "shadowsocks",
             "repo": "shadowsocks-rust",
-            "rev": "v1.18.4",
-            "sha256": "sha256-1gZP0PVvYWEfWmTVql+8uyNhcjawBMJKvqy/4sZ0/6Y=",
+            "rev": "v1.19.0",
+            "sha256": "sha256-IGht0jiRyLV3epSVqXx3Jq2LVqqiJtjnIdLg6VtAxuQ=",
             "type": "github"
         },
-        "version": "v1.18.4"
+        "version": "v1.19.0"
     },
     "tide": {
         "cargoLocks": null,
