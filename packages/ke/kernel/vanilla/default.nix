@@ -10,7 +10,7 @@
 
 let
 
-    baseKernel = pkgs.linux_6_8;
+    baseKernel = pkgs.linux_latest;
 
 in
 
