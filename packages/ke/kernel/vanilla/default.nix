@@ -29,7 +29,7 @@ in
 } ).overrideDerivation ( oldDrv: let
 
     KCFLAGS = toString [
-        "-march=${teapot.march}"
+        # "-march=${teapot.march}"
         "-mtune=${teapot.mtune}"
         "-pipe"
     ];
