@@ -39,11 +39,6 @@ inputs = {
         inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-index-db = {
-        url = "github:Mic92/nix-index-database";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-
 };
 
 
@@ -123,9 +118,7 @@ in {
         "WslArch" = home [ ./deploy/wsl/home.nix ];
     };
 
-    homeModules = with flakes; [
-        nix-index-db.hmModules.nix-index
-    ] ++ (
+    homeModules = with flakes; [ ] ++ (
         lib.listAllModules ./home
     );
 
