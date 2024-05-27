@@ -1,5 +1,0 @@
-{
-
-  manual.manpages.enable = false;
-
-}
