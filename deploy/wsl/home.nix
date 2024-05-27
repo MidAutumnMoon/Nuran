@@ -9,6 +9,7 @@ lib.mkMerge [
 
         # Some tools
         rust-analyzer_teapot
+        ruby_teapot.brewed
     ];
 
     username = "teapot";
