@@ -106,16 +106,30 @@ in {
         reuuko = machine { toplevel = ./deploy/laptop; };
     };
 
-    homeModules = with flakes; [
-        nix-index-db.hmModules.nix-index
-    ] ++ ( lib.listAllModules ./home );
-
     nixosModules = with flakes; [
         ./constants
         sops-nix.nixosModules.default
         impermanence.nixosModule
         home-manager.nixosModule
     ] ++ ( lib.listAllModules ./nixos );
+
+
+    homeConfigurations = let
+        inherit ( flakes.home-manager.lib )
+            homeManagerConfiguration
+        ;
+        home = m: homeManagerConfiguration {
+            inherit lib;
+            modules = m ++ self.homeModules;
+            pkgs = pkgsBrew."x86_64-linux";
+        };
+    in {
+        "WslArch" = home [ ./deploy/wsl/home.nix ];
+    };
+
+    homeModules = with flakes; [
+        nix-index-db.hmModules.nix-index
+    ] ++ ( lib.listAllModules ./home );
 
 
     colmena = lib.adoptColmena
