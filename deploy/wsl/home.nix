@@ -21,10 +21,17 @@ lib.mkMerge [
 { programs.fish = {
 
     interactiveShellInit = ''
+        # To make Windows Terminal open new tabs
+        # with the same path of current one.
         function __windows_terminal --on-variable PWD
             set -q WT_SESSION
             and printf "\e]9;9;%s\e\\" ( wslpath -w "$PWD" )
         end
+    '';
+
+    # Vanilla open doesn't try wsl-open
+    functions."open" = ''
+        wsl-open $argv
     '';
 
     shellAbbrs = {

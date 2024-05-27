@@ -17,6 +17,8 @@ lib.mkMerge [
     enable = true;
 
     shellInit = ''
+        functions --erase ll
+        functions --erase la
         set --prepend fish_function_path "${functions}"
         source ${./tide.fish}
     '';
