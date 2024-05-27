@@ -103,7 +103,7 @@ in {
      */
 
     nixosConfigurations = {
-        reuuko = machine { toplevel = ./machines/laptop; };
+        reuuko = machine { toplevel = ./deploy/laptop; };
     };
 
     homeModules = with flakes; [
