@@ -1,12 +1,11 @@
 {
     lib,
-
     symlinkJoin,
     makeWrapper,
 
     neovim-unwrapped,
 
-    extraPrograms ? [],
+    tools ? [],
 }:
 
 let
@@ -49,7 +48,7 @@ symlinkJoin {
         makeWrapper \
             "${neovim-unwrapped}/bin/nvim" "$out/bin/nvim" \
             --inherit-argv0 \
-            --prefix PATH ':' '${makeBinPath extraPrograms}' \
+            --prefix PATH ':' '${makeBinPath tools}' \
             --set XDG_DATA_DIRS '${xdgDataDirs}' \
             --set XDG_CONFIG_DIRS '${xdgConfigDirs}'
 
