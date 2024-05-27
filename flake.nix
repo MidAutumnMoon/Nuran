@@ -76,9 +76,7 @@ in {
 
 
     /*
-     *
      * Overlays & packages
-     *
      */
 
     overlays.nuclage =
@@ -97,9 +95,7 @@ in {
 
 
     /*
-     *
      * NixOS & deploy
-     *
      */
 
     nixosConfigurations = {
@@ -129,9 +125,12 @@ in {
 
     homeModules = with flakes; [
         nix-index-db.hmModules.nix-index
-    ] ++ ( lib.listAllModules ./home );
+    ] ++ (
+        lib.listAllModules ./home
+    );
 
 
+    # TODO: clean up this
     colmena = lib.adoptColmena
         self.nixosConfigurations
         {
@@ -147,18 +146,25 @@ in {
 
 
     /*
-     *
+     * Apps
+     */
+
+    apps = pkgsBrew ( pkgs:
+        builtins.mapAttrs ( _: d: lib.makeApp d ) (
+            pkgs.callPackage ./apps.nix {}
+        )
+    );
+
+
+    /*
      * devShells
-     *
      */
 
     shellRecipes = {
-
         default = self.shellRecipes.nuran;
 
         nuran = p: with p; [
-            colmena
-            sops
+            colmena sops
             ssh-to-age
         ];
 
@@ -176,29 +182,15 @@ in {
             pkg-config
         ];
 
-        rust-sdl = p: with p; [
-            SDL2
-        ] ++ ( self.shellRecipes.rust p );
-
-        picno = p: with p; [
-            xxHash
-            waifu2x-converter-cpp
-        ];
-
         music = p: with p; [
             picard
-            shntool
-            cuetools
-            flac
+            shntool cuetools flac
         ];
 
         kernel = p: with p; [
-            gcc
-            ncurses
-            flex
-            bison
+            gcc ncurses
+            flex bison
         ];
-
     };
 
     devShells =
