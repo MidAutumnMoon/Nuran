@@ -56,6 +56,7 @@ rec {
     inherit ( nuran.nixpkgs )
         removePatches
         onceride oncerideDrv
+        makeApp
         brewNixpkgs
         brewShells
     ;
