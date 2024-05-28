@@ -3,24 +3,24 @@
 {
   TeapotInOri = {
     pname = "TeapotInOri";
-    version = "b9d7119e0897f31ec93a4343c7344701eda569bf";
+    version = "de3cb9c6925c1af451a61c4bd05799ea3a7706b8";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/TeapotInOri";
-      rev = "b9d7119e0897f31ec93a4343c7344701eda569bf";
+      rev = "de3cb9c6925c1af451a61c4bd05799ea3a7706b8";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-zMOaRHvvcB0d6TMmoncRhoY2WdEVIoTYQDo/KRzkBu8=";
+      sha256 = "sha256-4D7egCUufcTXealWecnxzAIg2T7spwXpC9V1gp3mbi4=";
     };
-    "Cargo.lock" = builtins.readFile ./TeapotInOri-b9d7119e0897f31ec93a4343c7344701eda569bf/Cargo.lock;
-    date = "2024-05-24";
+    "Cargo.lock" = builtins.readFile ./TeapotInOri-de3cb9c6925c1af451a61c4bd05799ea3a7706b8/Cargo.lock;
+    date = "2024-07-08";
   };
   doh-server = {
     pname = "doh-server";
-    version = "0.9.9";
+    version = "0.9.11";
     src = fetchurl {
-      url = "https://github.com/DNSCrypt/doh-server/releases/download/0.9.9/doh-proxy_0.9.9_linux-x86_64.tar.bz2";
-      sha256 = "sha256-MSt/tuokBA7+wPILVpFz1JxGAyauxtnGrxSDboJXH5w=";
+      url = "https://github.com/DNSCrypt/doh-server/releases/download/0.9.11/doh-proxy_0.9.11_linux-x86_64.tar.bz2";
+      sha256 = "sha256-C30XbZ0OojRcmuX6PLxTfj9/cd5kqx/rJ5ggl+DS6zY=";
     };
   };
   graphite-cursors = {
@@ -36,13 +36,13 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.4.4";
+    version = "app/v2.5.0";
     src = fetchFromGitHub {
       owner = "apernet";
       repo = "hysteria";
-      rev = "app/v2.4.4";
+      rev = "app/v2.5.0";
       fetchSubmodules = false;
-      sha256 = "sha256-p6h9cZYSxyMgLaVASnbHk6Bjdt6tTqj/9vhTS/CaiWA=";
+      sha256 = "sha256-vtGJRPQBOO8Ig794FJ3gTrR0LOZdWH1vAc7IcZSq/SE=";
     };
   };
   ibm-plex = {
@@ -52,19 +52,6 @@
       url = "https://github.com/IBM/plex/releases/download/v6.4.0/OpenType.zip";
       sha256 = "sha256-6OUCgjqcbH3anrsXEMX2xAAdtKsVBn2ew3Om05hE/B0=";
     };
-  };
-  k380-fn-keys-swap = {
-    pname = "k380-fn-keys-swap";
-    version = "c0363e2e825144adc7e7ef1b37e398d90bfb0b81";
-    src = fetchgit {
-      url = "https://github.com/jergusg/k380-function-keys-conf/";
-      rev = "c0363e2e825144adc7e7ef1b37e398d90bfb0b81";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "sha256-Eubm9duEdUk8FBDbiVx2W20xKcmLrRTnrE+PiQxUuRI=";
-    };
-    date = "2021-11-28";
   };
   puffer-fish = {
     pname = "puffer-fish";
@@ -81,16 +68,16 @@
   };
   rust-analyzer = {
     pname = "rust-analyzer";
-    version = "2024-05-20";
+    version = "2024-07-08";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rust-analyzer";
-      rev = "2024-05-20";
+      rev = "2024-07-08";
       fetchSubmodules = false;
-      sha256 = "sha256-NJgrwLiLGHDrCia5AeIvZUHUY7xYGVryee0/9D3Ir1I=";
+      sha256 = "sha256-STmaV9Zu74QtkGGrbr9uMhskwagfCjJqOAYapXabiuk=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./rust-analyzer-2024-05-20/Cargo.lock;
+      lockFile = ./rust-analyzer-2024-07-08/Cargo.lock;
       outputHashes = {
         
       };
@@ -98,15 +85,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.19.0";
+    version = "v1.20.2";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.19.0";
+      rev = "v1.20.2";
       fetchSubmodules = false;
-      sha256 = "sha256-IGht0jiRyLV3epSVqXx3Jq2LVqqiJtjnIdLg6VtAxuQ=";
+      sha256 = "sha256-sfGt68XpezLKTRlnhjUTive83SA3aXF6uNLwmTCG3tU=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.19.0/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.20.2/Cargo.lock;
   };
   tide = {
     pname = "tide";
