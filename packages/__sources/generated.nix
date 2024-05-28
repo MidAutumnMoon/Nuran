@@ -3,17 +3,17 @@
 {
   TeapotInOri = {
     pname = "TeapotInOri";
-    version = "b9d7119e0897f31ec93a4343c7344701eda569bf";
+    version = "b368801877aeb337067b2676177e54f9237f7fda";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/TeapotInOri";
-      rev = "b9d7119e0897f31ec93a4343c7344701eda569bf";
+      rev = "b368801877aeb337067b2676177e54f9237f7fda";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-zMOaRHvvcB0d6TMmoncRhoY2WdEVIoTYQDo/KRzkBu8=";
+      sha256 = "sha256-NzElrfNOW4vppr6katmwluHvTdjjbAx08aDtJ4wHCss=";
     };
-    "Cargo.lock" = builtins.readFile ./TeapotInOri-b9d7119e0897f31ec93a4343c7344701eda569bf/Cargo.lock;
-    date = "2024-05-24";
+    "Cargo.lock" = builtins.readFile ./TeapotInOri-b368801877aeb337067b2676177e54f9237f7fda/Cargo.lock;
+    date = "2024-06-26";
   };
   doh-server = {
     pname = "doh-server";
@@ -36,13 +36,13 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.4.4";
+    version = "app/v2.4.5";
     src = fetchFromGitHub {
       owner = "apernet";
       repo = "hysteria";
-      rev = "app/v2.4.4";
+      rev = "app/v2.4.5";
       fetchSubmodules = false;
-      sha256 = "sha256-p6h9cZYSxyMgLaVASnbHk6Bjdt6tTqj/9vhTS/CaiWA=";
+      sha256 = "sha256-dRVTlH+g/pwwacrdof3n8OeLMsgZswpOwvtAx13bZGo=";
     };
   };
   ibm-plex = {
@@ -81,16 +81,16 @@
   };
   rust-analyzer = {
     pname = "rust-analyzer";
-    version = "2024-05-20";
+    version = "2024-06-24";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rust-analyzer";
-      rev = "2024-05-20";
+      rev = "2024-06-24";
       fetchSubmodules = false;
-      sha256 = "sha256-NJgrwLiLGHDrCia5AeIvZUHUY7xYGVryee0/9D3Ir1I=";
+      sha256 = "sha256-jzZRTQjXhiwEdzo/SlxP72BUa7g0LVr7MEsaR7A/geg=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./rust-analyzer-2024-05-20/Cargo.lock;
+      lockFile = ./rust-analyzer-2024-06-24/Cargo.lock;
       outputHashes = {
         
       };
@@ -98,15 +98,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.19.0";
+    version = "v1.20.1";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.19.0";
+      rev = "v1.20.1";
       fetchSubmodules = false;
-      sha256 = "sha256-IGht0jiRyLV3epSVqXx3Jq2LVqqiJtjnIdLg6VtAxuQ=";
+      sha256 = "sha256-cPdm8ZtZ4MDbrnTasnF1NANYtVwVcs6MGWFRnpD7Rq0=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.19.0/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.20.1/Cargo.lock;
   };
   tide = {
     pname = "tide";
