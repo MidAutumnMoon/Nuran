@@ -1,9 +1,9 @@
 {
     "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-05-24",
+        "date": "2024-07-08",
         "extract": {
-            "Cargo.lock": "./TeapotInOri-b9d7119e0897f31ec93a4343c7344701eda569bf/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-de3cb9c6925c1af451a61c4bd05799ea3a7706b8/Cargo.lock"
         },
         "name": "TeapotInOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "b9d7119e0897f31ec93a4343c7344701eda569bf",
-            "sha256": "sha256-zMOaRHvvcB0d6TMmoncRhoY2WdEVIoTYQDo/KRzkBu8=",
+            "rev": "de3cb9c6925c1af451a61c4bd05799ea3a7706b8",
+            "sha256": "sha256-4D7egCUufcTXealWecnxzAIg2T7spwXpC9V1gp3mbi4=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "b9d7119e0897f31ec93a4343c7344701eda569bf"
+        "version": "de3cb9c6925c1af451a61c4bd05799ea3a7706b8"
     },
     "doh-server": {
         "cargoLocks": null,
@@ -29,11 +29,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-MSt/tuokBA7+wPILVpFz1JxGAyauxtnGrxSDboJXH5w=",
+            "sha256": "sha256-C30XbZ0OojRcmuX6PLxTfj9/cd5kqx/rJ5ggl+DS6zY=",
             "type": "url",
-            "url": "https://github.com/DNSCrypt/doh-server/releases/download/0.9.9/doh-proxy_0.9.9_linux-x86_64.tar.bz2"
+            "url": "https://github.com/DNSCrypt/doh-server/releases/download/0.9.11/doh-proxy_0.9.11_linux-x86_64.tar.bz2"
         },
-        "version": "0.9.9"
+        "version": "0.9.11"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -69,11 +69,11 @@
             "name": null,
             "owner": "apernet",
             "repo": "hysteria",
-            "rev": "app/v2.4.4",
-            "sha256": "sha256-p6h9cZYSxyMgLaVASnbHk6Bjdt6tTqj/9vhTS/CaiWA=",
+            "rev": "app/v2.5.0",
+            "sha256": "sha256-vtGJRPQBOO8Ig794FJ3gTrR0LOZdWH1vAc7IcZSq/SE=",
             "type": "github"
         },
-        "version": "app/v2.4.4"
+        "version": "app/v2.5.0"
     },
     "ibm-plex": {
         "cargoLocks": null,
@@ -89,25 +89,6 @@
             "url": "https://github.com/IBM/plex/releases/download/v6.4.0/OpenType.zip"
         },
         "version": "v6.4.0"
-    },
-    "k380-fn-keys-swap": {
-        "cargoLocks": null,
-        "date": "2021-11-28",
-        "extract": null,
-        "name": "k380-fn-keys-swap",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81",
-            "sha256": "sha256-Eubm9duEdUk8FBDbiVx2W20xKcmLrRTnrE+PiQxUuRI=",
-            "type": "git",
-            "url": "https://github.com/jergusg/k380-function-keys-conf/"
-        },
-        "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
     },
     "puffer-fish": {
         "cargoLocks": null,
@@ -131,7 +112,7 @@
     "rust-analyzer": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./rust-analyzer-2024-05-20/Cargo.lock",
+                "./rust-analyzer-2024-07-01/Cargo.lock",
                 {}
             ]
         },
@@ -147,17 +128,17 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "rust-analyzer",
-            "rev": "2024-05-20",
-            "sha256": "sha256-NJgrwLiLGHDrCia5AeIvZUHUY7xYGVryee0/9D3Ir1I=",
+            "rev": "2024-07-01",
+            "sha256": "sha256-fsxAuW6RxKZYjAP3biUC6C4vaYFhDfWv8lp1Tmx3ZCY=",
             "type": "github"
         },
-        "version": "2024-05-20"
+        "version": "2024-07-01"
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
         "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-v1.19.0/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.20.1/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -169,11 +150,11 @@
             "name": null,
             "owner": "shadowsocks",
             "repo": "shadowsocks-rust",
-            "rev": "v1.19.0",
-            "sha256": "sha256-IGht0jiRyLV3epSVqXx3Jq2LVqqiJtjnIdLg6VtAxuQ=",
+            "rev": "v1.20.1",
+            "sha256": "sha256-cPdm8ZtZ4MDbrnTasnF1NANYtVwVcs6MGWFRnpD7Rq0=",
             "type": "github"
         },
-        "version": "v1.19.0"
+        "version": "v1.20.1"
     },
     "tide": {
         "cargoLocks": null,
