@@ -1,19 +1,24 @@
 { lib, pkgs, }: ''
 
-function ytdl -d 'Nicer yt-dlp for downloading single video.'
+function ytdl -d 'yt-dlp config for reasonable balance between quality and size'
 
     set --function VideoSpec "$argv[1]"
 
     command '${lib.getExe pkgs.yt-dlp}' \
-        -S ext:mp4:m4a \
+        -S "quality:res,hdr,codec:av1" \
+        -f "bestvideo[height<=1080]+bestaudio/best" \
+        --add-metadata \
         --embed-chapters \
         --embed-thumbnail \
         --embed-metadata \
         --embed-subs \
         --sub-langs 'all' \
+        --ppa "EmbedSubtitle:-default_mode infer_no_subs" \
+        --compat-options "no-live-chat" \
         --mtime \
         --output '%(fulltitle)s.%(ext)s' \
-        "$VideoSpec"
+        --merge-output-format "mkv" \
+        -- "$VideoSpec"
 
 end
 
