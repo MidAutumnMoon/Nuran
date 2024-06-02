@@ -98,15 +98,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.19.0";
+    version = "v1.19.2";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.19.0";
+      rev = "v1.19.2";
       fetchSubmodules = false;
-      sha256 = "sha256-Vn81py3uGlJdMzdi6obMY1kYVu9NJNZQgMiBbwrgRGk=";
+      sha256 = "sha256-Mru6HUq0er3zIpyaFcbFfyaoYvD+YHgU+kGp9yW5ia0=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.19.0/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.19.2/Cargo.lock;
   };
   tide = {
     pname = "tide";
