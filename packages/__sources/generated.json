@@ -157,7 +157,7 @@
         "cargoLocks": null,
         "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-v1.19.0/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.19.2/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -169,11 +169,11 @@
             "name": null,
             "owner": "shadowsocks",
             "repo": "shadowsocks-rust",
-            "rev": "v1.19.0",
-            "sha256": "sha256-Vn81py3uGlJdMzdi6obMY1kYVu9NJNZQgMiBbwrgRGk=",
+            "rev": "v1.19.2",
+            "sha256": "sha256-Mru6HUq0er3zIpyaFcbFfyaoYvD+YHgU+kGp9yW5ia0=",
             "type": "github"
         },
-        "version": "v1.19.0"
+        "version": "v1.19.2"
     },
     "tide": {
         "cargoLocks": null,
