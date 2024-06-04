@@ -4,7 +4,7 @@
     old,
 }:
 
-old.overrideScope' ( self: _: let
+old.overrideScope ( self: _: let
 
     callPackage =
         self.newScope { inherit sources; };
