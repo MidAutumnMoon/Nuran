@@ -34,7 +34,7 @@ let
 
     proxyBuilder = args: buildGoModule ( args // {
         GOAMD64 = "v3";
-        CGO_ENABLED = false;
+        CGO_ENABLED = 0;
         proxyVendor = true;
         vendorHash = vendorhash."caddy";
         preBuild = ''
