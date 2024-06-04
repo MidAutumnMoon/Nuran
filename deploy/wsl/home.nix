@@ -5,8 +5,6 @@ lib.mkMerge [
 { home = {
 
     packages = with pkgs; [
-        home-manager
-
         # Some tools
         rust-analyzer_teapot
         ruby_teapot.brewed
