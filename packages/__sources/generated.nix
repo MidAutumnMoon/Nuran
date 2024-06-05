@@ -36,13 +36,13 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.4.4";
+    version = "app/v2.4.5";
     src = fetchFromGitHub {
       owner = "apernet";
       repo = "hysteria";
-      rev = "app/v2.4.4";
+      rev = "app/v2.4.5";
       fetchSubmodules = false;
-      sha256 = "sha256-p6h9cZYSxyMgLaVASnbHk6Bjdt6tTqj/9vhTS/CaiWA=";
+      sha256 = "sha256-dRVTlH+g/pwwacrdof3n8OeLMsgZswpOwvtAx13bZGo=";
     };
   };
   ibm-plex = {
