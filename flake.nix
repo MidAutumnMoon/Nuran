@@ -19,8 +19,8 @@ inputs = {
 
     # Some toolchains
 
-    fenix = {
-        url = "github:nix-community/fenix";
+    rust-overlay = {
+        url = "github:oxalica/rust-overlay";
         inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -75,7 +75,7 @@ in {
      */
 
     overlays.nuclage =
-        import ./packages { inherit lib; };
+        import ./packages { inherit lib flakes; };
 
     overlays.reexport =
         import ./packages/reexport.nix { inherit flakes; };
