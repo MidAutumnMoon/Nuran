@@ -1,4 +1,4 @@
-{ lib }:
+{ lib, flakes }:
 
 final: prev:
 
@@ -154,15 +154,19 @@ rec {
 
 
     /*
-     * Whatever the thing is.
+     * Rust toolchains
      */
 
-    rustTeapot = with final; makeRustPlatform ( let
-        toolchain = stableRustToolchain;
-    in {
-        rustc = toolchain;
-        cargo = toolchain;
-    } );
+    latestRustToolchain =
+        let inherit ( flakes.rust-overlay.lib ) mkRustBin ; in
+        let rsbin = mkRustBin {} final.buildPackages; in
+        rsbin.stable.latest.default
+    ;
+
+    rustTeapot = with final; makeRustPlatform rec {
+        rustc = latestRustToolchain;
+        cargo = rustc;
+    };
 
     # "mkDerivationFromStdenv" is a function which accepts a stdenv
     # as argument and returns the well-known "mkDerivation" function,
