@@ -1,9 +1,9 @@
 {
     "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-06-10",
+        "date": "2024-06-17",
         "extract": {
-            "Cargo.lock": "./TeapotInOri-6c8db79ad974b2b68013204dd533a39637199c66/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-83e676a9b1d52be29c22c3fef59f087e81baf7a1/Cargo.lock"
         },
         "name": "TeapotInOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "6c8db79ad974b2b68013204dd533a39637199c66",
-            "sha256": "sha256-iYMynOTt94F0/PFdR3jeePPS9i6jS1Lv5/paMxj+URs=",
+            "rev": "83e676a9b1d52be29c22c3fef59f087e81baf7a1",
+            "sha256": "sha256-YvQ6+Pg/g4+mVbbDTNDTEFfxSr+OPsTWQvJfe5ZLplw=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "6c8db79ad974b2b68013204dd533a39637199c66"
+        "version": "83e676a9b1d52be29c22c3fef59f087e81baf7a1"
     },
     "doh-server": {
         "cargoLocks": null,
@@ -131,7 +131,7 @@
     "rust-analyzer": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./rust-analyzer-2024-06-11/Cargo.lock",
+                "./rust-analyzer-2024-06-17/Cargo.lock",
                 {}
             ]
         },
@@ -147,11 +147,11 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "rust-analyzer",
-            "rev": "2024-06-11",
-            "sha256": "sha256-/N0sZW3xiivMm5klk9zBtzMlO+uaxnUq35kI3bakLx8=",
+            "rev": "2024-06-17",
+            "sha256": "sha256-fZiQIYu8qSx1n+71gsfsR7lthm2vNY/d7un/Wmb9tpE=",
             "type": "github"
         },
-        "version": "2024-06-11"
+        "version": "2024-06-17"
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
