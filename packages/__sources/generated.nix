@@ -3,17 +3,17 @@
 {
   TeapotInOri = {
     pname = "TeapotInOri";
-    version = "b368801877aeb337067b2676177e54f9237f7fda";
+    version = "62c4eb97a01edc6c4c357e19c250b0a3e4dc5344";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/TeapotInOri";
-      rev = "b368801877aeb337067b2676177e54f9237f7fda";
+      rev = "62c4eb97a01edc6c4c357e19c250b0a3e4dc5344";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-NzElrfNOW4vppr6katmwluHvTdjjbAx08aDtJ4wHCss=";
+      sha256 = "sha256-4R91o30OlNRC70OoxQzDijhMHDvoO9p5toLZgQChsf0=";
     };
-    "Cargo.lock" = builtins.readFile ./TeapotInOri-b368801877aeb337067b2676177e54f9237f7fda/Cargo.lock;
-    date = "2024-06-26";
+    "Cargo.lock" = builtins.readFile ./TeapotInOri-62c4eb97a01edc6c4c357e19c250b0a3e4dc5344/Cargo.lock;
+    date = "2024-07-01";
   };
   doh-server = {
     pname = "doh-server";
@@ -36,13 +36,13 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.4.5";
+    version = "app/v2.5.0";
     src = fetchFromGitHub {
       owner = "apernet";
       repo = "hysteria";
-      rev = "app/v2.4.5";
+      rev = "app/v2.5.0";
       fetchSubmodules = false;
-      sha256 = "sha256-dRVTlH+g/pwwacrdof3n8OeLMsgZswpOwvtAx13bZGo=";
+      sha256 = "sha256-vtGJRPQBOO8Ig794FJ3gTrR0LOZdWH1vAc7IcZSq/SE=";
     };
   };
   ibm-plex = {
@@ -81,16 +81,16 @@
   };
   rust-analyzer = {
     pname = "rust-analyzer";
-    version = "2024-06-24";
+    version = "2024-07-01";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rust-analyzer";
-      rev = "2024-06-24";
+      rev = "2024-07-01";
       fetchSubmodules = false;
-      sha256 = "sha256-jzZRTQjXhiwEdzo/SlxP72BUa7g0LVr7MEsaR7A/geg=";
+      sha256 = "sha256-fsxAuW6RxKZYjAP3biUC6C4vaYFhDfWv8lp1Tmx3ZCY=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./rust-analyzer-2024-06-24/Cargo.lock;
+      lockFile = ./rust-analyzer-2024-07-01/Cargo.lock;
       outputHashes = {
         
       };
