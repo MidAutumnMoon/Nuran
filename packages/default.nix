@@ -111,9 +111,6 @@ rec {
      * in command line nor have a GUI.
      */
 
-    k380-fn-keys-swap =
-        callPackage ./k3/k380-fn-keys-swap {};
-
     /*
      * Languages and their toolchinas>
      */

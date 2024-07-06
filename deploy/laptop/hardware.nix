@@ -9,10 +9,6 @@
 
     # Misc udev
 
-    services.udev.packages = [
-        pkgs.k380-fn-keys-swap
-    ];
-
     services.udev.extraRules = let
         batThreshold = "85";
         batPath = "/sys/class/power_supply/BAT?/charge_control_end_threshold";

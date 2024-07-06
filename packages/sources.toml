@@ -20,10 +20,6 @@ src.git = "https://github.com/MidAutumnMoon/TeapotInOri"
 fetch.git = "https://github.com/MidAutumnMoon/TeapotInOri"
 extract = [ "Cargo.lock" ]
 
-[k380-fn-keys-swap]
-src.git = "https://github.com/jergusg/k380-function-keys-conf/"
-fetch.git = "https://github.com/jergusg/k380-function-keys-conf/"
-
 [rust-analyzer]
 src.github = "rust-lang/rust-analyzer"
 fetch.github = "rust-lang/rust-analyzer"
