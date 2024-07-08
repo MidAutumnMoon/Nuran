@@ -1,9 +1,9 @@
 {
     "TeapotInOri": {
         "cargoLocks": null,
-        "date": "2024-07-01",
+        "date": "2024-07-08",
         "extract": {
-            "Cargo.lock": "./TeapotInOri-62c4eb97a01edc6c4c357e19c250b0a3e4dc5344/Cargo.lock"
+            "Cargo.lock": "./TeapotInOri-de3cb9c6925c1af451a61c4bd05799ea3a7706b8/Cargo.lock"
         },
         "name": "TeapotInOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "62c4eb97a01edc6c4c357e19c250b0a3e4dc5344",
-            "sha256": "sha256-4R91o30OlNRC70OoxQzDijhMHDvoO9p5toLZgQChsf0=",
+            "rev": "de3cb9c6925c1af451a61c4bd05799ea3a7706b8",
+            "sha256": "sha256-4D7egCUufcTXealWecnxzAIg2T7spwXpC9V1gp3mbi4=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/TeapotInOri"
         },
-        "version": "62c4eb97a01edc6c4c357e19c250b0a3e4dc5344"
+        "version": "de3cb9c6925c1af451a61c4bd05799ea3a7706b8"
     },
     "doh-server": {
         "cargoLocks": null,
@@ -29,11 +29,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-MSt/tuokBA7+wPILVpFz1JxGAyauxtnGrxSDboJXH5w=",
+            "sha256": "sha256-C30XbZ0OojRcmuX6PLxTfj9/cd5kqx/rJ5ggl+DS6zY=",
             "type": "url",
-            "url": "https://github.com/DNSCrypt/doh-server/releases/download/0.9.9/doh-proxy_0.9.9_linux-x86_64.tar.bz2"
+            "url": "https://github.com/DNSCrypt/doh-server/releases/download/0.9.11/doh-proxy_0.9.11_linux-x86_64.tar.bz2"
         },
-        "version": "0.9.9"
+        "version": "0.9.11"
     },
     "graphite-cursors": {
         "cargoLocks": null,
@@ -89,25 +89,6 @@
             "url": "https://github.com/IBM/plex/releases/download/v6.4.0/OpenType.zip"
         },
         "version": "v6.4.0"
-    },
-    "k380-fn-keys-swap": {
-        "cargoLocks": null,
-        "date": "2021-11-28",
-        "extract": null,
-        "name": "k380-fn-keys-swap",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81",
-            "sha256": "sha256-Eubm9duEdUk8FBDbiVx2W20xKcmLrRTnrE+PiQxUuRI=",
-            "type": "git",
-            "url": "https://github.com/jergusg/k380-function-keys-conf/"
-        },
-        "version": "c0363e2e825144adc7e7ef1b37e398d90bfb0b81"
     },
     "puffer-fish": {
         "cargoLocks": null,
