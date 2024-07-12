@@ -68,16 +68,16 @@
   };
   rust-analyzer = {
     pname = "rust-analyzer";
-    version = "2024-07-01";
+    version = "2024-07-08";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rust-analyzer";
-      rev = "2024-07-01";
+      rev = "2024-07-08";
       fetchSubmodules = false;
-      sha256 = "sha256-fsxAuW6RxKZYjAP3biUC6C4vaYFhDfWv8lp1Tmx3ZCY=";
+      sha256 = "sha256-STmaV9Zu74QtkGGrbr9uMhskwagfCjJqOAYapXabiuk=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./rust-analyzer-2024-07-01/Cargo.lock;
+      lockFile = ./rust-analyzer-2024-07-08/Cargo.lock;
       outputHashes = {
         
       };
@@ -85,15 +85,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.20.1";
+    version = "v1.20.2";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.20.1";
+      rev = "v1.20.2";
       fetchSubmodules = false;
-      sha256 = "sha256-cPdm8ZtZ4MDbrnTasnF1NANYtVwVcs6MGWFRnpD7Rq0=";
+      sha256 = "sha256-sfGt68XpezLKTRlnhjUTive83SA3aXF6uNLwmTCG3tU=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.20.1/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.20.2/Cargo.lock;
   };
   tide = {
     pname = "tide";
