@@ -1,5 +1,4 @@
 {
-    callPackage,
     teapot,
 
     linuxManualConfig,
@@ -17,7 +16,8 @@ in
 ( linuxManualConfig {
 
     inherit ( baseKernel )
-        src version modDirVersion;
+        src version modDirVersion
+    ;
 
     configfile = ./configfile;
     allowImportFromDerivation = true;
@@ -36,7 +36,7 @@ in {
         makeFlagsArray+=(
             KCFLAGS="${KCFLAGS}"
         )
-        export ZSTD_CLEVEL=19
+        export ZSTD_CLEVEL=22
     '';
 
 } )
