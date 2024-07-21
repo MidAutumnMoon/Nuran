@@ -22,10 +22,6 @@ in
     configfile = ./configfile;
     allowImportFromDerivation = true;
 
-    kernelPatches =
-        baseKernel.kernelPatches
-        ++ callPackage ./patches.nix {};
-
 } ).overrideDerivation ( oldDrv: let
 
     KCFLAGS = toString [
