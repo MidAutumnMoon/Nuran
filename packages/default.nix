@@ -84,10 +84,10 @@ rec {
      */
 
     linux_teapot =
-        callPackage ./ke/kernel/vanilla {};
+        callPackage ./ke/kernel/kernel.nix {};
 
     linuxPackages_teapot =
-        callPackage ./ke/kernel/packages { kernel = linux_teapot; };
+        callPackage ./ke/kernel/packages.nix { kernel = linux_teapot; };
 
     /*
      * Themes, colors, fonts, styles, etc.
