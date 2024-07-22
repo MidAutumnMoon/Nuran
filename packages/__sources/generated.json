@@ -112,7 +112,7 @@
     "rust-analyzer": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./rust-analyzer-2024-07-15/Cargo.lock",
+                "./rust-analyzer-2024-07-22/Cargo.lock",
                 {}
             ]
         },
@@ -128,11 +128,11 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "rust-analyzer",
-            "rev": "2024-07-15",
-            "sha256": "sha256-zNaYyxBHmrfk4EfqvxUU97iOw1uchnBuytqgt/Zm8LA=",
+            "rev": "2024-07-22",
+            "sha256": "sha256-LH3YPNUpJeCjiyf0yaYKxgCjUFtlB41Tr2tBTMGH//s=",
             "type": "github"
         },
-        "version": "2024-07-15"
+        "version": "2024-07-22"
     },
     "shadowsocks-rust": {
         "cargoLocks": null,

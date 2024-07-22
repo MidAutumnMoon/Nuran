@@ -68,16 +68,16 @@
   };
   rust-analyzer = {
     pname = "rust-analyzer";
-    version = "2024-07-15";
+    version = "2024-07-22";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rust-analyzer";
-      rev = "2024-07-15";
+      rev = "2024-07-22";
       fetchSubmodules = false;
-      sha256 = "sha256-zNaYyxBHmrfk4EfqvxUU97iOw1uchnBuytqgt/Zm8LA=";
+      sha256 = "sha256-LH3YPNUpJeCjiyf0yaYKxgCjUFtlB41Tr2tBTMGH//s=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./rust-analyzer-2024-07-15/Cargo.lock;
+      lockFile = ./rust-analyzer-2024-07-22/Cargo.lock;
       outputHashes = {
         
       };
