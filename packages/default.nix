@@ -54,8 +54,8 @@ rec {
      * Basically everything in Linux uh?
      */
 
-    teapotinori =
-        callPackage ./te/teapotinori {};
+    inori =
+        callPackage ./in/inori {};
 
     fishPlugins =
         callPackage ./fi/fish/plugins { old = prev.fishPlugins; };
