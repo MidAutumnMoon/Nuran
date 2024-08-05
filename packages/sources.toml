@@ -15,9 +15,9 @@ fetch.github = "apernet/hysteria"
 
 # Utility
 
-[TeapotInOri]
-src.git = "https://github.com/MidAutumnMoon/TeapotInOri"
-fetch.git = "https://github.com/MidAutumnMoon/TeapotInOri"
+[InOri]
+src.git = "https://github.com/MidAutumnMoon/InOri"
+fetch.git = "https://github.com/MidAutumnMoon/InOri"
 extract = [ "Cargo.lock" ]
 
 [rust-analyzer]

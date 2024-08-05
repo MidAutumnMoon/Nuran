@@ -17,7 +17,7 @@
 
 let
 
-    source = sources."TeapotInOri";
+    source = sources."InOri";
 
 in
 
@@ -48,7 +48,7 @@ rustTeapot.buildRustPackage {
 
 
     meta = {
-        homepage = "https://github.com/MidAutumnMoon/TeapotInOri";
+        homepage = "https://github.com/MidAutumnMoon/InOri";
         license = lib.licenses.gpl3;
     };
 
