@@ -148,10 +148,10 @@ dependencies = [
  "derive_arbitrary",
  "expect-test",
  "intern",
- "mbe",
  "oorandom",
  "rustc-hash",
  "syntax",
+ "syntax-bridge",
  "tt",
 ]
 
@@ -424,23 +424,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "flycheck"
-version = "0.0.0"
-dependencies = [
- "cargo_metadata",
- "crossbeam-channel",
- "paths",
- "process-wrap",
- "project-model",
- "rustc-hash",
- "serde",
- "serde_json",
- "stdx",
- "toolchain",
- "tracing",
-]
-
-[[package]]
 name = "form_urlencoded"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -554,6 +537,7 @@ dependencies = [
  "span",
  "stdx",
  "syntax",
+ "syntax-bridge",
  "test-fixture",
  "test-utils",
  "tracing",
@@ -582,6 +566,7 @@ dependencies = [
  "span",
  "stdx",
  "syntax",
+ "syntax-bridge",
  "tracing",
  "triomphe",
  "tt",
@@ -1056,6 +1041,7 @@ dependencies = [
  "span",
  "stdx",
  "syntax",
+ "syntax-bridge",
  "test-utils",
  "tracing",
  "tt",
@@ -1268,6 +1254,7 @@ name = "paths"
 version = "0.0.0"
 dependencies = [
  "camino",
+ "serde",
 ]
 
 [[package]]
@@ -1330,14 +1317,12 @@ dependencies = [
  "base-db",
  "indexmap",
  "intern",
- "la-arena 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "paths",
  "rustc-hash",
  "serde",
  "serde_json",
  "span",
  "stdx",
- "text-size",
  "tracing",
  "tt",
 ]
@@ -1350,7 +1335,6 @@ dependencies = [
  "expect-test",
  "intern",
  "libloading",
- "mbe",
  "memmap2",
  "object 0.33.0",
  "paths",
@@ -1360,6 +1344,7 @@ dependencies = [
  "snap",
  "span",
  "stdx",
+ "syntax-bridge",
  "tt",
 ]
 
@@ -1648,12 +1633,12 @@ version = "0.0.0"
 dependencies = [
  "always-assert",
  "anyhow",
+ "cargo_metadata",
  "cfg",
  "crossbeam-channel",
  "dirs",
  "dissimilar",
  "expect-test",
- "flycheck",
  "hir",
  "hir-def",
  "hir-ty",
@@ -1665,7 +1650,6 @@ dependencies = [
  "load-cargo",
  "lsp-server 0.7.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "lsp-types",
- "mbe",
  "memchr",
  "mimalloc",
  "nohash-hasher",
@@ -1675,6 +1659,7 @@ dependencies = [
  "parser",
  "paths",
  "proc-macro-api",
+ "process-wrap",
  "profile",
  "project-model",
  "rayon",
@@ -1685,6 +1670,7 @@ dependencies = [
  "serde_json",
  "stdx",
  "syntax",
+ "syntax-bridge",
  "test-fixture",
  "test-utils",
  "tikv-jemallocator",
@@ -1965,6 +1951,21 @@ dependencies = [
  "text-edit",
  "tracing",
  "triomphe",
+]
+
+[[package]]
+name = "syntax-bridge"
+version = "0.0.0"
+dependencies = [
+ "intern",
+ "parser",
+ "rustc-hash",
+ "span",
+ "stdx",
+ "syntax",
+ "test-utils",
+ "tracing",
+ "tt",
 ]
 
 [[package]]
@@ -2332,6 +2333,8 @@ dependencies = [
  "crossbeam-channel",
  "notify",
  "paths",
+ "rayon",
+ "rustc-hash",
  "stdx",
  "tracing",
  "vfs",
