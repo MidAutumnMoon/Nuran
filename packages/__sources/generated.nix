@@ -3,17 +3,17 @@
 {
   InOri = {
     pname = "InOri";
-    version = "2de7316c5842e8e2ba89b57028ea3096b6d6789e";
+    version = "45e9bff686d8a14765fa3554f90c324e1d3f58db";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/InOri";
-      rev = "2de7316c5842e8e2ba89b57028ea3096b6d6789e";
+      rev = "45e9bff686d8a14765fa3554f90c324e1d3f58db";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-YWeVwBL2bbk7WjvLk2OffNMfWCaqI6DOtSFG26ses+o=";
+      sha256 = "sha256-1PMIHXVgULPtB0iTUT31MiEm+N3kNXgM8j6kUFT0Nnc=";
     };
-    "Cargo.lock" = builtins.readFile ./InOri-2de7316c5842e8e2ba89b57028ea3096b6d6789e/Cargo.lock;
-    date = "2024-08-12";
+    "Cargo.lock" = builtins.readFile ./InOri-45e9bff686d8a14765fa3554f90c324e1d3f58db/Cargo.lock;
+    date = "2024-08-14";
   };
   doh-server = {
     pname = "doh-server";
@@ -85,15 +85,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.20.3";
+    version = "v1.20.4";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.20.3";
+      rev = "v1.20.4";
       fetchSubmodules = false;
-      sha256 = "sha256-TVD6yI/I6R2sZGdyE0JsbuN9u5e23MRQCsKpi85JEGM=";
+      sha256 = "sha256-UDr1/5PlK395CnWbp3eDTniltZYrFZ6raVBiqsVaCZs=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.20.3/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.20.4/Cargo.lock;
   };
   tide = {
     pname = "tide";
