@@ -3,17 +3,17 @@
 {
   InOri = {
     pname = "InOri";
-    version = "78afc70933905df4115d3354cb261e87bdd74f0f";
+    version = "6eeacca8c2ca94364e453503a5ac7c5af3e5ff56";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/InOri";
-      rev = "78afc70933905df4115d3354cb261e87bdd74f0f";
+      rev = "6eeacca8c2ca94364e453503a5ac7c5af3e5ff56";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-+OKJghabgX0C7/p8jmslRqCDH4eenIQqdcHublC9bhQ=";
+      sha256 = "sha256-AidOObcJL3WR+sKJumgDw0uqvkDjgavtFVmNj6b09WY=";
     };
-    "Cargo.lock" = builtins.readFile ./InOri-78afc70933905df4115d3354cb261e87bdd74f0f/Cargo.lock;
-    date = "2024-08-26";
+    "Cargo.lock" = builtins.readFile ./InOri-6eeacca8c2ca94364e453503a5ac7c5af3e5ff56/Cargo.lock;
+    date = "2024-10-21";
   };
   doh-server = {
     pname = "doh-server";
@@ -36,13 +36,13 @@
   };
   hysteria = {
     pname = "hysteria";
-    version = "app/v2.5.1";
+    version = "app/v2.5.2";
     src = fetchFromGitHub {
       owner = "apernet";
       repo = "hysteria";
-      rev = "app/v2.5.1";
+      rev = "app/v2.5.2";
       fetchSubmodules = false;
-      sha256 = "sha256-ynG06sthqsKNGJdraHg8EkWNENfiv7E0O33wTKy2QG4=";
+      sha256 = "sha256-ClWbA3cjQXK8tzXfmApBQ+TBnbRc6f36G1iIFcNQi7o=";
     };
   };
   ibm-plex = {
@@ -68,16 +68,16 @@
   };
   rust-analyzer = {
     pname = "rust-analyzer";
-    version = "2024-08-27";
+    version = "2024-10-14";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rust-analyzer";
-      rev = "2024-08-27";
+      rev = "2024-10-14";
       fetchSubmodules = false;
-      sha256 = "sha256-tRaJTAfFpV2y+kqf8ZzX74waPpkZ0r2EB4WIKLQAsrw=";
+      sha256 = "sha256-SLcHmKzkIuahBbSCWr2gzu6bXo6wF12JP4myDzH1CvQ=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./rust-analyzer-2024-08-27/Cargo.lock;
+      lockFile = ./rust-analyzer-2024-10-14/Cargo.lock;
       outputHashes = {
         
       };
@@ -85,15 +85,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.20.4";
+    version = "v1.21.0";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.20.4";
+      rev = "v1.21.0";
       fetchSubmodules = false;
-      sha256 = "sha256-UDr1/5PlK395CnWbp3eDTniltZYrFZ6raVBiqsVaCZs=";
+      sha256 = "sha256-B4RufyxqcKd5FJulKRV+33sos+cYrL2/QPmKEYw3aTU=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.20.4/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.21.0/Cargo.lock;
   };
   tide = {
     pname = "tide";
