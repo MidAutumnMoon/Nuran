@@ -3,17 +3,17 @@
 {
   InOri = {
     pname = "InOri";
-    version = "78afc70933905df4115d3354cb261e87bdd74f0f";
+    version = "c9c9693b076152a9caa9a9bfd913d06e1bccebef";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/InOri";
-      rev = "78afc70933905df4115d3354cb261e87bdd74f0f";
+      rev = "c9c9693b076152a9caa9a9bfd913d06e1bccebef";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-+OKJghabgX0C7/p8jmslRqCDH4eenIQqdcHublC9bhQ=";
+      sha256 = "sha256-eBoU980ffvVy8VRMjLgBnW/es78Ts+r8okR3YS/8Scg=";
     };
-    "Cargo.lock" = builtins.readFile ./InOri-78afc70933905df4115d3354cb261e87bdd74f0f/Cargo.lock;
-    date = "2024-08-26";
+    "Cargo.lock" = builtins.readFile ./InOri-c9c9693b076152a9caa9a9bfd913d06e1bccebef/Cargo.lock;
+    date = "2024-09-11";
   };
   doh-server = {
     pname = "doh-server";
@@ -68,16 +68,16 @@
   };
   rust-analyzer = {
     pname = "rust-analyzer";
-    version = "2024-08-27";
+    version = "2024-09-09";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rust-analyzer";
-      rev = "2024-08-27";
+      rev = "2024-09-09";
       fetchSubmodules = false;
-      sha256 = "sha256-tRaJTAfFpV2y+kqf8ZzX74waPpkZ0r2EB4WIKLQAsrw=";
+      sha256 = "sha256-gNCLk3Zg7JlAwmWbVHTH6f3+iqdeQ4fheOotCZy8x5M=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./rust-analyzer-2024-08-27/Cargo.lock;
+      lockFile = ./rust-analyzer-2024-09-09/Cargo.lock;
       outputHashes = {
         
       };
