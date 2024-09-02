@@ -11,7 +11,6 @@ GEMFILE = <<~FILE
     source 'https://rubygems.org'
     gem "amazing_print"
     gem "async"
-    gem "console"
     gem "irb"
     gem "rainbow"
     gem "rubocop"
