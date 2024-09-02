@@ -13,6 +13,9 @@ Layout/EmptyLineBetweenDefs:
 Layout/IndentationWidth:
     Width: 4
 
+Layout/MultilineMethodCallIndentation:
+    EnforcedStyle: indented
+
 Layout/SpaceInsideParens:
     EnforcedStyle: space
 
@@ -27,6 +30,9 @@ Style/StringLiterals:
 
 Style/TrailingCommaInArrayLiteral:
     EnforcedStyleForMultiline: consistent_comma
+
+Layout/TrailingEmptyLines:
+    Enabled: false
 
 Style/NegatedIf:
     Enabled: false
