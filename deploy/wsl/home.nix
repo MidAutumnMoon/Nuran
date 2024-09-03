@@ -36,8 +36,8 @@ lib.mkMerge [
 
     shellAbbrs = {
         "ru" = "paru";
-        "p" = "pnpm";
         "d" = "deno";
+        "b" = "bundle";
     };
 
 }; }
