@@ -35,7 +35,9 @@ lib.onceride ruby_3_3
     '';
 
     passthru = old.passthru // {
-        brewed = callPackage ./brewed.nix {};
+        inherit ( callPackage ./brews.nix {} )
+            brewed for_dev
+        ;
     };
 
 } )
