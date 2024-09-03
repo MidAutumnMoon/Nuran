@@ -4,7 +4,22 @@ AllCops:
     TargetRubyVersion: 3.3
     NewCops: enable
 
+Layout/ArgumentAlignment:
+    EnforcedStyle: with_fixed_indentation
+
+Layout/EndAlignment:
+    Enabled: false
+
 Layout/EmptyLines:
+    Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+    Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+    Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
     Enabled: false
 
 Layout/EmptyLineBetweenDefs:
@@ -16,19 +31,52 @@ Layout/IndentationWidth:
 Layout/MultilineMethodCallIndentation:
     EnforcedStyle: indented
 
+Layout/SpaceInsideArrayLiteralBrackets:
+    EnforcedStyle: space
+
 Layout/SpaceInsideParens:
     EnforcedStyle: space
 
+Metrics/AbcSize:
+    Enabled: false
+
+Metrics/BlockLength:
+    Enabled: false
+
+Metrics/CyclomaticComplexity:
+    Enabled: false
+
+Metrics/MethodLength:
+    Enabled: false
+
+Metrics/ModuleLength:
+    CountAsOne: [ "array", "hash", "heredoc", "method_call" ]
+
+Style/ClassAndModuleChildren:
+    Enabled: false
+
 Style/Documentation:
+    Enabled: false
+
+Style/RedundantCurrentDirectoryInPath:
+    Enabled: false
+
+Style/RedundantFileExtensionInRequire:
     Enabled: false
 
 Style/Semicolon:
     Enabled: false
 
 Style/StringLiterals:
+    EnforcedStyle: double_quotes
+
+Style/TrailingBodyOnModule:
     Enabled: false
 
 Style/TrailingCommaInArrayLiteral:
+    EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
     EnforcedStyleForMultiline: consistent_comma
 
 Layout/TrailingEmptyLines:
@@ -38,6 +86,9 @@ Style/NegatedIf:
     Enabled: false
 
 Style/Not:
+    Enabled: false
+
+Style/OptionalBooleanParameter:
     Enabled: false
 
 Style/RegexpLiteral:
