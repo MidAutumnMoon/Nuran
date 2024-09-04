@@ -125,6 +125,16 @@
     };
     version = "6.7.0";
   };
+  reinbow = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0skpry3qpjl5696vln589p74hn89hgnx9lsjsl60r05za3qrm7g2";
+      type = "gem";
+    };
+    version = "1.1.0";
+  };
   reline = {
     dependencies = ["io-console"];
     groups = ["default"];

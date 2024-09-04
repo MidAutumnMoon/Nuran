@@ -16,7 +16,7 @@ GEMFILE = <<~GEM
     source 'https://rubygems.org'
     gem "amazing_print"
     gem "async"
-    # gem "rainbow", github: "ku1ik/rainbow", branch: "master"
+    gem "reinbow"
     gem "irb"
 GEM
 
@@ -29,7 +29,7 @@ GEM
 # of output gemset.nix
 MAPPING = {
     GEMFILE => "gemset.nix",
-    GEMFILE_DEV => "gemset-dev.nix"
+    GEMFILE_DEV => "gemset-dev.nix",
 }.freeze
 
 
