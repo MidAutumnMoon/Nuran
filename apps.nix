@@ -35,7 +35,9 @@ in
         end
 
         ${lib.getExe home-manager} "$Action" \
-            --flake ".#$hostname"
+            --flake ".#$hostname" \
+            --print-build-logs \
+            --option narinfo-cache-negative-ttl 0
     '';
 
 }
