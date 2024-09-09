@@ -1,9 +1,9 @@
 {
     "InOri": {
         "cargoLocks": null,
-        "date": "2024-09-02",
+        "date": "2024-09-09",
         "extract": {
-            "Cargo.lock": "./InOri-f1bff61ffdf41d6fa30831b19265b01d65c298a4/Cargo.lock"
+            "Cargo.lock": "./InOri-47f86799ec1ed908d8148b7763dee8850a6d6af0/Cargo.lock"
         },
         "name": "InOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "f1bff61ffdf41d6fa30831b19265b01d65c298a4",
-            "sha256": "sha256-UpCy4I6cDVaDlUz3FOWoylKirM+gA4BJoyYvP4xoRQU=",
+            "rev": "47f86799ec1ed908d8148b7763dee8850a6d6af0",
+            "sha256": "sha256-4f0Vl6yoa1HXuVxFS98AZVxL9z0ONIfTISg0XPzBeSQ=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/InOri"
         },
-        "version": "f1bff61ffdf41d6fa30831b19265b01d65c298a4"
+        "version": "47f86799ec1ed908d8148b7763dee8850a6d6af0"
     },
     "doh-server": {
         "cargoLocks": null,
@@ -112,7 +112,7 @@
     "rust-analyzer": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./rust-analyzer-2024-09-02/Cargo.lock",
+                "./rust-analyzer-2024-09-09/Cargo.lock",
                 {}
             ]
         },
@@ -128,11 +128,11 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "rust-analyzer",
-            "rev": "2024-09-02",
-            "sha256": "sha256-YH0kH5CSOnAuPUB1BUzUqvnKiv5SgDhfMNjrkki9Ahk=",
+            "rev": "2024-09-09",
+            "sha256": "sha256-gNCLk3Zg7JlAwmWbVHTH6f3+iqdeQ4fheOotCZy8x5M=",
             "type": "github"
         },
-        "version": "2024-09-02"
+        "version": "2024-09-09"
     },
     "shadowsocks-rust": {
         "cargoLocks": null,
