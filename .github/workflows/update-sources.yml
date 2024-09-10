@@ -92,6 +92,7 @@ jobs:
         - name: Open PR
           uses: peter-evans/create-pull-request@v7
           with:
+            sign-commits: true
             add-paths: "packages"
             title: "sources: update [bot]"
             commit-message: "sources: update [bot]"
