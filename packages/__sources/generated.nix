@@ -3,17 +3,17 @@
 {
   InOri = {
     pname = "InOri";
-    version = "47f86799ec1ed908d8148b7763dee8850a6d6af0";
+    version = "c9c9693b076152a9caa9a9bfd913d06e1bccebef";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/InOri";
-      rev = "47f86799ec1ed908d8148b7763dee8850a6d6af0";
+      rev = "c9c9693b076152a9caa9a9bfd913d06e1bccebef";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-4f0Vl6yoa1HXuVxFS98AZVxL9z0ONIfTISg0XPzBeSQ=";
+      sha256 = "sha256-eBoU980ffvVy8VRMjLgBnW/es78Ts+r8okR3YS/8Scg=";
     };
-    "Cargo.lock" = builtins.readFile ./InOri-47f86799ec1ed908d8148b7763dee8850a6d6af0/Cargo.lock;
-    date = "2024-09-09";
+    "Cargo.lock" = builtins.readFile ./InOri-c9c9693b076152a9caa9a9bfd913d06e1bccebef/Cargo.lock;
+    date = "2024-09-11";
   };
   doh-server = {
     pname = "doh-server";
