@@ -12,11 +12,6 @@ inputs = {
 
     # Some packages
 
-    colmena = {
-        url = "github:zhaofengli/colmena";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Some toolchains
 
     rust-overlay = {
