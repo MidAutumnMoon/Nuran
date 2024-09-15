@@ -7,9 +7,6 @@ inputs = {
     nixpkgs.url =
         "github:NixOS/nixpkgs/nixos-unstable-small";
 
-    nixpkgs-master.url =
-        "github:NixOS/nixpkgs/master";
-
     # Some packages
 
     # Some toolchains
@@ -77,11 +74,7 @@ in {
 
     inherit pkgsBrew;
 
-    pkgsBrewMaster = lib.brewNixpkgs
-        flakes.nixpkgs-master { inherit config overlays; };
-
-    legacyPackages =
-        self.pkgsBrewMaster lib.id;
+    legacyPackages = self.pkgsBrew lib.id;
 
 
     /*
