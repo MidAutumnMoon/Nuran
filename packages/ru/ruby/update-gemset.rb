@@ -57,7 +57,7 @@ MAPPING.each_pair do |gemfile_content, gemset_name|
 
     Dir.chdir tmpdir do
         system "bundle lock --verbose --lockfile=#{gemlock}"
-        abort "Failed to run bundle lock" if not $CHILD_STATUS
+        abort "Failed to run bundle lock" unless $CHILD_STATUS.success?
     end
 
     system <<~RUN
@@ -67,7 +67,7 @@ MAPPING.each_pair do |gemfile_content, gemset_name|
             --gemset "#{gemset}"
     RUN
 
-    abort "Failed to run bundix" if not $CHILD_STATUS
+    abort "Failed to run bundix" unless $CHILD_STATUS.success?
 
     puts
 
