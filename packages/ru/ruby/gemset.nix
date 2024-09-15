@@ -15,10 +15,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1y1976k5x1w72p7srg7nsnjwpgi1sk2vcimddw89xd03xsy9wzr6";
+      sha256 = "0m4kiwz66b6clf9ciz0wrq6j4vgj92icm6c88v0n7w3sxqxy6jkx";
       type = "gem";
     };
-    version = "2.16.1";
+    version = "2.17.0";
   };
   console = {
     dependencies = ["fiber-annotation" "fiber-local" "json"];
@@ -88,10 +88,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "05g6vpz3997q4j3xhrliswfx3g5flsn5cfn1p1s4h6dx7c0hbn2k";
+      sha256 = "1y40dv3caswr81dlsyln6vnmmpzf5jcal2rqjbsglvnkb0xh0xar";
       type = "gem";
     };
-    version = "1.14.0";
+    version = "1.14.1";
   };
   json = {
     groups = ["default"];
@@ -130,10 +130,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0skpry3qpjl5696vln589p74hn89hgnx9lsjsl60r05za3qrm7g2";
+      sha256 = "19hlmfb0kpj6gk7l3wbdbwi6y3106dslmsy1fl5489ncq3np1q6v";
       type = "gem";
     };
-    version = "1.1.0";
+    version = "1.2.0";
   };
   reline = {
     dependencies = ["io-console"];
@@ -141,10 +141,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0y6kyz7kcilwdpfy3saqfgnar38vr5ys9sp40ndffy6h1znxfbax";
+      sha256 = "0rl1jmxs7pay58l7lkxkrn6nkdpk52k8rvnfwqsd1swjlxlwjq0n";
       type = "gem";
     };
-    version = "0.5.9";
+    version = "0.5.10";
   };
   stringio = {
     groups = ["default"];
