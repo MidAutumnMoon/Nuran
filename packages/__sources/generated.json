@@ -1,9 +1,9 @@
 {
     "InOri": {
         "cargoLocks": null,
-        "date": "2024-09-16",
+        "date": "2024-09-23",
         "extract": {
-            "Cargo.lock": "./InOri-ebacaa8e303c2a4f8fb28862139c835c44e601ab/Cargo.lock"
+            "Cargo.lock": "./InOri-71d62718dafe1230e6e58134f802a3a7d082f3f3/Cargo.lock"
         },
         "name": "InOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "ebacaa8e303c2a4f8fb28862139c835c44e601ab",
-            "sha256": "sha256-au//0fMF7+K7ax+W3JDQPW9EUZf99IsylG8rvCr8bEk=",
+            "rev": "71d62718dafe1230e6e58134f802a3a7d082f3f3",
+            "sha256": "sha256-WPj9AHTqBa48dLV/QKTBizFNRqVYnQITw2ieooMQCAk=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/InOri"
         },
-        "version": "ebacaa8e303c2a4f8fb28862139c835c44e601ab"
+        "version": "71d62718dafe1230e6e58134f802a3a7d082f3f3"
     },
     "doh-server": {
         "cargoLocks": null,
@@ -138,7 +138,7 @@
         "cargoLocks": null,
         "date": null,
         "extract": {
-            "Cargo.lock": "./shadowsocks-rust-v1.20.4/Cargo.lock"
+            "Cargo.lock": "./shadowsocks-rust-v1.21.0/Cargo.lock"
         },
         "name": "shadowsocks-rust",
         "passthru": null,
@@ -150,11 +150,11 @@
             "name": null,
             "owner": "shadowsocks",
             "repo": "shadowsocks-rust",
-            "rev": "v1.20.4",
-            "sha256": "sha256-UDr1/5PlK395CnWbp3eDTniltZYrFZ6raVBiqsVaCZs=",
+            "rev": "v1.21.0",
+            "sha256": "sha256-B4RufyxqcKd5FJulKRV+33sos+cYrL2/QPmKEYw3aTU=",
             "type": "github"
         },
-        "version": "v1.20.4"
+        "version": "v1.21.0"
     },
     "tide": {
         "cargoLocks": null,
