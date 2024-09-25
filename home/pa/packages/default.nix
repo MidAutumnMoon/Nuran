@@ -8,7 +8,7 @@
     libtree
     nix-tree
 
-    p7zip unrar
+    unrar
     rclone
 
 ]; }
