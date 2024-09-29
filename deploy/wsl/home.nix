@@ -7,8 +7,7 @@ lib.mkMerge [
     packages = with pkgs; [
         # Some tools
         rust-analyzer_teapot
-        ruby_teapot.brewed
-        ( lib.hiPrio ruby_teapot.for_dev )
+        ruby_teapot.for_dev
     ];
 
     username = "teapot";

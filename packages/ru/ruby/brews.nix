@@ -32,11 +32,6 @@ in {
 
     brewed = build ./gemset.nix;
 
-    for_dev =
-        let rb = build ./gemset-dev.nix; in
-        runCommand rb.name {} ''
-            mkdir -p $out/bin
-            ln -sf {"${rb}","$out"}/bin/rubocop
-        '';
+    for_dev = build ./gemset-dev.nix;
 
 }

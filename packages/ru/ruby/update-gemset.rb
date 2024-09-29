@@ -13,16 +13,24 @@ abort "bundix not found" \
 HERE = Pathname.new __dir__
 
 GEMFILE = <<~GEM
-    source 'https://rubygems.org'
+    source "https://rubygems.org"
     gem "amazing_print"
     gem "async"
     gem "reinbow"
     gem "irb"
 GEM
 
-GEMFILE_DEV = <<~GEM
-    source 'https://rubygems.org'
+GEMFILE_DEV = <<~GEM.freeze
+    source "https://rubygems.org"
     gem "rubocop"
+    gem "ruby-lsp"
+    #{
+        # Pull in runtime dependencies.
+        # This avoids the symlink and hiPrio shenanigans for dealing with conflicts.
+        GEMFILE.lines
+            .reject { _1 in /^source/ }
+            .join( "\n" )
+    }
 GEM
 
 # Maps the content of Gemfile to the filename
