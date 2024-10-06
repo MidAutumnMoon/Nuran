@@ -2,34 +2,40 @@ self: super:
 
 let
 
-    # Each single lib is a file contains
-    # a list of paths to more files each of
-    # which is a function that accepts one
-    # argument, the lib fixed-point itself,
-    # and returns a attrset of something.
+    # activate :: path -> attrset
     #
-    # Then the list of returned attrset
-    # is got foldl-ed using '//'.
-
-    lib = self;
-
-    mergeListOfAttrs =
-        builtins.foldl' ( a: b: a // b ) {};
-
-    importParts = dir: map import ( import dir );
-
-    activateLib =
-        dir: mergeListOfAttrs ( map ( f: f lib ) ( importParts dir ) );
+    # `toplevel` is a dir containing a `default.nix`.
+    #
+    # That `default.nix` contains a list of paths to more .nix files
+    # containing a function of sig `lib -> attrset`, where `lib` is
+    # the `nixpkgs.lib` itself (aka. the `self` parameter at the top
+    # of this file).
+    #
+    # Each of such function is applied with `lib`, the result list of attrsets
+    # will be flattened into one. Thus beware of naming conflicts.
+    activate = toplevel:
+        toplevel
+        # Import the `default.nix` to get the list of paths
+        |> import
+        # Import each path to get the lib functions
+        |> map import
+        # Apply `lib` to lib functions
+        |> map ( m: m self )
+        # Merge all result attrsets
+        |> builtins.foldl' ( a: b: a // b ) {}
+    ;
 
 in
 
 rec {
 
-    nuran.path     = activateLib ./path;
-    nuran.module   = activateLib ./module;
-    nuran.string   = activateLib ./string;
-    nuran.trivial  = activateLib ./trivial;
-    nuran.nixpkgs  = activateLib ./nixpkgs;
+    nuran = {
+        path    = activate ./path;
+        module  = activate ./module;
+        string  = activate ./string;
+        trivial = activate ./trivial;
+        nixpkgs = activate ./nixpkgs;
+    };
 
     inherit ( nuran.path )
         isDir
