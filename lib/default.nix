@@ -57,6 +57,7 @@ rec {
         doNothing
         assembleSystem
         adoptColmena
+        eachSystem
     ;
 
     inherit ( nuran.nixpkgs )
