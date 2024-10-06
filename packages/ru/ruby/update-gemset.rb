@@ -18,6 +18,7 @@ GEMFILE = <<~GEM
     gem "async"
     gem "reinbow"
     gem "irb"
+    gem "tomlib"
 GEM
 
 GEMFILE_DEV = <<~GEM.freeze
