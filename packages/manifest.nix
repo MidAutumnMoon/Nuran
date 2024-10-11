@@ -13,7 +13,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
     parallel-1 = [
         hentai-home
         unrar
-        nginx_teapot
         gtkgreet_teapot
     ];
 
