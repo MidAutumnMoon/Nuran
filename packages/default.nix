@@ -38,9 +38,6 @@ rec {
     hentai-home =
         callPackage ./he/henati-home {};
 
-    nginx_teapot =
-        callPackage ./ng/nginx {};
-
     shadowsocks_teapot =
         callPackage ./sh/shadowsocks {};
 
