@@ -6,6 +6,4 @@
   ./brewNixpkgs.nix
   ./brewShells.nix
 
-  ./removePatches.nix
-
 ]
