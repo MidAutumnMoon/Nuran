@@ -24,7 +24,7 @@ GEM
 GEMFILE_DEV = <<~GEM.freeze
     source "https://rubygems.org"
     gem "rubocop"
-    gem "ruby-lsp"
+    #gem "ruby-lsp"
     #{
         # Pull in runtime dependencies.
         # This avoids the symlink and hiPrio shenanigans for dealing with conflicts.
