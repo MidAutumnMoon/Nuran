@@ -21,6 +21,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         ibm-plex_teapot
         ruby_teapot
         ruby_teapot.brewed
+        ruby_teapot.for_dev
     ];
 
     parallel-3 = [
