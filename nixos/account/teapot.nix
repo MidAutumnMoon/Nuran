@@ -6,7 +6,7 @@ let
 
 in
 
-lib.mkIf config.role.personal ( lib.mkMerge [
+lib.mkMerge [
 
 { users.users.${name}= {
 
@@ -32,4 +32,4 @@ lib.mkIf config.role.personal ( lib.mkMerge [
     home-manager.users.${name}= {};
 }
 
-] )
+]
