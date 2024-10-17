@@ -5,10 +5,10 @@ lib.mkMerge [
 { home = {
 
     packages = with pkgs; [
-        # Some tools
         rust-analyzer_teapot
         ruby_teapot.for_dev
         nixd
+        luajit
     ];
 
     username = "teapot";
