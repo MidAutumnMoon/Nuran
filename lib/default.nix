@@ -32,7 +32,6 @@ rec {
     nuran = {
         path    = activate ./path;
         module  = activate ./module;
-        string  = activate ./string;
         trivial = activate ./trivial;
         nixpkgs = activate ./nixpkgs;
     };
@@ -47,10 +46,6 @@ rec {
         isModule
         flatMod condMod
         listAllModules
-    ;
-
-    inherit ( nuran.string )
-        capitalize
     ;
 
     inherit ( nuran.trivial )
