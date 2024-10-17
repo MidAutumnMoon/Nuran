@@ -9,7 +9,6 @@
   ./services
   ./virtcontar
 
-  ./role.nix
   ./warehouse
 
 ]; }

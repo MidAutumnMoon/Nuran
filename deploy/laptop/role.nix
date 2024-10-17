@@ -1,5 +1,0 @@
-{
-
-    role.type = "personal";
-
-}
