@@ -1,9 +1,9 @@
 {
     "InOri": {
         "cargoLocks": null,
-        "date": "2024-10-14",
+        "date": "2024-10-21",
         "extract": {
-            "Cargo.lock": "./InOri-25bdbb645a8926e7767cfa404d4b4364531ac87c/Cargo.lock"
+            "Cargo.lock": "./InOri-6eeacca8c2ca94364e453503a5ac7c5af3e5ff56/Cargo.lock"
         },
         "name": "InOri",
         "passthru": null,
@@ -13,12 +13,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "25bdbb645a8926e7767cfa404d4b4364531ac87c",
-            "sha256": "sha256-SPdTQAK0xzp4c2xVh+o25RPUsbze0zhMSRoQZvzMCDo=",
+            "rev": "6eeacca8c2ca94364e453503a5ac7c5af3e5ff56",
+            "sha256": "sha256-AidOObcJL3WR+sKJumgDw0uqvkDjgavtFVmNj6b09WY=",
             "type": "git",
             "url": "https://github.com/MidAutumnMoon/InOri"
         },
-        "version": "25bdbb645a8926e7767cfa404d4b4364531ac87c"
+        "version": "6eeacca8c2ca94364e453503a5ac7c5af3e5ff56"
     },
     "doh-server": {
         "cargoLocks": null,
