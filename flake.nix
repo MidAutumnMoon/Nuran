@@ -78,11 +78,11 @@ in {
 
 
     /*
-     * NixOS & deploy
+     * Machines
      */
 
     nixosConfigurations = {
-        reuuko = machine { toplevel = ./deploy/laptop; };
+        reuuko = machine { toplevel = ./machine/laptop; };
     };
 
     nixosModules = with flakes; [
@@ -103,7 +103,7 @@ in {
             pkgs = pkgsBrew."x86_64-linux";
         };
     in {
-        "WslArch" = home [ ./deploy/wsl/home.nix ];
+        "WslArch" = home [ ./machine/wsl/home.nix ];
     };
 
     homeModules = with flakes; [ ] ++ (
