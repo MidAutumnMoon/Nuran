@@ -5,6 +5,7 @@
     settings = {
         enter_accept = true;
         search_mode = "skim";
+        style = "compact";
     };
 
 }; }
