@@ -87,10 +87,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1dqf5kfmgkq3v5mp9rddasqgjmm62gl992pi80170fgvp97yich6";
+      sha256 = "1cicd7dpnksbj7pjqzbz993p36qja0gw0wlgi49m7z11agg91fp2";
       type = "gem";
     };
-    version = "1.7.1";
+    version = "1.7.3";
   };
   irb = {
     dependencies = ["rdoc" "reline"];
@@ -108,10 +108,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0b4qsi8gay7ncmigr0pnbxyb17y3h8kavdyhsh7nrlqwr35vb60q";
+      sha256 = "1klf2mnfilzjqwcjdi5qb1zl3ghrifz1amcnvwjvsfnx9a5jb9ly";
       type = "gem";
     };
-    version = "2.7.2";
+    version = "2.7.4";
   };
   psych = {
     dependencies = ["stringio"];
