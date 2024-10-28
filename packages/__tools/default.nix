@@ -25,8 +25,4 @@ in {
         runtimeDeps = with pkgs; [ nix-update ];
     };
 
-    goaway-vendorhash = self.rubyMiner {
-        path = ./goaway-vendorhash.rb;
-    };
-
 } )
