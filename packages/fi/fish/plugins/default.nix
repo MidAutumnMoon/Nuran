@@ -1,20 +1,13 @@
 {
-    sources,
-
     old,
 }:
 
-old.overrideScope ( self: _: let
-
-    callPackage =
-        self.newScope { inherit sources; };
-
-in {
+old.overrideScope ( self: _: {
 
     tide =
-        callPackage ./tide.nix {};
+        self.callPackage ./tide.nix {};
 
     puffer-fish =
-        callPackage ./puffer-fish.nix {};
+        self.callPackage ./puffer-fish.nix {};
 
 } )

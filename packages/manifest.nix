@@ -18,7 +18,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
 
     parallel-2 = [
         neovim_teapot
-        ibm-plex_teapot
         ruby_teapot
         ruby_teapot.brewed
         ruby_teapot.for_dev
@@ -38,7 +37,7 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
     rust-things = [
         rust-analyzer_teapot
     ]
-        ++ inori.all
+        # ++ inori.all
     ;
 
     go-things = [

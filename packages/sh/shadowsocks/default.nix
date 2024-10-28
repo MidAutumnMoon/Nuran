@@ -3,20 +3,22 @@
     stdenv,
     pkgsStatic,
 
-    sources,
+    fetchFromGitHub,
 }:
 
 pkgsStatic.rustTeapot.buildRustPackage rec {
 
     pname = "shadowsocks-rust";
+    version = "1.21.0";
 
-    inherit ( sources.${pname} )
-        src version
-    ;
+    src = fetchFromGitHub {
+        owner = "shadowsocks";
+        repo = "shadowsocks-rust";
+        rev = "v${version}";
+        hash = "sha256-B4RufyxqcKd5FJulKRV+33sos+cYrL2/QPmKEYw3aTU=";
+    };
 
-    cargoLock.lockFileContents =
-        sources.${pname}."Cargo.lock"
-    ;
+    cargoHash = "sha256-2uYLrYFuzvaOZxw2hN4DcrEbwW5rnXxqKoI2q6yZaGU=";
 
 
     doCheck = false;
