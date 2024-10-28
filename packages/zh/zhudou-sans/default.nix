@@ -8,13 +8,13 @@
 stdenvNoCC.mkDerivation ( drvSelf: {
 
     pname = "zhudou-sans";
-    version = "1.000";
+    version = "2.000";
 
     src = fetchFromGitHub {
         owner = "Buernia";
         repo = drvSelf.pname;
         rev = "v${drvSelf.version}";
-        hash = "sha256-GmKnxpsAWN2AQg+17vcdyo1h/GaNNW5Tk+d9KRZfQ/U=";
+        hash = "sha256-0OA+37atwnCqTEBoWkSusrySYbJlc9ef+6iaW97zy3U=";
     };
 
     buildCommand = ''

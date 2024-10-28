@@ -8,13 +8,13 @@
 buildFishPlugin rec {
 
     pname = "tide";
-    version = "6.1.0";
+    version = "6.1.1";
 
     src = fetchFromGitHub {
         owner = "IlanCosman";
         repo = "tide";
         rev = "v${version}";
-        hash = "sha256-OXjIBzMJ0GGD7fpxY9GVNqaB+UclbBAz4hfPcV67zfo=";
+        hash = "sha256-ZyEk/WoxdX5Fr2kXRERQS1U1QHH3oVSyBQvlwYnEYyc=";
     };
 
     fixupPhase = ''
