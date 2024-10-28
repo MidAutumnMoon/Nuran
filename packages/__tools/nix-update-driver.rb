@@ -12,6 +12,10 @@ require "reinbow"
 require "stringio"
 require "tempfile"
 
+require "async"
+require "async/barrier"
+require "async/semaphore"
+
 using Reinbow
 
 #
@@ -49,29 +53,49 @@ PACKAGES = eval MANIFEST
 # Run nix-update
 #
 
+barrier = Async::Barrier.new
+semaphore = Async::Semaphore.new( 6, parent: barrier )
+
 REPORT.puts <<~MARKDOWN
     ## nix-update reports
 MARKDOWN
 
-PACKAGES.each do |package|
 
-    warn "Run nix-update on #{package}".yellow
+# rubocop:disable Layout/MultilineBlockLayout
+# rubocop:disable Layout/IndentationWidth
+# rubocop:disable Layout/RescueEnsureAlignment
+# rubocop:disable Layout/EmptyLinesAroundExceptionHandlingKeywords
 
-    Tempfile.create do |logfile|
-        status = system <<~CMD
-            nix-update \
-                --write-commit-message "#{logfile.path}" \
-                --flake "#{package}"
-        CMD
+Sync do; PACKAGES.map do |package|
+    semaphore.async do
 
-        unless status
-            logfile.close
-            abort "Failed to run nix-update on #{package}"
+        warn "Run nix-update on #{package}".yellow
+
+        Tempfile.create do |logfile|
+            status = system <<~CMD
+                nix-update \
+                    --write-commit-message "#{logfile.path}" \
+                    --flake "#{package}"
+            CMD
+
+            unless status
+                logfile.close
+                abort "Failed to run nix-update on #{package}"
+            end
+
+            # This first of commit message from nix-update is package's name
+            # with version bumps after it. This adds a Markdown heading before it.
+            REPORT.puts "### #{logfile.read}"
         end
 
-        # This first of commit message from nix-update is package's name
-        # with version bumps after it. This adds a Markdown heading before it.
-        REPORT.puts "### #{logfile.read}"
     end
+end.map( &:wait ); ensure
+
+    barrier.stop
 
 end
+
+# rubocop:enable Layout/MultilineBlockLayout
+# rubocop:enable Layout/IndentationWidth
+# rubocop:enable Layout/RescueEnsureAlignment
+# rubocop:enable Layout/EmptyLinesAroundExceptionHandlingKeywords
