@@ -4,14 +4,8 @@ final: prev:
 
 let
 
-    sources =
-        final.callPackage ./__sources/generated.nix {};
-
-    vendorhash =
-        final.callPackage ./__vendorhash { inherit lib; };
-
     callPackage = final.newScope {
-        inherit lib sources callPackage vendorhash;
+        inherit lib callPackage ;
     };
 
 in
@@ -22,8 +16,6 @@ rec {
      * Put these above all sections because
      * I would forget this things otheriwse.
      */
-
-    inherit sources vendorhash;
 
     nuranScripts = callPackage ./__tools {};
 
