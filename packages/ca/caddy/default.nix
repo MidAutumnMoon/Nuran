@@ -37,13 +37,13 @@ in
 buildGoModule rec {
 
     pname = "caddy";
-    version = "2.8.2";
+    version = "2.8.4";
 
     src = fetchFromGitHub {
         owner = "caddyserver";
         repo = "caddy";
         rev = "v${version}";
-        hash = "sha256-P18nMZNtMU2e/bbGosxvYlkzKPZqFXCVOYcwMgG554c=";
+        hash = "sha256-CBfyqtWp3gYsYwaIxbfXO3AYaBiM7LutLC7uZgYXfkQ=";
     };
 
     vendorHash = "sha256-q3UAau4vv+/J2lH/3Xd4pSNzraCtdDP3zo2n0S0oICs=";

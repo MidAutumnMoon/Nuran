@@ -7,13 +7,13 @@
 buildFishPlugin rec {
 
     pname = "puffer-fish";
-    version = "master";
+    version = "1.0.0-unstable-2024-03-04";
 
     src = fetchFromGitHub {
         owner = "nickeb96";
         repo = "puffer-fish";
-        rev = "a976410a57acdf7aadcf298d7efc143981e4f160";
-        hash = "sha256-S1e3QnFAPqhJJrRhYSfwYiVkA43Woj7Z6CAXGMJl4C4=";
+        rev = "12d062eae0ad24f4ec20593be845ac30cd4b5923";
+        hash = "sha256-2niYj0NLfmVIQguuGTA7RrPIcorJEPkxhH6Dhcy+6Bk=";
     };
 
     meta = {
