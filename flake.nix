@@ -74,7 +74,7 @@ in {
 
     inherit pkgsBrew;
 
-    legacyPackages = self.pkgsBrew lib.id;
+    packages = self.pkgsBrew lib.id;
 
 
     /*
