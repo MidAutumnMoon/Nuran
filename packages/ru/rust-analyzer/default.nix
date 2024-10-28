@@ -1,7 +1,7 @@
 {
     lib,
     stdenv,
-    sources,
+    fetchFromGitHub,
 
     rustTeapot,
 }:
@@ -9,13 +9,16 @@
 rustTeapot.buildRustPackage rec {
 
     pname = "rust-analyzer";
+    version = "2024-10-21";
 
-    inherit ( sources.${pname} )
-        version
-        src
-    ;
+    src = fetchFromGitHub {
+        owner = "rust-lang";
+        repo = pname;
+        rev = version;
+        hash = "sha256-1W5B/CnLgdC03iIFG0wtawO1+dGDWDpc84PeOHo2ecU=";
+    };
 
-    cargoLock = sources.${pname}.cargoLock."Cargo.lock";
+    cargoHash = "sha256-k6Mbo90Bt1Cs5LOCWLEcds5629/TgMAZu2W+gmT6+ns=";
 
 
     doCheck = false;

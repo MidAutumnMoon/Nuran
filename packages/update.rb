@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-packages = []
-
-packages << "shadowsocks_teapot"
-packages << "hysteria_teapot"
+packages = %w[
+    hysteria_teapot
+    rust-analyzer_teapot
+    shadowsocks_teapot
+]
 
 packages
