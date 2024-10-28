@@ -1,7 +1,0 @@
-# Network
-
-[doh-server]
-src.github = "DNSCrypt/doh-server"
-fetch.url = "https://github.com/DNSCrypt/doh-server/releases/download/$ver/doh-proxy_$ver_linux-x86_64.tar.bz2"
-
-# Shterm
