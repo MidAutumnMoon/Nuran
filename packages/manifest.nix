@@ -1,5 +1,5 @@
 with builtins;
-with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
+with ( getFlake (toString ../.) ).packages."${currentSystem}";
 
 {
 
@@ -7,7 +7,6 @@ with ( getFlake (toString ../.) ).legacyPackages."${currentSystem}";
         kpackage = linuxPackages_teapot;
     in [
         kpackage.kernel.all
-        #kpackage.nvidiaPackages.stable.open
     ];
 
     parallel-1 = [
