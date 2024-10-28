@@ -51,8 +51,8 @@ rec {
      * Basically everything in Linux uh?
      */
 
-    inori =
-        callPackage ./in/inori {};
+    # inori =
+    #     callPackage ./in/inori {};
 
     fishPlugins =
         callPackage ./fi/fish/plugins { old = prev.fishPlugins; };
@@ -90,12 +90,6 @@ rec {
      * Themes, colors, fonts, styles, etc.
      * colorful and fancy things.
      */
-
-    graphite-cursor-theme =
-        callPackage ./gr/graphite-cursor-theme {};
-
-    ibm-plex_teapot =
-        callPackage ./ib/ibm-plex {};
 
     iosevka_teapot =
         callPackage ./io/iosevka {};

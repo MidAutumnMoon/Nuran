@@ -1,20 +1,31 @@
-{ sources, lib, buildFishPlugin }:
+{
+    lib,
+    fetchFromGitHub,
+
+    buildFishPlugin
+}:
 
 buildFishPlugin rec {
 
-  pname = "tide";
+    pname = "tide";
+    version = "6.1.0";
 
-  inherit ( sources.${ pname } ) src version;
+    src = fetchFromGitHub {
+        owner = "IlanCosman";
+        repo = "tide";
+        rev = "v${version}";
+        hash = "sha256-OXjIBzMJ0GGD7fpxY9GVNqaB+UclbBAz4hfPcV67zfo=";
+    };
 
-  fixupPhase = ''
-    cp --verbose --recursive \
-      'functions/tide' "$out/share/fish/vendor_functions.d"
+    fixupPhase = ''
+        cp --verbose --recursive \
+        'functions/tide' "$out/share/fish/vendor_functions.d"
     '';
 
-  meta = {
-      homepage = "https://github.com/IlanCosman/tide";
-      license = lib.licenses.mit;
-      description = "The ultimate Fish prompt.";
+    meta = {
+        homepage = "https://github.com/IlanCosman/tide";
+        license = lib.licenses.mit;
+        description = "The ultimate Fish prompt.";
     };
 
 }

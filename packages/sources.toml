@@ -1,51 +1,7 @@
 # Network
 
-[shadowsocks-rust]
-src.github = "shadowsocks/shadowsocks-rust"
-fetch.github = "shadowsocks/shadowsocks-rust"
-extract = [ "Cargo.lock" ]
-
 [doh-server]
 src.github = "DNSCrypt/doh-server"
 fetch.url = "https://github.com/DNSCrypt/doh-server/releases/download/$ver/doh-proxy_$ver_linux-x86_64.tar.bz2"
 
-[hysteria]
-src.github = "apernet/hysteria"
-fetch.github = "apernet/hysteria"
-
-# Utility
-
-[InOri]
-src.git = "https://github.com/MidAutumnMoon/InOri"
-fetch.git = "https://github.com/MidAutumnMoon/InOri"
-extract = [ "Cargo.lock" ]
-
-[rust-analyzer]
-src.github = "rust-lang/rust-analyzer"
-fetch.github = "rust-lang/rust-analyzer"
-cargo_locks = [ "Cargo.lock" ]
-
 # Shterm
-
-[tide]
-src.github = "IlanCosman/tide"
-fetch.github = "IlanCosman/tide"
-
-[puffer-fish]
-src.git = "https://github.com/nickeb96/puffer-fish"
-fetch.git = "https://github.com/nickeb96/puffer-fish"
-
-# Color & Themes & Font
-
-[graphite-cursors]
-src.github = "vinceliuice/Graphite-cursors"
-fetch.github = "vinceliuice/Graphite-cursors"
-
-[zhudou-sans]
-src.github = "Buernia/Zhudou-Sans"
-fetch.github = "Buernia/Zhudou-Sans"
-
-[ibm-plex]
-# src.github = "IBM/plex"
-src.manual = "v6.4.0"
-fetch.url = "https://github.com/IBM/plex/releases/download/$ver/OpenType.zip"

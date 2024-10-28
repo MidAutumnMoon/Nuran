@@ -1,13 +1,12 @@
 {
     lib,
-    sources,
     newScope,
 }:
 
 lib.makeScope newScope ( self: let
 
     callPackage =
-        self.newScope { inherit lib sources; };
+        self.newScope { inherit lib; };
 
 in {
 

@@ -2,6 +2,7 @@
     lib,
     sources,
     stdenv,
+    fetchFromGitHub,
 
     rustTeapot,
 }:
@@ -15,27 +16,23 @@
     buildInputs ? []
 }:
 
-let
-
-    source = sources."InOri";
-
-in
-
-rustTeapot.buildRustPackage {
+rustTeapot.buildRustPackage rec {
 
     inherit
         pname
         buildInputs
     ;
 
-    version = "rolling";
+    version = "master";
 
-    inherit ( source ) src;
+    src = fetchFromGitHub {
+        owner = "MidAutumnMoon";
+        repo = "InOri";
+        rev = "3884a1579958ac64bbcf7b3abdff31eb4ca5b805";
+        hash = "sha256-8oc62B8CWlOhugwtSEOR0+aP/6Pe1Bf0mcqg/dfhDMc=";
+    };
 
-
-    cargoLock.lockFileContents =
-        source."Cargo.lock"
-    ;
+    cargoHash = "";
 
 
     buildAndTestSubdir = subdir;
