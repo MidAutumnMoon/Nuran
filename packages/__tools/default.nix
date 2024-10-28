@@ -25,6 +25,11 @@ in {
         runtimeDeps = with pkgs; [ which nvfetcher ];
     };
 
+    nix-update-driver = self.rubyMiner {
+        path = ./nix-update-driver.rb;
+        runtimeDeps = with pkgs; [ nix-update ];
+    };
+
     goaway-vendorhash = self.rubyMiner {
         path = ./goaway-vendorhash.rb;
     };
