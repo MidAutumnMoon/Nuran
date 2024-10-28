@@ -94,9 +94,6 @@ rec {
     graphite-cursor-theme =
         callPackage ./gr/graphite-cursor-theme {};
 
-    ibm-plex_teapot =
-        callPackage ./ib/ibm-plex {};
-
     iosevka_teapot =
         callPackage ./io/iosevka {};
 
