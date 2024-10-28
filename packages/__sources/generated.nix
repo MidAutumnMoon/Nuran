@@ -3,17 +3,17 @@
 {
   InOri = {
     pname = "InOri";
-    version = "6eeacca8c2ca94364e453503a5ac7c5af3e5ff56";
+    version = "00423df98395d52dab56270cdd94803dc63d1351";
     src = fetchgit {
       url = "https://github.com/MidAutumnMoon/InOri";
-      rev = "6eeacca8c2ca94364e453503a5ac7c5af3e5ff56";
+      rev = "00423df98395d52dab56270cdd94803dc63d1351";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-AidOObcJL3WR+sKJumgDw0uqvkDjgavtFVmNj6b09WY=";
+      sha256 = "sha256-nHxjoqvBPO21rjom8JN/peleVlpOTGiAbCXkH8IMTN4=";
     };
-    "Cargo.lock" = builtins.readFile ./InOri-6eeacca8c2ca94364e453503a5ac7c5af3e5ff56/Cargo.lock;
-    date = "2024-10-21";
+    "Cargo.lock" = builtins.readFile ./InOri-00423df98395d52dab56270cdd94803dc63d1351/Cargo.lock;
+    date = "2024-10-28";
   };
   doh-server = {
     pname = "doh-server";
@@ -68,16 +68,16 @@
   };
   rust-analyzer = {
     pname = "rust-analyzer";
-    version = "2024-10-14";
+    version = "2024-10-28";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rust-analyzer";
-      rev = "2024-10-14";
+      rev = "2024-10-28";
       fetchSubmodules = false;
-      sha256 = "sha256-SLcHmKzkIuahBbSCWr2gzu6bXo6wF12JP4myDzH1CvQ=";
+      sha256 = "sha256-FsPsSjqnqMHBgDdM24DFLw4YOw0mFKYFJBcLaI6CvI8=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./rust-analyzer-2024-10-14/Cargo.lock;
+      lockFile = ./rust-analyzer-2024-10-28/Cargo.lock;
       outputHashes = {
         
       };
@@ -85,15 +85,15 @@
   };
   shadowsocks-rust = {
     pname = "shadowsocks-rust";
-    version = "v1.21.0";
+    version = "v1.21.2";
     src = fetchFromGitHub {
       owner = "shadowsocks";
       repo = "shadowsocks-rust";
-      rev = "v1.21.0";
+      rev = "v1.21.2";
       fetchSubmodules = false;
-      sha256 = "sha256-B4RufyxqcKd5FJulKRV+33sos+cYrL2/QPmKEYw3aTU=";
+      sha256 = "sha256-bvYp25EPKtkuZzplVYK4Cwd0mm4UuyN1LMiDAkgMIAc=";
     };
-    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.21.0/Cargo.lock;
+    "Cargo.lock" = builtins.readFile ./shadowsocks-rust-v1.21.2/Cargo.lock;
   };
   tide = {
     pname = "tide";
