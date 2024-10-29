@@ -62,57 +62,49 @@ REPORT.puts <<~MARKDOWN
 MARKDOWN
 
 
-# rubocop:disable Layout/MultilineBlockLayout
-# rubocop:disable Layout/IndentationWidth
-# rubocop:disable Layout/RescueEnsureAlignment
-# rubocop:disable Layout/EmptyLinesAroundExceptionHandlingKeywords
+Sync do
 
-Sync do; PACKAGES.map do |package|
-    warn "Run nix-update on #{package}".yellow
+    PACKAGES.map do |package|
+        warn "Run nix-update on #{package}".yellow
 
-    attribute = nil
-    extra_opts = []
+        attribute = nil
+        extra_opts = []
 
-    case package
-    in String
-        attribute = package
-    in { attr:, branch: true }
-        attribute = attr
-        extra_opts << "--version=branch"
-    else
-        abort "Unknown manifest format"
-    end
-
-    semaphore.async do
-
-        logfile = Tempfile.create
-
-        status = system <<~CMD
-            nix-update \
-                #{extra_opts.shelljoin} \
-                --write-commit-message "#{logfile.path}" \
-                --flake "#{attribute}"
-        CMD
-
-        unless status
-            logfile.close
-            abort "Failed to run nix-update on #{attribute}"
+        case package
+        in String
+            attribute = package
+        in { attr:, unstable: true }
+            attribute = attr
+            extra_opts << %(--version=branch)
+        in { attr:, regex: }
+            attribute = attr
+            extra_opts << %(--version-regex="#{regex}")
+        else
+            abort "Unknown manifest format"
         end
 
-        # This first of commit message from nix-update is package's name
-        # with version bumps after it. This adds a Markdown heading before it.
-        REPORT.puts "### #{logfile.read}"
+        semaphore.async do
+            logfile = Tempfile.create
 
-    ensure
-        logfile.close
-    end
-end.map( &:wait ); ensure
+            status = system <<~CMD
+                nix-update \
+                    #{extra_opts.join( ' ' )} \
+                    --write-commit-message "#{logfile.path}" \
+                    --flake "#{attribute}"
+            CMD
+
+            abort "Failed to run nix-update on #{attribute}" unless status
+
+            # This first of commit message from nix-update is package's name
+            # with version bumps after it. This adds a Markdown heading before it.
+            REPORT.puts "### #{logfile.read}"
+        ensure
+            logfile.close
+        end
+    end.map( &:wait )
+
+ensure
 
     barrier.stop
 
 end
-
-# rubocop:enable Layout/MultilineBlockLayout
-# rubocop:enable Layout/IndentationWidth
-# rubocop:enable Layout/RescueEnsureAlignment
-# rubocop:enable Layout/EmptyLinesAroundExceptionHandlingKeywords

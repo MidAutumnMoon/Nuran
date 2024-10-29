@@ -2,7 +2,6 @@
 
 packages = %w[
     caddy_teapot
-    hysteria_teapot
     rust-analyzer_teapot
     shadowsocks_teapot
     zhudou-sans
@@ -12,7 +11,12 @@ packages = %w[
 
 packages << {
     attr: "fishPlugins.puffer-fish",
-    branch: true,
+    unstable: true,
+}
+
+packages << {
+    attr: "hysteria_teapot",
+    regex: %r{app/v(.*)},
 }
 
 packages
