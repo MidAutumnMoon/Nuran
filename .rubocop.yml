@@ -1,7 +1,7 @@
 # Also my personal system-wide rubocop configuration.
 
 AllCops:
-    TargetRubyVersion: 3.3
+    TargetRubyVersion: 3.4
     NewCops: enable
 
 Layout/ArgumentAlignment:
@@ -17,6 +17,9 @@ Layout/EmptyLinesAroundBlockBody:
     Enabled: false
 
 Layout/EmptyLinesAroundClassBody:
+    Enabled: false
+
+Layout/EmptyLinesAroundExceptionHandlingKeywords:
     Enabled: false
 
 Layout/EmptyLinesAroundModuleBody:
@@ -36,6 +39,9 @@ Layout/SpaceInsideArrayLiteralBrackets:
 
 Layout/SpaceInsideParens:
     EnforcedStyle: space
+
+Lint/ItWithoutArgumentsInBlock:
+    Enabled: false
 
 Metrics/AbcSize:
     Enabled: false

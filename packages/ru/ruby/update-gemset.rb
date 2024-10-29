@@ -24,12 +24,11 @@ GEM
 GEMFILE_DEV = <<~GEM.freeze
     source "https://rubygems.org"
     gem "rubocop"
-    #gem "ruby-lsp"
     #{
         # Pull in runtime dependencies.
         # This avoids the symlink and hiPrio shenanigans for dealing with conflicts.
         GEMFILE.lines
-            .reject { _1 in /^source/ }
+            .reject { it.match?( /^source/ ) }
             .join( "\n" )
     }
 GEM
