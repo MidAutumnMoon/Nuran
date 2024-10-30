@@ -4,6 +4,9 @@ on:
     workflow_dispatch:
     schedule:
         - cron: "0 6 * * 1"
+    push:
+        paths:
+        - "flake.*"
 
 jobs:
 
@@ -24,10 +27,6 @@ jobs:
             with:
                 cachix-url: "https://nuirrce.cachix.org/"
                 cachix-pubkey: "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
-
-        -   name: Update flakes
-            run: |
-                nix flake update
 
         -   name: Run nix-update
             id: nix_update
