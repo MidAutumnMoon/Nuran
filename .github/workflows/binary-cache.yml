@@ -58,9 +58,6 @@ jobs:
           run: |
               echo -e "\nextra-experimental-features = pipe-operators" >> $HOME/.config/nix/nix.conf
 
-        - name: debug
-          run: "nix config show"
-
         - name: Update workspace flake
           run: |
             nix flake update
