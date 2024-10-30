@@ -64,7 +64,9 @@ MARKDOWN
 
 Sync do
 
-    PACKAGES.map do |package|
+    tasks = []
+
+    PACKAGES.each do |package|
         warn "Run nix-update on #{package}".yellow
 
         attribute = nil
@@ -83,17 +85,15 @@ Sync do
             abort "Unknown manifest format"
         end
 
-        semaphore.async do
+        tasks << semaphore.async do
             logfile = Tempfile.create
 
-            status = system <<~CMD
+            system <<~CMD or abort "Failed to run nix-update"
                 nix-update \
                     #{extra_opts.join( ' ' )} \
                     --write-commit-message "#{logfile.path}" \
                     --flake "#{attribute}"
             CMD
-
-            abort "Failed to run nix-update on #{attribute}" unless status
 
             # This first of commit message from nix-update is package's name
             # with version bumps after it. This adds a Markdown heading before it.
@@ -101,7 +101,9 @@ Sync do
         ensure
             logfile.close
         end
-    end.map( &:wait )
+    end
+
+    tasks.map( &:wait )
 
 ensure
 
