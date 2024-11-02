@@ -2,14 +2,9 @@
 
 lib.mkMerge [
 
-{
-    nix.package = pkgs.nixVersions.stable;
-}
-
+{ nix.package = pkgs.nixVersions.stable; }
 
 { nix.settings = {
-
-    trusted-users = [ "root" ];
 
     auto-optimise-store = true;
 
@@ -17,7 +12,7 @@ lib.mkMerge [
 
     narinfo-cache-negative-ttl = 60;
 
-    # Query cache.nixos.org first
+    # Let cache.nixos.org be queried first.
     substituters = lib.mkAfter [
         "https://nuirrce.cachix.org"
     ];
@@ -36,10 +31,10 @@ lib.mkMerge [
         "ca-derivations"
         "auto-allocate-uids"
         "cgroups"
+        "pipe-operators"
     ];
 
 }; }
-
 
 { nix.registry = {
 
@@ -49,7 +44,6 @@ lib.mkMerge [
     };
 
 }; }
-
 
 {
     nix.nixPath = lib.mkForce [

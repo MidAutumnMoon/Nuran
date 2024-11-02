@@ -1,5 +1,0 @@
-{
-
-  networking.firewall.enable = true;
-
-}
