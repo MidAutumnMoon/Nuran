@@ -12,6 +12,10 @@
         useDHCP = true;
     };
 
+    services = {
+        qemuGuest.enable = true;
+    };
+
     boot.loader.grub = {
         enable = true;
         device = "/dev/sda";
