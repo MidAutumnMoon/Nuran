@@ -21,14 +21,16 @@
         device = "/dev/sda";
     };
 
-    boot.initrd.availableKernelModules = [
-        "ata_piix"
-        "uhci_hcd"
-        "virtio_pci"
-        "virtio_scsi"
-        "sd_mod"
-        "sr_mod"
-    ];
+    boot.initrd = {
+        availableKernelModules = [
+            "uhci_hcd"
+            "virtio_pci"
+            "virtio_scsi"
+            "sd_mod"
+            "sr_mod"
+        ];
+        includeDefaultModules = false;
+    };
 
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/f090afd4-e5ae-4c20-8f9d-ccefd1359013";
