@@ -5,5 +5,6 @@
 
   ./brewNixpkgs.nix
   ./brewShells.nix
+  ./brewNixOS.nix
 
 ]

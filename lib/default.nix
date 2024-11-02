@@ -50,7 +50,6 @@ rec {
 
     inherit ( nuran.trivial )
         doNothing
-        assembleSystem
         adoptColmena
         eachSystem
     ;
@@ -60,6 +59,7 @@ rec {
         makeApp
         brewNixpkgs
         brewShells
+        brewNixOS
     ;
 
 }

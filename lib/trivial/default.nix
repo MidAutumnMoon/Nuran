@@ -4,6 +4,4 @@
   ./systems.nix
   ./colmena.nix
 
-  ./assembleSystem
-
 ]
