@@ -9,6 +9,8 @@ lib.mkMerge [
         ruby_teapot.for_dev
         nixd
         luajit
+        nixos-rebuild
+        colmena
     ];
 
     username = "teapot";

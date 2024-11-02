@@ -46,13 +46,8 @@ outputs = { self, nixpkgs, ... } @ flakes: let
     };
 
     pkgsBrew =
-        lib.brewNixpkgs nixpkgs { inherit config overlays; };
-
-    machine = lib.assembleSystem {
-        inherit nixpkgs config overlays;
-        modules = self.nixosModules;
-        arguments = { inherit flakes; };
-    };
+        lib.brewNixpkgs nixpkgs { inherit config overlays; }
+    ;
 
 in {
 
@@ -81,15 +76,21 @@ in {
      * Machines
      */
 
-    nixosConfigurations = {
-        reuuko = machine { toplevel = ./machine/laptop; };
+    nixosConfigurations = let
+        nixos = lib.brewNixOS {
+            inherit pkgsBrew;
+            modules = self.nixosModules;
+            arguments = { inherit flakes; };
+        };
+    in {
+        joar = nixos "x86_64-linux" ./machine/joar;
     };
 
     nixosModules = with flakes; [
         ./constants
         sops-nix.nixosModules.default
         impermanence.nixosModule
-        home-manager.nixosModule
+        # home-manager.nixosModule
     ] ++ ( lib.listAllModules ./nixos );
 
 

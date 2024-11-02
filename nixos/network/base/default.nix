@@ -16,22 +16,22 @@ lib.mkMerge [
 in {
     services.resolved.enable = true;
 
-    services.resolved.extraConfig = if role.personal then ''
-        Cache = no
-    '' else ''
-        DNSOverTLS = yes
-    '';
+    # services.resolved.extraConfig = if role.personal then ''
+    #     Cache = no
+    # '' else ''
+    #     DNSOverTLS = yes
+    # '';
 
     # Almost all clean foregin DoTs are blocked
     # by mainland china, DoH is the last resort.
 
-    networking.nameservers = if role.personal then
-        nudata.services.dns.listen
-    else [
-        "1.1.1.1#cloudflare-dns.com"
-        "1.0.0.1#cloudflare-dns.com"
-        "9.9.9.9#dns.quad9.net"
-    ];
+    # networking.nameservers = if role.personal then
+    #     nudata.services.dns.listen
+    # else [
+    #     "1.1.1.1#cloudflare-dns.com"
+    #     "1.0.0.1#cloudflare-dns.com"
+    #     "9.9.9.9#dns.quad9.net"
+    # ];
 
 } )
 

@@ -10,25 +10,25 @@ let
     };
 
 in
+{}
+# lib.mkIf config.role.personal
 
-lib.mkIf config.role.personal
-
-{ systemd.services."dnscrypt-proxy" = {
-
-    description = "dnscrypt-proxy";
-
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-
-    serviceConfig = {
-        DynamicUser = true;
-        SystemCallFilter = "@system-service";
-        AmbientCapabilities = "CAP_NET_BIND_SERVICE";
-
-        RuntimeDirectory = "dnscrypt-proxy";
-        StateDirectory = "dnscrypt-proxy";
-
-        ExecStart = "${dnscryptExe} -config ${configFile}";
-    };
-
-}; }
+# { systemd.services."dnscrypt-proxy" = {
+#
+#     description = "dnscrypt-proxy";
+#
+#     after = [ "network.target" ];
+#     wantedBy = [ "multi-user.target" ];
+#
+#     serviceConfig = {
+#         DynamicUser = true;
+#         SystemCallFilter = "@system-service";
+#         AmbientCapabilities = "CAP_NET_BIND_SERVICE";
+#
+#         RuntimeDirectory = "dnscrypt-proxy";
+#         StateDirectory = "dnscrypt-proxy";
+#
+#         ExecStart = "${dnscryptExe} -config ${configFile}";
+#     };
+#
+# }; }
