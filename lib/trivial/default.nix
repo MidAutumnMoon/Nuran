@@ -1,7 +1,8 @@
 [
 
-  ./nothing.nix
-  ./systems.nix
-  ./colmena.nix
+    ./nothing.nix
+    ./systems.nix
+
+    ./nixos2colmena.nix
 
 ]

@@ -50,7 +50,7 @@ rec {
 
     inherit ( nuran.trivial )
         doNothing
-        adoptColmena
+        nixos2colmena
         eachSystem
     ;
 

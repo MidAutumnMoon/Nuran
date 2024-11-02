@@ -100,31 +100,16 @@ in {
         ;
         home = m: homeManagerConfiguration {
             inherit lib;
-            modules = m ++ self.homeModules;
+            modules = m ++ lib.listAllModules ./home;
             pkgs = pkgsBrew."x86_64-linux";
         };
     in {
         "WslArch" = home [ ./machine/wsl/home.nix ];
     };
 
-    homeModules = with flakes; [ ] ++ (
-        lib.listAllModules ./home
-    );
-
-
-    # TODO: clean up this
-    colmena = lib.adoptColmena
-        self.nixosConfigurations
-        {
-            meta = {
-                nixpkgs = pkgsBrew."x86_64-linux";
-            };
-            reuuko.deployment = {
-                allowLocalDeployment = true;
-                targetHost = "localhost";
-                targetPort = 47128;
-            };
-        };
+    colmena = lib.nixos2colmena self.nixosConfigurations {
+        meta.nixpkgs = pkgsBrew."x86_64-linux";
+    };
 
 
     /*
