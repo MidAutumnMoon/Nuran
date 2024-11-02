@@ -77,22 +77,33 @@ in {
      */
 
     nixosConfigurations = let
-        nixos = lib.brewNixOS {
-            inherit pkgsBrew;
-            modules = self.nixosModules;
-            arguments = { inherit flakes; };
-        };
+        modules =
+            with flakes; [
+                ./constants
+                sops-nix.nixosModules.default
+                impermanence.nixosModule
+                # home-manager.nixosModule
+            ]
+            ++ ( lib.listAllModules ./nixos )
+        ;
+        nixos =
+            lib.brewNixOS {
+                inherit pkgsBrew modules;
+                arguments = { inherit flakes; };
+            }
+        ;
     in {
         joar = nixos "x86_64-linux" ./machine/joar;
     };
 
-    nixosModules = with flakes; [
-        ./constants
-        sops-nix.nixosModules.default
-        impermanence.nixosModule
-        # home-manager.nixosModule
-    ] ++ ( lib.listAllModules ./nixos );
+    colmena = lib.nixos2colmena self.nixosConfigurations {
+        meta.nixpkgs = pkgsBrew."x86_64-linux";
+    };
 
+
+    /*
+     * Home
+     */
 
     homeConfigurations = let
         inherit ( flakes.home-manager.lib )
@@ -105,10 +116,6 @@ in {
         };
     in {
         "WslArch" = home [ ./machine/wsl/home.nix ];
-    };
-
-    colmena = lib.nixos2colmena self.nixosConfigurations {
-        meta.nixpkgs = pkgsBrew."x86_64-linux";
     };
 
 
