@@ -1,10 +1,9 @@
-{ modulesPath, ... }:
+{ lib, modulesPath, ... }:
 
 {
 
     imports = [
         ( modulesPath + "/profiles/qemu-guest.nix" )
-        # ./environment.nix
         # ./service
     ];
 
@@ -36,5 +35,12 @@
     swapDevices = [
         { device = "/dev/disk/by-uuid/0b42456a-ae3b-4903-bb8c-206948a27cbe"; }
     ];
+
+    documentation = {
+        enable = lib.mkForce false;
+        man.enable = lib.mkForce false;
+    };
+
+    sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
 }
