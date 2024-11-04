@@ -11,6 +11,7 @@
     networking = {
         hostName = "joar";
         useDHCP = true;
+        firewall.enable = lib.mkForce false;
     };
 
     boot.loader.grub = {
