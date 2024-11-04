@@ -79,7 +79,7 @@ in {
     nixosConfigurations = let
         modules =
             with flakes; [
-                ./constants
+                ./lore
                 sops-nix.nixosModules.default
                 impermanence.nixosModule
                 # home-manager.nixosModule

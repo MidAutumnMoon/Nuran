@@ -1,9 +1,13 @@
-{ lib, modulesPath, ... }:
+{ pkgs, lib, modulesPath, ... }:
 
 {
 
     imports = [
         ( modulesPath + "/profiles/qemu-guest.nix" )
+
+        ./service/caddy.nix
+        ./service/adguardhome.nix
+
         ./service/qemu.nix
         ./service/journald.nix
     ];
@@ -13,6 +17,10 @@
         useDHCP = true;
         firewall.enable = lib.mkForce false;
     };
+
+    environment.systemPackages = with pkgs; [
+        neovim_teapot
+    ];
 
     boot.loader.grub = {
         enable = true;
