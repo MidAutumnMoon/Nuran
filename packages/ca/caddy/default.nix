@@ -70,7 +70,7 @@ buildGoModule rec {
     '';
 
 
-    GOAMD64 = "v3";
+    GOAMD64 = "v2";
     CGO_ENABLED = "0";
 
 
