@@ -4,16 +4,13 @@
 
     imports = [
         ( modulesPath + "/profiles/qemu-guest.nix" )
-        # ./service
+        ./service/qemu.nix
+        ./service/journald.nix
     ];
 
     networking = {
         hostName = "joar";
         useDHCP = true;
-    };
-
-    services = {
-        qemuGuest.enable = true;
     };
 
     boot.loader.grub = {

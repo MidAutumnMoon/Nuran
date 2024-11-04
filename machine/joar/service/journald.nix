@@ -1,9 +1,8 @@
 {
 
-  services.journald.extraConfig = ''
-    Storage = volatile
-    SystemMaxUse = 1G
-    RuntimeMaxUse = 1G
-  '';
+    services.journald.extraConfig = ''
+        SystemMaxUse = 256M
+        RuntimeMaxUse = 256M
+    '';
 
 }
