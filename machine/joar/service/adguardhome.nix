@@ -40,7 +40,7 @@ lib.mkMerge [
 }; }
 
 
-{ services.caddy.virtualHosts."https://*.home.lan" = let
+{ services.caddy.virtualHosts."home_lan" = let
     inherit ( config.services.adguardhome )
         port
         host
