@@ -5,7 +5,6 @@
 
     ruby_3_4,
     glibcLocalesUtf8,
-    gmp,
 
     defaultGemConfig,
     moreGemsConfig ? {},
@@ -27,7 +26,6 @@ lib.onceride ruby_3_4
 
     buildInputs = old.buildInputs ++ [
         glibcLocalesUtf8
-        gmp
     ];
 
     postFixup = ( old.postFixup or "" ) + ''
