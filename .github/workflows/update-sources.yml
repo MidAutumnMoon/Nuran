@@ -38,12 +38,15 @@ jobs:
                 nix run .#nuranScripts.nix-update-driver "packages/update.rb" "$REPORT"
                 { echo "REPORT<<EOF"; cat "$REPORT"; echo "EOF"; } >> "$GITHUB_OUTPUT"
 
+        -   name: Get Date
+            run: |
+                echo "THE_DATE=$( date '+%Y/%b/%d' )" >> "$GITHUB_ENV"
+
         -   name: Open PR
             uses: peter-evans/create-pull-request@v7
             with:
                 sign-commits: true
                 add-paths: "packages"
-                title: "sources: update [bot]"
-                commit-message: "sources: update [bot]"
-                body: |
-                    ${{ steps.nix_update.outputs.REPORT }}
+                title: "pkgs: update ${{ env.THE_DATE }}"
+                commit-message: "pkgs: update ${{ env.THE_DATE }}"
+                body: ${{ steps.nix_update.outputs.REPORT }}
