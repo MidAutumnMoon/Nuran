@@ -4,7 +4,7 @@
 
     settings = {
         enter_accept = true;
-        search_mode = "skim";
+        search_mode = "fulltext";
         style = "compact";
     };
 
