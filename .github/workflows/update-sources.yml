@@ -48,5 +48,8 @@ jobs:
                 sign-commits: true
                 add-paths: "packages"
                 title: "pkgs: update ${{ env.THE_DATE }}"
-                commit-message: "pkgs: update ${{ env.THE_DATE }}"
                 body: ${{ steps.nix_update.outputs.REPORT }}
+                commit-message: |
+                    pkgs: update ${{ env.THE_DATE }}
+
+                    ${{ steps.nix_update.outputs.REPORT }}
