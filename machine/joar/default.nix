@@ -38,6 +38,10 @@
         includeDefaultModules = false;
     };
 
+    boot.kernelParams = [
+        "mitigations=off"
+    ];
+
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/f090afd4-e5ae-4c20-8f9d-ccefd1359013";
         fsType = "btrfs";
