@@ -149,7 +149,7 @@
             ];
 
             kernel = p: with p; [
-                gcc ncurses
+                gcc ncurses rustc
                 flex bison
             ];
 
