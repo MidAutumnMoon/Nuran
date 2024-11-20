@@ -292,3 +292,8 @@ pref( 'accessibility.typeaheadfind.autostart', false );
 pref( 'accessibility.typeaheadfind.manual',    false );
 
 pref( 'accessibility.browsewithcaret_shortcut.enabled', false );
+
+// Ref: https://superuser.com/questions/7327/how-to-add-a-custom-search-engine-to-firefox
+// Google without AI summary & NCR
+// https://www.google.com/search?q=%s&udm=14&pws=0&gl=us&gws_rd=cr&safe=off
+pref( "browser.urlbar.update2.engineAliasRefresh", true );
