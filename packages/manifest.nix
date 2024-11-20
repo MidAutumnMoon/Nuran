@@ -13,6 +13,8 @@ with ( getFlake (toString ../.) ).packages."${currentSystem}";
         hentai-home
         unrar
         gtkgreet_teapot
+        nixd
+        fastfetch
     ];
 
     parallel-2 = [
