@@ -23,6 +23,5 @@ system <<~SCRIPT or abort "Failed to run nix build"
         "#{SUBJECT}" \
         --print-build-logs \
         --option narinfo-cache-negative-ttl 0 \
-        --option keep-going true \
-        --option max-jobs 3
+        --option keep-going true
 SCRIPT
