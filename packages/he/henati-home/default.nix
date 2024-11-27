@@ -9,11 +9,11 @@
 
 let
 
-    version = "1.6.2";
+    version = "1.6.3";
 
     src = fetchzip {
         url = "https://repo.e-hentai.org/hath/HentaiAtHome_${version}.zip";
-        sha256 = "sha256-0c8ltti19c6QBkcxZThdqHRGN7pDP0YUwwFXcvvmqDM=";
+        hash = "sha256-9gHTqq+CuD+/NwFSuqEGuzm8moBqtEoUAEUJvTVddJI=";
         stripRoot = false;
     };
 
