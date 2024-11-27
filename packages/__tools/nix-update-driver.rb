@@ -54,15 +54,15 @@ PACKAGES = eval MANIFEST
 # Run nix-update
 #
 
-barrier = Async::Barrier.new
-semaphore = Async::Semaphore.new( 6, parent: barrier )
-
 REPORT.puts <<~MARKDOWN
     ## nix-update reports
 MARKDOWN
 
 
 Sync do
+
+    barrier = Async::Barrier.new
+    semaphore = Async::Semaphore.new( 6, parent: barrier )
 
     tasks = []
 
@@ -97,7 +97,8 @@ Sync do
 
             # This first of commit message from nix-update is package's name
             # with version bumps after it. This adds a Markdown heading before it.
-            REPORT.puts "### #{logfile.read}"
+            log_content = logfile.read
+            REPORT.puts "### #{log_content}" if not log_content.empty?
         ensure
             logfile.close
         end
