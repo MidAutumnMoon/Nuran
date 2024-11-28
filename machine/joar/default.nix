@@ -45,7 +45,7 @@
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/f090afd4-e5ae-4c20-8f9d-ccefd1359013";
         fsType = "btrfs";
-        options = [ "defaults" "compress-force=zstd:4" ];
+        options = [ "defaults" "compress-force=zstd:4" "noatime" ];
     };
 
     swapDevices = [
@@ -62,3 +62,5 @@
     nix.settings.auto-optimise-store = lib.mkForce false;
 
 }
+
+# vim: nowrap:
