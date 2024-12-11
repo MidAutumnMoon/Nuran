@@ -37,6 +37,7 @@ with ( getFlake (toString ../.) ).packages."${currentSystem}";
 
     rust-things = [
         rust-analyzer_teapot
+        colmena
     ]
         # ++ inori.all
     ;
