@@ -28,7 +28,7 @@ rustTeapot.buildRustPackage rec {
     ];
 
     buildFeatures = [
-        "mimalloc"
+        "jemalloc"
     ];
 
 
