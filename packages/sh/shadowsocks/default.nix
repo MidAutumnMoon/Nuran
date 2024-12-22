@@ -40,7 +40,7 @@ pkgsStatic.rustTeapot.buildRustPackage rec {
         "aead-cipher-2022"
         "logging"
         "security-replay-attack-detect"
-        "mimalloc"
+        "jemalloc"
     ];
 
 
