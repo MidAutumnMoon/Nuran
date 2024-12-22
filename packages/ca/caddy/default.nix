@@ -69,10 +69,8 @@ buildGoModule rec {
         go mod tidy -v
     '';
 
-
-    GOAMD64 = "v2";
-    CGO_ENABLED = "0";
-
+    env.GOAMD64 = "v2";
+    env.CGO_ENABLED = "0";
 
     meta = {
         homepage = "https://caddyserver.com";

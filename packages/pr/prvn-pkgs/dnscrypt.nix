@@ -9,8 +9,8 @@
 let
 
     builder = args: buildGoModule ( args // {
-        GOAMD64 = "v3";
-        CGO_ENABLED = 0;
+        env.GOAMD64 = "v3";
+        env.CGO_ENABLED = "0";
     } );
 
     myDnscrypt =

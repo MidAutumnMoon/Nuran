@@ -22,8 +22,8 @@ buildGoModule rec {
 
     doCheck = false;
 
-    GOAMD64 = "v3";
-    CGO_ENABLED = 0;
+    env.GOAMD64 = "v3";
+    env.CGO_ENABLED = "0";
 
     ldflags =
         let cmd = "github.com/apernet/hysteria/app/cmd";
