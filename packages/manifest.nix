@@ -25,7 +25,6 @@ with ( getFlake (toString ../.) ).packages."${currentSystem}";
     ];
 
     parallel-3 = [
-        iosevka_teapot
     ];
 
     some-things = [

@@ -83,9 +83,6 @@ rec {
      * colorful and fancy things.
      */
 
-    iosevka_teapot =
-        callPackage ./io/iosevka {};
-
     zhudou-sans =
         callPackage ./zh/zhudou-sans {};
 
