@@ -24,9 +24,6 @@ with ( getFlake (toString ../.) ).packages."${currentSystem}";
         ruby_teapot.for_dev
     ];
 
-    parallel-3 = [
-    ];
-
     some-things = [
         shadowsocks_teapot
         hysteria_teapot

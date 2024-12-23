@@ -27,7 +27,6 @@ jobs:
                 - kernels-modules
                 - parallel-1
                 - parallel-2
-                - parallel-3
                 - some-things
                 - rust-things
                 - go-things
