@@ -40,9 +40,6 @@ Layout/SpaceInsideArrayLiteralBrackets:
 Layout/SpaceInsideParens:
     EnforcedStyle: space
 
-Lint/ItWithoutArgumentsInBlock:
-    Enabled: false
-
 Metrics/AbcSize:
     Enabled: false
 
