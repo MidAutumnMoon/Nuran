@@ -13,7 +13,7 @@ in {
     scriptMaker = ./script-maker.nix;
 
     rubyMiner = callPackage self.scriptMaker {
-        shebangProgram = pkgs.ruby_teapot.brewed;
+        shebangProgram = pkgs.ruby_teapot.with_preferred_gems;
     };
 
     binary-cache-builder = self.rubyMiner {
