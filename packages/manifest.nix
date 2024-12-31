@@ -20,8 +20,8 @@ with ( getFlake (toString ../.) ).packages."${currentSystem}";
     parallel-2 = [
         neovim_teapot
         ruby_teapot
-        ruby_teapot.brewed
-        ruby_teapot.for_dev
+        ruby_teapot.with_preferred_gems
+        ruby_teapot.rubocop
     ];
 
     some-things = [
