@@ -6,7 +6,8 @@ lib.mkMerge [
 
     packages = with pkgs; [
         rust-analyzer_teapot
-        ruby_teapot.for_dev
+        ruby_teapot.with_preferred_gems
+        ruby_teapot.rubocop
         nixd
         luajit
         nixos-rebuild
