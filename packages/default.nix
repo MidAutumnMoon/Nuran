@@ -25,16 +25,16 @@ rec {
      */
 
     caddy_teapot =
-        callPackage ./ca/caddy {};
+        callPackage ./caddy {};
 
     hentai-home =
-        callPackage ./he/henati-home {};
+        callPackage ./henati-home {};
 
     shadowsocks_teapot =
-        callPackage ./sh/shadowsocks {};
+        callPackage ./shadowsocks {};
 
     hysteria_teapot =
-        callPackage ./hy/hysteria {};
+        callPackage ./hysteria {};
 
     /*
      * Terminals, shells and other things used in
@@ -47,13 +47,13 @@ rec {
     #     callPackage ./in/inori {};
 
     fishPlugins =
-        callPackage ./fi/fish/plugins { old = prev.fishPlugins; };
+        callPackage ./fish/plugins { old = prev.fishPlugins; };
 
     neovim_teapot =
-        callPackage ./ne/neovim {};
+        callPackage ./neovim {};
 
     prime-offload =
-        callPackage ./pr/prime-offload {};
+        callPackage ./prime-offload {};
 
     /*
      * Desktop, GUI, graohics etc. things.
@@ -63,20 +63,20 @@ rec {
      */
 
     firefox_teapot =
-        callPackage ./fi/firefox {};
+        callPackage ./firefox {};
 
     gtkgreet_teapot =
-        callPackage ./gt/gtkgreet {};
+        callPackage ./gtkgreet {};
 
     /*
      * Linux kernel and modules and packages for it.
      */
 
     linux_teapot =
-        callPackage ./ke/kernel/kernel.nix {};
+        callPackage ./kernel/kernel.nix {};
 
     linuxPackages_teapot =
-        callPackage ./ke/kernel/packages.nix { kernel = linux_teapot; };
+        callPackage ./kernel/packages.nix { kernel = linux_teapot; };
 
     /*
      * Themes, colors, fonts, styles, etc.
@@ -84,7 +84,7 @@ rec {
      */
 
     zhudou-sans =
-        callPackage ./zh/zhudou-sans {};
+        callPackage ./zhudou-sans {};
 
     /*
      * Services-ish things, which are neither used
@@ -96,10 +96,10 @@ rec {
      */
 
     ruby_teapot =
-        callPackage ./ru/ruby {};
+        callPackage ./ruby {};
 
     rust-analyzer_teapot =
-        callPackage ./ru/rust-analyzer {};
+        callPackage ./rust-analyzer {};
 
     /*
      * Things that no clear category they are
@@ -107,7 +107,7 @@ rec {
      */
 
      prvn-pkgs =
-        callPackage ./pr/prvn-pkgs {};
+        callPackage ./prvn-pkgs {};
 
     /*
      * Optimization flags. Mostly unused.
