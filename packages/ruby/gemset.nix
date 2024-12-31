@@ -20,16 +20,6 @@
     };
     version = "2.21.1";
   };
-  bigdecimal = {
-    groups = ["default"];
-    platforms = [];
-    source = {
-      remotes = ["https://rubygems.org"];
-      sha256 = "1k6qzammv9r6b2cw3siasaik18i6wjc5m0gw5nfdc6jj64h79z1g";
-      type = "gem";
-    };
-    version = "3.1.9";
-  };
   console = {
     dependencies = ["fiber-annotation" "fiber-local" "json"];
     groups = ["default"];
@@ -175,16 +165,5 @@
       type = "gem";
     };
     version = "3.1.2";
-  };
-  tomlib = {
-    dependencies = ["bigdecimal"];
-    groups = ["default"];
-    platforms = [];
-    source = {
-      remotes = ["https://rubygems.org"];
-      sha256 = "16xxrr6zjgldkh4c2jqm4b2rvbn63zs1add1aajsrcj0mbp65rc5";
-      type = "gem";
-    };
-    version = "0.7.3";
   };
 }

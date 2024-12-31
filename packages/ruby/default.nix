@@ -28,7 +28,7 @@ lib.onceride ruby_3_4
         glibcLocalesUtf8
     ];
 
-    postFixup = ( old.postFixup or "" ) + ''
+    postFixup = ( old.postFixup or "" ) + /* bash */ ''
         wrapProgram "$out/bin/ruby" \
             --prefix "RUBYLIB" ":" "${placeholder "devdoc"}/lib/ruby/site_ruby" \
             --prefix "MALLOC_CONF" "," "background_thread:true" \
@@ -36,10 +36,6 @@ lib.onceride ruby_3_4
             --set-default "LOCALE_ARCHIVE" "$LOCALE_ARCHIVE"
     '';
 
-    passthru = old.passthru // {
-        inherit ( callPackage ./brews.nix {} )
-            brewed for_dev
-        ;
-    };
+    passthru = old.passthru // ( callPackage ./with_gems.nix {} );
 
 } )

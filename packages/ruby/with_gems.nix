@@ -2,6 +2,8 @@
     lib,
     ruby_teapot,
 
+    runCommandNoCC,
+
     liburing,
 }:
 
@@ -13,7 +15,7 @@ let
         };
     };
 
-    build = gemset:
+    buildGemset = gemset:
         ruby.buildGems gemset
         |> lib.attrValues
         |> lib.filter lib.isDerivation
@@ -23,8 +25,13 @@ let
 
 in {
 
-    brewed = build ./gemset.nix;
+    with_preferred_gems = buildGemset ./gemset.nix;
 
-    for_dev = build ./gemset-dev.nix;
+    rubocop = let
+        r = buildGemset ./gemset-rubocop.nix;
+    in runCommandNoCC "rubocop" {} ''
+        mkdir -pv "$out/bin"
+        ln -sv "${lib.getBin r}/bin/rubocop" "$out/bin/rubocop"
+    '';
 
 }
