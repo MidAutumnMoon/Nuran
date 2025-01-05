@@ -15,7 +15,6 @@
     networking = {
         hostName = "joar";
         useDHCP = true;
-        firewall.enable = lib.mkForce false;
     };
 
     environment.systemPackages = with pkgs; [
