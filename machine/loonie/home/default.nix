@@ -11,6 +11,7 @@ in {
     imports = [
         ./git
         ./ssh
+        ./fish.nix
     ];
 
     home.packages = with pkgs; [

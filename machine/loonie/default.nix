@@ -6,6 +6,12 @@ let
 
 in {
 
+    environment.systemPackages = with pkgs; [
+        gcc
+        nixd
+        wsl-open
+    ];
+
     wsl = {
         enable = true;
         defaultUser = selfUsername;
@@ -32,8 +38,6 @@ in {
     };
 
     home-manager.users.${selfUsername} = import ./home;
-
-    environment.systemPackages = [ pkgs.git pkgs.gcc pkgs.nixd ];
 
     sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
