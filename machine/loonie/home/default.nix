@@ -11,6 +11,8 @@ in {
     imports = [
         ./git
         ./ssh
+        ./dotfiles
+
         ./fish.nix
     ];
 
