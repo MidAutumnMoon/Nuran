@@ -36,6 +36,8 @@ lib.mkMerge [
         "pipe-operators"
     ];
 
+    use-xdg-base-directories = true;
+
 }; }
 
 { nix.registry = {
