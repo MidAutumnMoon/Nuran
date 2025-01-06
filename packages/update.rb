@@ -15,6 +15,11 @@ packages << {
 }
 
 packages << {
+    attr: "inori",
+    unstable: true,
+}
+
+packages << {
     attr: "hysteria_teapot",
     regex: %r{app/v(.*)},
 }
