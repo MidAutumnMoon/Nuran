@@ -126,24 +126,6 @@
             }; }
         ;
 
-
-        /*
-         * Home
-         */
-
-        homeConfigurations = let
-            inherit ( flakes.home-manager.lib )
-                homeManagerConfiguration
-            ;
-            home = m: homeManagerConfiguration {
-                inherit lib;
-                modules = m ++ lib.listAllModules ./home;
-                pkgs = pkgsBrew."x86_64-linux";
-            };
-        in {
-            "WslArch" = home [ ./machine/wsl/home.nix ];
-        };
-
         homeModules.nuran = lib.listAllModules ./home;
 
 
