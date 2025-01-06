@@ -6,12 +6,6 @@ let
 
 in {
 
-    environment.systemPackages = with pkgs; [
-        gcc
-        nixd
-        wsl-open
-    ];
-
     wsl = {
         enable = true;
         defaultUser = selfUsername;

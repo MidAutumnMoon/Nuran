@@ -8,4 +8,10 @@
         end
     '';
 
+    # Stock "open" doesn't uses wsl-open, which makes it useless
+    # on WSL.
+    functions."open" = /* fish */ ''
+        command wsl-open $argv
+    '';
+
 }; }
