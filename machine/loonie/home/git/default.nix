@@ -1,4 +1,4 @@
-{ nixosConfig, config, pkgs, ... }:
+{ lib, nixosConfig, config, pkgs, ... }:
 
 let
 
@@ -11,8 +11,6 @@ let
     '';
 
 in {
-
-    # imports = [ ./delta.nix ];
 
     home.packages = with pkgs; [ git ];
 
@@ -40,12 +38,21 @@ in {
 
         [core]
             quotePath = false
+            pager = "${lib.getExe pkgs.delta}"
 
         [credential]
             helper = "store --file=${config.sops.secrets."git_cred".path}"
 
         [gc]
             auto = 0
+
+        [interactive]
+            diffFilter = delta --color-only
+
+        [delta]
+            navigate = true
+            hyperlinks = true
+            line-numbers = true;
 
 
         # Alias
