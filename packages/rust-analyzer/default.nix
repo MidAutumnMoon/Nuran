@@ -14,7 +14,7 @@ rustTeapot.buildRustPackage rec {
     src = fetchFromGitHub {
         owner = "rust-lang";
         repo = pname;
-        rev = version;
+        tag = version;
         hash = "sha256-B9tZfdCnZF7Qo/Ys/LgKtUlzIr38c9fDYgo/XcS8Gtc=";
     };
 

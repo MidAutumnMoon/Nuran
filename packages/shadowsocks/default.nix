@@ -14,7 +14,7 @@ pkgsStatic.rustTeapot.buildRustPackage rec {
     src = fetchFromGitHub {
         owner = "shadowsocks";
         repo = "shadowsocks-rust";
-        rev = "v${version}";
+        tag = "v${version}";
         hash = "sha256-rufOrNwUp8h0LoBKPyDV63WAYTLJbctWrq5Ghj6ODB4=";
     };
 
