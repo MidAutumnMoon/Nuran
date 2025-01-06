@@ -43,8 +43,8 @@ rec {
      * Basically everything in Linux uh?
      */
 
-    # inori =
-    #     callPackage ./in/inori {};
+    inori =
+        callPackage ./inori {};
 
     fishPlugins =
         callPackage ./fish/plugins { old = prev.fishPlugins; };
