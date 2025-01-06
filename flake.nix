@@ -77,7 +77,6 @@
         nixosConfigurations = let
             modules =
                 with flakes; [
-                    ./lore
                     self.nixosModules.homeManagerAdapter
                     sops-nix.nixosModules.default
                     impermanence.nixosModule
