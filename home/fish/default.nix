@@ -20,6 +20,7 @@ lib.mkMerge [
         functions --erase ll
         functions --erase la
         set --prepend fish_function_path "${functions}"
+        fish_add_path "$HOME/.local/bin"
     '';
 
     interactiveShellInit = ''
