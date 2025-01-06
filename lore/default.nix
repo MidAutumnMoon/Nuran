@@ -31,4 +31,4 @@ in {
 
 }
 
-# vim: set nowrap:
+# vim: nowrap:

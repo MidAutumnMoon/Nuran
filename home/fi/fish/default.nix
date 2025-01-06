@@ -20,21 +20,14 @@ lib.mkMerge [
         functions --erase ll
         functions --erase la
         set --prepend fish_function_path "${functions}"
-        source ${./tide.fish}
     '';
 
     interactiveShellInit = ''
+        source ${./tide.fish}
         source "${readAllFish ./init}"
     '';
 
 }; }
-
-
-{ home.packages = with pkgs; [
-    moreutils
-    fishPlugins.tide
-    fishPlugins.puffer-fish
-]; }
 
 {
     programs.command-not-found.enable = false;

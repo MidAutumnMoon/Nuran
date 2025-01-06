@@ -31,6 +31,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        nixos-wsl = {
+            url = "github:nix-community/NixOS-WSL";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
     };
 
     outputs = { self, nixpkgs, ... } @ flakes: let
@@ -73,9 +78,10 @@
             modules =
                 with flakes; [
                     ./lore
+                    self.nixosModules.homeManagerAdapter
                     sops-nix.nixosModules.default
                     impermanence.nixosModule
-                    # home-manager.nixosModule
+                    home-manager.nixosModule
                 ]
                 ++ ( lib.listAllModules ./nixos )
             ;
@@ -84,13 +90,41 @@
                 arguments = { inherit flakes; };
             };
         in {
-            joar = nixos "x86_64-linux" ./machine/joar;
+
+            joar = nixos "x86_64-linux" [ ./machine/joar ];
+
+            loonie = nixos "x86_64-linux" [
+                ./machine/loonie
+                flakes.nixos-wsl.nixosModules.default
+            ];
+
         };
 
         colmena = lib.nixos2colmena self.nixosConfigurations {
             meta.nixpkgs = pkgsBrew."x86_64-linux";
             joar.deployment.targetHost = "joar.home.lan";
         };
+
+        nixosModules.homeManagerAdapter =
+            { lib, ... }: let
+                hmLibWithNulib =
+                    "${flakes.home-manager}/modules/lib/stdlib-extended.nix"
+                    |> ( f: import f lib )
+                ;
+            in { home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                    inherit flakes;
+                    lib = hmLibWithNulib;
+                };
+                sharedModules =
+                    self.homeModules.nuran
+                    ++ [ flakes.sops-nix.homeManagerModules.sops ]
+                    ++ [ { home.stateVersion = lib.trivial.release; } ]
+                ;
+            }; }
+        ;
 
 
         /*
@@ -109,6 +143,8 @@
         in {
             "WslArch" = home [ ./machine/wsl/home.nix ];
         };
+
+        homeModules.nuran = lib.listAllModules ./home;
 
 
         /*
