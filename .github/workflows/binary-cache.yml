@@ -37,32 +37,31 @@ jobs:
 
         steps:
 
-        - name: Checkout
-          uses: actions/checkout@v4
+        -   name: Checkout
+            uses: actions/checkout@v4
 
-        - name: Setup nix
-          uses: MidAutumnMoon/spheti-action/nix@master
+        -   name: Setup nix
+            uses: MidAutumnMoon/spheti-action/nix@master
+            with:
+                cachix-url: "https://nuirrce.cachix.org/"
+                cachix-pubkey: "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
 
-        - name: Setup cachix
-          uses: cachix/cachix-action@v14
-          with:
-            installCommand: "nix profile install nixpkgs/nixos-unstable-small#cachix"
-            name: "nuirrce"
-            authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-            cachixArgs: -c 16 -j 3 --omit-deriver
-            pushFilter: |
-                (NVIDIA.*\.run)|(npm-deps|-source|vendor\..*|\.tar.*$)
+        -   name: Update workspace flake
+            run: nix flake update
 
-        - name: Fix f* cachix
-          run: |
-              echo -e "\nextra-experimental-features = pipe-operators" >> $HOME/.config/nix/nix.conf
+        -   name: Setup cachix
+            uses: cachix/cachix-action@v14
+            with:
+                installCommand: "nix profile install .#cachix"
+                name: "nuirrce"
+                authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+                cachixArgs: -c 16 -j 3 --omit-deriver
+                pushFilter: (NVIDIA.*\.run)
 
-        - name: Update workspace flake
-          run: |
-            nix flake update
+        -   name: Run build
+            run: |
+                nix run --print-build-logs \
+                    .#nuranScripts.binary-cache-builder -- \
+                    "packages/manifest.nix" "${{ matrix.subject }}"
 
-        - name: Run build
-          run: |
-              nix run --print-build-logs \
-                .#nuranScripts.binary-cache-builder -- \
-                "packages/manifest.nix" "${{ matrix.subject }}"
+# vim: nowrap:
