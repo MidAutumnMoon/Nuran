@@ -322,7 +322,12 @@ local Config = {
 
     lockfile = vim.fn.stdpath('state') .. "/lazy-lock.json",
 
-    rtp = { reset = true }
+    -- Don't reset runtimepath because treesitter parsers are
+    -- externally managed using nix, and is passed to nvim
+    -- using $XDG_DATA_DIRS.
+    performance = {
+        rtp = { reset = false },
+    }
 
 } -- End Config
 

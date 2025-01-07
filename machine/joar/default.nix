@@ -18,7 +18,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-        neovim_teapot
+        ( neovim_teapot.override { treesitter = false; } )
     ];
 
     boot.loader.grub = {

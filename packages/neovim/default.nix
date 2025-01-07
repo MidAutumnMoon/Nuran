@@ -4,22 +4,33 @@
     makeWrapper,
 
     neovim-unwrapped,
+    vimPlugins,
 
-    tools ? [],
+    # Enable all parsers adds about 200MB to the closure.
+    treesitter ? true,
 }:
 
 let
 
-    inherit ( lib )
-        makeBinPath
-        concatStringsSep
+    ts-parsers = symlinkJoin {
+        name = "ts-parsers";
+        paths = vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
+        postBuild = /* bash */ ''
+            declare -r path="$out/nvim/site"
+            mkdir -vp "$path"
+            mv -v -t "$path" "$out/parser"
+        '';
+    };
+
+    xdgDataDirs = [
+        "/run/current-system/sw/share"
+        ( lib.optional treesitter ( toString ts-parsers ) )
+    ]
+    |> lib.flatten
+    |> lib.concatStringsSep ":"
     ;
 
-    xdgDataDirs = concatStringsSep ":" [
-        "/run/current-system/sw/share"
-    ];
-
-    xdgConfigDirs = concatStringsSep ":" [
+    xdgConfigDirs = lib.concatStringsSep ":" [
         "/etc/xdg"
         "/run/current-system/sw/etc/xdg"
     ];
@@ -48,16 +59,20 @@ symlinkJoin {
         makeWrapper \
             "${neovim-unwrapped}/bin/nvim" "$out/bin/nvim" \
             --inherit-argv0 \
-            --prefix PATH ':' '${makeBinPath tools}' \
-            --set XDG_DATA_DIRS '${xdgDataDirs}' \
-            --set XDG_CONFIG_DIRS '${xdgConfigDirs}'
+            --set XDG_DATA_DIRS "${xdgDataDirs}" \
+            --set XDG_CONFIG_DIRS "${xdgConfigDirs}"
 
         ln -s "$out/bin/nvim" "$out/bin/vi"
         ln -s "$out/bin/nvim" "$out/bin/vim"
     '';
 
 
-    passthru.unwrapped = neovim-unwrapped;
+    passthru = {
+        inherit
+            ts-parsers
+            neovim-unwrapped
+        ;
+    };
 
     meta.mainProgram = "nvim";
 
