@@ -24,7 +24,6 @@ in {
 
         nixd
         colmena
-        gcc
 
         wsl-open
 
