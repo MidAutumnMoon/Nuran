@@ -40,7 +40,7 @@ in {
         # besides, Windows already has firewall configured anyway.
         firewall.enable = lib.mkForce false;
 
-        proxy.default = "http://172.28.240.1:7890";
+        proxy.default = "http://127.0.0.1:7890";
     };
 
     sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
