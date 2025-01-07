@@ -22,6 +22,9 @@ in {
         "nvim".source =
             mkOutOfStoreSymlink "${dotfiles}/neovim";
 
+        "rclone/rclone.conf".source =
+            mkOutOfStoreSymlink "/etc/rclone.conf";
+
         "irb/irbrc".text = /* ruby */ ''
             begin
                 require "amazing_print"

@@ -6,6 +6,10 @@ let
 
 in {
 
+    imports = [
+        ./rclone
+    ];
+
     home-manager.users.${selfUsername} = import ./home.nix;
 
     wsl = {

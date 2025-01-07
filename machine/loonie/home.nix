@@ -15,6 +15,7 @@ in {
         rust-analyzer_teapot
         ruby_teapot.with_preferred_gems
         ruby_teapot.rubocop
+        rclone
 
         nixd
         colmena
