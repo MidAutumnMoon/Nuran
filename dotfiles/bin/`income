@@ -1,0 +1,14 @@
+#!/usr/bin/env fish
+
+set -l Name "$argv[1]"
+
+if test -z "$Name"
+    echo ":: First argument the filename is empty"
+    exit 1
+end
+
+set -l Dryrun
+
+command rclone copy -P \
+    --transfers 6 \
+    "Box:/Income/$Name" "$( pwd )/$Name"

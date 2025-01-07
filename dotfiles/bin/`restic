@@ -1,0 +1,24 @@
+#!/usr/bin/env -S ruby
+
+# frozen_string_literal: true
+
+require "shellwords"
+
+ENV["RESTIC_REPOSITORY"] = "sftp:rio.home.lan:/Pool/Restic/Main"
+ENV["RESTIC_PASSWORD"] = "f83d58e0-b7d0-4285-b460-defa583f9e62"
+
+BACKUP_DIRS = [
+    "$HOME/.local/bin",
+    "$HOME/.local/share/mkcert",
+    "$HOME/.ssh",
+].freeze
+
+command = if ARGV.empty?
+              "backup #{BACKUP_DIRS.join ' '}"
+          else
+              ARGV.shelljoin
+          end
+
+system <<~CMD or abort "failed to run restic"
+    restic #{command}
+CMD

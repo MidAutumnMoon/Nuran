@@ -1,0 +1,120 @@
+#!/usr/bin/env -S fish -PN
+
+set -l GalleryFolder ( begin
+    if test -n "$argv[1]"
+        path resolve "$argv[1]"
+    else
+        printf (pwd)
+    end
+end )
+
+if not test -d "$GalleryFolder"
+    echo ":: Folder \"$GalleryFolder\" doesn't exists"
+    exit ( false )
+end
+
+echo ":: Gallery is \"$GalleryFolder\""
+
+
+set -l IdFile "$GalleryFolder/__ehid.txt"
+set -l MetadataFile "$GalleryFolder/__metadata.json"
+
+if test -f "$MetadataFile"
+    echo ":: \"$MetadataFile\" already exists"
+    exit ( false )
+end
+
+if not test -f "$IdFile"
+    echo ":: \"$IdFile\" not found, prompt to enter"
+
+    read -l gallery_url \
+        -p "set_color blue; printf 'gallery url>'; set_color normal"
+
+    set -l gallery_id (
+        string match -rg '\/g\/(.*\/.*)\/' $gallery_url
+    )
+
+    if [ -z "$gallery_id" ]
+        echo ":: Can't extract gallery id from URL $gallery_url"
+        exit ( false )
+    else
+        printf "$gallery_id" >> "$IdFile"
+    end
+end
+
+
+set -l GalleryIDSlashToken "$( string trim < $IdFile )"
+
+if not string match -rq -- \
+    '^[[:alnum:]]+/[[:alnum:]]+$' "$GalleryIDSlashToken"
+
+    echo ":: Gallery ID \"$GalleryIDSlashToken\" doesn't look right"
+    echo ":: Maybe forgot to remove the trilling slash (/)?"
+    echo ":: See https://ehwiki.org/wiki/API"
+    exit ( false )
+end
+
+
+set -l GalleryID
+set -l GalleryToken
+
+begin
+    set -l split ( string split "/" $GalleryIDSlashToken )
+    set GalleryID $split[1]
+    set GalleryToken $split[2]
+end
+
+echo ":: Gallery ID is \"$GalleryID\""
+echo ":: Gallery token is \"$GalleryToken\""
+
+
+echo ":: Call E-Hentai API to retrieve metadata"
+
+set -l JSONPayload "
+{
+    \"method\": \"gdata\",
+    \"gidlist\": [
+        [ $GalleryID, \"$GalleryToken\" ]
+    ],
+    \"namespace\": 1
+}
+"
+
+curl -X POST "https://api.e-hentai.org/api.php" \
+    -H "User-Agent: curl/BackupFavGallery-HandmadeScript" \
+    -H "Content-Type: application/json" \
+    -d "$JSONPayload" \
+| read -l APIResponse
+
+
+echo ":: API response recieved"
+
+if [ ( echo "$APIResponse" | jq 'has("error")' ) = "true" ]
+
+    echo ":: API responded with error"
+    echo ":: Showing additional debug infomation"
+    echo ":: JSON payload used to call API:"
+    echo "$JSONPayload" | jq
+    echo ":: API response:"
+    echo "$APIResponse" | jq
+    exit ( false )
+end
+
+echo ":: Pretty print responded JSON for review"
+
+echo "$APIResponse" | jq
+
+read -l ManualReview \
+    -p "set_color green; echo 'Ok to save? (n/ctrl-c to cancel)>'"
+
+if test $status != 0 || test "$ManualReview" = "n"
+    echo ":: Cancel save metadata"
+    exit ( false )
+end
+
+
+echo ":: Saving metadata from API to \"$MetadataFile\""
+
+echo "$APIResponse" \
+    | jq --indent 4 \
+    >> "$MetadataFile"

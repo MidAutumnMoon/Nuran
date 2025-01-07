@@ -1,0 +1,23 @@
+#!/usr/bin/env fish
+
+set -l Cue "$argv[1]"
+set -l Audio "$argv[2]"
+
+if [ (path extension "$Cue") != ".cue" ]
+    echo ":: <$Cue> may not be cue file"
+    echo ":: Because extension doesn't match"
+    exit 1
+end
+
+if not [ -f "$Audio" ]
+    echo ":: <$Audio> is not a file"
+    exit 1
+end
+
+echo ":: Run shnsplit"
+
+command shnsplit \
+    -f "$Cue" \
+    -o "flac flac -s -8 -o %f -" \
+    -t "%n %t" \
+    "$Audio"
