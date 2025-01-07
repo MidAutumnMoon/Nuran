@@ -16,6 +16,15 @@ in {
 
     xdg.configFile = {
 
+        "irb/irbrc".text = /* ruby */ ''
+            begin
+                require "amazing_print"
+                AmazingPrint.irb!
+            rescue LoadError
+                warn "Can't load amazing_print"
+            end
+        '';
+
         "rubocop/config.yml".source =
             mkOutOfStoreSymlink "${nuranDirPath}/.rubocop.yml";
 
@@ -25,14 +34,8 @@ in {
         "rclone/rclone.conf".source =
             mkOutOfStoreSymlink "/etc/rclone.conf";
 
-        "irb/irbrc".text = /* ruby */ ''
-            begin
-                require "amazing_print"
-                AmazingPrint.irb!
-            rescue LoadError
-                warn "Can't load amazing_print"
-            end
-        '';
+        "gallery-dl/config.json".source =
+            mkOutOfStoreSymlink "${dotfiles}/gallery-dl/config.json";
 
     };
 
