@@ -6,6 +6,8 @@ let
 
 in {
 
+    home-manager.users.${selfUsername} = import ./home.nix;
+
     wsl = {
         enable = true;
         defaultUser = selfUsername;
@@ -30,8 +32,6 @@ in {
 
         proxy.default = "http://172.28.240.1:7890";
     };
-
-    home-manager.users.${selfUsername} = import ./home;
 
     sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
