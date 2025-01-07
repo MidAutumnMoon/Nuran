@@ -41,6 +41,8 @@ in {
         firewall.enable = lib.mkForce false;
 
         proxy.default = "http://127.0.0.1:7890";
+
+        nameservers = [ "10.0.1.1" ];
     };
 
     sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
