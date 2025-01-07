@@ -16,14 +16,7 @@
     i18n.defaultLocale = "en_US.UTF-8";
     time.timeZone = lib.mkDefault "Asia/Shanghai";
 
-    documentation = {
-        info.enable = false;
-        nixos.enable = false;
-    };
-
     programs = {
-        neovim.enable = false;
-        fish.enable = false;
         command-not-found.enable = false;
     };
 
