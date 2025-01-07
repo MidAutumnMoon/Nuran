@@ -129,17 +129,6 @@
 
 
         /*
-         * Apps
-         */
-
-        apps = pkgsBrew ( pkgs:
-            builtins.mapAttrs ( _: d: lib.makeApp d ) (
-                pkgs.callPackage ./apps.nix {}
-            )
-        );
-
-
-        /*
          * devShells
          */
 
