@@ -13,6 +13,8 @@
             "--tabs=4"
             "--window=-4"
             "--use-color"
+            "--color=d+c" # cyan for bold
+            "--color=u+g" # green for underline
         ];
     };
 
