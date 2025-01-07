@@ -9,7 +9,7 @@
 rustTeapot.buildRustPackage {
 
     pname = "inori";
-    version = "unstable";
+    version = "0-unstable-2025-01-06";
 
     src = fetchFromGitHub {
         owner = "MidAutumnMoon";
@@ -18,7 +18,7 @@ rustTeapot.buildRustPackage {
         hash = "sha256-Nn1PjJIf0JRh8VZKm0HTKIlieToAYnP1IB4+mNFhXt4=";
     };
 
-    cargoHash = "sha256-55EdZMvOW4IbLj5pCDPN7ubo6L8gW6/mnFnQLrG33i4=";
+    cargoHash = "sha256-0DJCSPRPkz1/dVeER73r8xdrzcoucPpAzLajk5N/Djc=";
 
 
     doCheck = false;
