@@ -1,38 +1,11 @@
 require "nvim-treesitter.configs" .setup {
 
-    -- ensure_installed = {
-    --     "vim",
-    --     "lua",
-    --     "bash",
-    --     "fish",
-    --     "tcl",
-    --     "c",
-    --     "rust",
-    --     "python",
-    --     "ruby",
-    --     "nix",
-    --     "javascript",
-    --     "typescript",
-    --     "tsx",
-    --     "css",
-    --     "html",
-    --     "markdown",
-    --     "zig",
-    --     "perl",
-    --     "json",
-    --     "yaml",
-    --     "toml",
-    --     "ninja",
-    --     "sql",
-    --     "hlsl",
-    --     "glsl",
-    --     "terraform",
-    --     "prolog",
-    --     "typst",
-    -- },
-
     highlight = {
-        enable = true
+        enable = true,
+        disable = {
+            -- Broken
+            "ssh_config",
+        },
     },
 
 --     #incremental_selection = {
