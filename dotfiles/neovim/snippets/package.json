@@ -1,0 +1,14 @@
+{
+    "name": "example-snippets",
+
+    "contributes": { "snippets": [
+        {
+            "language": "all",
+            "path": "./shebang.json"
+        },
+        {
+            "language": "ruby",
+            "path": "./ruby.json"
+        }
+    ] }
+}

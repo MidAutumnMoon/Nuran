@@ -1,0 +1,15 @@
+{
+
+    "shebang": {
+        "prefix": "#!",
+        "body": [ "#!/usr/bin/env -S " ],
+        "luasnip": { "priority": 2001 }
+    },
+
+    "shebang ruby": {
+        "prefix": "#!ruby",
+        "body": [ "#!/usr/bin/env -S ruby", "", "" ],
+        "luasnip": { "priority": 2001 }
+    }
+
+}

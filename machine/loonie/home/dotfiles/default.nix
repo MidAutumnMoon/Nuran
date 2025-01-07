@@ -19,6 +19,9 @@ in {
         "rubocop/config.yml".source =
             mkOutOfStoreSymlink "${nuranDirPath}/.rubocop.yml";
 
+        "nvim".source =
+            mkOutOfStoreSymlink "${dotfiles}/neovim";
+
         "irb/irbrc".text = /* ruby */ ''
             begin
                 require "amazing_print"
