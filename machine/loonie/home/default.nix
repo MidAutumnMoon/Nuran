@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let
 
@@ -9,12 +9,10 @@ let
 in {
 
     imports = [
-        ./git
-        ./ssh
-        ./dotfiles
-
         ./fish.nix
-    ];
+    ]
+    ++ ( lib.listAllModules ../../../dotfiles )
+    ;
 
     home.packages = with pkgs; [
         sops
