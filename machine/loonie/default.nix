@@ -22,6 +22,12 @@ in {
         };
     };
 
+    fileSystems."/mnt/z" = {
+        device = "Z:";
+        fsType = "drvfs";
+        options = [ "defaults" "async" "noatime" "metadata" "nofail" ];
+    };
+
     networking = {
         hostName = "loonie";
         useDHCP = false;
