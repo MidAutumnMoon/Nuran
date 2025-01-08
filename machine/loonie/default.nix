@@ -26,10 +26,6 @@ in {
         };
     };
 
-    programs = {
-        fish.enable = true;
-    };
-
     fileSystems."/mnt/z" = {
         device = "Z:";
         fsType = "drvfs";
