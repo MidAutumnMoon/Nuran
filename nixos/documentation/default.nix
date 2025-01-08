@@ -121,6 +121,16 @@ in lib.mkIf ( cfg.enable ) {
         '';
     };
 
+    # Remove unneeded manpages hoping it can speedup man-db cache :/
+    environment.extraSetup = /* bash */ ''
+        find "$out/share/man" \
+            -mindepth 1 -maxdepth 1 \
+            -not -name "man[1-8]" \
+            -exec rm -r "{}" ";"
+
+        rm -r "$out/share/man/man3"
+    '';
+
 } )
 
 ]
