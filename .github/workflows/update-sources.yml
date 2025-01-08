@@ -6,7 +6,7 @@ on:
         - cron: "0 6 * * 1"
     push:
         paths:
-        - "flake.*"
+        - "flake.lock"
 
 jobs:
 
