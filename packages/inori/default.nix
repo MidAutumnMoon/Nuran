@@ -4,7 +4,26 @@
     fetchFromGitHub,
 
     rustTeapot,
+
+    libavif,
+    libyuv_teapot,
+    libjxl,
 }:
+
+let
+
+    cjxl = "${lib.getBin libjxl}/bin/cjxl";
+
+    fixedLibavif = lib.onceride libavif
+        ( _: { libyuv = libyuv_teapot; } )
+        ( old : {
+            cmakeFlags = old.cmakeFlags ++ [ "-DAVIF_LIBSHARPYUV=SYSTEM" ];
+        } )
+    ;
+
+    avifenc = "${lib.getBin fixedLibavif}/bin/avifenc";
+
+in
 
 rustTeapot.buildRustPackage {
 
@@ -20,6 +39,9 @@ rustTeapot.buildRustPackage {
 
     cargoHash = "sha256-0DJCSPRPkz1/dVeER73r8xdrzcoucPpAzLajk5N/Djc=";
 
+
+    env.CFG_CJXL_PATH = cjxl;
+    env.CFG_AVIFENC_PATH = avifenc;
 
     doCheck = false;
 
