@@ -15,6 +15,7 @@ lib.mkMerge [
 { programs.fish = {
 
     enable = true;
+    generateCompletions = false;
 
     shellInit = ''
         functions --erase ll
