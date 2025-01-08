@@ -121,6 +121,7 @@
                     self.homeModules.nuran
                     ++ [ flakes.sops-nix.homeManagerModules.sops ]
                     ++ [ { home.stateVersion = lib.trivial.release; } ]
+                    ++ [ { programs.man.generateCaches = false; } ]
                 ;
             }; }
         ;
