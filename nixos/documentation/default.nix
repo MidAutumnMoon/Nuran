@@ -7,6 +7,12 @@ lib.mkMerge [
     documentation.info.enable = false;
     documentation.nixos.enable = false;
 
+    environment.variables = {
+        MANWIDTH = "80";
+        MANROFFOPT="-P -c";
+    };
+
+
 }
 
 ( let
