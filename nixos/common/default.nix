@@ -11,6 +11,8 @@
             "kernel.sysrq" = 1;
             "net.ipv4.ip_unprivileged_port_start" = 80;
         };
+        tmp.useTmpfs = true;
+        tmp.tmpfsSize = "100%";
     };
 
     i18n.defaultLocale = "en_US.UTF-8";
