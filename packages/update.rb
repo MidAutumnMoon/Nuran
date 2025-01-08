@@ -17,6 +17,11 @@ packages << {
 packages << {
     attr: "inori",
     unstable: true,
+
+}
+packages << {
+    attr: "libyuv_teapot",
+    unstable: true,
 }
 
 packages << {
