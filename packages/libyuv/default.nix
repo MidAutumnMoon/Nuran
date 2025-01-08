@@ -11,7 +11,7 @@
 stdenv.mkDerivation {
 
     pname = "libyuv";
-    version = "unstable";
+    version = "0-unstable-2025-01-03";
 
     src = fetchFromGitHub {
         # unofficial mirror
