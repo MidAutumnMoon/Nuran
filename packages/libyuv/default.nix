@@ -11,14 +11,14 @@
 stdenv.mkDerivation {
 
     pname = "libyuv";
-    version = "0-unstable-2025-01-03";
+    version = "0-unstable-2025-01-09";
 
     src = fetchFromGitHub {
         # unofficial mirror
         owner = "lemenkov";
         repo = "libyuv";
-        rev = "cacaf42e97284107dc88502c8f0af9ac356d199b";
-        hash = "sha256-sB5iCuc3+Dp9uVm2mUt4XhQ3zazsueEVNNw6uTMGTuQ=";
+        rev = "e2c92b560ca76d640bef04715c3c26939e8ca519";
+        hash = "sha256-oTT2LDdm23xjdYMtdd+i5NkyGp82jthk/S4C++JXXG8=";
     };
 
     nativeBuildInputs = [ cmake ];

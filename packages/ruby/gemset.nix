@@ -4,10 +4,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "15vklc53pgf2zr1rvncy4yz7ikm63k5ghfa2hlf425fwm8yyj0wr";
+      sha256 = "00n7mbnls3cas7hzc0ajc87i1zbfg2w527c7h3kw22459zz1v6n8";
       type = "gem";
     };
-    version = "1.6.0";
+    version = "1.7.2";
   };
   async = {
     dependencies = ["console" "fiber-annotation" "io-event"];
@@ -93,15 +93,15 @@
     version = "1.7.5";
   };
   irb = {
-    dependencies = ["rdoc" "reline"];
+    dependencies = ["pp" "rdoc" "reline"];
     groups = ["default"];
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0lh71mn0mszffwvxgiwlp1zyr38kw8d9iqsvbk7fk2j3y7rg2my4";
+      sha256 = "1478m97wiy6nwg6lnl0szy39p46acsvrhax552vsh1s2mi2sgg6r";
       type = "gem";
     };
-    version = "1.14.3";
+    version = "1.15.1";
   };
   json = {
     groups = ["default"];
@@ -113,16 +113,37 @@
     };
     version = "2.9.1";
   };
+  pp = {
+    dependencies = ["prettyprint"];
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "1zxnfxjni0r9l2x42fyq0sqpnaf5nakjbap8irgik4kg1h9c6zll";
+      type = "gem";
+    };
+    version = "0.6.2";
+  };
+  prettyprint = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "14zicq3plqi217w6xahv7b8f7aj5kpxv1j1w98344ix9h5ay3j9b";
+      type = "gem";
+    };
+    version = "0.2.0";
+  };
   psych = {
     dependencies = ["date" "stringio"];
     groups = ["default"];
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1aq6k7zw1pi022q4ilpfn78l1gka17kn9krqdh45is6khmy4gad4";
+      sha256 = "1vjrx3yd596zzi42dcaq5xw7hil1921r769dlbz08iniaawlp9c4";
       type = "gem";
     };
-    version = "5.2.2";
+    version = "5.2.3";
   };
   rdoc = {
     dependencies = ["psych"];
@@ -130,10 +151,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1niyzaiwz155nhardgxiin44j1wnrsp73pwwl8xxzj9si0hm0rnv";
+      sha256 = "0h00mb8wcj937srrafpjzq0klfi8rfpd4b3xpbvn9ghrn2wnzimy";
       type = "gem";
     };
-    version = "6.10.0";
+    version = "6.11.0";
   };
   reinbow = {
     groups = ["default"];
