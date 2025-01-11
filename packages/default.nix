@@ -148,7 +148,9 @@ rec {
     latestRustToolchain =
         let inherit ( flakes.rust-overlay.lib ) mkRustBin ; in
         let rsbin = mkRustBin {} final.buildPackages; in
-        rsbin.stable.latest.default
+        rsbin.stable.latest.default.override {
+            extensions = [ "rust-src" ];
+        }
     ;
 
     rustTeapot = with final; makeRustPlatform rec {
