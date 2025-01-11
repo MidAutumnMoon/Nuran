@@ -45,6 +45,11 @@ in {
         nameservers = [ "10.0.1.1" ];
     };
 
+    services.journald.extraConfig = ''
+        SystemMaxUse = 256M
+        RuntimeMaxUse = 256M
+    '';
+
     sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
 }
