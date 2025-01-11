@@ -12,10 +12,14 @@ in {
 
     home.packages = with pkgs; [
         sops
+        rclone
+
         rust-analyzer_teapot
+
         ruby_teapot.with_preferred_gems
         ruby_teapot.rubocop
-        rclone
+        latestRustToolchain
+        ( clang.override { inherit ( llvmPackages ) bintools; } )
 
         nixd
         colmena
