@@ -37,7 +37,7 @@ system <<~CMD or abort ":: Failed to run 7z"
     # ultral,
     # solid block of 16GB,
     # dictionary of 3840MB,
-    command 7z \
+    command 7zz \
         a -t7z -m0=lzma2 \
         -mx9 \
         -ms=16G \

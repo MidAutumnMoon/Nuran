@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
 
@@ -13,6 +13,11 @@ let
     dotfiles = "${nuranDirPath}/dotfiles";
 
 in {
+
+    home.packages = with pkgs; [
+        _7zz
+        par2cmdline-turbo
+    ];
 
     xdg.configFile = {
 
