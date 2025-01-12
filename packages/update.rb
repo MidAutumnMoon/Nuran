@@ -22,6 +22,7 @@ packages << {
 packages << {
     attr: "libyuv_teapot",
     unstable: true,
+    pinned: true,
 }
 
 packages << {
