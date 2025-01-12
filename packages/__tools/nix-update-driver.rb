@@ -75,6 +75,9 @@ Sync do
         case package
         in String
             attribute = package
+        in { pinned: true }
+            warn "Package #{package} is being pinned".yellow
+            next
         in { attr:, unstable: true }
             attribute = attr
             extra_opts << %(--version=branch)
