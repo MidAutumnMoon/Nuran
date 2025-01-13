@@ -28,16 +28,16 @@ in
 rustTeapot.buildRustPackage {
 
     pname = "inori";
-    version = "0-unstable-2025-01-11";
+    version = "0-unstable-2025-01-13";
 
     src = fetchFromGitHub {
         owner = "MidAutumnMoon";
         repo = "InOri";
-        rev = "4ef22fdf47f1bd70dc85c3fb64a2e41864a01572";
-        hash = "sha256-Hh9NjBTpMfUYDyBJ/WP7FuLtXyMLKEr34b49xQbYEGc=";
+        rev = "397c3471abede1444ff5fc738f7f9d476cb69e39";
+        hash = "sha256-uPIgcRUaS3LUzNra8RdUkxJmTYX/75ZyBwswJRYlIsI=";
     };
 
-    cargoHash = "sha256-YtczINSvGBuiaY4RDqrNdkT9LvUwnTzv2BT/E18BycI=";
+    cargoHash = "sha256-Bt1xMurHa/TeGvvAEw4DyuTwrsY9sRBP2cSkttOYEmw=";
 
 
     env.CFG_CJXL_PATH = cjxl;
