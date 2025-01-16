@@ -17,6 +17,7 @@ in {
     home.packages = with pkgs; [
         _7zz
         par2cmdline-turbo
+        jq
     ];
 
     xdg.configFile = {
