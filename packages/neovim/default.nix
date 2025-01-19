@@ -1,6 +1,7 @@
 {
     lib,
     symlinkJoin,
+    runCommand,
     makeWrapper,
 
     neovim-unwrapped,
@@ -12,15 +13,27 @@
 
 let
 
-    ts-parsers = symlinkJoin {
-        name = "ts-parsers";
+    ts-parsers = let
         paths = vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
-        postBuild = /* bash */ ''
-            declare -r path="$out/nvim/site"
-            mkdir -vp "$path"
-            mv -v -t "$path" "$out/parser"
-        '';
-    };
+        unwanted = [
+            "verilog" "gnuplot" "v" "slang" "ssh_config"
+            "objc" "nim"
+        ];
+    in runCommand "ts-parsers" {} ''
+        declare dest="$out/nvim/site/parser";
+        mkdir -pv "$dest"
+        ${
+            paths
+            |> map ( drv: '' cp -Lv ${drv}/parser/*.so "$dest" '' )
+            |> lib.concatStringsSep "; "
+        }
+        ${
+            unwanted
+            |> map ( name: "-name ${name}.so" )
+            |> lib.concatStringsSep " -or "
+            |> ( ns: "find $dest -type f \\( ${ns} \\) -exec rm -v '{}' + " )
+        }
+    '';
 
     xdgDataDirs = [
         "/run/current-system/sw/share"
