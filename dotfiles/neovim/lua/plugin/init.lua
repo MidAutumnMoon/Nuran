@@ -26,7 +26,6 @@ local Plugins = {
 
     {
         "tommcdo/vim-exchange",
-        keys = { "cx" },
     },
 
     {
@@ -68,7 +67,6 @@ local Plugins = {
 
     {
         "windwp/nvim-autopairs",
-        event = "InsertEnter",
         config = function()
             require "plugin.autopairs"
         end
