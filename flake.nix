@@ -156,8 +156,10 @@
             ];
 
             kernel = p: with p; [
-                gcc ncurses rustc
+                gcc ncurses
                 flex bison
+                latestRustToolchain
+                rust-bindgen
             ];
 
         };
