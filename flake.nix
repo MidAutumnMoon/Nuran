@@ -158,7 +158,7 @@
             kernel = p: with p; [
                 gcc ncurses
                 flex bison
-                latestRustToolchain
+                rustToolchainTeapot
                 rust-bindgen
             ];
 
