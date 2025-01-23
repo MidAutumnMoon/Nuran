@@ -145,7 +145,7 @@ rec {
      * Rust toolchains
      */
 
-    latestRustToolchain =
+    rustToolchainTeapot =
         let inherit ( flakes.rust-overlay.lib ) mkRustBin ; in
         let rsbin = mkRustBin {} final.buildPackages; in
         rsbin.stable.latest.default.override {
@@ -154,7 +154,7 @@ rec {
     ;
 
     rustTeapot = with final; makeRustPlatform rec {
-        rustc = latestRustToolchain;
+        rustc = rustToolchainTeapot;
         cargo = rustc;
     };
 

@@ -18,7 +18,7 @@ in {
 
         ruby_teapot.with_preferred_gems
         ruby_teapot.rubocop
-        latestRustToolchain
+        rustToolchainTeapot
         ( clang.override { inherit ( llvmPackages ) bintools; } )
 
         nixd
