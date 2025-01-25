@@ -41,5 +41,5 @@ done
 # Launch fish (or not)
 
 if [[ "$parents_have_fish" = "false" ]]; then
-    exec fish "$fish_params"
+    exec fish --features qmark-noglob "$fish_params"
 fi
