@@ -9,16 +9,16 @@
 rustTeapot.buildRustPackage rec {
 
     pname = "rust-analyzer";
-    version = "2025-01-27";
+    version = "2025-01-28";
 
     src = fetchFromGitHub {
         owner = "rust-lang";
         repo = pname;
         tag = version;
-        hash = "sha256-PkT88NCsweL62NiWhpcv3wvR8DmgE6stIH6h5qemrzs=";
+        hash = "sha256-rUyiWiBsdaZFMRPbLHRnwrtirsV5Zxyl0F9jlx7hLpo=";
     };
 
-    cargoHash = "sha256-6pnLk8TzjTdd5qdeV1G6Ai+zjUDNWNYYOUhtqWqVpiI=";
+    cargoHash = "sha256-VKiuIOyo3VYOlC8e2wgh2NRx+hAQ8FDVMdgUWPFNp4I=";
 
 
     doCheck = false;
