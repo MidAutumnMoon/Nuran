@@ -52,12 +52,7 @@ local Plugins = {
     },
 
     {
-        "echasnovski/mini.surround",
-        event = { 'CursorMoved', 'CursorHold' },
-        keys = { "ys", "cs", "ds" },
-        opts = {
-            n_lines = 40,
-        }
+        "tpope/vim-surround",
     },
 
     {
@@ -140,6 +135,9 @@ local Plugins = {
     {
         "andymass/vim-matchup",
         after = "nvim-treesitter",
+        init = function()
+            vim.g.matchup_matchparen_deferred = 1
+        end
     },
 
     --
