@@ -37,5 +37,6 @@ require "nvim-treesitter.configs" .setup {
 
 }
 
-vim.opt_local.foldmethod = "expr"
-vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo.foldtext = ""

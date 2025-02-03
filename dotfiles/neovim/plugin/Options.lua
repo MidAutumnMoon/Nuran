@@ -73,7 +73,7 @@ local options = {
     undofile = true,
     undodir = state_dir .. "/undo//",
 
-    foldmethod = "marker",
+    -- foldmethod = "marker",
     foldlevelstart = 99,
 
     shell = "/bin/sh",
