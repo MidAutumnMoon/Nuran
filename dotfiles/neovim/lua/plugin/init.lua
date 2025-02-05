@@ -42,7 +42,6 @@ local Plugins = {
 
     {
         "junegunn/vim-easy-align",
-        keys = "ga",
         config = function()
             local set = vim.keymap.set
             local keyconf = { remap = true; }
