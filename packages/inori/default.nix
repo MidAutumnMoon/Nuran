@@ -37,8 +37,8 @@ rustTeapot.buildRustPackage {
         hash = "sha256-OnydLMPp8X6cnwGvfJUnbOa7LNnuadaADUay2JTjJIg=";
     };
 
-    cargoHash = "sha256-jB0vNviaSbOeRMzn/3Sbm80oKm+Oy1mKVu1gTS+EQIw=";
-
+    cargoHash = "sha256-KzAKto5wQ39W9Re1jnKR7sW3qfzaIQpCj3fOX+v4gnI=";
+    useFetchCargoVendor = true;
 
     env.CFG_CJXL_PATH = cjxl;
     env.CFG_AVIFENC_PATH = avifenc;
