@@ -7,4 +7,6 @@
   ./brewShells.nix
   ./brewNixOS.nix
 
+  ./libsToCompilerEnvvars.nix
+
 ]

@@ -60,6 +60,7 @@ rec {
         brewNixpkgs
         brewShells
         brewNixOS
+        libsToCompilerEnvvars
     ;
 
 }
