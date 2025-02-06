@@ -50,7 +50,7 @@ lib.mkMerge [
 }; }
 
 {
-    nix.nixPath = lib.mkForce [
+    nix.nixPath = [
         "nixpkgs=${toString flakes.nixpkgs}"
         "nixos=${toString flakes.nixpkgs}"
     ];
