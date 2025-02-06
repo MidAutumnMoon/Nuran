@@ -18,8 +18,8 @@ rustTeapot.buildRustPackage rec {
         hash = "sha256-sLLW0S7OGlFYgNvAQnqWK1Ws5V1YNGvfXHdWoZ91CeI=";
     };
 
-    cargoHash = "sha256-2eWbZAuPy9BdGjCyhxpW+bvHlS09TwqZybDEQB6IWhI=";
-
+    cargoHash = "sha256-fZbDBzIJfk8DRbd5zylrlHEwOYvU2i8HrMF5EatJnW8=";
+    useFetchCargoVendor = true;
 
     doCheck = false;
 
