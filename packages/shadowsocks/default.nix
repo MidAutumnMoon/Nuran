@@ -18,8 +18,8 @@ pkgsStatic.rustTeapot.buildRustPackage rec {
         hash = "sha256-rufOrNwUp8h0LoBKPyDV63WAYTLJbctWrq5Ghj6ODB4=";
     };
 
-    cargoHash = "sha256-m9PGAPlYs3GDY5+A1Ttuhu9LtqkJ/y3ri3MyIKjtSgA=";
-
+    cargoHash = "sha256-hdHCpER4qs8W6rMmwys2KhaGDiTWcnntAL3ZeTBgt84=";
+    useFetchCargoVendor = true;
 
     doCheck = false;
 
