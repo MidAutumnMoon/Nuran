@@ -1,0 +1,54 @@
+#!/usr/bin/env -S ruby
+
+# frozen_string_literal: true
+
+require "reinbow"
+require "pathname"
+
+using Reinbow
+
+warn "Select all files".yellow
+
+FILES = Pathname.glob( "*.{rar,zip,7z,001}" )
+
+FILES.each do |file|
+
+    warn %(== Checking "#{file}" ==).yellow
+
+    fname_no_ext = file.extname
+        .then { file.basename( it ) }
+        .then( &:to_s )
+
+    warn %(file name w/o extension #{fname_no_ext}).blue
+
+    fname_parts = fname_no_ext.split( "-" )
+
+    unless fname_parts.size >= 3
+        warn "Not the thing".yellow
+        next
+    end
+
+    # The 3rd item
+    rj_number = fname_parts.at( 2 )
+
+    begin
+        Integer( rj_number, 10 )
+    rescue ArgumentError
+        warn "Not a number".yellow
+        next
+    end
+
+    rj_number = "RJ#{rj_number}"
+
+    warn "RJ number is #{rj_number}".blue
+
+    url_file = file.dirname / "#{fname_no_ext}.url"
+
+    warn %(Write URL shortcut to "#{url_file}").blue
+
+    url_file.write <<~URL
+        [InternetShortcut]
+        URL=https://www.dlsite.com/maniax/work/=/product_id/#{rj_number}
+    URL
+
+end
