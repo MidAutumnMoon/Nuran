@@ -80,7 +80,7 @@
                     self.nixosModules.homeManagerAdapter
                     sops-nix.nixosModules.default
                     impermanence.nixosModule
-                    home-manager.nixosModule
+                    home-manager.nixosModules.home-manager
                 ]
                 ++ ( lib.listAllModules ./nixos )
             ;
