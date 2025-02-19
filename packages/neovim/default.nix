@@ -17,7 +17,7 @@ let
         paths = vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
         unwanted = [
             "verilog" "gnuplot" "v" "slang" "ssh_config"
-            "objc" "nim"
+            "objc" "nim" "racket" "commonlisp" "scheme"
         ];
     in runCommand "ts-parsers" {} ''
         declare dest="$out/nvim/site/parser";
