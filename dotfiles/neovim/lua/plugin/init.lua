@@ -72,19 +72,25 @@ local Plugins = {
         opts = {},
     },
 
-    -- {
-    --     "eraserhd/parinfer-rust",
-    --     ft = {
-    --         "racket",
-    --         "lisp",
-    --         "scheme"
-    --     },
-    --     build = {
-    --         "cargo build --release",
-    --         "rm -fr target/release/build/",
-    --         "rm -fr target/release/deps/",
-    --     },
-    -- },
+    {
+        "eraserhd/parinfer-rust",
+        ft = {
+            "racket",
+            "lisp",
+            "scheme"
+        },
+        init = function()
+            local user = vim.loop.os_getenv( "USER" )
+            assert( user and user ~= "", "Can't read $USER" )
+            local profile = "/etc/profiles/per-user/" .. user
+            local dylib = profile .. "/lib/libparinfer_rust.so"
+            local stat = vim.loop.fs_stat( dylib )
+            assert( stat and stat.type == "file", "Dylib not exists" )
+            vim.g.parinfer_dylib_path = dylib
+        end
+    },
+
+    { "benknoble/vim-racket" },
 
     --
     -- Navigating
