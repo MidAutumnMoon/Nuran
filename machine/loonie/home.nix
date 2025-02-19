@@ -27,6 +27,7 @@ in {
         wsl-open
 
         inori
+        parinfer-rust # for the dylib
     ];
 
     sops.age.keyFile = "${configHome}/sops/age/keys.txt";
