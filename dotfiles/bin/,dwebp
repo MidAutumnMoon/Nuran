@@ -25,5 +25,5 @@ ensure
     barrier.stop
 end
 
-Dir.mkdir "original"
-FileUtils.move WEBP_FILES, "original"
+Dir.mkdir "webp"
+FileUtils.move WEBP_FILES, "webp"
