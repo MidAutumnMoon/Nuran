@@ -11,10 +11,7 @@
 
 end)()
 
-
--- Plugins
-
-local Plugins = {
+local plugins = {
 
     --
     -- Editing
@@ -311,9 +308,9 @@ local Plugins = {
         "nvim-lua/plenary.nvim"
     }
 
-} -- End Plugins
+}
 
-local Config = {
+local config = {
 
     checker = { enabled = false },
 
@@ -328,7 +325,7 @@ local Config = {
 
 } -- End Config
 
-require "lazy".setup( Plugins, Config )
+require "lazy".setup( plugins, config )
 
 
 vim.cmd [[ command! P :Lazy sync ]]
