@@ -292,11 +292,18 @@ local plugins = {
     --     config = function() require "plugin.catppuccin" end
     -- },
 
+    -- {
+    --     "rebelot/kanagawa.nvim",
+    --     config = function ()
+    --         require "kanagawa".setup { }
+    --         vim.cmd "colorscheme kanagawa-wave"
+    --     end
+    -- },
+
     {
-        "rebelot/kanagawa.nvim",
-        config = function ()
-            require "kanagawa".setup { }
-            vim.cmd "colorscheme kanagawa-wave"
+        "olimorris/onedarkpro.nvim",
+        config = function()
+            vim.cmd "colorscheme onedark"
         end
     },
 
