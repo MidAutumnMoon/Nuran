@@ -1,5 +1,8 @@
 { lib, nixosConfig, config, pkgs, ... }:
 
+# Excellent material for configuring git:
+# https://blog.gitbutler.com/how-git-core-devs-configure-git/
+
 let
 
     inherit ( pkgs )
@@ -26,9 +29,36 @@ in {
 
         [diff]
             mnemonicPrefix = true
+            renames = true
+            algorithm = histogram
+            colorMoved = plain
+
+        [branch]
+            sort = -committerdate
+
+        [tag]
+            sort = version:refname
 
         [pull]
-            rebase = "merges"
+            rebase = true
+
+
+        [push]
+            default = simple
+            # Auto create branches and tag on remote
+            # might cause problem?
+            autoSetupRemote = true
+            followTags = true
+
+        [fetch]
+            prune = true
+            pruneTags = true
+            all = true
+
+        [rebase]
+            autoSquash = true
+            autoStash = true
+            updateRefs = true
 
         [status]
             showUntrackedFiles = "all"
@@ -53,6 +83,19 @@ in {
             navigate = true
             hyperlinks = true
             line-numbers = true;
+
+        [column]
+            ui = auto
+
+        [help]
+            autocorrect = prompt
+
+        [commit]
+            verbose = true
+
+        [rerere]
+            enabled = true
+            autoupdate = true
 
 
         # Alias
