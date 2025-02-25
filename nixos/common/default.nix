@@ -13,6 +13,7 @@
         };
         tmp.useTmpfs = true;
         tmp.tmpfsSize = "100%";
+        bcache.enable = false;
     };
 
     i18n.defaultLocale = "en_US.UTF-8";
@@ -22,10 +23,17 @@
         command-not-found.enable = false;
     };
 
+    environment.defaultPackages = lib.mkDefault [];
+
     environment.systemPackages = with pkgs; [
-        fd ripgrep
+        fd
+        ripgrep
         file
-        htop screen mtr
+        htop
+        screen
+        mtr
+        rsync
+        strace
     ];
 
     services = {
