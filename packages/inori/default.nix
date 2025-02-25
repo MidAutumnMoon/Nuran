@@ -29,8 +29,8 @@ rustTeapot.buildRustPackage {
     src = fetchFromGitHub {
         owner = "MidAutumnMoon";
         repo = "InOri";
-        rev = "d69c85070b9357a922a9d0082605ad91e29ca22b";
-        hash = "sha256-W9Kuw27D7QYqfKlHMZU+nl0SCmcBxSsZLxGOV7lBZNk=";
+        rev = "5402aa908115ae3cfde2243a901d1b3d4356c471";
+        hash = "sha256-K8UIYhupK2TJLLK5V+5577TgTXbRkIOCBZhzQIVLFyE=";
     };
 
     cargoHash = "sha256-eAwG0h42EyOV59CvxBk+ETLbJUXK49WposVf1hhieUk=";
