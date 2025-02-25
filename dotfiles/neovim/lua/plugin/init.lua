@@ -303,7 +303,13 @@ local plugins = {
     {
         "olimorris/onedarkpro.nvim",
         config = function()
-            vim.cmd "colorscheme onedark"
+            require "onedarkpro" .setup {
+                options = {
+                    cursorline = true,
+                    lualine_transparency = true,
+                }
+            }
+            vim.cmd "colorscheme onedark_dark"
         end
     },
 
