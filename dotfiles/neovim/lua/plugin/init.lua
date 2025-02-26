@@ -289,29 +289,38 @@ local plugins = {
     -- {
     --     "catppuccin/nvim",
     --     name = "catppuccin",
-    --     config = function() require "plugin.catppuccin" end
-    -- },
-
-    -- {
-    --     "rebelot/kanagawa.nvim",
-    --     config = function ()
-    --         require "kanagawa".setup { }
-    --         vim.cmd "colorscheme kanagawa-wave"
+    --     config = function()
+    --         require "catppuccin".setup {
+    --             flavour = "mocha",
+    --             transparent_background = true,
+    --         }
+    --         vim.cmd.colorscheme "catppuccin"
     --     end
     -- },
 
     {
-        "olimorris/onedarkpro.nvim",
+        "scottmckendry/cyberdream.nvim",
         config = function()
-            require "onedarkpro" .setup {
-                options = {
-                    cursorline = true,
-                    lualine_transparency = true,
-                }
+            require "cyberdream".setup {
+                transparent = true,
+                cache = true,
             }
-            vim.cmd "colorscheme onedark_dark"
+            vim.cmd.colorscheme "cyberdream"
         end
     },
+
+    -- {
+    --     "olimorris/onedarkpro.nvim",
+    --     config = function()
+    --         require "onedarkpro" .setup {
+    --             options = {
+    --                 cursorline = true,
+    --                 lualine_transparency = true,
+    --             }
+    --         }
+    --         vim.cmd "colorscheme onedark_dark"
+    --     end
+    -- },
 
     --
     -- Other things
