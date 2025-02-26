@@ -58,6 +58,7 @@ local plugins = {
 
     {
         "windwp/nvim-autopairs",
+        event = { "InsertEnter" },
         config = function()
             require "plugin.autopairs"
         end
@@ -95,7 +96,6 @@ local plugins = {
 
     {
         "ggandor/leap.nvim",
-        dependencies = { "tpope/vim-repeat" },
         config = function()
             require "plugin.leap"
         end
@@ -160,9 +160,14 @@ local plugins = {
     {
         "lewis6991/gitsigns.nvim",
         name = "gitsigns",
-        config = function()
-            require "plugin.gitsigns"
-        end
+        event = { "CursorHold", "CursorMoved" },
+        opts = {
+            signs = {
+                add = { text = "+" },
+                change = { text = '~' },
+                delete = { text = '-' }
+            }
+        },
     },
 
     {
@@ -179,7 +184,9 @@ local plugins = {
     {
         "nanozuki/tabby.nvim",
         dependencies = 'nvim-tree/nvim-web-devicons',
-        config = function() require "plugin.tabby" end
+        config = function()
+            require "plugin.tabby"
+        end
     },
 
     {

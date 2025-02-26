@@ -52,18 +52,6 @@ cnoremap <A-k> <Up>
 inoremap <A-j> <Down>
 inoremap <A-k> <Up>
 
-" move lines in different modes
-nnoremap <silent> <C-k> :move-2<CR>
-nnoremap <silent> <C-j> :move+<CR>
-nnoremap <silent> <C-h> <<
-nnoremap <silent> <C-l> >>
-xnoremap <silent> <C-k> :move-2<CR>gv
-xnoremap <silent> <C-j> :move'>+<CR>gv
-xnoremap <silent> <C-h> <gv
-xnoremap <silent> <C-l> >gv
-xnoremap < <gv
-xnoremap > >gv
-
 " scroll the viewport faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
