@@ -231,13 +231,9 @@ local plugins = {
 
     {
         "L3MON4D3/LuaSnip",
-        build = "make install_jsregexp",
+        -- dependencies = { "honza/vim-snippets" },
         config = function()
-            local lazy_load = require( "luasnip.loaders.from_vscode" ).lazy_load
-            lazy_load {
-                paths = "./snippets",
-                default_priority = 2000,
-            }
+            require( "luasnip.loaders.from_snipmate" ).lazy_load { }
         end
     },
 
