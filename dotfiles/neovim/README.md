@@ -10,3 +10,6 @@ Dotfiles of other people which I borrowed some useful ideas from:
 - https://github.com/thecasualcoder/neovim-dotfiles/
 - https://github.com/AndrewRadev/Vimfiles/
 
+| ![](./.images/2025-02.png) |
+| :-: |
+| 2025 Feb Screenshot |
