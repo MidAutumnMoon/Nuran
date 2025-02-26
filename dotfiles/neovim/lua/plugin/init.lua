@@ -352,7 +352,11 @@ local config = {
     -- using $XDG_DATA_DIRS.
     performance = {
         rtp = { reset = false },
-    }
+    },
+
+    ui = {
+        border = "rounded",
+    },
 
 } -- End Config
 
