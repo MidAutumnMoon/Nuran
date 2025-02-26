@@ -1,7 +1,7 @@
 local cmp = require "cmp"
 local cmp_buffer = require "cmp_buffer"
 local luasnip = require "luasnip"
-
+local lspkind = require "lspkind"
 
 local sources = {}
 
@@ -85,6 +85,10 @@ cmp.setup {
     },
 
     formatting = {
+        format = lspkind.cmp_format {
+            mode = "symbol_text",
+            show_labelDetails = true,
+        },
         fields = { "abbr", "kind" },
     },
 

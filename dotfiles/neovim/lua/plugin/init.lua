@@ -201,6 +201,7 @@ local plugins = {
             "https://codeberg.org/FelipeLema/cmp-async-path",
             "hrsh7th/cmp-cmdline",
             "saadparwaiz1/cmp_luasnip",
+            "onsails/lspkind.nvim",
         },
         config = function()
             require "plugin.cmp"
