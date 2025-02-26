@@ -188,6 +188,13 @@ local plugins = {
         opts = {},
     },
 
+    {
+        "folke/snacks.nvim",
+        config = function()
+            require "plugin.snacks"
+        end
+    },
+
     --
     -- Cmp & LSP
     --
