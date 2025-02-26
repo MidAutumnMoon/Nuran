@@ -8,8 +8,14 @@ local sources = {}
 sources.buffer = {
     name = "buffer",
     option = {
-        -- Get words from all buffers
-        get_bufnrs = vim.api.nvim_list_bufs,
+        -- only visible buffers
+        get_bufnrs = function()
+            local bufs = {}
+            for _, win in ipairs( vim.api.nvim_list_wins() ) do
+                bufs[vim.api.nvim_win_get_buf(win)] = true
+            end
+            return vim.tbl_keys(bufs)
+        end,
         max_indexed_line_length = 200,
         keyword_pattern = [[\k\+]],
     }
@@ -23,7 +29,7 @@ cmp.setup {
             { name = "nvim_lsp_signature_help" },
             { name = "luasnip" },
             sources.buffer,
-            { name = "path" },
+            { name = "async_path" },
         }
     ),
 
