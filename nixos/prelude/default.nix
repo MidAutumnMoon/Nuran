@@ -39,6 +39,7 @@
     services = {
         dbus.implementation = "broker";
         vnstat.enable = true;
+        userborn.enable = true;
     };
 
     # Don't want to manually update it once a while.
