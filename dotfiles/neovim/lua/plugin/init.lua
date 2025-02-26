@@ -260,9 +260,7 @@ local plugins = {
     },
 
     {
-        -- Wait for https://github.com/RRethy/nvim-treesitter-endwise/pull/42 to be merged
-        -- "RRethy/nvim-treesitter-endwise",
-        "metiulekm/nvim-treesitter-endwise",
+        "RRethy/nvim-treesitter-endwise",
         after = "nvim-treesitter",
     },
 
