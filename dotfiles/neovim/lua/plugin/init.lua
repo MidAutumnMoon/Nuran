@@ -90,6 +90,14 @@ local plugins = {
 
     { "benknoble/vim-racket" },
 
+    {
+        "lukas-reineke/virt-column.nvim",
+        opts = {
+            virtcolumn = "85",
+            char = "·",
+        },
+    },
+
     --
     -- Navigating
     --

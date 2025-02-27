@@ -30,6 +30,10 @@ local options = {
     expandtab = true,
     autoindent = true,
 
+    -- textwidth is too strict, use colorcolumn solely as a hint
+    -- textwidth = 0,
+    -- colorcolumn = "85",
+
     completeopt = "menuone,preview,longest",
     diffopt = "filler,vertical",
 
