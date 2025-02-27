@@ -144,6 +144,8 @@ local plugins = {
 
     {
         "andymass/vim-matchup",
+        keys = { "%", "<Enter>" },
+        event = { "InsertEnter" },
         after = "nvim-treesitter",
         init = function()
             vim.g.matchup_matchparen_deferred = 1
@@ -379,7 +381,18 @@ local config = {
         border = "rounded",
     },
 
-} -- End Config
+}
+
+config.performance.rtp.disabled_plugins = {
+    "gzip",
+    "matchit",
+    "matchparen",
+    "netrwPlugin",
+    "tarPlugin",
+    "tohtml",
+    "tutor",
+    "zipPlugin",
+}
 
 require "lazy".setup( plugins, config )
 
