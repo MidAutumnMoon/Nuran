@@ -1,24 +1,20 @@
-local SkippedFiletype = {
+local ft_skip = {
     "neo-tree",
 }
 
 local function skipping()
-    return vim.tbl_contains( SkippedFiletype, vim.bo[0].filetype )
+    return vim.tbl_contains( ft_skip, vim.bo[0].filetype )
 end
 
-
-local KeyCommands = {
+local keycmds = {
     ["<Tab>"] = "wincmd w",
     ["<S-Tab>"] = "wincmd W",
 }
 
-for key, command in pairs( KeyCommands ) do
-
+for key, cmd in pairs( keycmds ) do
     vim.keymap.set( "n", key, function()
-        vim.cmd( command )
-        while skipping() do
-            vim.cmd( command )
-        end
+        repeat
+            vim.cmd( cmd )
+        until not skipping()
     end )
-
 end
