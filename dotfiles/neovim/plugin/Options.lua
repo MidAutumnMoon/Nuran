@@ -90,6 +90,6 @@ for option, value in pairs( options ) do
     vim.opt[option] = value
 end
 
-vim.opt.shortmess:append("IF")
+vim.opt.shortmess:append( "Imr" )
 vim.opt.formatoptions:append("1,j")
 
