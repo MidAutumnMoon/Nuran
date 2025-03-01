@@ -144,8 +144,6 @@ local plugins = {
 
     {
         "andymass/vim-matchup",
-        keys = { "%", "<Enter>" },
-        event = { "InsertEnter" },
         after = "nvim-treesitter",
         init = function()
             vim.g.matchup_matchparen_deferred = 1

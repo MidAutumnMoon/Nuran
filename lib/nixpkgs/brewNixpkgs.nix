@@ -2,25 +2,72 @@ lib:
 
 let
 
-    inherit ( builtins )
+    inherit ( lib )
         mapAttrs
-        removeAttrs
+        makeExtensible
+        isList
+        isString
     ;
 
     inherit ( lib.nuran.trivial )
         eachSystem
     ;
 
-    importEachSystem = nixpkgs: options:
-        eachSystem ( system:
-            import nixpkgs ( { inherit system; } // options )
+    __brewNixpkgs = nixpkgs: options: makeExtensible ( self: {
+        # __pkgs :: { "x86_64-linux" = pkgs; ... }
+        #
+        # Attr of system triples to the initialized nixpkgs instances;
+        __pkgs = self.__eachSystem ( system:
+            import nixpkgs ( { inherit system; } // self.__options )
         );
 
-    # __functor :: attrset -> (attrset -> whatever) -> attrset
-    __functor = self: fun:
-        removeAttrs self [ "__functor" ]
-        |> mapAttrs ( system: pkgs: fun pkgs )
-    ;
+        # __eachSystem :: "eachSystem" object
+        #
+        # Capture the eachSystem so that it can be updated later if needed.
+        __eachSystem = eachSystem;
+
+        # __options :: import <nixpkgs> {...}
+        #                               ^ shape of this thing
+        #
+        # Captured "options" because it can be updated later.
+        __options = options;
+
+        # __functor :: self -> ( pkgs -> 'a ) -> { "x86_64-linux" = 'a; ... }
+        #
+        # The magic functor. See `brewNixpkgs` for a explaination
+        # of such design.
+        __functor = self: fn:
+            mapAttrs ( _system: pkgs: fn pkgs ) self.__pkgs;
+
+
+        # __updateOptions :: string -> 'a -> ( 'a -> 'b ) -> self
+        #
+        # Handy function for updating one field in `__options`.
+        __updateOptions = name: fallback: updater:
+            self.extend ( _: prev: let
+                __o = prev.__options;
+            in {
+                __options = __o // {
+                    ${name} = updater ( __o.${name} or fallback );
+                };
+            } );
+
+        # appendOverlays :: [ overlay ] -> self
+        #
+        # Append more overlays to nixpkgs option.
+        appendOverlays = xs:
+            assert isList xs;
+            self.__updateOptions "overlays" [] ( old: old ++ xs );
+
+        # appendSystems :: [ "system triple" ] -> self
+        #
+        # Add more systems to the output.
+        appendSystems = xs:
+            assert lib.all isString xs;
+            self.extend ( _: prev: {
+                __eachSystem = prev.__eachSystem.appendSystems xs;
+            } );
+    } ) ;
 
 in
 
@@ -61,7 +108,6 @@ in
     #   1) `system` can be accessed within each `pkgs`, e.g.
     #   pkgsBrew ( p: p.system ) -> { `system` = system string; }
     #
-    brewNixpkgs = nixpkgs: options:
-        ( importEachSystem nixpkgs options ) // { inherit __functor; };
+    brewNixpkgs = __brewNixpkgs;
 
 }
