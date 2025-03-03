@@ -7,7 +7,7 @@ lib:
         lib.nixosSystem {
             specialArgs = { inherit lib; };
             modules = [
-                { nixpkgs.pkgs = pkgsBrew.${system}; }
+                { nixpkgs.pkgs = pkgsBrew.pkgsOf system; }
                 { _module.args = arguments; }
             ] ++ toplevel ++ modules;
         }

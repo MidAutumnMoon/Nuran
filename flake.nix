@@ -100,7 +100,7 @@
         };
 
         colmena = lib.nixos2colmena self.nixosConfigurations {
-            meta.nixpkgs = pkgsBrew."x86_64-linux";
+            meta.nixpkgs = pkgsBrew.pkgsOf "x86_64-linux";
             joar.deployment.targetHost = "joar.home.lan";
         };
 
