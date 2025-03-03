@@ -7,6 +7,8 @@ let
         makeExtensible
         isList
         isString
+        filterAttrs
+        elem
     ;
 
     inherit ( lib.nuran.trivial )
@@ -39,7 +41,6 @@ let
         __functor = self: fn:
             mapAttrs ( _system: pkgs: fn pkgs ) self.__pkgs;
 
-
         # __updateOptions :: string -> 'a -> ( 'a -> 'b ) -> self
         #
         # Handy function for updating one field in `__options`.
@@ -51,6 +52,17 @@ let
                     ${name} = updater ( __o.${name} or fallback );
                 };
             } );
+
+        # pkgsOf :: string -> pkgs
+        #
+        # Get the instance of pkgs of the given system.
+        pkgsOf = system:
+            assert isString system;
+            self.__pkgs.${system};
+
+        pkgsOfSystems = systems:
+            assert lib.all isString systems;
+            filterAttrs ( s: _: elem s systems ) self.__pkgs;
 
         # appendOverlays :: [ overlay ] -> self
         #
