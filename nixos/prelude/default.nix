@@ -3,6 +3,7 @@
 {
 
     boot = {
+        kernelPackages = pkgs.linuxPackages_latest;
         kernel.sysctl = {
             "kernel.unprivileged_bpf_disabled" = 1;
             "dev.tty.ldisc_autoload" = 0;
