@@ -21,6 +21,8 @@
         impermanence.url =
             "github:nix-community/impermanence";
 
+        preservation.url = "github:nix-community/preservation";
+
         sops-nix = {
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -80,16 +82,15 @@
                     self.nixosModules.homeManagerAdapter
                     sops-nix.nixosModules.default
                     impermanence.nixosModule
+                    preservation.nixosModules.default
                     home-manager.nixosModules.home-manager
                 ]
-                ++ ( lib.listAllModules ./nixos )
-            ;
+                ++ ( lib.listAllModules ./nixos );
             nixos = lib.brewNixOS {
                 inherit pkgsBrew modules;
                 arguments = { inherit flakes; };
             };
         in {
-
             joar = nixos "x86_64-linux" [ ./machine/joar ];
 
             loonie = nixos "x86_64-linux" [
@@ -97,11 +98,13 @@
                 flakes.nixos-wsl.nixosModules.default
             ];
 
+            ren = nixos "x86_64-linux" [ ./machine/ren ];
         };
 
         colmena = lib.nixos2colmena self.nixosConfigurations {
             meta.nixpkgs = pkgsBrew.pkgsOf "x86_64-linux";
             joar.deployment.targetHost = "joar.home.lan";
+            ren.deployment.targetHost = "ren.home.lan";
         };
 
         nixosModules.homeManagerAdapter =
