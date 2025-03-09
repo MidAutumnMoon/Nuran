@@ -73,16 +73,6 @@ rec {
         callPackage ./gtkgreet {};
 
     /*
-     * Linux kernel and modules and packages for it.
-     */
-
-    linux_teapot =
-        callPackage ./kernel/kernel.nix {};
-
-    linuxPackages_teapot =
-        callPackage ./kernel/packages.nix { kernel = linux_teapot; };
-
-    /*
      * Libraries and other hard things
      */
 

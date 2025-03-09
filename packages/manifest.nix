@@ -3,12 +3,6 @@ with ( getFlake (toString ../.) ).packages."${currentSystem}";
 
 {
 
-    kernels-modules = let
-        kpackage = linuxPackages_teapot;
-    in [
-        kpackage.kernel.all
-    ];
-
     parallel-1 = [
         hentai-home
         unrar

@@ -3,7 +3,6 @@
 {
 
     boot = {
-        # kernelPackages = pkgs.linuxPackages_teapot;
         kernel.sysctl = {
             "kernel.unprivileged_bpf_disabled" = 1;
             "dev.tty.ldisc_autoload" = 0;

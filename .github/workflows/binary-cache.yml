@@ -27,7 +27,6 @@ jobs:
             fail-fast: false
             matrix:
                 subject:
-                - kernels-modules
                 - parallel-1
                 - parallel-2
                 - some-things
