@@ -1,5 +1,5 @@
 root_passwd_plaintext_cuz_human_forgets: ENC[AES256_GCM,data:VAikVsDobOlBw0j67g==,iv:xD6cweTXYHEQx8U2Po951Sfuu/SL8eGsxPNmraNghtg=,tag:cgIMfRMmDXz8A888LRyAAg==,type:str]
-root_passwd: ENC[AES256_GCM,data:0Ed7fT6HYQvedCGN5Z4dMVSRKiCtoYtPQO+MmR7Z+1I05J6Knnyi/T+QWsIlKV82H/4AvQ3vZi9NXsIHqddwxvACNF6hMrKa/KSXI4J5AbvtWzHiUy4cA2i/EOAP+n9nR/wn9lqq8J7kHg==,iv:+iStFhSSnlXODfFHoEjP73P5tZRLJ9qHa6e14xduzm0=,tag:UX4KhcYbQOebnMjBZmjrSw==,type:str]
+passwd--root: ENC[AES256_GCM,data:D80Dl2/kV9DZ0DWdN8Nhcf3lViy8JoCBC8eGu36yOpSti1xZt0sgvkCJc5yOBb2t4jkcKEbIdQleBhYFAHirnrB0EXKnyvG58MUZNh1oaDy+D6Ik/uWPHsQgubtDz11f8nj7e92PbC78Hw==,iv:W3Asx2rboRF3ugPOEKkQrW1hXGF88bGu44GHnPLQeqQ=,tag:ZL1m/TL12K/Fwog6Pd5I3A==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -42,8 +42,8 @@ sops:
             UGR4Z1RyazdXL0xPZUIyamgzdHNYT3cKPCPYrKOKxwCS7d7VJiul4yWsSC4RE1zV
             ILO7Yu8izjCl9GfYp7mGzbXk8FBJ4TzCNXOFTFpywj0zOTgxJOt/Bw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-03-09T14:58:24Z"
-    mac: ENC[AES256_GCM,data:pHnvC9Ewy+9AgsJ5fYDVqpCfAT7xypMEAJl+Lg8If7ql/t6DsaZa0KmM3SmHXxMeHVZI6tjs2DKsvbVSOa+oGbZZFa57xp7A5xGzHRZkem4BxdrpJI8nZIkkA5sbHyIVhTjKrYbMML1ySyr0L/YY39QObanGC4o8qXZVzmnKPgs=,iv:pAjBmHWCxAg0f/Uxv4y1Xs5+nuyxPLq7Ymus/vg9F94=,tag:TMpmQHBbV/ifwzAs67OSJQ==,type:str]
+    lastmodified: "2025-03-09T16:58:30Z"
+    mac: ENC[AES256_GCM,data:9XB9P/nd2HsXEaWCoUDTMIKFOosxzuercLfhPqs3WBkMCBCFCfXYi9VfReAroxwuFsDVXbF64JPddgdAK+LI5SSgnXwbAsejuU0vjcxChgpCBX6dSBwQTca/L2ysEW/QfDJHX2zU9tZFsFn3X5/bsXx0v6CSTVHqwn8XUC63Q10=,iv:dxYMaX6oruB0fWuefBZxWJ1wbsVXaT4v9cAkhfHWek8=,tag:HELkowuiRBaczQ1p5LbJog==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.4
