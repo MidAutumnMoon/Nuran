@@ -2,7 +2,7 @@ local lspconfig = require "lspconfig"
 
 local servers = {
     nixd = {
-        cmd = { "nixd", "--semantic-tokens=false" }
+        cmd = { "nixd", "--semantic-tokens=false" },
     },
     rust_analyzer = {},
     rubocop = { single_file_support = true, },
@@ -23,6 +23,9 @@ for server, config in pairs( servers ) do
     config.on_attach = function ( client, bufnr )
         for key, action in pairs( lsp_keymaps ) do
             vim.keymap.set( "n", key, action, { silent = true, buffer = bufnr } )
+        end
+        if server == "nixd" then
+            client.server_capabilities.completionProvider = false
         end
     end
 
