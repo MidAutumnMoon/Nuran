@@ -82,6 +82,7 @@ jobs:
                 hostname:
                 - joar
                 - loonie
+                - ren
 
         defaults:
             run: { shell: bash }
