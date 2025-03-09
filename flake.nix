@@ -107,11 +107,14 @@
             ren = nixos "x86_64-linux" [ ./machine/ren ];
         };
 
-        colmena = lib.nixos2colmena self.nixosConfigurations {
-            meta.nixpkgs = pkgsBrew.pkgsOf "x86_64-linux";
-            joar.deployment.targetHost = "joar.home.lan";
-            ren.deployment.targetHost = "ren.home.lan";
-        };
+        colmenaHive = lib.nixos2colmena self.nixosConfigurations
+            {
+                meta.nixpkgs = pkgsBrew.pkgsOf "x86_64-linux";
+                joar.deployment.targetHost = "joar.home.lan";
+                ren.deployment.targetHost = "ren.home.lan";
+            }
+            |> flakes.colmena.lib.makeHive
+        ;
 
         nixosModules.homeManagerAdapter =
             { lib, ... }: let
