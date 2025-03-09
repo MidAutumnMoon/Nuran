@@ -2,6 +2,10 @@
 
 {
 
+    imports = [
+        ./services.nix
+    ];
+
     networking = {
         hostName = "ren";
         proxy.default = "http://10.0.1.217:7890";

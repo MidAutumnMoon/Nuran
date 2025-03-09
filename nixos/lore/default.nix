@@ -8,10 +8,6 @@ let
 
 in {
 
-    imports = [
-        ./certs
-    ];
-
     options.lore.pubkeys = lib.mkOption {
         type = types.attrsOf types.str;
         readOnly = true;
