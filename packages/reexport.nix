@@ -16,12 +16,14 @@ let
 
 in
 
-with flakes;
-
 {
 
-    inherit ( packagesFrom sops-nix )
+    inherit ( packagesFrom flakes.sops-nix )
         sops-install-secrets
+    ;
+
+    inherit ( packagesFrom flakes.colmena )
+        colmena
     ;
 
 }
