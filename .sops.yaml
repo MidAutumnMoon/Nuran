@@ -3,10 +3,8 @@ keys:
     - &me "age17lvnmh99feams2pvfljw34k5s705uk89x6g26r4ml85yu0h2q9uswpmjm6"
     - &joar "age1j0e09hj4w5u228jee09a3e8wq0x3g8nmchfmfgwvk00m8u3w8uzskynfjw"
     - &loonie "age1jn6rnqfckpay0g5m5dat6z08flr6esrdjdukmpehv06ulpl6lfhq63e5n2"
+    - &ren "age1q0djhewgd46stjzkszzfcqallry9kd7sd6xvr94geur8ls4wz9zs6f7877"
 
 creation_rules:
     - key_groups:
-        - age:
-            - *me
-            - *joar
-            - *loonie
+        - age: [ *me, *joar, *loonie, *ren ]
