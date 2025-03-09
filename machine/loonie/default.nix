@@ -10,6 +10,13 @@ in {
         ./rclone
     ];
 
+    programs = {
+        nh = {
+            enable = true;
+            flake = "/home/teapot/Nuran/";
+        };
+    };
+
     home-manager.users.${selfUsername} = import ./home.nix;
 
     wsl = {
