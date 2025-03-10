@@ -5,6 +5,7 @@
     imports = [
         ./services/adguardhome.nix
         ./services/caddy.nix
+        ./services/mihomo.nix
     ];
 
     environment.systemPackages = with pkgs; [
