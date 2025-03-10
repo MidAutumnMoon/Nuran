@@ -1,9 +1,8 @@
-{ config, lib, pkgs, ... }:
-
 {
 
     imports = [
-        ./services.nix
+        ./services/adguardhome.nix
+        ./services/caddy.nix
     ];
 
     networking = {
