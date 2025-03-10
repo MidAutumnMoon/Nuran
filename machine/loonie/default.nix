@@ -25,7 +25,6 @@ in {
 
         wslConf = {
             user.default = selfUsername;
-            network.generateResolvConf = false;
         };
 
         interop = {
@@ -48,8 +47,6 @@ in {
         firewall.enable = lib.mkForce false;
 
         proxy.default = "http://127.0.0.1:7890";
-
-        nameservers = [ "10.0.1.1" ];
     };
 
     services.journald.extraConfig = ''
