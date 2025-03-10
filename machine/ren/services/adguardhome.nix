@@ -77,7 +77,7 @@ in
     # caddy config
     #
 
-    services.caddy.virtualHosts."home_lan".extraConfig = let
+    services.caddy.virtualHosts."*.home.lan".extraConfig = let
         inherit ( config.services.adguardhome )
             port host
         ;

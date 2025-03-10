@@ -15,8 +15,7 @@
 
     services.caddy.enable = true;
 
-    services.caddy.virtualHosts."home_lan" = {
-        hostName = "*.home.lan";
+    services.caddy.virtualHosts."*.home.lan" = {
         listenAddresses = [ "[::]" ];
         logFormat = ''
             output stderr
