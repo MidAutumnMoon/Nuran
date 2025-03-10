@@ -24,9 +24,6 @@
 
         # Some modules
 
-        impermanence.url =
-            "github:nix-community/impermanence";
-
         preservation.url = "github:nix-community/preservation";
 
         sops-nix = {
@@ -87,7 +84,6 @@
                 with flakes; [
                     self.nixosModules.homeManagerAdapter
                     sops-nix.nixosModules.default
-                    impermanence.nixosModule
                     preservation.nixosModules.default
                     home-manager.nixosModules.home-manager
                 ]
