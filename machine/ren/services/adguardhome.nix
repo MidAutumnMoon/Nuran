@@ -54,19 +54,23 @@ in
         };
     };
 
-    networking.nat = {
-        enable = true;
-        externalInterface = "enp3s0";
-        forwardPorts = [ {
-            destination = "${bindAddr}:53";
-            sourcePort = 53;
-            proto = "udp";
-        } ];
+    networking.nftables.tables."adguard-nat" = {
+        family = "ip";
+        content = ''
+            chain pre {
+                type nat hook prerouting priority dstnat; policy accept
+                iifname "enp3s0" \
+                    meta l4proto { tcp, udp } th dport 53 \
+                    dnat to ${bindAddr}
+            }
+        '';
     };
 
     networking.interfaces."lo".ipv4.addresses = [
         { address = bindAddr; prefixLength = 32; }
     ];
+
+    networking.nameservers = [ bindAddr ];
 
 
     #
