@@ -32,13 +32,7 @@ in
             mode: "rule"
             bind-address: "*"
             mixed-port: ${toString listenPort}
-
             allow-lan: true
-            lan-allowed-ips:
-                - "10.0.0.0/8"
-                - "fd00::/8"
-                - "127.0.0.0/8"
-                - "::1/128"
 
             external-controller: "127.0.0.1:${toString apiPort}"
             external-controller-cors:
