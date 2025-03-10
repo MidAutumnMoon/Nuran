@@ -1,10 +1,12 @@
+{ lib, ... }:
+
 {
 
     networking ={
         useNetworkd = true;
     };
 
-    services.resolved.enable = true;
+    services.resolved.enable = lib.mkDefault true;
 
     boot.kernel.sysctl = {
         "net.core.default_qdisc" = "fq";

@@ -2,11 +2,8 @@
 
 let
 
-    wpad = pkgs.writeTextDir "wpad.dat" /* javascript */ ''
-        function FindProxyForURL( url, host ) {
-            return "PROXY ren.home.lan:7890";
-        }
-    '';
+    listenPort = 7890;
+    apiPort = 7895;
 
 in
 
@@ -38,10 +35,17 @@ in
         ];
     };
 
-    networking.firewall.allowedTCPPorts = [ 7890 ];
-    networking.firewall.allowedUDPPorts = [ 7890 ];
+    networking.firewall.allowedTCPPorts = [ listenPort ];
+    networking.firewall.allowedUDPPorts = [ listenPort ];
 
-    services.caddy.virtualHosts."http://wpad" = {
+    services.caddy.virtualHosts."http://wpad" = let
+        wpad = pkgs.writeTextDir "wpad.dat"
+            /* javascript */ ''
+                function FindProxyForURL( url, host ) {
+                    return "PROXY ren.home.lan:${toString listenPort}";
+                }
+            '';
+    in {
         listenAddresses = [ "[::]" ];
         logFormat = ''
             output stderr
@@ -49,6 +53,19 @@ in
         extraConfig = ''
             root * ${wpad}
             file_server browse
+        '';
+    };
+
+    services.caddy.virtualHosts."*.home.lan" = {
+        extraConfig = ''
+            @mihomo host clash.home.lan
+            handle @mihomo {
+                handle_path /api* {
+                    reverse_proxy 127.0.0.1:${toString apiPort}
+                }
+                root * ${pkgs.metacubexd}
+                file_server
+            }
         '';
     };
 

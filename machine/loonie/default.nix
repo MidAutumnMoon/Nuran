@@ -46,8 +46,10 @@ in {
         # besides, Windows already has firewall configured anyway.
         firewall.enable = lib.mkForce false;
 
-        proxy.default = "http://127.0.0.1:7890";
+        proxy.default = "http://ren.home.lan:7890";
     };
+
+    services.resolved.enable = false;
 
     services.journald.extraConfig = ''
         SystemMaxUse = 256M
