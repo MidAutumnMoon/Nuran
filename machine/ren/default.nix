@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
 
     imports = [
@@ -5,10 +7,19 @@
         ./services/caddy.nix
     ];
 
+    environment.systemPackages = with pkgs; [
+        ( neovim_teapot.override { treesitter = false; } )
+    ];
+
     networking = {
         hostName = "ren";
         proxy.default = "http://10.0.1.217:7890";
         useDHCP = true;
+    };
+
+    documentation = {
+        enable = false;
+        man.enable = false;
     };
 
     #
