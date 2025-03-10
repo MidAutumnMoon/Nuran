@@ -97,8 +97,6 @@
                 arguments = { inherit flakes; };
             };
         in {
-            joar = nixos "x86_64-linux" [ ./machine/joar ];
-
             loonie = nixos "x86_64-linux" [
                 ./machine/loonie
                 flakes.nixos-wsl.nixosModules.default
@@ -110,7 +108,6 @@
         colmenaHive = lib.nixos2colmena self.nixosConfigurations
             {
                 meta.nixpkgs = pkgsBrew.pkgsOf "x86_64-linux";
-                joar.deployment.targetHost = "joar.home.lan";
                 ren.deployment.targetHost = "ren.home.lan";
             }
             |> flakes.colmena.lib.makeHive

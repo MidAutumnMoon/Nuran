@@ -79,7 +79,6 @@ jobs:
             fail-fast: false
             matrix:
                 hostname:
-                - joar
                 - loonie
                 - ren
 
