@@ -14,7 +14,7 @@
 
     networking = {
         hostName = "ren";
-        proxy.default = "http://10.0.1.217:7890";
+        proxy.default = "http://127.0.0.1:7890";
         useDHCP = true;
     };
 
