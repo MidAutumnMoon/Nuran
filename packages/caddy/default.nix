@@ -69,7 +69,7 @@ buildGoModule rec {
         go mod tidy -v
     '';
 
-    env.GOAMD64 = "v2";
+    env.GOAMD64 = "v3";
     env.CGO_ENABLED = "0";
 
     meta = {
