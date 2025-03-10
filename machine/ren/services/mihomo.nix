@@ -2,19 +2,20 @@
 
 let
 
-    listenPort = 7890;
-    apiPort = 7895;
+    listenPort = config.lore.ports.mihomo_listen;
+    apiPort = config.lore.ports.mihomo_api;
+
+    restartUnits = [ "mihomo.service" ];
 
 in
 
 {
 
     # N.B. assume /run/secrets/cert--hysteria_ca exists
-    sops.secrets = let
-        restartUnits = [ "mihomo.service" ];
-    in {
-        "conf--mihomo" = {
-            sopsFile = ./secrets/conf--mihomo.sops.data;
+    sops.secrets = {
+        # The private part, such as ip and passwords.
+        "conf--mihomo--private" = {
+            sopsFile = ./secrets/conf--mihomo--private.sops.data;
             format = "binary";
             inherit restartUnits;
         };
@@ -24,9 +25,38 @@ in
         };
     };
 
+    # The full mihomo config. This fragment is not sensitive,
+    # put it here to utilize modules system.
+    sops.templates."conf--mihomo--full" = {
+        content = /* yaml */ ''
+            mode: "rule"
+            bind-address: "*"
+            mixed-port: ${toString listenPort}
+
+            allow-lan: true
+            lan-allowed-ips:
+                - "10.0.0.0/8"
+                - "fd00::/8"
+                - "127.0.0.0/8"
+                - "::1/128"
+
+            external-controller: "127.0.0.1:${toString apiPort}"
+            external-controller-cors:
+                allow-origins:
+                    - '*'
+                allow-private-network: true
+
+            global-client-fingerprint: chrome
+            geodata-loader: standard
+
+            ${config.sops.placeholder.conf--mihomo--private}
+        '';
+        inherit restartUnits;
+    };
+
     services.mihomo = {
         enable = true;
-        configFile = config.sops.secrets."conf--mihomo".path;
+        configFile = config.sops.templates."conf--mihomo--full".path;
     };
 
     systemd.services."mihomo" = {

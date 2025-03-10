@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
 
@@ -14,7 +14,8 @@
 
     networking = {
         hostName = "ren";
-        proxy.default = "http://127.0.0.1:7890";
+        proxy.default =
+            "http://127.0.0.1:${toString config.lore.ports.mihomo_listen}";
         useDHCP = true;
     };
 

@@ -34,6 +34,8 @@ in {
 
         lore.ports = {
             adguardhome_webui = 20081;
+            mihomo_listen = 7890;
+            mihomo_api = 7895;
         };
 
     };
