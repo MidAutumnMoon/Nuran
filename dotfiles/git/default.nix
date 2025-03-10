@@ -69,8 +69,8 @@ in {
         [core]
             quotePath = false
             pager = "${lib.getExe pkgs.delta}"
-            fsmonitor = "${lib.getExe pkgs.rs-git-fsmonitor}"
-            untrackedCache = true
+            # fsmonitor = "{lib.getExe pkgs.rs-git-fsmonitor}"
+            # untrackedCache = true
 
         [credential]
             helper = "store --file=${config.sops.secrets."git_cred".path}"
