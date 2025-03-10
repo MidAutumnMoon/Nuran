@@ -40,6 +40,9 @@ rec {
     hysteria_teapot =
         callPackage ./hysteria {};
 
+    mihomo =
+        callPackage ./mihomo { inherit ( prev ) mihomo; };
+
     /*
      * Terminals, shells and other things used in
      * that environment like CLI/TUI tools or multiplexers.
