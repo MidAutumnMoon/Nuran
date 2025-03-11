@@ -1,6 +1,5 @@
 name: "Teapot's binary cache"
 
-
 on:
     workflow_dispatch:
     push:
@@ -14,6 +13,8 @@ on:
         #- cron: "0 */4 * * *"
         - cron: "0 0 */2 * *"
 
+env:
+    CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
 jobs:
 
