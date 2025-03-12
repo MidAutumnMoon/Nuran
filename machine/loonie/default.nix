@@ -51,11 +51,6 @@ in {
 
     services.resolved.enable = false;
 
-    services.journald.extraConfig = ''
-        SystemMaxUse = 256M
-        RuntimeMaxUse = 256M
-    '';
-
     nix.nixPath = [
         "nulib=/home/teapot/Nuran/lib"
     ];
