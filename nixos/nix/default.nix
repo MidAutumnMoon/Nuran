@@ -1,61 +1,52 @@
 { lib, pkgs, flakes, ... }:
 
-lib.mkMerge [
+{
 
-{ nix.package = pkgs.nixVersions.stable; }
+    nix.package = pkgs.nixVersions.stable;
 
-{ nix.settings = {
+    nix.settings = {
+        auto-optimise-store = true;
+        keep-going = true;
+        narinfo-cache-negative-ttl = 60;
 
-    auto-optimise-store = true;
+        # Let cache.nixos.org be queried first.
+        substituters = lib.mkAfter [
+            "https://nuirrce.cachix.org"
+        ];
+        trusted-public-keys = [
+            "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
+        ];
 
-    keep-going = true;
-
-    narinfo-cache-negative-ttl = 60;
-
-    # Let cache.nixos.org be queried first.
-    substituters = lib.mkAfter [
-        "https://nuirrce.cachix.org"
-        # "https://cache.garnix.io"
-    ];
-
-    trusted-public-keys = [
-        "nuirrce.cachix.org-1:KQWa6ZfDkMPXeDiUpmyDhNw4CmgybPyeVklmi/1Rtqk="
-        # "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-    ];
-
-    auto-allocate-uids = true;
-
-    use-cgroups = true;
-
-    experimental-features = [
-        "nix-command"
-        "flakes"
-        "ca-derivations"
-        "auto-allocate-uids"
-        "cgroups"
-        "pipe-operators"
-    ];
-
-    use-xdg-base-directories = true;
-
-}; }
-
-{ nix.registry = {
-
-    "short" = {
-        from = { id = "p"; type = "indirect"; };
-        to = { type = "path"; path = flakes.nixpkgs; };
+        auto-allocate-uids = true;
+        use-cgroups = true;
+        experimental-features = [
+            "nix-command"
+            "flakes"
+            "ca-derivations"
+            "auto-allocate-uids"
+            "cgroups"
+            "pipe-operators"
+        ];
+        use-xdg-base-directories = true;
     };
 
-}; }
+    nix.registry = {
+        "short" = {
+            from = { id = "p"; type = "indirect"; };
+            to = { type = "path"; path = flakes.nixpkgs; };
+        };
+    };
 
-{
     nix.nixPath = [
         "nixpkgs=${toString flakes.nixpkgs}"
         "nixos=${toString flakes.nixpkgs}"
     ];
 
     nix.channel.enable = false;
-}
 
-]
+    nix.gc = {
+        automatic = true;
+        options = "--delete-older-than 7d";
+    };
+
+}
