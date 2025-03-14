@@ -16,8 +16,9 @@ in {
         shebangProgram = pkgs.ruby_teapot.with_preferred_gems;
     };
 
-    binary-cache-builder = self.rubyMiner {
-        path = ./binary-cache-builder.rb;
+    build-driver = self.rubyMiner {
+        path = ./build-driver.rb;
+        runtimeDeps = with pkgs; [ nix-fast-build ];
     };
 
     nix-update-driver = self.rubyMiner {
