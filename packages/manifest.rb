@@ -19,6 +19,7 @@
     go_things: %w[
         sops-install-secrets
         caddy_teapot
+        mihomo
     ],
 
     prvn_bundle: %w[
