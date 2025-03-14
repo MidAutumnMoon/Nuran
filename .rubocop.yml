@@ -13,6 +13,9 @@ Layout/EndAlignment:
 Layout/EmptyLines:
     Enabled: false
 
+Layout/EmptyLineAfterGuardClause:
+    Enabled: false
+
 Layout/EmptyLinesAroundBlockBody:
     Enabled: false
 
