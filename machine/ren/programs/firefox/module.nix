@@ -195,6 +195,14 @@
         lockPref( "toolkit.coverage.opt-out", true );
         lockPref( "toolkit.legacyUserProfileCustomizations.stylesheets", true );
         lockPref("view_source.wrap_long_lines", true);
+
+        // Disable access key for Firefox's own UI. Stops Firefox from
+        // swallowing keys with modifers, such as Alt-W.
+        // Ref: https://searchfox.org/firefox-main/source/accessible/generic/LocalAccessible.cpp
+        //
+        // I switched from Firefox's native shortcut config to fully xremap,
+        // which makes this obsolete. But worth documenting it anyway.
+        lockPref("ui.key.chromeAccess", 0);
     '';
 
 }

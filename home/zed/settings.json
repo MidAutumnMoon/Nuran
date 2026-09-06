@@ -324,7 +324,7 @@
         "inline": { "enabled": true },
     },
     "edit_predictions": {
-        "provider": "zed",
+        "provider": "mercury",
         "mode": "subtle",
     },
     "file_types": {

@@ -9,17 +9,23 @@
     services.xremap.config = {
         keymap = [
             {
-                # N.B. Don't forget to unbind or remap "Close Tab"
-                # to keys other than Ctrl+W in `about:keyboard`
-                name = "Firefox Vim-style word delete";
-                application.only = [ 
-                    "firefox"
-                    "org.telegram.desktop" 
+                name = "Generic Ctrl-w Kill Words";
+                application.only = [
+                    "org.telegram.desktop"
                     "CherryStudio"
                     "zcode"
                 ];
                 remap = {
                     "C-w" = "C-Backspace";
+                };
+            }
+            # C-w deletes words now, so A-w restores the original shortcut.
+            {
+                name = "Firefox Specific Ctrl-W Tweaks";
+                application.only = [ "firefox" ];
+                remap = {
+                    "C-w" = "C-Backspace";
+                    "A-w" = "C-w";
                 };
             }
         ];
