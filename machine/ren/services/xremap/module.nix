@@ -8,23 +8,25 @@
 
     services.xremap.config = {
         keymap = [
+            # Exclude apps where C-w has special meaning.
             {
-                name = "Generic Ctrl-w Kill Words";
-                application.only = [
-                    "org.telegram.desktop"
-                    "CherryStudio"
-                    "zcode"
+                name = "C-w delete words";
+                application.not = [
+                    "foot"
+                    # dolphin has embedded terminal.
+                    # A bit leaky, but better than ruining C-w completely.
+                    "org.kde.dolphin"
                 ];
-                remap = {
-                    "C-w" = "C-Backspace";
-                };
+                remap = { "C-w" = "C-Backspace"; };
             }
             # C-w deletes words now, so A-w restores the original shortcut.
             {
-                name = "Firefox Specific Ctrl-W Tweaks";
-                application.only = [ "firefox" ];
+                name = "A-w closes";
+                application.only = [
+                    "firefox"
+                    "org.kde.dolphin"
+                ];
                 remap = {
-                    "C-w" = "C-Backspace";
                     "A-w" = "C-w";
                 };
             }
