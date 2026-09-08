@@ -24,6 +24,10 @@ in
         lsof
     ];
 
+    environment.pathsToLink = [
+        "/share/mpv"
+    ];
+
     environment.variables =
         xdg_vars
         // {

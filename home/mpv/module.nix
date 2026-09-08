@@ -3,7 +3,10 @@
 
 {
 
-    packages = [ pkgs.mpv ];
+    packages = with pkgs; [
+        mpv
+        mpvScripts.mpris
+    ];
 
     xdg_config."mpv".src = dots.get "mpv";
 
