@@ -12,8 +12,8 @@ stdenvNoCC.mkDerivation {
     src = fetchFromGitHub {
         owner = "AES0529";
         repo = "SillyTavern-OpenAI-Responses";
-        rev = "a18a009022bfc22c02ef38cdc264a3198906b542";
-        hash = "sha256-7/oZFvMqK4+CFI1+v66Vue6bl1xynG1+cn/mJnIHi+I=";
+        rev = "c153fec7a8e1af22b25fb94e75eaf2e3a746c11a";
+        hash = "sha256-/5RB/WdD16DOeNicsqEyRjCXNb6vkiWA5CQndDntgN4=";
     };
 
     installPhase = ''
