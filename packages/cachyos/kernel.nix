@@ -2,15 +2,9 @@
     lib,
     stdenvNoCC,
     stdenv,
-    buildPackages,
     fetchurl,
     kmod,
     zstd,
-    pahole,
-    perl,
-    elfutils,
-    rustc-unwrapped,
-    rust-bindgen-unwrapped,
 }:
 
 {
@@ -76,9 +70,7 @@ let
             tar --zstd -xf "$src" -C "$root" \
                 --wildcards \
                 '.PKGINFO' \
-                'usr/lib/modules/*/build/.config' \
-                'usr/lib/modules/*/build/version' \
-                'usr/lib/modules/*/build/include/config/kernel.release'
+                'usr/lib/modules/*/build/.config'
 
             actualPackageName="$(sed -n 's/^pkgname = //p' "$root/.PKGINFO")"
             actualPackageVersion="$(sed -n 's/^pkgver = //p' "$root/.PKGINFO")"
@@ -97,13 +89,6 @@ let
             fi
 
             headersBuild="$root/usr/lib/modules/${modDirVersion}/build"
-            buildVersion="$(cat "$headersBuild/version")"
-            configVersion="$(cat "$headersBuild/include/config/kernel.release")"
-            if [ "$buildVersion" != "${modDirVersion}" ] \
-                || [ "$configVersion" != "${modDirVersion}" ]; then
-                echo "error: headers report '$buildVersion' / '$configVersion'; expected '${modDirVersion}'" >&2
-                exit 1
-            fi
 
             actualConfigHash="$(sha256sum "$headersBuild/.config" | cut -d' ' -f1)"
             if [ "$actualConfigHash" != "${configHash}" ]; then
@@ -155,23 +140,6 @@ let
     } // features;
 
     isModular = config.isYes "MODULES";
-    withRust = config.isYes "RUST";
-
-    commonMakeFlags = import ./module-make-flags.nix {
-        inherit lib stdenv buildPackages;
-    };
-
-    moduleBuildDependencies = [
-        pahole
-        perl
-        elfutils
-        (buildPackages.deterministic-uname.override { inherit modDirVersion; })
-        zstd
-    ]
-    ++ lib.optionals withRust [
-        rustc-unwrapped
-        rust-bindgen-unwrapped
-    ];
 
     baseVersion = lib.head (lib.splitString "-rc" version);
 
@@ -266,11 +234,8 @@ stdenvNoCC.mkDerivation {
             modDirVersion
             config
             isModular
-            withRust
             kernelPatches
-            moduleBuildDependencies
             stdenv
-            commonMakeFlags
             baseVersion
             isLTS
             isZen
