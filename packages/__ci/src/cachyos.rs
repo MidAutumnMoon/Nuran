@@ -49,6 +49,8 @@ pub struct Args {
 )]
 enum Command {
     /// Check whether the pinned CachyOS kernel is current.
+    ///
+    /// Exits 3 when the pinned release is stale.
     Check {
         /// Package directory. Defaults to packages/cachyos in this worktree.
         #[arg(long, value_name = "DIR")]
@@ -130,8 +132,8 @@ fn update(package_dir: Option<&Path>, force: bool) -> Result<()> {
         &upstream.headers.name,
         &upstream.package_version,
     ));
-    download(&agent, &upstream.kernel, &kernel_path)?;
-    download(&agent, &upstream.headers, &headers_path)?;
+    download_verified(&agent, &upstream.kernel, &kernel_path)?;
+    download_verified(&agent, &upstream.headers, &headers_path)?;
 
     let extracted =
         inspect_release_archives(&kernel_path, &headers_path, &upstream)?;
@@ -305,7 +307,8 @@ fn kernel_version(package_version: &str) -> Result<&str> {
         );
     }
     ensure!(
-        components.next().is_none() && end < package_version.len(),
+        components.next().is_none()
+            && package_version.as_bytes().get(end) == Some(&b'-'),
         "Invalid CachyOS package version {package_version:?}"
     );
     Ok(version)
@@ -346,7 +349,7 @@ fn get_text(agent: &Agent, url: &str) -> Result<String> {
         .with_context(|| format!("Failed to read response from {url}"))
 }
 
-fn download(
+fn download_verified(
     agent: &Agent,
     package: &Package,
     destination: &Path,
@@ -439,11 +442,7 @@ impl std::str::FromStr for Checksum {
             value.len()
         );
         let mut bytes = [0_u8; 32];
-        let (pairs, remainder) = value.as_bytes().as_chunks::<2>();
-        ensure!(
-            remainder.is_empty(),
-            "Hexadecimal checksum has an incomplete byte"
-        );
+        let (pairs, _) = value.as_bytes().as_chunks::<2>();
         for (byte, &[high, low]) in bytes.iter_mut().zip(pairs) {
             *byte =
                 (hex_nibble(high, value)? << 4) | hex_nibble(low, value)?;
@@ -867,5 +866,6 @@ mod tests {
         assert_eq!(kernel_version("7.2.3-1").unwrap(), "7.2.3");
         assert!(kernel_version("7.2-1").is_err());
         assert!(kernel_version("7.2.3").is_err());
+        assert!(kernel_version("7.2.3rc1-1").is_err());
     }
 }
