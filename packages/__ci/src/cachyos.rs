@@ -49,468 +49,351 @@ pub struct Args {
 )]
 enum Command {
     /// Check whether the pinned CachyOS kernel is current.
-    Check(PackageLocation),
+    Check {
+        /// Package directory. Defaults to packages/cachyos in this worktree.
+        #[arg(long, value_name = "DIR")]
+        package_dir: Option<PathBuf>,
+    },
 
     /// Download and pin the current CachyOS kernel and headers.
-    Update(UpdateArgs),
+    Update {
+        /// Package directory. Defaults to packages/cachyos in this worktree.
+        #[arg(long, value_name = "DIR")]
+        package_dir: Option<PathBuf>,
+
+        /// Regenerate the pin even when upstream metadata is unchanged.
+        #[arg(long)]
+        force: bool,
+    },
 
     /// Convert a Linux kernel `.config` to a JSON object.
-    GenConfig(GenConfigArgs),
-}
+    GenConfig {
+        /// Kernel .config path, or - for standard input.
+        #[arg(value_name = "CONFIG")]
+        input: PathBuf,
 
-#[derive(clap::Args)]
-#[derive(Debug)]
-#[expect(
-    clippy::doc_markdown,
-    reason = "Clap renders these comments as plain text"
-)]
-struct PackageLocation {
-    /// CachyOS package directory.
-    ///
-    /// Defaults to packages/cachyos below the current Git worktree root.
-    #[arg(long, value_name = "DIR")]
-    package_dir: Option<PathBuf>,
-}
-
-#[derive(clap::Args)]
-#[derive(Debug)]
-struct UpdateArgs {
-    #[command(flatten)]
-    location: PackageLocation,
-
-    /// Download and regenerate the pin even when upstream metadata is unchanged.
-    #[arg(long)]
-    force: bool,
-}
-
-#[derive(clap::Args)]
-#[derive(Debug)]
-struct GenConfigArgs {
-    /// Kernel .config path, or - for standard input.
-    #[arg(value_name = "CONFIG")]
-    input: PathBuf,
-
-    /// Output path, or - for standard output.
-    #[arg(long, short, default_value = "-", value_name = "OUTPUT")]
-    output: PathBuf,
+        /// Output path, or - for standard output.
+        #[arg(long, short, default_value = "-", value_name = "OUTPUT")]
+        output: PathBuf,
+    },
 }
 
 pub fn run(args: Args) -> Result<ExitCode> {
     match args.command {
-        Command::Check(location) => check(&location),
-        Command::Update(args) => {
-            update(&args)?;
+        Command::Check { package_dir } => check(package_dir.as_deref()),
+        Command::Update { package_dir, force } => {
+            update(package_dir.as_deref(), force)?;
             Ok(ExitCode::SUCCESS)
         }
-        Command::GenConfig(args) => {
-            generate_config(&args)?;
+        Command::GenConfig { input, output } => {
+            generate_config(&input, &output)?;
             Ok(ExitCode::SUCCESS)
         }
     }
 }
 
-fn check(location: &PackageLocation) -> Result<ExitCode> {
-    let files = PackageFiles::resolve(location)?;
-    let target = Target::supported();
-    let pinned = Release::load(&files.release)?;
-    let remote = RemoteRelease::fetch(&HttpClient::new(), &target)?;
+fn check(package_dir: Option<&Path>) -> Result<ExitCode> {
+    let directory = package_directory(package_dir)?;
+    let pinned = Release::load(&directory.join("release.json"))?;
+    let upstream = fetch_upstream(&http_agent())?;
 
-    if pinned.matches(&target, &remote) {
-        println!(
-            "{} {} is up to date.",
-            remote.kernel.name, remote.version.package
-        );
+    if pinned.matches_upstream(&upstream) {
+        println!("{} is up to date.", upstream.label());
         Ok(ExitCode::SUCCESS)
     } else {
-        println!("{}", change_description(&pinned, &remote));
+        println!("{}", change_description(&pinned, &upstream));
         Ok(ExitCode::from(3))
     }
 }
 
-fn update(args: &UpdateArgs) -> Result<()> {
-    let files = PackageFiles::resolve(&args.location)?;
-    let target = Target::supported();
-    let pinned = Release::load(&files.release)?;
-    let client = HttpClient::new();
+fn update(package_dir: Option<&Path>, force: bool) -> Result<()> {
+    let directory = package_directory(package_dir)?;
+    let release_path = directory.join("release.json");
+    let config_path = directory.join("config.json");
+    let pinned = Release::load(&release_path)?;
+    let agent = http_agent();
 
-    eprintln!("Checking {} upstream metadata...", target.package_name);
-    let remote = RemoteRelease::fetch(&client, &target)?;
-    if !args.force && pinned.matches(&target, &remote) {
-        eprintln!(
-            "{} {} is already up to date.",
-            remote.kernel.name, remote.version.package
-        );
+    eprintln!("Checking {PACKAGE_NAME} upstream metadata...");
+    let upstream = fetch_upstream(&agent)?;
+    if !force && pinned.matches_upstream(&upstream) {
+        eprintln!("{} is already up to date.", upstream.label());
         return Ok(());
     }
 
     let temporary =
         tempdir().context("Failed to create download directory")?;
-    let kernel_path = temporary
-        .path()
-        .join(remote.kernel.file_name(&target, &remote.version.package));
-    let headers_path = temporary
-        .path()
-        .join(remote.headers.file_name(&target, &remote.version.package));
-
-    client.download(
-        &remote.kernel.url(&target, &remote.version.package),
-        remote.kernel.checksum,
-        &kernel_path,
-    )?;
-    client.download(
-        &remote.headers.url(&target, &remote.version.package),
-        remote.headers.checksum,
-        &headers_path,
-    )?;
+    let kernel_path = temporary.path().join(package_file_name(
+        &upstream.kernel.name,
+        &upstream.package_version,
+    ));
+    let headers_path = temporary.path().join(package_file_name(
+        &upstream.headers.name,
+        &upstream.package_version,
+    ));
+    download(&agent, &upstream.kernel, &kernel_path)?;
+    download(&agent, &upstream.headers, &headers_path)?;
 
     let extracted =
-        inspect_release_archives(&kernel_path, &headers_path, &remote)?;
-    let generated_config = KernelConfig::parse(&extracted.config)
+        inspect_release_archives(&kernel_path, &headers_path, &upstream)?;
+    let config = KernelConfig::parse(&extracted.config)
         .context("Failed to parse the headers package .config")?;
-    let config_hash = Checksum::digest(&extracted.config);
-    let release = Release::from_remote(
-        &target,
-        &remote,
-        &extracted.mod_dir_version,
-        config_hash,
-    );
-    let config_json = generated_config.render_json()?;
-    let release_json = release.render_json()?;
+    let description = change_description(&pinned, &upstream);
+    let UpstreamRelease {
+        version,
+        package_version,
+        kernel,
+        headers,
+    } = upstream;
+    let release = Release {
+        pname: PACKAGE_NAME.to_owned(),
+        version,
+        package_version,
+        architecture: ARCHITECTURE.to_owned(),
+        mod_dir_version: extracted.mod_dir_version,
+        kernel,
+        headers,
+        config_hash: Checksum::digest(&extracted.config).to_string(),
+        is_lts: false,
+        is_zen: false,
+    };
 
+    let config_json = config.render_json()?;
+    let release_json = release.render_json()?;
     let config_changed =
-        write_if_changed(&files.config, config_json.as_bytes())?;
+        write_if_changed(&config_path, config_json.as_bytes())?;
     let release_changed =
-        write_if_changed(&files.release, release_json.as_bytes())?;
+        write_if_changed(&release_path, release_json.as_bytes())?;
 
     if config_changed || release_changed {
         eprintln!(
-            "Pinned {} {} ({} config options, module directory {}).",
-            remote.kernel.name,
-            remote.version.package,
-            generated_config.len(),
-            extracted.mod_dir_version,
+            "Pinned {} ({} config options, module directory {}).",
+            release.label(),
+            config.len(),
+            release.mod_dir_version,
         );
-        println!(
-            "## CachyOS kernel\n\n{}",
-            change_description(&pinned, &remote)
-        );
+        println!("## CachyOS kernel\n\n{description}");
     } else {
         eprintln!(
-            "Regenerated files are unchanged for {} {}.",
-            remote.kernel.name, remote.version.package
+            "Regenerated files are unchanged for {}.",
+            release.label()
         );
     }
 
     Ok(())
 }
 
-fn generate_config(args: &GenConfigArgs) -> Result<()> {
-    let raw = read_input(&args.input)?;
-    let config = KernelConfig::parse(&raw)?;
-    let rendered = config.render_json()?;
-
-    if args.output == Path::new("-") {
-        io::stdout().lock().write_all(rendered.as_bytes()).context(
-            "Failed to write generated config to standard output",
-        )?;
-    } else {
-        fs::write(&args.output, rendered).with_context(|| {
-            format!("Failed to write {}", args.output.display())
-        })?;
-    }
-
-    eprintln!(
-        "Generated {} options -> {}",
-        config.len(),
-        display_stdio_path(&args.output, "stdout")
-    );
-    eprintln!("Input .config sha256: {}", Checksum::digest(&raw));
-    Ok(())
-}
-
-fn read_input(path: &Path) -> Result<Vec<u8>> {
-    if path == Path::new("-") {
+fn generate_config(input: &Path, output: &Path) -> Result<()> {
+    let raw = if input == Path::new("-") {
         let mut raw = Vec::new();
         io::stdin()
             .lock()
             .read_to_end(&mut raw)
             .context("Failed to read kernel config from standard input")?;
-        Ok(raw)
+        raw
     } else {
-        fs::read(path)
-            .with_context(|| format!("Failed to read {}", path.display()))
-    }
-}
+        fs::read(input).with_context(|| {
+            format!("Failed to read {}", input.display())
+        })?
+    };
+    let config = KernelConfig::parse(&raw)?;
+    let rendered = config.render_json()?;
 
-fn display_stdio_path(path: &Path, standard: &'static str) -> String {
-    if path == Path::new("-") {
-        standard.to_owned()
+    let output_name = if output == Path::new("-") {
+        io::stdout().lock().write_all(rendered.as_bytes()).context(
+            "Failed to write generated config to standard output",
+        )?;
+        "stdout".to_owned()
     } else {
-        path.display().to_string()
-    }
-}
-
-struct PackageFiles {
-    release: PathBuf,
-    config: PathBuf,
-}
-
-impl PackageFiles {
-    fn resolve(location: &PackageLocation) -> Result<Self> {
-        let directory = match &location.package_dir {
-            Some(directory) => directory.clone(),
-            None => git_toplevel()
-                .context("Failed to locate the Git worktree")?
-                .join("packages/cachyos"),
-        };
-        ensure!(
-            directory.is_dir(),
-            "CachyOS package directory does not exist: {}",
-            directory.display()
-        );
-
-        let release = directory.join("release.json");
-        let config = directory.join("config.json");
-        ensure!(
-            release.is_file(),
-            "CachyOS release file does not exist: {}",
-            release.display()
-        );
-
-        Ok(Self { release, config })
-    }
-}
-
-#[derive(Clone, Copy)]
-struct Target {
-    package_name: &'static str,
-    repository: &'static str,
-    architecture: &'static str,
-}
-
-impl Target {
-    const fn supported() -> Self {
-        Self {
-            package_name: PACKAGE_NAME,
-            repository: REPOSITORY,
-            architecture: ARCHITECTURE,
-        }
-    }
-
-    fn dashboard_url(self, package_name: &str) -> String {
-        format!(
-            "{DASHBOARD_ORIGIN}/package/{}/{}/{package_name}",
-            self.repository, self.architecture
-        )
-    }
-
-    fn mirror_base_url(self) -> String {
-        format!(
-            "{MIRROR_ORIGIN}/repo/{}/{}",
-            self.architecture, self.repository
-        )
-    }
-}
-
-struct HttpClient {
-    agent: Agent,
-}
-
-impl HttpClient {
-    fn new() -> Self {
-        let config = Agent::config_builder()
-            .timeout_connect(Some(Duration::from_secs(30)))
-            .timeout_global(Some(Duration::from_mins(15)))
-            .user_agent(concat!("ci-driver/", env!("CARGO_PKG_VERSION")))
-            .build();
-        Self {
-            agent: config.into(),
-        }
-    }
-
-    fn get_text(&self, url: &str) -> Result<String> {
-        let mut response = self
-            .agent
-            .get(url)
-            .call()
-            .with_context(|| format!("Failed to fetch {url}"))?;
-        response
-            .body_mut()
-            .read_to_string()
-            .with_context(|| format!("Failed to read response from {url}"))
-    }
-
-    fn download(
-        &self,
-        url: &str,
-        expected: Checksum,
-        destination: &Path,
-    ) -> Result<()> {
-        eprintln!("Downloading {url}");
-        let mut response = self
-            .agent
-            .get(url)
-            .call()
-            .with_context(|| format!("Failed to download {url}"))?;
-        let mut source = response.body_mut().as_reader();
-        let mut output = File::create(destination).with_context(|| {
-            format!("Failed to create {}", destination.display())
+        fs::write(output, rendered).with_context(|| {
+            format!("Failed to write {}", output.display())
         })?;
-        let mut hasher = Sha256::new();
-        let mut buffer = vec![0_u8; 1024 * 1024];
-        let mut size = 0_u64;
+        output.display().to_string()
+    };
 
-        loop {
-            let read = source.read(&mut buffer).with_context(|| {
-                format!("Failed while downloading {url}")
-            })?;
-            if read == 0 {
-                break;
-            }
-            let chunk = buffer
-                .get(..read)
-                .context("HTTP reader returned an invalid byte count")?;
-            hasher.update(chunk);
-            output.write_all(chunk).with_context(|| {
-                format!("Failed to write {}", destination.display())
-            })?;
-            size +=
-                u64::try_from(read).context("Download size overflow")?;
-        }
-        output.flush().with_context(|| {
-            format!("Failed to flush {}", destination.display())
-        })?;
-
-        let actual = Checksum(hasher.finalize().into());
-        ensure!(
-            actual == expected,
-            "Checksum mismatch for {url}: expected {expected}, got {actual}"
-        );
-        eprintln!("Verified {expected} ({size} bytes).");
-        Ok(())
-    }
+    eprintln!("Generated {} options -> {output_name}", config.len());
+    eprintln!("Input .config sha256: {}", Checksum::digest(&raw));
+    Ok(())
 }
 
-struct RemoteRelease {
-    version: ReleaseVersion,
-    kernel: RemoteArtifact,
-    headers: RemoteArtifact,
+fn package_directory(requested: Option<&Path>) -> Result<PathBuf> {
+    let directory = match requested {
+        Some(directory) => directory.to_owned(),
+        None => git_toplevel()
+            .context("Failed to locate the Git worktree")?
+            .join("packages/cachyos"),
+    };
+    ensure!(
+        directory.is_dir(),
+        "CachyOS package directory does not exist: {}",
+        directory.display()
+    );
+    Ok(directory)
 }
 
-impl RemoteRelease {
-    fn fetch(client: &HttpClient, target: &Target) -> Result<Self> {
-        let kernel =
-            DashboardPackage::fetch(client, *target, target.package_name)?;
-        let headers_name = format!("{}-headers", target.package_name);
-        let headers =
-            DashboardPackage::fetch(client, *target, &headers_name)?;
-        ensure!(
-            kernel.package_version == headers.package_version,
-            "CachyOS kernel and headers versions differ: {} vs {}",
-            kernel.package_version,
-            headers.package_version
-        );
-        let version = ReleaseVersion::parse(kernel.package_version)?;
-
-        Ok(Self {
-            version,
-            kernel: kernel.artifact,
-            headers: headers.artifact,
-        })
-    }
-}
-
-struct ReleaseVersion {
-    upstream: String,
-    package: String,
-}
-
-impl ReleaseVersion {
-    fn parse(package: String) -> Result<Self> {
-        let end = package
-            .bytes()
-            .position(|byte| !(byte.is_ascii_digit() || byte == b'.'))
-            .unwrap_or(package.len());
-        let upstream = package
-            .get(..end)
-            .context("Package version prefix is not valid UTF-8")?;
-        let mut components = upstream.split('.');
-        for component_name in ["major", "minor", "patch"] {
-            let component = components.next().with_context(|| {
-                format!(
-                    "CachyOS package version {package:?} has no {component_name} component"
-                )
-            })?;
-            ensure!(
-                !component.is_empty()
-                    && component.bytes().all(|byte| byte.is_ascii_digit()),
-                "Invalid {component_name} component in CachyOS package version {package:?}"
-            );
-        }
-        ensure!(
-            components.next().is_none() && end < package.len(),
-            "Invalid CachyOS package version {package:?}"
-        );
-
-        Ok(Self {
-            upstream: upstream.to_owned(),
-            package,
-        })
-    }
-}
-
-struct DashboardPackage {
+struct UpstreamRelease {
+    version: String,
     package_version: String,
-    artifact: RemoteArtifact,
+    kernel: Package,
+    headers: Package,
 }
 
-impl DashboardPackage {
-    fn fetch(
-        client: &HttpClient,
-        target: Target,
-        expected_name: &str,
-    ) -> Result<Self> {
-        let url = target.dashboard_url(expected_name);
-        let html = client.get_text(&url)?;
-        let name = dashboard_string(&html, "pkg_name")?.to_owned();
+impl UpstreamRelease {
+    fn label(&self) -> String {
+        format!("{PACKAGE_NAME} {}", self.package_version)
+    }
+}
+
+fn fetch_upstream(agent: &Agent) -> Result<UpstreamRelease> {
+    let (package_version, kernel_hash) =
+        fetch_dashboard_package(agent, PACKAGE_NAME)?;
+    let headers_name = format!("{PACKAGE_NAME}-headers");
+    let (headers_version, headers_hash) =
+        fetch_dashboard_package(agent, &headers_name)?;
+    ensure!(
+        package_version == headers_version,
+        "CachyOS kernel and headers versions differ: {package_version} vs {headers_version}"
+    );
+
+    let version = kernel_version(&package_version)?.to_owned();
+    let kernel = package(PACKAGE_NAME, &package_version, kernel_hash);
+    let headers = package(&headers_name, &package_version, headers_hash);
+    Ok(UpstreamRelease {
+        version,
+        package_version,
+        kernel,
+        headers,
+    })
+}
+
+fn fetch_dashboard_package(
+    agent: &Agent,
+    expected_name: &str,
+) -> Result<(String, Checksum)> {
+    let url = format!(
+        "{DASHBOARD_ORIGIN}/package/{REPOSITORY}/{ARCHITECTURE}/{expected_name}"
+    );
+    let html = get_text(agent, &url)?;
+    let name = dashboard_string(&html, "pkg_name")?;
+    ensure!(
+        name == expected_name,
+        "Dashboard at {url} describes {name}, expected {expected_name}"
+    );
+    let version = dashboard_string(&html, "pkg_version")?.to_owned();
+    let checksum = dashboard_string(&html, "pkg_sha256sum")?
+        .parse()
+        .with_context(|| format!("Invalid checksum in {url}"))?;
+    Ok((version, checksum))
+}
+
+fn kernel_version(package_version: &str) -> Result<&str> {
+    let end = package_version
+        .bytes()
+        .position(|byte| !(byte.is_ascii_digit() || byte == b'.'))
+        .unwrap_or(package_version.len());
+    let version = package_version
+        .get(..end)
+        .context("Package version prefix is not valid UTF-8")?;
+    let mut components = version.split('.');
+    for name in ["major", "minor", "patch"] {
+        let component = components.next().with_context(|| {
+            format!("CachyOS package version {package_version:?} has no {name} component")
+        })?;
         ensure!(
-            name == expected_name,
-            "Dashboard at {url} describes {name}, expected {expected_name}"
+            !component.is_empty()
+                && component.bytes().all(|byte| byte.is_ascii_digit()),
+            "Invalid {name} component in CachyOS package version {package_version:?}"
         );
-        let package_version =
-            dashboard_string(&html, "pkg_version")?.to_owned();
-        let checksum =
-            dashboard_string(&html, "pkg_sha256sum")?
-                .parse()
-                .with_context(|| format!("Invalid checksum in {url}"))?;
+    }
+    ensure!(
+        components.next().is_none() && end < package_version.len(),
+        "Invalid CachyOS package version {package_version:?}"
+    );
+    Ok(version)
+}
 
-        Ok(Self {
-            package_version,
-            artifact: RemoteArtifact { name, checksum },
-        })
+fn package(name: &str, package_version: &str, hash: Checksum) -> Package {
+    let file_name = package_file_name(name, package_version);
+    Package {
+        name: name.to_owned(),
+        url: format!(
+            "{MIRROR_ORIGIN}/repo/{ARCHITECTURE}/{REPOSITORY}/{file_name}"
+        ),
+        hash: hash.sri(),
     }
 }
 
-struct RemoteArtifact {
-    name: String,
-    checksum: Checksum,
+fn package_file_name(name: &str, package_version: &str) -> String {
+    format!("{name}-{package_version}-{ARCHITECTURE}.pkg.tar.zst")
 }
 
-impl RemoteArtifact {
-    fn file_name(&self, target: &Target, package_version: &str) -> String {
-        format!(
-            "{}-{package_version}-{}.pkg.tar.zst",
-            self.name, target.architecture
-        )
-    }
+fn http_agent() -> Agent {
+    Agent::config_builder()
+        .timeout_connect(Some(Duration::from_secs(30)))
+        .timeout_global(Some(Duration::from_mins(15)))
+        .user_agent(concat!("ci-driver/", env!("CARGO_PKG_VERSION")))
+        .build()
+        .into()
+}
 
-    fn url(&self, target: &Target, package_version: &str) -> String {
-        format!(
-            "{}/{}",
-            target.mirror_base_url(),
-            self.file_name(target, package_version)
-        )
+fn get_text(agent: &Agent, url: &str) -> Result<String> {
+    let mut response = agent
+        .get(url)
+        .call()
+        .with_context(|| format!("Failed to fetch {url}"))?;
+    response
+        .body_mut()
+        .read_to_string()
+        .with_context(|| format!("Failed to read response from {url}"))
+}
+
+fn download(
+    agent: &Agent,
+    package: &Package,
+    destination: &Path,
+) -> Result<()> {
+    eprintln!("Downloading {}", package.url);
+    let mut response = agent
+        .get(&package.url)
+        .call()
+        .with_context(|| format!("Failed to download {}", package.url))?;
+    let mut source = response.body_mut().as_reader();
+    let mut output = File::create(destination).with_context(|| {
+        format!("Failed to create {}", destination.display())
+    })?;
+    let mut hasher = Sha256::new();
+    let mut buffer = vec![0_u8; 1024 * 1024];
+    let mut size = 0_u64;
+
+    loop {
+        let read = source.read(&mut buffer).with_context(|| {
+            format!("Failed while downloading {}", package.url)
+        })?;
+        if read == 0 {
+            break;
+        }
+        let chunk = buffer
+            .get(..read)
+            .context("HTTP reader returned an invalid byte count")?;
+        hasher.update(chunk);
+        output.write_all(chunk).with_context(|| {
+            format!("Failed to write {}", destination.display())
+        })?;
+        size += u64::try_from(read).context("Download size overflow")?;
     }
+    output.flush().with_context(|| {
+        format!("Failed to flush {}", destination.display())
+    })?;
+
+    let actual = Checksum(hasher.finalize().into());
+    let actual_sri = actual.sri();
+    ensure!(
+        actual_sri == package.hash,
+        "Checksum mismatch for {}: expected {}, got {actual_sri}",
+        package.url,
+        package.hash
+    );
+    eprintln!("Verified {actual} ({size} bytes).");
+    Ok(())
 }
 
 fn dashboard_string<'html>(
@@ -595,51 +478,24 @@ struct Release {
     package_version: String,
     architecture: String,
     mod_dir_version: String,
-    kernel: ReleasePackage,
-    headers: ReleasePackage,
+    kernel: Package,
+    headers: Package,
     config_hash: String,
     #[serde(rename = "isLTS")]
     is_lts: bool,
     is_zen: bool,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Eq, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
-struct ReleasePackage {
-    package_name: String,
+struct Package {
+    #[serde(rename = "packageName")]
+    name: String,
     url: String,
     hash: String,
 }
 
 impl Release {
-    fn from_remote(
-        target: &Target,
-        remote: &RemoteRelease,
-        mod_dir_version: &str,
-        config_hash: Checksum,
-    ) -> Self {
-        Self {
-            pname: target.package_name.to_owned(),
-            version: remote.version.upstream.clone(),
-            package_version: remote.version.package.clone(),
-            architecture: target.architecture.to_owned(),
-            mod_dir_version: mod_dir_version.to_owned(),
-            kernel: ReleasePackage::from_remote(
-                &remote.kernel,
-                target,
-                &remote.version.package,
-            ),
-            headers: ReleasePackage::from_remote(
-                &remote.headers,
-                target,
-                &remote.version.package,
-            ),
-            config_hash: config_hash.to_string(),
-            is_lts: false,
-            is_zen: false,
-        }
-    }
-
     fn load(path: &Path) -> Result<Self> {
         let raw = fs::read(path).with_context(|| {
             format!("Failed to read {}", path.display())
@@ -655,21 +511,15 @@ impl Release {
         Ok(output)
     }
 
-    fn matches(&self, target: &Target, remote: &RemoteRelease) -> bool {
-        self.pname == target.package_name
-            && self.version == remote.version.upstream
-            && self.package_version == remote.version.package
-            && self.architecture == target.architecture
-            && self.kernel.matches(
-                &remote.kernel,
-                target,
-                &remote.version.package,
-            )
-            && self.headers.matches(
-                &remote.headers,
-                target,
-                &remote.version.package,
-            )
+    fn matches_upstream(&self, upstream: &UpstreamRelease) -> bool {
+        self.pname == PACKAGE_NAME
+            && self.version == upstream.version
+            && self.package_version == upstream.package_version
+            && self.architecture == ARCHITECTURE
+            && self.kernel == upstream.kernel
+            && self.headers == upstream.headers
+            && !self.is_lts
+            && !self.is_zen
     }
 
     fn label(&self) -> String {
@@ -677,34 +527,12 @@ impl Release {
     }
 }
 
-impl ReleasePackage {
-    fn from_remote(
-        remote: &RemoteArtifact,
-        target: &Target,
-        package_version: &str,
-    ) -> Self {
-        Self {
-            package_name: remote.name.clone(),
-            url: remote.url(target, package_version),
-            hash: remote.checksum.sri(),
-        }
-    }
-
-    fn matches(
-        &self,
-        remote: &RemoteArtifact,
-        target: &Target,
-        package_version: &str,
-    ) -> bool {
-        self.package_name == remote.name
-            && self.url == remote.url(target, package_version)
-            && self.hash == remote.checksum.sri()
-    }
-}
-
-fn change_description(pinned: &Release, remote: &RemoteRelease) -> String {
+fn change_description(
+    pinned: &Release,
+    upstream: &UpstreamRelease,
+) -> String {
     let old = pinned.label();
-    let new = format!("{} {}", remote.kernel.name, remote.version.package);
+    let new = upstream.label();
     if old == new {
         format!("Refreshed `{new}` because the upstream package changed.")
     } else {
@@ -712,16 +540,12 @@ fn change_description(pinned: &Release, remote: &RemoteRelease) -> String {
     }
 }
 
-struct ArchiveInspection {
-    identity: PackageIdentity,
+struct PackageArchive {
+    name: String,
+    version: String,
     module_dir: String,
     config: Option<Vec<u8>>,
     build_version: Option<String>,
-}
-
-struct PackageIdentity {
-    name: String,
-    version: String,
 }
 
 #[derive(Clone, Copy)]
@@ -731,7 +555,7 @@ enum ArchiveMember {
     BuildVersion,
 }
 
-fn inspect_archive(path: &Path) -> Result<ArchiveInspection> {
+fn inspect_archive(path: &Path) -> Result<PackageArchive> {
     let file = File::open(path)
         .with_context(|| format!("Failed to open {}", path.display()))?;
     let decoder =
@@ -823,8 +647,10 @@ fn inspect_archive(path: &Path) -> Result<ArchiveInspection> {
     let package_info = package_info.with_context(|| {
         format!("Missing .PKGINFO in {}", path.display())
     })?;
-    Ok(ArchiveInspection {
-        identity: PackageIdentity::parse(&package_info)?,
+    let (name, version) = parse_package_info(&package_info)?;
+    Ok(PackageArchive {
+        name,
+        version,
         module_dir: module_dir.with_context(|| {
             format!("No module directory in {}", path.display())
         })?,
@@ -914,49 +740,27 @@ fn next_normal_component<'path>(
     }
 }
 
-impl PackageIdentity {
-    fn parse(package_info: &[u8]) -> Result<Self> {
-        let package_info = std::str::from_utf8(package_info)
-            .context("Package .PKGINFO is not valid UTF-8")?;
-        let mut name = None;
-        let mut version = None;
+fn parse_package_info(package_info: &[u8]) -> Result<(String, String)> {
+    let package_info = std::str::from_utf8(package_info)
+        .context("Package .PKGINFO is not valid UTF-8")?;
+    let mut name = None;
+    let mut version = None;
 
-        for line in package_info.lines() {
-            if let Some(value) = line.strip_prefix("pkgname = ") {
-                ensure!(name.is_none(), "Duplicate pkgname in .PKGINFO");
-                name = Some(value.to_owned());
-            }
-            if let Some(value) = line.strip_prefix("pkgver = ") {
-                ensure!(version.is_none(), "Duplicate pkgver in .PKGINFO");
-                version = Some(value.to_owned());
-            }
+    for line in package_info.lines() {
+        if let Some(value) = line.strip_prefix("pkgname = ") {
+            ensure!(name.is_none(), "Duplicate pkgname in .PKGINFO");
+            name = Some(value.to_owned());
         }
-
-        Ok(Self {
-            name: name.context("Missing pkgname in .PKGINFO")?,
-            version: version.context("Missing pkgver in .PKGINFO")?,
-        })
+        if let Some(value) = line.strip_prefix("pkgver = ") {
+            ensure!(version.is_none(), "Duplicate pkgver in .PKGINFO");
+            version = Some(value.to_owned());
+        }
     }
 
-    fn verify(
-        &self,
-        expected: &RemoteArtifact,
-        expected_version: &ReleaseVersion,
-    ) -> Result<()> {
-        ensure!(
-            self.name == expected.name,
-            "Archive package is {}, expected {}",
-            self.name,
-            expected.name
-        );
-        ensure!(
-            self.version == expected_version.package,
-            "Archive version is {}, expected {}",
-            self.version,
-            expected_version.package
-        );
-        Ok(())
-    }
+    Ok((
+        name.context("Missing pkgname in .PKGINFO")?,
+        version.context("Missing pkgver in .PKGINFO")?,
+    ))
 }
 
 struct ExtractedRelease {
@@ -967,14 +771,29 @@ struct ExtractedRelease {
 fn inspect_release_archives(
     kernel_path: &Path,
     headers_path: &Path,
-    remote: &RemoteRelease,
+    upstream: &UpstreamRelease,
 ) -> Result<ExtractedRelease> {
     let kernel =
         inspect_archive(kernel_path).context("Invalid kernel package")?;
     let headers = inspect_archive(headers_path)
         .context("Invalid headers package")?;
-    kernel.identity.verify(&remote.kernel, &remote.version)?;
-    headers.identity.verify(&remote.headers, &remote.version)?;
+
+    for (archive, package) in
+        [(&kernel, &upstream.kernel), (&headers, &upstream.headers)]
+    {
+        ensure!(
+            archive.name == package.name,
+            "Archive package is {}, expected {}",
+            archive.name,
+            package.name
+        );
+        ensure!(
+            archive.version == upstream.package_version,
+            "Archive version is {}, expected {}",
+            archive.version,
+            upstream.package_version
+        );
+    }
     ensure!(
         kernel.module_dir == headers.module_dir,
         "Kernel and headers module directories differ: {:?} vs {:?}",
@@ -1013,8 +832,8 @@ mod tests {
     use std::str::FromStr as _;
 
     use super::Checksum;
-    use super::ReleaseVersion;
     use super::dashboard_string;
+    use super::kernel_version;
 
     #[test]
     fn parses_dashboard_package_fields() {
@@ -1045,13 +864,8 @@ mod tests {
 
     #[test]
     fn derives_kernel_version_from_package_version() {
-        assert_eq!(
-            ReleaseVersion::parse("7.2.3-1".to_owned())
-                .unwrap()
-                .upstream,
-            "7.2.3"
-        );
-        assert!(ReleaseVersion::parse("7.2-1".to_owned()).is_err());
-        assert!(ReleaseVersion::parse("7.2.3".to_owned()).is_err());
+        assert_eq!(kernel_version("7.2.3-1").unwrap(), "7.2.3");
+        assert!(kernel_version("7.2-1").is_err());
+        assert!(kernel_version("7.2.3").is_err());
     }
 }
