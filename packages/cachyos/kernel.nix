@@ -100,7 +100,7 @@ let
                 | LC_ALL=C sort \
                 | diff -u "$configAttrNormalizedPath" -; then
                 echo "error: packages/cachyos/config.nix does not match the headers .config" >&2
-                echo "       regenerate it with cachyos-gen-config" >&2
+                echo "       regenerate it with: nix run .#tsuki.__ci -- cachyos gen-config CONFIG -o packages/cachyos/config.nix" >&2
                 exit 1
             fi
 

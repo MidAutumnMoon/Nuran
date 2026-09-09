@@ -39,6 +39,12 @@ jobs:
             nix run "$TOOL" -- update -m "packages/tsuki.nix" \
             > "$RUNNER_TEMP/summary.md"
 
+      - name: Update CachyOS kernel
+        run: |
+          TOOL=".#tsuki.__ci"
+          nix run "$TOOL" -- cachyos update \
+            >> "$RUNNER_TEMP/summary.md"
+
       - name: Open PR
         uses: peter-evans/create-pull-request@v8
         with:

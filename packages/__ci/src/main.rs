@@ -1,4 +1,5 @@
 use std::path::PathBuf;
+use std::process::ExitCode;
 
 use anyhow::Context as _;
 use anyhow::Result;
@@ -7,12 +8,15 @@ use gix_discover::repository;
 use tap::Pipe as _;
 use tracing::debug;
 
+use crate::cachyos::Args as CachyosArgs;
 use crate::manifest::Manifest;
 use crate::nixos::build_nixos;
 use crate::nixos::eval_hostnames;
 use crate::package::build_packages;
 use crate::package::update_all_packages;
 
+mod cachyos;
+mod kernel_config;
 mod manifest;
 mod nixos;
 mod package;
@@ -28,12 +32,19 @@ struct CommonOpts {
 
 /// Do some maintenance work for `TaysiTsuki`.
 #[derive(clap::Parser)]
+#[expect(
+    clippy::doc_markdown,
+    reason = "Clap renders these comments as plain text"
+)]
 enum App {
     /// Update packages.
     Update {
         #[command(flatten)]
         common: CommonOpts,
     },
+
+    /// Maintain the prebuilt CachyOS kernel pin.
+    Cachyos(CachyosArgs),
 
     /// Build packages.
     Build {
@@ -65,7 +76,7 @@ enum App {
     },
 }
 
-fn main() -> Result<()> {
+fn main() -> Result<ExitCode> {
     let _log_guard = ino_tracing::init_tracing_subscriber();
 
     let app = <App as clap::Parser>::parse();
@@ -90,14 +101,13 @@ fn main() -> Result<()> {
                     .collect::<Vec<_>>()
                     .pipe(|groups| serde_json::json!(groups))
                     .pipe(|json| println!("{json}"));
-                return Ok(());
+                return Ok(ExitCode::SUCCESS);
             }
             if let Some(group) = group {
                 debug!("Build packages from group {group}");
-                return manifest
-                    .packages_from_group(&group)
-                    .pipe(build_packages)
-                    .context("Failed building");
+                build_packages(manifest.packages_from_group(&group))
+                    .context("Failed building")?;
+                return Ok(ExitCode::SUCCESS);
             }
             bail!("Nothing to do");
         }
@@ -111,15 +121,17 @@ fn main() -> Result<()> {
                 eval_hostnames()
                     .context("Failed to eval hostnames")?
                     .pipe(|j| println!("{j}"));
-                return Ok(());
+                return Ok(ExitCode::SUCCESS);
             }
             if let Some(hostname) = hostname {
                 debug!("Build NixOS {hostname}");
-                return build_nixos(&hostname)
-                    .context("Failed building NixOS");
+                build_nixos(&hostname).context("Failed building NixOS")?;
+                return Ok(ExitCode::SUCCESS);
             }
             bail!("Nothing to do");
         }
+
+        App::Cachyos(args) => cachyos::run(args),
 
         App::Update { common } => {
             let manifest = common
@@ -133,7 +145,7 @@ fn main() -> Result<()> {
                 .pipe(update_all_packages)
                 .context("Failed to update package")?;
             println!("{summary}");
-            Ok(())
+            Ok(ExitCode::SUCCESS)
         }
     }
 }
