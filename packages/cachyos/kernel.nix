@@ -1,136 +1,302 @@
-# Shout out to: https://github.com/xddxdd/nix-cachyos-kernel
 {
     lib,
-    runCommand,
+    stdenvNoCC,
     stdenv,
-    rsync,
+    buildPackages,
+    fetchurl,
+    kmod,
+    zstd,
+    pahole,
     perl,
-    buildLinux,
-    linuxKernel,
-
-    # The base kernel to grab version and src from.
-    baseKernel,
-    kernelPatches,
-    kernelConfig,
+    elfutils,
+    rustc-unwrapped,
+    rust-bindgen-unwrapped,
 }:
+
+{
+    pname,
+    version,
+    packageVersion,
+    architecture,
+    modDirVersion,
+    kernel,
+    headers,
+    generatedConfig,
+    configHash,
+    isLTS ? false,
+    isZen ? false,
+
+    # NixOS always supplies these through boot.kernelPackages' apply hook.
+    kernelPatches ? [ ],
+    features ? { },
+    randstructSeed ? "",
+}:
+
+assert lib.assertMsg (kernelPatches == [ ])
+    "${pname}: patches cannot be applied to a prebuilt kernel";
+assert lib.assertMsg (randstructSeed == "")
+    "${pname}: randstructSeed cannot be applied to a prebuilt kernel";
 
 let
 
-    localVer = "-cachyos";
+    fetchPackage = source: fetchurl {
+        inherit (source) url hash;
+    };
 
-    majorMinor = with lib;
-        let parts = versions.splitVersion baseKernel.version; in
-        "${elemAt parts 0}.${elemAt parts 1}";
+    kernelArchive = fetchPackage kernel;
+    headersArchive = fetchPackage headers;
 
-    fetchPatch = patchPath:
-        runCommand "cachyos-${majorMinor}-${patchPath}" {} ''
-            cp \
-                "${kernelPatches}/${majorMinor}/${patchPath}" \
-                "$out"
+    normalizedGeneratedConfig =
+        generatedConfig
+        |> lib.mapAttrsToList (name: value: "${name}=${value}")
+        |> lib.sort (left: right: left < right)
+        |> lib.concatStringsSep "\n"
+        |> (text: text + "\n");
+
+    # A separate derivation gives passthru.configfile a real store dependency.
+    # It also proves that release.nix, config.nix, and the headers archive all
+    # describe the same kernel before NixOS consumes the config.
+    kernelConfigFile = stdenvNoCC.mkDerivation {
+        name = "${pname}-${packageVersion}-config";
+        src = headersArchive;
+
+        strictDeps = true;
+        dontUnpack = true;
+
+        nativeBuildInputs = [ zstd ];
+
+        configAttrNormalized = normalizedGeneratedConfig;
+        passAsFile = [ "configAttrNormalized" ];
+
+        installPhase = /* bash */ ''
+            runHook preInstall
+
+            root="$PWD/root"
+            mkdir "$root"
+            tar --zstd -xf "$src" -C "$root" \
+                --wildcards \
+                '.PKGINFO' \
+                'usr/lib/modules/*/build/.config' \
+                'usr/lib/modules/*/build/version' \
+                'usr/lib/modules/*/build/include/config/kernel.release'
+
+            actualPackageName="$(sed -n 's/^pkgname = //p' "$root/.PKGINFO")"
+            actualPackageVersion="$(sed -n 's/^pkgver = //p' "$root/.PKGINFO")"
+            if [ "$actualPackageName" != "${headers.packageName}" ] \
+                || [ "$actualPackageVersion" != "${packageVersion}" ]; then
+                echo "error: headers package identity is '$actualPackageName-$actualPackageVersion'; expected '${headers.packageName}-${packageVersion}'" >&2
+                exit 1
+            fi
+
+            moduleDirs=( "$root"/usr/lib/modules/* )
+            actualModuleDir="''${moduleDirs[0]##*/}"
+            if [ "''${#moduleDirs[@]}" -ne 1 ] \
+                || [ "$actualModuleDir" != "${modDirVersion}" ]; then
+                echo "error: headers module directory is '$actualModuleDir'; expected '${modDirVersion}'" >&2
+                exit 1
+            fi
+
+            headersBuild="$root/usr/lib/modules/${modDirVersion}/build"
+            buildVersion="$(cat "$headersBuild/version")"
+            configVersion="$(cat "$headersBuild/include/config/kernel.release")"
+            if [ "$buildVersion" != "${modDirVersion}" ] \
+                || [ "$configVersion" != "${modDirVersion}" ]; then
+                echo "error: headers report '$buildVersion' / '$configVersion'; expected '${modDirVersion}'" >&2
+                exit 1
+            fi
+
+            actualConfigHash="$(sha256sum "$headersBuild/.config" | cut -d' ' -f1)"
+            if [ "$actualConfigHash" != "${configHash}" ]; then
+                echo "error: headers config sha256 is '$actualConfigHash'; expected '${configHash}'" >&2
+                exit 1
+            fi
+
+            actualConfig="$TMPDIR/kernel-config.normalized"
+            sed -n '/^CONFIG_[A-Za-z0-9_]*=/p' "$headersBuild/.config" \
+                | LC_ALL=C sort > "$actualConfig"
+            if ! diff -u "$configAttrNormalizedPath" "$actualConfig"; then
+                echo "error: packages/cachyos/config.nix does not match the headers .config" >&2
+                echo "       regenerate it with cachyos-gen-config" >&2
+                exit 1
+            fi
+
+            install -Dm644 "$headersBuild/.config" "$out"
+
+            runHook postInstall
         '';
+    };
 
-    defconfig = "cachyos_defconfig";
+    optionName = name: "CONFIG_${name}";
 
-    myConfig = import ./config.nix lib;
+    config = generatedConfig // rec {
+        isSet = name:
+            lib.hasAttr (optionName name) generatedConfig;
 
-    # config raw from cachyos may interfere with structured config,
-    # causing generate-config.pl to fail
-    kconfigClearence = runCommand "kconfig-hack" {} ''
-        cp "${kernelConfig}" config
-        sed -i '/^#/d' config
-        # remove meta config related to cc and ld
-        sed -i '/^CONFIG_G*CC_/d' config
-        sed -i '/^CONFIG_LD_/d' config
-        sed -i '/^CONFIG_RUSTC*_/d' config
-        sed -i '/^CONFIG_CC_/d' config
-        sed -i '/^CONFIG_KUNIT$/d' config
-        sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' config
-        # remove drivers as they are defined in structured config
-        sed -i '/^CONFIG_SND_/d' config
-        # sed -i '/^CONFIG_NET_/d' config
-        sed -i '/^CONFIG_.*_FS=/d' config
-        sed -i '/^CONFIG_MMC_/d' config
-        sed -i '/^CONFIG_MEMSTICK_/d' config
-        sed -i '/^CONFIG_SYSTEM/d' config
-        sed -i '/^CONFIG_MEDIA_/d' config
-        sed -i '/^CONFIG_SSB/d' config
-        sed -i '/^CONFIG_IIO/d' config
-        sed -i '/^CONFIG_USB_/d' config
-        # sed -i '/^CONFIG_PHY_/d' config
-        # sed -i '/^CONFIG_DRM_/d' config
-        # sed -i '/^CONFIG_FB_/d' config
-        sed -i '/^CONFIG_MFD_/d' config
-        sed -i '/^CONFIG_GPIO/d' config
-        sed -i '/^CONFIG_REGULATOR/d' config
-        sed -i '/^CONFIG_COMEDI/d' config
-        # sed -i '/^CONFIG_SENSORS/d' config
-        sed -i '/^CONFIG_BLK_DEV/d' config
-        sed -i '/^CONFIG_SCSI_/d' config
-        sed -i '/^CONFIG_DEBUG_/d' config
-        sed -i '/^CONFIG_.*_PHY=/d' config
-        sed -i '/^CONFIG_INPUT_/d' config
-        sed -i '/^CONFIG_JOYSTICK_/d' config
-        sed -i '/^CONFIG_PTP_1588_CLOCK/d' config
-        sed -i '/^CONFIG_ATH/d' config
-        # AI: merge multiple empty lines into one
-        sed -i '/^$/N;/\n$/D' config
-        cp config "$out"
+        getValue = name:
+            if isSet name then
+                lib.getAttr (optionName name) generatedConfig
+            else
+                null;
+
+        isYes = name: getValue name == "y";
+        isNo = name: getValue name == "n";
+        isModule = name: getValue name == "m";
+        isEnabled = name: isYes name || isModule name;
+        isDisabled = name: !(isSet name) || isNo name;
+    };
+
+    # NixOS uses this metadata for behavior that must be known at evaluation
+    # time. Derive the defaults from the imported config; callers may add or
+    # override feature facts through boot.kernel.features.
+    kernelFeatures = {
+        efiBootStub = config.isYes "EFI_STUB";
+        ia32Emulation = config.isYes "IA32_EMULATION";
+        netfilterRPFilter = config.isEnabled "IP_NF_MATCH_RPFILTER";
+    } // features;
+
+    isModular = config.isYes "MODULES";
+    withRust = config.isYes "RUST";
+
+    commonMakeFlags = import ./module-make-flags.nix {
+        inherit lib stdenv buildPackages;
+    };
+
+    moduleBuildDependencies = [
+        pahole
+        perl
+        elfutils
+        (buildPackages.deterministic-uname.override { inherit modDirVersion; })
+        zstd
+    ]
+    ++ lib.optionals withRust [
+        rustc-unwrapped
+        rust-bindgen-unwrapped
+    ];
+
+    baseVersion = lib.head (lib.splitString "-rc" version);
+
+in
+
+assert lib.assertMsg isModular
+    "${pname}: importing a kernel without CONFIG_MODULES is unsupported";
+
+stdenvNoCC.mkDerivation {
+    inherit pname version;
+
+    outputs = [
+        "out"
+        "dev"
+        "modules"
+    ];
+
+    src = kernelArchive;
+
+    strictDeps = true;
+    dontUnpack = true;
+
+    nativeBuildInputs = [
+        kmod
+        zstd
+    ];
+
+    # The upstream image and modules must remain byte-identical.
+    dontStrip = true;
+    dontPatchELF = true;
+    noAuditTmpdir = true;
+
+    installPhase = /* bash */ ''
+        runHook preInstall
+
+        root="$PWD/root"
+        mkdir "$root"
+        tar --zstd -xf "$src" -C "$root"
+
+        actualPackageName="$(sed -n 's/^pkgname = //p' "$root/.PKGINFO")"
+        actualPackageVersion="$(sed -n 's/^pkgver = //p' "$root/.PKGINFO")"
+        if [ "$actualPackageName" != "${kernel.packageName}" ] \
+            || [ "$actualPackageVersion" != "${packageVersion}" ]; then
+            echo "error: kernel package identity is '$actualPackageName-$actualPackageVersion'; expected '${kernel.packageName}-${packageVersion}'" >&2
+            exit 1
+        fi
+
+        moduleDirs=( "$root"/usr/lib/modules/* )
+        actualModuleDir="''${moduleDirs[0]##*/}"
+        if [ "''${#moduleDirs[@]}" -ne 1 ] \
+            || [ "$actualModuleDir" != "${modDirVersion}" ]; then
+            echo "error: kernel module directory is '$actualModuleDir'; expected '${modDirVersion}'" >&2
+            exit 1
+        fi
+
+        moduleRoot="$root/usr/lib/modules/${modDirVersion}"
+        for required in \
+            vmlinuz \
+            modules.builtin \
+            modules.builtin.modinfo \
+            modules.order
+        do
+            if [ ! -f "$moduleRoot/$required" ]; then
+                echo "error: '$required' is missing from the kernel package" >&2
+                exit 1
+            fi
+        done
+
+        mkdir -p "$out"
+        cp -a "$moduleRoot/vmlinuz" "$out/bzImage"
+
+        mkdir -p "$modules/lib/modules"
+        cp -a "$moduleRoot" "$modules/lib/modules/${modDirVersion}"
+        rm -f \
+            "$modules/lib/modules/${modDirVersion}/vmlinuz" \
+            "$modules/lib/modules/${modDirVersion}/pkgbase"
+
+        # CachyOS suppresses depmod while creating the Arch package.
+        depmod -b "$modules" "${modDirVersion}"
+
+        install -Dm644 \
+            "${kernelConfigFile}" \
+            "$dev/lib/modules/${modDirVersion}/build/.config"
+
+        test -f "$out/bzImage"
+        test -f "$modules/lib/modules/${modDirVersion}/modules.dep"
+        test -f "$modules/lib/modules/${modDirVersion}/modules.alias"
+        test -f "$dev/lib/modules/${modDirVersion}/build/.config"
+
+        runHook postInstall
     '';
 
-    patchedSrc = stdenv.mkDerivation {
-        pname = "linux-cachyos-${majorMinor}-src";
-        inherit (baseKernel) version src;
+    passthru = {
+        inherit
+            version
+            packageVersion
+            architecture
+            modDirVersion
+            config
+            isModular
+            withRust
+            kernelPatches
+            moduleBuildDependencies
+            stdenv
+            commonMakeFlags
+            baseVersion
+            isLTS
+            isZen
+        ;
 
-        nativeBuildInputs = [ rsync perl ];
-        dontConfigure = true;
-        dontBuild = true;
+        features = kernelFeatures;
 
-        patches =
-            let
-                rmRandstruct = with lib;
-                    filter (p: !hasInfix "randstruct" p);
-            in
-            (rmRandstruct baseKernel.patches)
-            ++ [
-                (fetchPatch "/all/0001-cachyos-base-all.patch")
-                (fetchPatch "/sched/0001-bore-cachy.patch")
-            ];
+        configfile = kernelConfigFile;
+        target = "bzImage";
+        buildDTBs = false;
 
-        postPatch = ''
-            for dir in arch/*/configs; do
-                install -Dm644 "${kconfigClearence}" "$dir/${defconfig}"
-            done
-        '';
-
-        installPhase = ''
-            mkdir -pv "$out"
-            rsync -avhP "./" "$out/"
-        '';
+        kernelOlder = lib.versionOlder baseVersion;
+        kernelAtLeast = lib.versionAtLeast baseVersion;
     };
 
-    kernel = buildLinux {
-        pname = "linux-cachyos";
-        src = patchedSrc;
-        version = lib.versions.pad 3 "${baseKernel.version}${localVer}";
-
-        inherit defconfig;
-        # autoModules = false;
-
-        # deal with "error: unused option"
-        # stupid nixpkgs default
-        ignoreConfigErrors = true;
-
-        structuredExtraConfig =
-            myConfig
-            // (with lib.kernel; {
-                LOCALVERSION_AUTO = no;
-                LOCALVERSION = freeform localVer;
-            });
-
-        extraPassthru = {
-            packages = linuxKernel.packagesFor kernel;
-            inherit kconfigClearence;
-        };
+    meta = {
+        description = "Prebuilt CachyOS Linux kernel (${kernel.packageName} ${packageVersion}, ${architecture})";
+        homepage = "https://cachyos.org/";
+        license = lib.licenses.gpl2Only;
+        platforms = [ "x86_64-linux" ];
+        sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     };
-
-in kernel
+}

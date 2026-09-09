@@ -158,9 +158,6 @@ finalize {
         (tsuki "inori" { version = "branch"; })
     ];
 
-    #
-    # Others, built only to make sure being cached
-    #
     Lix = [ (pkgs "lix") ];
     # nixpkgs niri with local patches; version moves with flake.lock.
     Niri = [ (tsuki "niri" null) ];

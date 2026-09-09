@@ -72,9 +72,7 @@ in rec {
         omp
     ;
 
-    linuxCachyos =
-        (legacyFrom "nix-cachyos-kernel")
-        .linuxPackages-cachyos-latest-lto-x86_64-v3;
+    linuxCachyos = tsuki.cachyos.linuxPackages;
 
     # tangled = {
     #     inherit (pkgsFrom "tangled")

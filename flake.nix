@@ -58,13 +58,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        # N.B. do NOT override nixpkgs input, for caching
-        nix-cachyos-kernel = {
-            url = "github:xddxdd/nix-cachyos-kernel";
-            inputs.flake-compat.follows = "empty";
-            inputs.flake-parts.follows = "flake-parts";
-        };
-
         # Some toolchains
 
         rust-overlay = {
@@ -73,8 +66,6 @@
         };
 
         # Follows
-
-        empty.url = "github:MidAutumnMoon/empty-flake";
 
         flake-utils = {
             url = "github:numtide/flake-utils";
