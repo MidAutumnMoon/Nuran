@@ -185,7 +185,6 @@ stdenvNoCC.mkDerivation {
 
     outputs = [
         "out"
-        "dev"
         "modules"
     ];
 
@@ -252,14 +251,9 @@ stdenvNoCC.mkDerivation {
         # CachyOS suppresses depmod while creating the Arch package.
         depmod -b "$modules" "${modDirVersion}"
 
-        install -Dm644 \
-            "${kernelConfigFile}" \
-            "$dev/lib/modules/${modDirVersion}/build/.config"
-
         test -f "$out/bzImage"
         test -f "$modules/lib/modules/${modDirVersion}/modules.dep"
         test -f "$modules/lib/modules/${modDirVersion}/modules.alias"
-        test -f "$dev/lib/modules/${modDirVersion}/build/.config"
 
         runHook postInstall
     '';
