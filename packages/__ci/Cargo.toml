@@ -22,7 +22,7 @@ sha2 = "0.11.0"
 tar = "0.4.44"
 tempfile = "3.23.0"
 tracing = "0.1.41"
-zstd = "0.13.3"
+zstd = "0.14.0"
 
 [lints]
 workspace = true
