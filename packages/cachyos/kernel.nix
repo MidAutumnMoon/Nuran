@@ -48,8 +48,8 @@ let
         |> (text: text + "\n");
 
     # A separate derivation gives passthru.configfile a real store dependency.
-    # It also proves that release.nix, config.nix, and the headers archive all
-    # describe the same kernel before NixOS consumes the config.
+    # It also proves that release.json, config.json, and the headers archive
+    # all describe the same kernel before NixOS consumes the config.
     kernelConfigFile = stdenvNoCC.mkDerivation {
         name = "${pname}-${packageVersion}-config";
         src = headersArchive;
@@ -99,8 +99,8 @@ let
             if ! sed -n '/^CONFIG_[A-Za-z0-9_]*=/p' "$headersBuild/.config" \
                 | LC_ALL=C sort \
                 | diff -u "$configAttrNormalizedPath" -; then
-                echo "error: packages/cachyos/config.nix does not match the headers .config" >&2
-                echo "       regenerate it with: nix run .#tsuki.__ci -- cachyos gen-config CONFIG -o packages/cachyos/config.nix" >&2
+                echo "error: packages/cachyos/config.json does not match the headers .config" >&2
+                echo "       regenerate it with: nix run .#tsuki.__ci -- cachyos gen-config CONFIG -o packages/cachyos/config.json" >&2
                 exit 1
             fi
 

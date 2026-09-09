@@ -6,7 +6,7 @@
 
 let
 
-    release = import ./release.nix;
+    release = builtins.fromJSON (builtins.readFile ./release.json);
     buildKernel = callPackage ./kernel.nix { };
 
     kernel = lib.makeOverridable buildKernel {
@@ -23,7 +23,8 @@ let
             isZen
         ;
 
-        generatedConfig = import ./config.nix;
+        generatedConfig =
+            builtins.fromJSON (builtins.readFile ./config.json);
     };
 
 in {

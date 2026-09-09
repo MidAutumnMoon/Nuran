@@ -8,7 +8,6 @@ use std::io::Write as _;
 use std::path::Components;
 use std::path::Path;
 use std::path::PathBuf;
-use std::process::Command as ProcessCommand;
 use std::process::ExitCode;
 use std::time::Duration;
 
@@ -19,6 +18,7 @@ use anyhow::ensure;
 use base64::Engine as _;
 use base64::engine::general_purpose::STANDARD as BASE64;
 use serde::Deserialize;
+use serde::Serialize;
 use sha2::Digest as _;
 use sha2::Sha256;
 use tempfile::tempdir;
@@ -54,7 +54,7 @@ enum Command {
     /// Download and pin the current CachyOS kernel and headers.
     Update(UpdateArgs),
 
-    /// Convert a Linux kernel `.config` to a Nix attrset.
+    /// Convert a Linux kernel `.config` to a JSON object.
     GenConfig(GenConfigArgs),
 }
 
@@ -112,7 +112,7 @@ pub fn run(args: Args) -> Result<ExitCode> {
 fn check(location: &PackageLocation) -> Result<ExitCode> {
     let files = PackageFiles::resolve(location)?;
     let target = Target::supported();
-    let pinned = PinnedRelease::load(&files.release)?;
+    let pinned = Release::load(&files.release)?;
     let remote = RemoteRelease::fetch(&HttpClient::new(), &target)?;
 
     if pinned.matches(&target, &remote) {
@@ -130,7 +130,7 @@ fn check(location: &PackageLocation) -> Result<ExitCode> {
 fn update(args: &UpdateArgs) -> Result<()> {
     let files = PackageFiles::resolve(&args.location)?;
     let target = Target::supported();
-    let pinned = PinnedRelease::load(&files.release)?;
+    let pinned = Release::load(&files.release)?;
     let client = HttpClient::new();
 
     eprintln!("Checking {} upstream metadata...", target.package_name);
@@ -168,19 +168,19 @@ fn update(args: &UpdateArgs) -> Result<()> {
     let generated_config = KernelConfig::parse(&extracted.config)
         .context("Failed to parse the headers package .config")?;
     let config_hash = Checksum::digest(&extracted.config);
-    let release = Release {
-        target: &target,
-        remote: &remote,
-        mod_dir_version: &extracted.mod_dir_version,
+    let release = Release::from_remote(
+        &target,
+        &remote,
+        &extracted.mod_dir_version,
         config_hash,
-    };
+    );
+    let config_json = generated_config.render_json()?;
+    let release_json = release.render_json()?;
 
-    let config_changed = write_if_changed(
-        &files.config,
-        generated_config.render_nix().as_bytes(),
-    )?;
+    let config_changed =
+        write_if_changed(&files.config, config_json.as_bytes())?;
     let release_changed =
-        write_if_changed(&files.release, release.render_nix().as_bytes())?;
+        write_if_changed(&files.release, release_json.as_bytes())?;
 
     if config_changed || release_changed {
         eprintln!(
@@ -207,7 +207,7 @@ fn update(args: &UpdateArgs) -> Result<()> {
 fn generate_config(args: &GenConfigArgs) -> Result<()> {
     let raw = read_input(&args.input)?;
     let config = KernelConfig::parse(&raw)?;
-    let rendered = config.render_nix();
+    let rendered = config.render_json()?;
 
     if args.output == Path::new("-") {
         io::stdout().lock().write_all(rendered.as_bytes()).context(
@@ -269,8 +269,8 @@ impl PackageFiles {
             directory.display()
         );
 
-        let release = directory.join("release.nix");
-        let config = directory.join("config.nix");
+        let release = directory.join("release.json");
+        let config = directory.join("config.json");
         ensure!(
             release.is_file(),
             "CachyOS release file does not exist: {}",
@@ -587,49 +587,89 @@ impl fmt::Display for Checksum {
     }
 }
 
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct PinnedRelease {
+#[derive(Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct Release {
     pname: String,
+    version: String,
     package_version: String,
-    kernel: PinnedPackage,
-    headers: PinnedPackage,
+    architecture: String,
+    mod_dir_version: String,
+    kernel: ReleasePackage,
+    headers: ReleasePackage,
+    config_hash: String,
+    #[serde(rename = "isLTS")]
+    is_lts: bool,
+    is_zen: bool,
 }
 
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct PinnedPackage {
+#[derive(Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct ReleasePackage {
     package_name: String,
+    url: String,
     hash: String,
 }
 
-impl PinnedRelease {
+impl Release {
+    fn from_remote(
+        target: &Target,
+        remote: &RemoteRelease,
+        mod_dir_version: &str,
+        config_hash: Checksum,
+    ) -> Self {
+        Self {
+            pname: target.package_name.to_owned(),
+            version: remote.version.upstream.clone(),
+            package_version: remote.version.package.clone(),
+            architecture: target.architecture.to_owned(),
+            mod_dir_version: mod_dir_version.to_owned(),
+            kernel: ReleasePackage::from_remote(
+                &remote.kernel,
+                target,
+                &remote.version.package,
+            ),
+            headers: ReleasePackage::from_remote(
+                &remote.headers,
+                target,
+                &remote.version.package,
+            ),
+            config_hash: config_hash.to_string(),
+            is_lts: false,
+            is_zen: false,
+        }
+    }
+
     fn load(path: &Path) -> Result<Self> {
-        let output = ProcessCommand::new("nix")
-            .args(["eval", "--json", "--file"])
-            .arg(path)
-            .output()
-            .context(
-                "Failed to run nix eval for the CachyOS release pin",
-            )?;
-        ensure!(
-            output.status.success(),
-            "Failed to evaluate {}:\n{}",
-            path.display(),
-            String::from_utf8_lossy(&output.stderr).trim()
-        );
-        serde_json::from_slice(&output.stdout).with_context(|| {
-            format!("Failed to parse evaluated {}", path.display())
-        })
+        let raw = fs::read(path).with_context(|| {
+            format!("Failed to read {}", path.display())
+        })?;
+        serde_json::from_slice(&raw)
+            .with_context(|| format!("Failed to parse {}", path.display()))
+    }
+
+    fn render_json(&self) -> Result<String> {
+        let mut output = serde_json::to_string_pretty(self)
+            .context("Failed to serialize CachyOS release metadata")?;
+        output.push('\n');
+        Ok(output)
     }
 
     fn matches(&self, target: &Target, remote: &RemoteRelease) -> bool {
         self.pname == target.package_name
+            && self.version == remote.version.upstream
             && self.package_version == remote.version.package
-            && self.kernel.package_name == remote.kernel.name
-            && self.kernel.hash == remote.kernel.checksum.sri()
-            && self.headers.package_name == remote.headers.name
-            && self.headers.hash == remote.headers.checksum.sri()
+            && self.architecture == target.architecture
+            && self.kernel.matches(
+                &remote.kernel,
+                target,
+                &remote.version.package,
+            )
+            && self.headers.matches(
+                &remote.headers,
+                target,
+                &remote.version.package,
+            )
     }
 
     fn label(&self) -> String {
@@ -637,10 +677,32 @@ impl PinnedRelease {
     }
 }
 
-fn change_description(
-    pinned: &PinnedRelease,
-    remote: &RemoteRelease,
-) -> String {
+impl ReleasePackage {
+    fn from_remote(
+        remote: &RemoteArtifact,
+        target: &Target,
+        package_version: &str,
+    ) -> Self {
+        Self {
+            package_name: remote.name.clone(),
+            url: remote.url(target, package_version),
+            hash: remote.checksum.sri(),
+        }
+    }
+
+    fn matches(
+        &self,
+        remote: &RemoteArtifact,
+        target: &Target,
+        package_version: &str,
+    ) -> bool {
+        self.package_name == remote.name
+            && self.url == remote.url(target, package_version)
+            && self.hash == remote.checksum.sri()
+    }
+}
+
+fn change_description(pinned: &Release, remote: &RemoteRelease) -> String {
     let old = pinned.label();
     let new = format!("{} {}", remote.kernel.name, remote.version.package);
     if old == new {
@@ -934,69 +996,6 @@ fn inspect_release_archives(
             .config
             .context("Headers package has no build/.config")?,
     })
-}
-
-struct Release<'release> {
-    target: &'release Target,
-    remote: &'release RemoteRelease,
-    mod_dir_version: &'release str,
-    config_hash: Checksum,
-}
-
-impl Release<'_> {
-    fn render_nix(&self) -> String {
-        let version = &self.remote.version.upstream;
-        let kernel_hash = self.remote.kernel.checksum.sri();
-        let headers_hash = self.remote.headers.checksum.sri();
-        format!(
-            r#"# Generated by `ci-driver cachyos update`.
-# DO NOT EDIT.
-let
-
-    pname = "{pname}";
-    version = "{version}";
-    packageVersion = "{package_version}";
-
-    architecture = "{architecture}";
-    repository = "{repository}";
-    baseUrl = "{mirror}/repo/${{architecture}}/${{repository}}";
-
-    package = packageName: hash: {{
-        inherit packageName hash;
-        url = "${{baseUrl}}/${{packageName}}-${{packageVersion}}-${{architecture}}.pkg.tar.zst";
-    }};
-
-in {{
-
-    inherit pname version packageVersion architecture;
-
-    # `uname -r` and the module-tree directory. This comes from the package
-    # contents; it must not be reconstructed from the package version.
-    modDirVersion = "{mod_dir_version}";
-
-    kernel = package pname
-        "{kernel_hash}";
-
-    headers = package "${{pname}}-headers"
-        "{headers_hash}";
-
-    # sha256 of usr/lib/modules/<version>/build/.config in `headers`.
-    configHash = "{config_hash}";
-
-    isLTS = false;
-    isZen = false;
-
-}}
-"#,
-            pname = self.target.package_name,
-            package_version = self.remote.version.package,
-            architecture = self.target.architecture,
-            repository = self.target.repository,
-            mirror = MIRROR_ORIGIN,
-            mod_dir_version = self.mod_dir_version,
-            config_hash = self.config_hash,
-        )
-    }
 }
 
 fn write_if_changed(path: &Path, content: &[u8]) -> Result<bool> {

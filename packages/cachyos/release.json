@@ -1,0 +1,20 @@
+{
+  "pname": "linux-cachyos",
+  "version": "7.2.3",
+  "packageVersion": "7.2.3-1",
+  "architecture": "x86_64_v3",
+  "modDirVersion": "7.2.3-1-cachyos",
+  "kernel": {
+    "packageName": "linux-cachyos",
+    "url": "https://cdn77.cachyos.org/repo/x86_64_v3/cachyos-v3/linux-cachyos-7.2.3-1-x86_64_v3.pkg.tar.zst",
+    "hash": "sha256-MHUnmPwi6jZ0vprN6WX2MVOnOb2TZTmYspyQWYkx234="
+  },
+  "headers": {
+    "packageName": "linux-cachyos-headers",
+    "url": "https://cdn77.cachyos.org/repo/x86_64_v3/cachyos-v3/linux-cachyos-headers-7.2.3-1-x86_64_v3.pkg.tar.zst",
+    "hash": "sha256-SeO/DghTVEasCNICwhoT0Reo+MUWBrswki6HXfpww1Q="
+  },
+  "configHash": "588678b97e11e00df5c02aaa151d5087b4e928f7b4b571fc7bd28ec9870d3a10",
+  "isLTS": false,
+  "isZen": false
+}

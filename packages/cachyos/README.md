@@ -11,7 +11,7 @@ The tracked package is `linux-cachyos`, CachyOS's LLVM ThinLTO kernel for `x86_6
 
 ## Updating
 
-The repository CI driver owns both release metadata and config generation:
+The repository CI driver owns `release.json` and `config.json`:
 
 ```console
 nix run .#tsuki.__ci -- cachyos check
