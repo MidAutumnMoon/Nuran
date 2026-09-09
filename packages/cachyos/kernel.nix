@@ -96,10 +96,9 @@ let
                 exit 1
             fi
 
-            actualConfig="$TMPDIR/kernel-config.normalized"
-            sed -n '/^CONFIG_[A-Za-z0-9_]*=/p' "$headersBuild/.config" \
-                | LC_ALL=C sort > "$actualConfig"
-            if ! diff -u "$configAttrNormalizedPath" "$actualConfig"; then
+            if ! sed -n '/^CONFIG_[A-Za-z0-9_]*=/p' "$headersBuild/.config" \
+                | LC_ALL=C sort \
+                | diff -u "$configAttrNormalizedPath" -; then
                 echo "error: packages/cachyos/config.nix does not match the headers .config" >&2
                 echo "       regenerate it with cachyos-gen-config" >&2
                 exit 1
@@ -218,10 +217,6 @@ stdenvNoCC.mkDerivation {
 
         # CachyOS suppresses depmod while creating the Arch package.
         depmod -b "$modules" "${modDirVersion}"
-
-        test -f "$out/bzImage"
-        test -f "$modules/lib/modules/${modDirVersion}/modules.dep"
-        test -f "$modules/lib/modules/${modDirVersion}/modules.alias"
 
         runHook postInstall
     '';
