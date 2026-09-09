@@ -26,3 +26,11 @@ nix run .#tsuki.__ci -- cachyos check
 nix run .#tsuki.__ci -- cachyos update
 nix run .#tsuki.__ci -- cachyos gen-config CONFIG [-o OUTPUT]
 ```
+
+# Findings of what's missing in CachyOS stock kernel
+
+Surprisingly, CachyOS config is almost identical to NixOS kernel. I'd say it's superior in some aspects.
+
+1. The `request_key` patch. Trivial to work around. Or use smb without password.
+2. 1k+ of exotic legacy drivers (because of the stupid perl script).
+3. Few legacy options. NixOS should probably disable them.
