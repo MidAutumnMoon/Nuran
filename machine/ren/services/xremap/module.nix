@@ -16,6 +16,7 @@
                     # dolphin has embedded terminal.
                     # A bit leaky, but better than ruining C-w completely.
                     "org.kde.dolphin"
+                    "dev.zed.Zed"
                 ];
                 remap = { "C-w" = "C-Backspace"; };
             }
