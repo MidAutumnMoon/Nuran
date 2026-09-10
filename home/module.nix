@@ -36,6 +36,7 @@
         # tsuki.feishin
         uv
         omp
+        zcode
     ];
 
     envvars = {

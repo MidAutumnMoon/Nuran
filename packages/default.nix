@@ -70,6 +70,7 @@ in rec {
 
     inherit (pkgsFrom "llm-agents")
         omp
+        zcode
     ;
 
     linuxCachyos = tsuki.cachyos.linuxPackages;
