@@ -3,7 +3,7 @@
     inputs = {
 
         nixpkgs.url =
-            "github:NixOS/nixpkgs/nixos-unstable-small";
+            "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.zst";
 
         # Some modules
 
