@@ -6,7 +6,7 @@ members = [
     "packages/__ci",
     "packages/psd-rs",
     "packages/system76-scheduler-niri",
-    "machine/phia/environment/maintenance",
+    "machine/phia/environment/maintenance", "packages/__pin",
 ]
 
 [workspace.package]

@@ -16,6 +16,11 @@ let
     legacyFrom =
         name: flakes.${name}.legacyPackages.${hostSystem};
 
+    # Store-path pins; see ./__pin/.
+    pinned = import ./__pin {
+        system = hostSystem;
+    };
+
     discovered =
         lib.packagesFromDirectoryRecursive {
             inherit callPackage;
@@ -68,7 +73,7 @@ in rec {
         sops-install-secrets
     ;
 
-    inherit (pkgsFrom "llm-agents")
+    inherit (pinned)
         omp
         zcode
     ;

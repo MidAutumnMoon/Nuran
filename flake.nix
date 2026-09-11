@@ -26,12 +26,7 @@
         };
 
         # Some packages
-
-        llm-agents = {
-            url = "github:numtide/llm-agents.nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-            inputs.flake-parts.follows = "flake-parts";
-        };
+        # (llm-agents is pinned by store path instead — see packages/__pin/)
 
         # Pinned: firefox 155.0.1
         nixpkgs-firefox.url =
