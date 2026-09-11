@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::ffi::OsStr;
 use std::fmt;
 use std::fs;
@@ -30,7 +31,6 @@ use crate::kernel_config::KernelConfig;
 const PACKAGE_NAME: &str = "linux-cachyos";
 const REPOSITORY: &str = "cachyos-v3";
 const ARCHITECTURE: &str = "x86_64_v3";
-const DASHBOARD_ORIGIN: &str = "https://dashboard.cachyos.org";
 const MIRROR_ORIGIN: &str = "https://cdn77.cachyos.org";
 const MAX_ARCHIVE_METADATA_SIZE: u64 = 4 * 1024 * 1024;
 
@@ -115,7 +115,7 @@ fn update(package_dir: Option<&Path>, force: bool) -> Result<()> {
     let pinned = Release::load(&release_path)?;
     let agent = http_agent();
 
-    eprintln!("Checking {PACKAGE_NAME} upstream metadata...");
+    eprintln!("Checking the {REPOSITORY} repository database...");
     let upstream = fetch_upstream(&agent)?;
     if !force && pinned.matches_upstream(&upstream) {
         eprintln!("{} is already up to date.", upstream.label());
@@ -124,14 +124,9 @@ fn update(package_dir: Option<&Path>, force: bool) -> Result<()> {
 
     let temporary =
         tempdir().context("Failed to create download directory")?;
-    let kernel_path = temporary.path().join(package_file_name(
-        &upstream.kernel.name,
-        &upstream.package_version,
-    ));
-    let headers_path = temporary.path().join(package_file_name(
-        &upstream.headers.name,
-        &upstream.package_version,
-    ));
+    let kernel_path = temporary.path().join(upstream.kernel.file_name()?);
+    let headers_path =
+        temporary.path().join(upstream.headers.file_name()?);
     download_verified(&agent, &upstream.kernel, &kernel_path)?;
     download_verified(&agent, &upstream.headers, &headers_path)?;
 
@@ -246,19 +241,21 @@ impl UpstreamRelease {
 }
 
 fn fetch_upstream(agent: &Agent) -> Result<UpstreamRelease> {
-    let (package_version, kernel_hash) =
-        fetch_dashboard_package(agent, PACKAGE_NAME)?;
     let headers_name = format!("{PACKAGE_NAME}-headers");
-    let (headers_version, headers_hash) =
-        fetch_dashboard_package(agent, &headers_name)?;
+    let mut database = RepoDatabase::fetch(agent)?;
+    let kernel = database.take_package(PACKAGE_NAME)?;
+    let headers = database.take_package(&headers_name)?;
     ensure!(
-        package_version == headers_version,
-        "CachyOS kernel and headers versions differ: {package_version} vs {headers_version}"
+        kernel.version == headers.version,
+        "CachyOS kernel and headers versions differ: {} vs {}",
+        kernel.version,
+        headers.version
     );
 
+    let package_version = kernel.version.clone();
     let version = kernel_version(&package_version)?.to_owned();
-    let kernel = package(PACKAGE_NAME, &package_version, kernel_hash);
-    let headers = package(&headers_name, &package_version, headers_hash);
+    let kernel = kernel.into_package()?;
+    let headers = headers.into_package()?;
     Ok(UpstreamRelease {
         version,
         package_version,
@@ -267,24 +264,152 @@ fn fetch_upstream(agent: &Agent) -> Result<UpstreamRelease> {
     })
 }
 
-fn fetch_dashboard_package(
-    agent: &Agent,
-    expected_name: &str,
-) -> Result<(String, Checksum)> {
-    let url = format!(
-        "{DASHBOARD_ORIGIN}/package/{REPOSITORY}/{ARCHITECTURE}/{expected_name}"
-    );
-    let html = get_text(agent, &url)?;
-    let name = dashboard_string(&html, "pkg_name")?;
-    ensure!(
-        name == expected_name,
-        "Dashboard at {url} describes {name}, expected {expected_name}"
-    );
-    let version = dashboard_string(&html, "pkg_version")?.to_owned();
-    let checksum = dashboard_string(&html, "pkg_sha256sum")?
+/// A package entry of the mirror's pacman repository database.
+#[derive(Debug)]
+struct RepoPackage {
+    name: String,
+    version: String,
+    architecture: String,
+    file_name: String,
+    checksum: Checksum,
+}
+
+impl RepoPackage {
+    fn into_package(self) -> Result<Package> {
+        ensure!(
+            self.architecture == ARCHITECTURE,
+            "The {REPOSITORY} repository lists architecture {} for {}, expected {ARCHITECTURE}",
+            self.architecture,
+            self.name
+        );
+        Ok(Package {
+            name: self.name,
+            url: format!(
+                "{MIRROR_ORIGIN}/repo/{ARCHITECTURE}/{REPOSITORY}/{}",
+                self.file_name
+            ),
+            hash: self.checksum.sri(),
+        })
+    }
+}
+
+/// The pacman repository database of the mirror, which describes exactly
+/// the packages the mirror currently serves.
+#[derive(Debug)]
+struct RepoDatabase {
+    packages: HashMap<String, RepoPackage>,
+}
+
+impl RepoDatabase {
+    fn fetch(agent: &Agent) -> Result<Self> {
+        let url = format!(
+            "{MIRROR_ORIGIN}/repo/{ARCHITECTURE}/{REPOSITORY}/{REPOSITORY}.db"
+        );
+        let mut response = agent
+            .get(&url)
+            .call()
+            .with_context(|| format!("Failed to fetch {url}"))?;
+        let bytes = response
+            .body_mut()
+            .read_to_vec()
+            .with_context(|| format!("Failed to read {url}"))?;
+        let decoder =
+            zstd::stream::read::Decoder::new(bytes.as_slice())
+                .with_context(|| format!("Failed to decompress {url}"))?;
+        let mut archive = tar::Archive::new(decoder);
+        let mut packages = HashMap::new();
+
+        for entry in archive.entries().with_context(|| {
+            format!("Failed to read archive index from {url}")
+        })? {
+            let mut entry = entry.with_context(|| {
+                format!("Failed to read an entry from {url}")
+            })?;
+            let entry_path = entry
+                .path()
+                .with_context(|| format!("Invalid path in {url}"))?
+                .into_owned();
+            if !is_desc_path(&entry_path)? {
+                continue;
+            }
+            let raw = read_archive_metadata(&mut entry, &entry_path)?;
+            let package = parse_repo_desc(&raw).with_context(|| {
+                format!("Invalid {}", entry_path.display())
+            })?;
+            ensure!(
+                packages.insert(package.name.clone(), package).is_none(),
+                "Duplicate package in {url}"
+            );
+        }
+
+        Ok(Self { packages })
+    }
+
+    fn take_package(&mut self, name: &str) -> Result<RepoPackage> {
+        self.packages.remove(name).with_context(|| {
+            format!("{name} is missing from the {REPOSITORY} repository database")
+        })
+    }
+}
+
+fn parse_repo_desc(raw: &[u8]) -> Result<RepoPackage> {
+    let text = std::str::from_utf8(raw)
+        .context("Repository desc is not valid UTF-8")?
+        .trim_end_matches('\n');
+    let mut name = None;
+    let mut version = None;
+    let mut architecture = None;
+    let mut file_name = None;
+    let mut checksum = None;
+
+    for block in text.split("\n\n") {
+        let Some((header, value)) = block.split_once('\n') else {
+            continue;
+        };
+        let Some(field) = header
+            .strip_prefix('%')
+            .and_then(|field| field.strip_suffix('%'))
+        else {
+            bail!("Malformed field header {header:?} in repository desc");
+        };
+        match field {
+            "ARCH" => assign_desc_field(&mut architecture, field, value)?,
+            "FILENAME" => assign_desc_field(&mut file_name, field, value)?,
+            "NAME" => assign_desc_field(&mut name, field, value)?,
+            "SHA256SUM" => assign_desc_field(&mut checksum, field, value)?,
+            "VERSION" => assign_desc_field(&mut version, field, value)?,
+            _ => (),
+        }
+    }
+
+    let name = name.context("Repository desc has no %NAME%")?;
+    let checksum = checksum
+        .context("Repository desc has no %SHA256SUM%")?
         .parse()
-        .with_context(|| format!("Invalid checksum in {url}"))?;
-    Ok((version, checksum))
+        .with_context(|| format!("Invalid %SHA256SUM% for {name}"))?;
+    Ok(RepoPackage {
+        name,
+        checksum,
+        version: version.context("Repository desc has no %VERSION%")?,
+        architecture: architecture
+            .context("Repository desc has no %ARCH%")?,
+        file_name: file_name
+            .context("Repository desc has no %FILENAME%")?,
+    })
+}
+
+fn assign_desc_field(
+    slot: &mut Option<String>,
+    field: &str,
+    value: &str,
+) -> Result<()> {
+    ensure!(
+        !value.is_empty() && !value.contains('\n'),
+        "Invalid %{field}% value in repository desc"
+    );
+    ensure!(slot.is_none(), "Duplicate %{field}% in repository desc");
+    *slot = Some(value.to_owned());
+    Ok(())
 }
 
 fn kernel_version(package_version: &str) -> Result<&str> {
@@ -314,21 +439,6 @@ fn kernel_version(package_version: &str) -> Result<&str> {
     Ok(version)
 }
 
-fn package(name: &str, package_version: &str, hash: Checksum) -> Package {
-    let file_name = package_file_name(name, package_version);
-    Package {
-        name: name.to_owned(),
-        url: format!(
-            "{MIRROR_ORIGIN}/repo/{ARCHITECTURE}/{REPOSITORY}/{file_name}"
-        ),
-        hash: hash.sri(),
-    }
-}
-
-fn package_file_name(name: &str, package_version: &str) -> String {
-    format!("{name}-{package_version}-{ARCHITECTURE}.pkg.tar.zst")
-}
-
 fn http_agent() -> Agent {
     Agent::config_builder()
         .timeout_connect(Some(Duration::from_secs(30)))
@@ -336,17 +446,6 @@ fn http_agent() -> Agent {
         .user_agent(concat!("ci-driver/", env!("CARGO_PKG_VERSION")))
         .build()
         .into()
-}
-
-fn get_text(agent: &Agent, url: &str) -> Result<String> {
-    let mut response = agent
-        .get(url)
-        .call()
-        .with_context(|| format!("Failed to fetch {url}"))?;
-    response
-        .body_mut()
-        .read_to_string()
-        .with_context(|| format!("Failed to read response from {url}"))
 }
 
 fn download_verified(
@@ -397,26 +496,6 @@ fn download_verified(
     );
     eprintln!("Verified {actual} ({size} bytes).");
     Ok(())
-}
-
-fn dashboard_string<'html>(
-    html: &'html str,
-    field: &str,
-) -> Result<&'html str> {
-    let marker = format!(r#"{field}:""#);
-    let value = html
-        .split_once(&marker)
-        .map(|(_, value)| value)
-        .with_context(|| format!("Dashboard payload has no {field}"))?;
-    let value =
-        value.split_once('"').map(|(value, _)| value).with_context(
-            || format!("Dashboard payload has an unterminated {field}"),
-        )?;
-    ensure!(
-        !value.contains('\\'),
-        "Dashboard payload has an escaped {field}, which is unsupported"
-    );
-    Ok(value)
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -492,6 +571,20 @@ struct Package {
     name: String,
     url: String,
     hash: String,
+}
+
+impl Package {
+    fn file_name(&self) -> Result<&str> {
+        let (_, name) = self.url.rsplit_once('/').with_context(|| {
+            format!("Package URL has no file name: {}", self.url)
+        })?;
+        ensure!(
+            !name.is_empty(),
+            "Package URL has no file name: {}",
+            self.url
+        );
+        Ok(name)
+    }
 }
 
 impl Release {
@@ -686,6 +779,14 @@ fn is_root_file(path: &Path, expected: &OsStr) -> Result<bool> {
         && next_normal_component(&mut components)?.is_none())
 }
 
+fn is_desc_path(path: &Path) -> Result<bool> {
+    let mut components = path.components();
+    Ok(next_normal_component(&mut components)?.is_some()
+        && next_normal_component(&mut components)?
+            == Some(OsStr::new("desc"))
+        && next_normal_component(&mut components)?.is_none())
+}
+
 fn module_member(path: &Path) -> Result<Option<(&OsStr, ArchiveMember)>> {
     let mut components = path.components();
     if next_normal_component(&mut components)? != Some(OsStr::new("usr"))
@@ -831,21 +932,57 @@ mod tests {
     use std::str::FromStr as _;
 
     use super::Checksum;
-    use super::dashboard_string;
     use super::kernel_version;
+    use super::parse_repo_desc;
+
+    const KERNEL_SHA256: &str =
+        "30752798fc22ea3674be9acde965f63153a739bd93653998b29c90598931db7e";
+
+    fn repo_desc(file_name: &str, arch: Option<&str>) -> String {
+        let mut desc = format!(
+            "%FILENAME%\n{file_name}\n\n\
+             %NAME%\nlinux-cachyos\n\n\
+             %VERSION%\n7.2.3-1\n\n\
+             %PROVIDES%\nWIREGUARD-MODULE\nKSMBD-MODULE\n\n\
+             %SHA256SUM%\n{KERNEL_SHA256}\n\n"
+        );
+        if let Some(arch) = arch {
+            desc.push_str("%ARCH%\n");
+            desc.push_str(arch);
+            desc.push('\n');
+        }
+        desc
+    }
 
     #[test]
-    fn parses_dashboard_package_fields() {
-        let payload = r#"before pkg_name:"linux-cachyos",pkg_sha256sum:"0000000000000000000000000000000000000000000000000000000000000000",pkg_version:"7.2.3-1" after"#;
+    fn parses_repository_desc_fields() {
+        let package = parse_repo_desc(
+            repo_desc(
+                "linux-cachyos-7.2.3-1-x86_64_v3.pkg.tar.zst",
+                Some("x86_64_v3"),
+            )
+            .as_bytes(),
+        )
+        .unwrap();
 
+        assert_eq!(package.name, "linux-cachyos");
+        assert_eq!(package.version, "7.2.3-1");
+        assert_eq!(package.architecture, "x86_64_v3");
         assert_eq!(
-            dashboard_string(payload, "pkg_name").unwrap(),
-            "linux-cachyos"
+            package.file_name,
+            "linux-cachyos-7.2.3-1-x86_64_v3.pkg.tar.zst"
         );
-        assert_eq!(
-            dashboard_string(payload, "pkg_version").unwrap(),
-            "7.2.3-1"
-        );
+        assert_eq!(package.checksum.to_string(), KERNEL_SHA256);
+    }
+
+    #[test]
+    fn rejects_invalid_repository_descs() {
+        let multi_line_file_name =
+            repo_desc("a.pkg.tar.zst\nb.pkg.tar.zst", Some("x86_64_v3"));
+        assert!(parse_repo_desc(multi_line_file_name.as_bytes()).is_err());
+
+        let missing_arch = repo_desc("a.pkg.tar.zst", None);
+        assert!(parse_repo_desc(missing_arch.as_bytes()).is_err());
     }
 
     #[test]
