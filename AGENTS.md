@@ -10,6 +10,12 @@ A NixOS config repo. Flake at the root. Machines in `machine/`, shared modules i
 - Do not run `nix build` or `nixos-rebuild` without being asked. They are slow and have side effects.
 - When editing Nix files, match the existing style: `=` alignment, `with` at module level, `let`/`in` blocks for local bindings.
 
+## Make changes
+
+- Make systematic changes. Don't be scoped to the spot you are looking at.
+- Make breaking changes. Trace, find, redesign, from top to bottom.
+- Challenge existing designs.
+
 ## No `| tail`/` or head`
 
 Do not pipe any command output through `head` or `tail`, tools will properly handle large output natively.
