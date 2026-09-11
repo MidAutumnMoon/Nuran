@@ -478,35 +478,19 @@ fn download_verified(
         .get(&package.url)
         .call()
         .with_context(|| format!("Failed to download {}", package.url))?;
-    let mut source = response.body_mut().as_reader();
-    let mut output = File::create(destination).with_context(|| {
-        format!("Failed to create {}", destination.display())
+    let mut source = io::BufReader::with_capacity(
+        1024 * 1024,
+        response.body_mut().as_reader(),
+    );
+    let mut output =
+        HashingWriter::new(File::create(destination).with_context(
+            || format!("Failed to create {}", destination.display()),
+        )?);
+    let size = io::copy(&mut source, &mut output).with_context(|| {
+        format!("Failed while downloading {}", package.url)
     })?;
-    let mut hasher = Sha256::new();
-    let mut buffer = vec![0_u8; 1024 * 1024];
-    let mut size = 0_u64;
+    let actual = output.finish();
 
-    loop {
-        let read = source.read(&mut buffer).with_context(|| {
-            format!("Failed while downloading {}", package.url)
-        })?;
-        if read == 0 {
-            break;
-        }
-        let chunk = buffer
-            .get(..read)
-            .context("HTTP reader returned an invalid byte count")?;
-        hasher.update(chunk);
-        output.write_all(chunk).with_context(|| {
-            format!("Failed to write {}", destination.display())
-        })?;
-        size += u64::try_from(read).context("Download size overflow")?;
-    }
-    output.flush().with_context(|| {
-        format!("Failed to flush {}", destination.display())
-    })?;
-
-    let actual = Checksum(hasher.finalize().into());
     let actual_sri = actual.sri();
     ensure!(
         actual_sri == package.hash,
@@ -516,6 +500,36 @@ fn download_verified(
     );
     eprintln!("Verified {actual} ({size} bytes).");
     Ok(())
+}
+
+/// Hashes everything written while forwarding it to the file.
+struct HashingWriter {
+    output: File,
+    hasher: Sha256,
+}
+
+impl HashingWriter {
+    fn new(output: File) -> Self {
+        Self {
+            output,
+            hasher: Sha256::new(),
+        }
+    }
+
+    fn finish(self) -> Checksum {
+        Checksum(self.hasher.finalize().into())
+    }
+}
+
+impl std::io::Write for HashingWriter {
+    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+        self.hasher.update(buf);
+        self.output.write(buf)
+    }
+
+    fn flush(&mut self) -> io::Result<()> {
+        self.output.flush()
+    }
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -949,9 +963,11 @@ fn write_if_changed(path: &Path, content: &[u8]) -> Result<bool> {
 #[cfg(test)]
 #[expect(clippy::unwrap_used, reason = "Tests")]
 mod tests {
+    use std::io::Write as _;
     use std::str::FromStr as _;
 
     use super::Checksum;
+    use super::HashingWriter;
     use super::kernel_version;
     use super::parse_repo_desc;
     use super::select_kernel_and_headers;
@@ -1095,6 +1111,15 @@ mod tests {
             .unwrap_err()
             .to_string();
         assert!(error.contains("linux-cachyos-headers"));
+    }
+
+    #[test]
+    fn hashing_writer_digests_what_it_writes() {
+        let mut writer = HashingWriter::new(tempfile::tempfile().unwrap());
+        writer.write_all(b"linux-").unwrap();
+        writer.write_all(b"cachyos").unwrap();
+
+        assert_eq!(writer.finish(), Checksum::digest(b"linux-cachyos"));
     }
 
     #[test]
