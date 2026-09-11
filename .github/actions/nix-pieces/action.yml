@@ -2,6 +2,10 @@ name: Some Nix Things
 
 inputs:
   cachix_token: { required: true }
+  upstream_caches:
+    description: Add caches used while building ordinary package inputs
+    required: false
+    default: "true"
 
 runs:
   using: composite
@@ -37,6 +41,7 @@ runs:
         nix config show
 
     - name: Add extra substituters
+      if: inputs.upstream_caches == 'true'
       shell: bash
       run: |
         conf="$HOME/.config/nix/nix.conf"

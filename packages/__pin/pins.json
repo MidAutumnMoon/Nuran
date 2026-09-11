@@ -4,9 +4,12 @@
       "name": "omp-18.1.17",
       "pname": "omp",
       "version": "18.1.17",
-      "outputs": {
-        "out": "/nix/store/5d6ff9bwsyn6mbipsr7whihc2rhq0pj5-omp-18.1.17"
-      },
+      "outputs": [
+        {
+          "name": "out",
+          "path": "/nix/store/5d6ff9bwsyn6mbipsr7whihc2rhq0pj5-omp-18.1.17"
+        }
+      ],
       "meta": {
         "available": true,
         "broken": false,
@@ -100,9 +103,12 @@
       "name": "zcode-3.11.2",
       "pname": "zcode",
       "version": "3.11.2",
-      "outputs": {
-        "out": "/nix/store/283z78vr0qdilad9p8gh0ah273v00vmv-zcode-3.11.2"
-      },
+      "outputs": [
+        {
+          "name": "out",
+          "path": "/nix/store/283z78vr0qdilad9p8gh0ah273v00vmv-zcode-3.11.2"
+        }
+      ],
       "meta": {
         "available": true,
         "broken": false,
@@ -194,9 +200,12 @@
       "name": "omp-18.1.17",
       "pname": "omp",
       "version": "18.1.17",
-      "outputs": {
-        "out": "/nix/store/aczicc6r32lv2li985w9im7x65dhddyl-omp-18.1.17"
-      },
+      "outputs": [
+        {
+          "name": "out",
+          "path": "/nix/store/aczicc6r32lv2li985w9im7x65dhddyl-omp-18.1.17"
+        }
+      ],
       "meta": {
         "available": true,
         "broken": false,
@@ -290,9 +299,12 @@
       "name": "zcode-3.11.2",
       "pname": "zcode",
       "version": "3.11.2",
-      "outputs": {
-        "out": "/nix/store/scy4m5hdihjspw84cpmhxqvrmngrikxa-zcode-3.11.2"
-      },
+      "outputs": [
+        {
+          "name": "out",
+          "path": "/nix/store/scy4m5hdihjspw84cpmhxqvrmngrikxa-zcode-3.11.2"
+        }
+      ],
       "meta": {
         "available": true,
         "broken": false,
@@ -384,9 +396,12 @@
       "name": "omp-18.1.17",
       "pname": "omp",
       "version": "18.1.17",
-      "outputs": {
-        "out": "/nix/store/0xyalf4yh2q2bnr7cx52wd6xjwdwsyki-omp-18.1.17"
-      },
+      "outputs": [
+        {
+          "name": "out",
+          "path": "/nix/store/0xyalf4yh2q2bnr7cx52wd6xjwdwsyki-omp-18.1.17"
+        }
+      ],
       "meta": {
         "available": true,
         "broken": false,
@@ -480,9 +495,12 @@
       "name": "zcode-3.11.2",
       "pname": "zcode",
       "version": "3.11.2",
-      "outputs": {
-        "out": "/nix/store/qg7nrfdv93pfyl4g4jqlld335a3ffc1p-zcode-3.11.2"
-      },
+      "outputs": [
+        {
+          "name": "out",
+          "path": "/nix/store/qg7nrfdv93pfyl4g4jqlld335a3ffc1p-zcode-3.11.2"
+        }
+      ],
       "meta": {
         "available": true,
         "broken": false,

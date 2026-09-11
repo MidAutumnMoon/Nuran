@@ -35,34 +35,17 @@ pub fn pin_dir(dir: &Path) -> Result<PathBuf> {
     }
 }
 
-/// Copy the nix side to a temp dir. A __pin checkout inside a dirty
-/// git tree is not a valid flake source (untracked files are
-/// invisible), so every nix command runs against a copy instead.
-///
-/// [`TempDir`] cleans up on drop; write-backs happen before that.
+/// Copy the refresh manifest to a temporary flake. A checkout inside a
+/// dirty repository is not itself a valid flake source because untracked
+/// files are invisible.
 pub fn stage(pin_dir: &Path) -> Result<tempfile::TempDir> {
     let stage = tempfile::TempDir::new().context("create staging dir")?;
-    // Everything nix-shaped in the dir, whatever it is named: the
-    // flake, its lock, the pins, the helper expressions.
-    let entries =
-        std::fs::read_dir(pin_dir).context("list the __pin directory")?;
-    for entry in entries {
-        let from = entry.context("read __pin directory entry")?.path();
-        let is_nix = from.extension().is_some_and(|extension| {
-            extension == "nix"
-                || extension == "json"
-                || extension == "lock"
-        });
-        if is_nix {
-            let name = from.file_name().map_or_else(
-                || from.to_string_lossy().into_owned(),
-                |name| name.to_string_lossy().into_owned(),
-            );
-            let bytes = std::fs::read(&from)
-                .context(format!("read {}", from.display()))?;
-            std::fs::write(stage.path().join(&name), bytes)
-                .context(format!("stage {name}"))?;
-        }
+    for name in ["flake.nix", "flake.lock"] {
+        let from = pin_dir.join(name);
+        let bytes = std::fs::read(&from)
+            .context(format!("read {}", from.display()))?;
+        std::fs::write(stage.path().join(name), bytes)
+            .context(format!("stage {name}"))?;
     }
     Ok(stage)
 }
@@ -114,36 +97,4 @@ pub fn eval_json(flake: &Path, attr: &str, what: &str) -> Result<Value> {
     )?;
     Ok(serde_json::from_str(&out)
         .context(format!("{what}: parse eval output"))?)
-}
-
-/// `nix eval --json <flake>#<attr> --apply <lambda>`, parsed: a JSON
-/// view of data that is not itself JSON-able (the upstream manifest
-/// carries derivations).
-pub fn eval_apply_json(
-    flake: &Path,
-    attr: &str,
-    apply: &str,
-    what: &str,
-) -> Result<Value> {
-    let out = capture_checked(
-        Command::new("nix")
-            .arg("eval")
-            .arg("--json")
-            .arg(format!("{}#{attr}", flake.display()))
-            .arg("--apply")
-            .arg(apply),
-        what,
-    )?;
-    Ok(serde_json::from_str(&out)
-        .context(format!("{what}: parse eval output"))?)
-}
-
-/// The substituters configured in this environment; used by verify to
-/// find which cache is "mine" (the cachix.org one).
-pub fn configured_substituters() -> Result<Vec<String>> {
-    let out = capture_checked(
-        Command::new("nix").args(["config", "show", "substituters"]),
-        "nix config show substituters",
-    )?;
-    Ok(out.split_whitespace().map(str::to_owned).collect())
 }

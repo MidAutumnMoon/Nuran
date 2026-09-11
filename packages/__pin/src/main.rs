@@ -22,12 +22,9 @@ enum Cli {
         no_push: bool,
     },
 
-    /// Verify pins.json against the __pin flake lock, and that my cache
-    /// serves every pinned closure.
-    VerifyPin {
-        dir: PathBuf,
-        substituters: Vec<String>,
-    },
+    /// Build every committed pin through the root flake using the
+    /// consumer's ordinary Nix substituters.
+    VerifyPin { dir: PathBuf },
 }
 
 fn pin_dir() -> impl Parser<PathBuf> {
@@ -59,13 +56,9 @@ fn cli() -> OptionParser<Cli> {
 
     let verify = {
         let dir = pin_dir();
-        let substituters = long("substituter")
-            .help("A substituter the closures must be served from (repeatable; default: the cachix.org entries of nix config)")
-            .argument::<String>("URL")
-            .many();
-        construct!(Cli::VerifyPin { dir, substituters })
+        construct!(Cli::VerifyPin { dir })
             .to_options()
-            .descr("Verify pins.json and cache coverage.")
+            .descr("Build every committed pin through the root flake.")
             .command("verify-pin")
     };
 
@@ -73,6 +66,17 @@ fn cli() -> OptionParser<Cli> {
         .to_options()
         .version(env!("CARGO_PKG_VERSION"))
         .descr("Maintain the store-path pins under packages/__pin.")
+}
+
+fn main() -> Result<()> {
+    match cli().run() {
+        Cli::RefreshPin {
+            dir,
+            cachix,
+            no_push,
+        } => refresh::run(&dir, &cachix, no_push),
+        Cli::VerifyPin { dir } => verify::run(&dir),
+    }
 }
 
 #[cfg(test)]
@@ -84,18 +88,5 @@ mod tests {
         // Panics if a positional/command item is not right-most.
         // (Dumps the parser meta tree to stdout; that is expected.)
         cli().check_invariants(false);
-    }
-}
-
-fn main() -> Result<()> {
-    match cli().run() {
-        Cli::RefreshPin {
-            dir,
-            cachix,
-            no_push,
-        } => refresh::run(&dir, &cachix, no_push),
-        Cli::VerifyPin { dir, substituters } => {
-            verify::run(&dir, &substituters)
-        }
     }
 }

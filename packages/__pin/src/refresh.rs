@@ -1,5 +1,4 @@
 use std::collections::BTreeMap;
-use std::collections::HashMap;
 use std::path::Path;
 use std::process::Command;
 
@@ -9,10 +8,13 @@ use serde::Deserialize;
 
 use crate::nix;
 use crate::pins;
-use crate::verify::UNCOVERED_HINT;
-use crate::verify::default_substituters;
-use crate::verify::http_agent;
-use crate::verify::walk_pins;
+
+#[derive(Debug)]
+#[derive(Deserialize)]
+struct Manifest {
+    pins: pins::Pins,
+    upstreams: BTreeMap<String, Upstream>,
+}
 
 #[derive(Debug)]
 #[derive(Deserialize)]
@@ -22,20 +24,20 @@ struct Substituter {
     public_key: String,
 }
 
-/// One upstream bundle, as the driver reads it: its cache and the
-/// names it provides per system (the derivations themselves are only
-/// addressable through the flake, not JSON-able).
 #[derive(Debug)]
 #[derive(Deserialize)]
 struct Upstream {
     substituter: Substituter,
+    /// System -> selected package names.
     packages: BTreeMap<String, Vec<String>>,
 }
 
-/// Refresh the pins: bump the staged __pin lock, eval the fresh
-/// pins.json from it, build the real packages with each upstream's own
-/// cache, push the closures to my cache, write lock + pins.json back,
-/// and print the update report to stdout (for the PR body).
+/// Refresh the pins as one producer-side transaction:
+///
+/// 1. update and evaluate the staged manifest;
+/// 2. fetch every selected output through its upstream cache;
+/// 3. push the resulting closures to my Cachix;
+/// 4. commit the new lock and pins.json.
 pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
     let dir = nix::pin_dir(dir)?;
     let old = pins::read(&dir.join("pins.json"))?;
@@ -46,36 +48,20 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
         Command::new("nix")
             .args(["flake", "update"])
             .current_dir(flake),
-        "nix flake update (staged __pin flake)",
+        "nix flake update (staged pin manifest)",
     )?;
 
-    let fresh: pins::Pins = serde_json::from_value(nix::eval_json(
+    let Manifest {
+        pins: fresh,
+        upstreams,
+    } = serde_json::from_value(nix::eval_json(
         flake,
-        "pins",
-        "eval the fresh pins from the staged flake",
+        "manifest",
+        "evaluate the staged pin manifest",
     )?)
-    .context("pins: unexpected shape")?;
+    .context("pin manifest: unexpected shape")?;
 
-    let upstreams: BTreeMap<String, Upstream> =
-        serde_json::from_value(nix::eval_apply_json(
-            flake,
-            "upstream",
-            "u: builtins.mapAttrs
-                (_: up: {
-                    substituter = up.substituter;
-                    packages = builtins.mapAttrs
-                        (_: ps: builtins.attrNames ps)
-                        up.packages;
-                })
-                u",
-            "read the upstream manifest from the staged flake",
-        )?)
-        .context("upstream: unexpected shape")?;
-
-    // Substitute each upstream's packages from its own cache, so the
-    // closures are local and can be pushed to mine. My machines then
-    // never need the upstream caches.
-    let mut paths: Vec<String> = Vec::new();
+    let mut paths = Vec::new();
     for (name, upstream) in &upstreams {
         let mut build = Command::new("nix");
         build.args(["build", "--no-link", "--print-out-paths"]);
@@ -85,18 +71,25 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
         build
             .arg("--extra-trusted-public-keys")
             .arg(&upstream.substituter.public_key);
+
+        let mut package_count = 0_usize;
         for (system, names) in &upstream.packages {
-            for pkg in names {
+            for package in names {
                 build.arg(format!(
-                    "{}#upstream.{name}.packages.{system}.{pkg}",
+                    "{}#upstream.{name}.packages.{system}.{package}^*",
                     flake.display()
                 ));
+                package_count += 1;
             }
         }
+        if package_count == 0 {
+            continue;
+        }
+
         paths.extend(
             nix::stream_checked(
                 &mut build,
-                &format!("nix build {name} packages"),
+                &format!("fetch {name} packages"),
             )?
             .lines()
             .map(str::to_owned),
@@ -107,53 +100,27 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
         push(cachix, &paths)?;
     }
 
-    // Write back only after a fully successful refresh.
+    // Write generated state only after fetch and push succeed.
     let lock = std::fs::read(flake.join("flake.lock"))
         .context("read staged flake.lock")?;
-    std::fs::write(dir.join("flake.lock"), &lock)
+    std::fs::write(dir.join("flake.lock"), lock)
         .context("write back flake.lock")?;
     pins::write(&dir.join("pins.json"), &fresh)?;
 
     print!("{}", pins::diff_report(&old, &fresh));
-
-    // What the push left uncovered, under the same contract verify
-    // checks: my cachix plus cache.nixos.org. Cachix never uploads
-    // paths cache.nixos.org already serves, so those legitimately stay
-    // off my cache; anything else missing means the push failed
-    // somewhere.
-    if no_push || paths.is_empty() {
-        println!("{} package path(s) built; push skipped.", paths.len());
+    if no_push {
+        println!("{} output path(s) fetched; push skipped.", paths.len());
     } else {
-        let subs = default_substituters(&[])?;
-        let mut uncovered = 0_usize;
-        let agent = http_agent();
-        let mut narinfos = HashMap::new();
-        for coverage in walk_pins(&agent, &subs, &fresh, &mut narinfos)? {
-            println!("{}", coverage.line);
-            for path in coverage.missing.iter().take(10) {
-                println!("    {path}");
-            }
-            uncovered += coverage.missing.len();
-        }
         println!(
-            "{} package path(s) pushed to cachix \"{cachix}\"{}.",
-            paths.len(),
-            if uncovered == 0 {
-                String::from("; closures fully covered")
-            } else {
-                format!(
-                    "; WARNING: {uncovered} path(s) uncovered — \
-                     {UNCOVERED_HINT}"
-                )
-            }
+            "{} output path(s) pushed to cachix \"{cachix}\".",
+            paths.len()
         );
     }
     Ok(())
 }
 
-/// Push the closures; cachix is not installed globally, so fall back to
-/// `nix run nixpkgs#cachix` (auth comes from `cachix` login state or
-/// `CACHIX_AUTH_TOKEN`).
+/// Push the realized closures. Cachix is not installed globally on every
+/// caller, so fall back to `nix run`.
 fn push(cachix: &str, paths: &[String]) -> Result<()> {
     let have_cachix = Command::new("cachix")
         .arg("--version")

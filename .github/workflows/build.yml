@@ -85,14 +85,16 @@ jobs:
 
             - name: Setup nix
               uses: ./.github/actions/nix-pieces
-              with: { cachix_token: "${{ secrets.CACHIX_AUTH_TOKEN }}" }
+              with:
+                  cachix_token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+                  upstream_caches: "false"
 
             - name: Verify pins
               run: |
                   TOOL=".#tsuki.__pin"
                   nix build --print-build-logs "$TOOL"
-                  # Verifies the committed pins against the committed
-                  # __pin lock, and that my cache serves every closure.
+                  # Builds committed pin outputs through the root flake.
+                  # Only the consumer's normal caches are configured.
                   nix run "$TOOL" -- verify-pin
 
     build_nixos:
