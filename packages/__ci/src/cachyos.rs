@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::ffi::OsStr;
 use std::fmt;
 use std::fs;
@@ -241,10 +240,7 @@ impl UpstreamRelease {
 }
 
 fn fetch_upstream(agent: &Agent) -> Result<UpstreamRelease> {
-    let headers_name = format!("{PACKAGE_NAME}-headers");
-    let mut database = RepoDatabase::fetch(agent)?;
-    let kernel = database.take_package(PACKAGE_NAME)?;
-    let headers = database.take_package(&headers_name)?;
+    let (kernel, headers) = fetch_kernel_and_headers(agent)?;
     ensure!(
         kernel.version == headers.version,
         "CachyOS kernel and headers versions differ: {} vs {}",
@@ -293,63 +289,87 @@ impl RepoPackage {
     }
 }
 
-/// The pacman repository database of the mirror, which describes exactly
-/// the packages the mirror currently serves.
-#[derive(Debug)]
-struct RepoDatabase {
-    packages: HashMap<String, RepoPackage>,
+/// Download the pacman repository database of the mirror, which describes
+/// exactly the packages the mirror currently serves, and select the pinned
+/// kernel and its headers from it.
+fn fetch_kernel_and_headers(
+    agent: &Agent,
+) -> Result<(RepoPackage, RepoPackage)> {
+    let url = format!(
+        "{MIRROR_ORIGIN}/repo/{ARCHITECTURE}/{REPOSITORY}/{REPOSITORY}.db"
+    );
+    let mut response = agent
+        .get(&url)
+        .call()
+        .with_context(|| format!("Failed to fetch {url}"))?;
+    let bytes = response
+        .body_mut()
+        .read_to_vec()
+        .with_context(|| format!("Failed to read {url}"))?;
+    select_kernel_and_headers(&bytes, &url)
 }
 
-impl RepoDatabase {
-    fn fetch(agent: &Agent) -> Result<Self> {
-        let url = format!(
-            "{MIRROR_ORIGIN}/repo/{ARCHITECTURE}/{REPOSITORY}/{REPOSITORY}.db"
-        );
-        let mut response = agent
-            .get(&url)
-            .call()
-            .with_context(|| format!("Failed to fetch {url}"))?;
-        let bytes = response
-            .body_mut()
-            .read_to_vec()
-            .with_context(|| format!("Failed to read {url}"))?;
-        let decoder =
-            zstd::stream::read::Decoder::new(bytes.as_slice())
-                .with_context(|| format!("Failed to decompress {url}"))?;
-        let mut archive = tar::Archive::new(decoder);
-        let mut packages = HashMap::new();
+/// Select the pinned kernel and its headers from a pacman repository
+/// database.
+fn select_kernel_and_headers(
+    bytes: &[u8],
+    url: &str,
+) -> Result<(RepoPackage, RepoPackage)> {
+    let headers_name = format!("{PACKAGE_NAME}-headers");
+    let decoder = zstd::stream::read::Decoder::new(bytes)
+        .with_context(|| format!("Failed to decompress {url}"))?;
+    let mut archive = tar::Archive::new(decoder);
+    let mut kernel = None;
+    let mut headers = None;
 
-        for entry in archive.entries().with_context(|| {
-            format!("Failed to read archive index from {url}")
-        })? {
-            let mut entry = entry.with_context(|| {
-                format!("Failed to read an entry from {url}")
-            })?;
-            let entry_path = entry
-                .path()
-                .with_context(|| format!("Invalid path in {url}"))?
-                .into_owned();
-            if !is_desc_path(&entry_path)? {
-                continue;
-            }
-            let raw = read_archive_metadata(&mut entry, &entry_path)?;
-            let package = parse_repo_desc(&raw).with_context(|| {
-                format!("Invalid {}", entry_path.display())
-            })?;
-            ensure!(
-                packages.insert(package.name.clone(), package).is_none(),
-                "Duplicate package in {url}"
-            );
+    for entry in archive.entries().with_context(|| {
+        format!("Failed to read archive index from {url}")
+    })? {
+        let mut entry = entry.with_context(|| {
+            format!("Failed to read an entry from {url}")
+        })?;
+        let entry_path = entry
+            .path()
+            .with_context(|| format!("Invalid path in {url}"))?
+            .into_owned();
+        if !is_desc_path(&entry_path)? {
+            continue;
         }
-
-        Ok(Self { packages })
+        let raw = read_archive_metadata(&mut entry, &entry_path)?;
+        let package = parse_repo_desc(&raw).with_context(|| {
+            format!("Invalid {}", entry_path.display())
+        })?;
+        match package.name.as_str() {
+            PACKAGE_NAME => {
+                ensure!(
+                    kernel.is_none(),
+                    "Duplicate {PACKAGE_NAME} in {url}"
+                );
+                kernel = Some(package);
+            }
+            name if name == headers_name => {
+                ensure!(
+                    headers.is_none(),
+                    "Duplicate {headers_name} in {url}"
+                );
+                headers = Some(package);
+            }
+            _ => (),
+        }
     }
 
-    fn take_package(&mut self, name: &str) -> Result<RepoPackage> {
-        self.packages.remove(name).with_context(|| {
-            format!("{name} is missing from the {REPOSITORY} repository database")
-        })
-    }
+    Ok((
+        kernel.with_context(|| {
+            format!(
+                "{PACKAGE_NAME} is missing from the {REPOSITORY} repository database"
+            )
+        })?,
+        headers.with_context(|| {
+            format!(
+                "{headers_name} is missing from the {REPOSITORY} repository database"
+            )
+        })?,
+    ))
 }
 
 fn parse_repo_desc(raw: &[u8]) -> Result<RepoPackage> {
@@ -934,14 +954,19 @@ mod tests {
     use super::Checksum;
     use super::kernel_version;
     use super::parse_repo_desc;
+    use super::select_kernel_and_headers;
 
     const KERNEL_SHA256: &str =
         "30752798fc22ea3674be9acde965f63153a739bd93653998b29c90598931db7e";
 
-    fn repo_desc(file_name: &str, arch: Option<&str>) -> String {
+    fn repo_desc(
+        name: &str,
+        file_name: &str,
+        arch: Option<&str>,
+    ) -> String {
         let mut desc = format!(
             "%FILENAME%\n{file_name}\n\n\
-             %NAME%\nlinux-cachyos\n\n\
+             %NAME%\n{name}\n\n\
              %VERSION%\n7.2.3-1\n\n\
              %PROVIDES%\nWIREGUARD-MODULE\nKSMBD-MODULE\n\n\
              %SHA256SUM%\n{KERNEL_SHA256}\n\n"
@@ -954,16 +979,45 @@ mod tests {
         desc
     }
 
+    fn kernel_desc() -> String {
+        repo_desc(
+            "linux-cachyos",
+            "linux-cachyos-7.2.3-1-x86_64_v3.pkg.tar.zst",
+            Some("x86_64_v3"),
+        )
+    }
+
+    fn headers_desc() -> String {
+        repo_desc(
+            "linux-cachyos-headers",
+            "linux-cachyos-headers-7.2.3-1-x86_64_v3.pkg.tar.zst",
+            Some("x86_64_v3"),
+        )
+    }
+
+    fn database_bytes(entries: &[(&str, String)]) -> Vec<u8> {
+        let encoder =
+            zstd::stream::write::Encoder::new(Vec::new(), 0).unwrap();
+        let mut builder = tar::Builder::new(encoder);
+        for (directory, desc) in entries {
+            let mut header = tar::Header::new_gnu();
+            header.set_size(u64::try_from(desc.len()).unwrap());
+            header.set_mode(0o644);
+            header.set_cksum();
+            builder
+                .append_data(
+                    &mut header,
+                    format!("{directory}/desc"),
+                    desc.as_bytes(),
+                )
+                .unwrap();
+        }
+        builder.into_inner().unwrap().finish().unwrap()
+    }
+
     #[test]
     fn parses_repository_desc_fields() {
-        let package = parse_repo_desc(
-            repo_desc(
-                "linux-cachyos-7.2.3-1-x86_64_v3.pkg.tar.zst",
-                Some("x86_64_v3"),
-            )
-            .as_bytes(),
-        )
-        .unwrap();
+        let package = parse_repo_desc(kernel_desc().as_bytes()).unwrap();
 
         assert_eq!(package.name, "linux-cachyos");
         assert_eq!(package.version, "7.2.3-1");
@@ -977,12 +1031,70 @@ mod tests {
 
     #[test]
     fn rejects_invalid_repository_descs() {
-        let multi_line_file_name =
-            repo_desc("a.pkg.tar.zst\nb.pkg.tar.zst", Some("x86_64_v3"));
-        assert!(parse_repo_desc(multi_line_file_name.as_bytes()).is_err());
+        let multi_line_file_name = repo_desc(
+            "linux-cachyos",
+            "a.pkg.tar.zst\nb.pkg.tar.zst",
+            Some("x86_64_v3"),
+        );
+        parse_repo_desc(multi_line_file_name.as_bytes()).unwrap_err();
 
-        let missing_arch = repo_desc("a.pkg.tar.zst", None);
-        assert!(parse_repo_desc(missing_arch.as_bytes()).is_err());
+        let missing_arch =
+            repo_desc("linux-cachyos", "a.pkg.tar.zst", None);
+        parse_repo_desc(missing_arch.as_bytes()).unwrap_err();
+    }
+
+    #[test]
+    fn selects_kernel_and_headers_from_database() {
+        let bytes = database_bytes(&[
+            (
+                "some-other-pkg-1-1",
+                repo_desc(
+                    "some-other-pkg",
+                    "some-other-pkg-1-1-x86_64_v3.pkg.tar.zst",
+                    Some("x86_64_v3"),
+                ),
+            ),
+            ("linux-cachyos-7.2.3-1", kernel_desc()),
+            ("linux-cachyos-headers-7.2.3-1", headers_desc()),
+        ]);
+
+        let (kernel, headers) =
+            select_kernel_and_headers(&bytes, "test://database").unwrap();
+
+        assert_eq!(kernel.name, "linux-cachyos");
+        assert_eq!(kernel.version, "7.2.3-1");
+        assert_eq!(
+            kernel.file_name,
+            "linux-cachyos-7.2.3-1-x86_64_v3.pkg.tar.zst"
+        );
+        assert_eq!(headers.name, "linux-cachyos-headers");
+        assert_eq!(headers.version, "7.2.3-1");
+        assert_eq!(
+            headers.file_name,
+            "linux-cachyos-headers-7.2.3-1-x86_64_v3.pkg.tar.zst"
+        );
+    }
+
+    #[test]
+    fn rejects_duplicate_kernel_in_database() {
+        let bytes = database_bytes(&[
+            ("linux-cachyos-7.2.3-1", kernel_desc()),
+            ("linux-cachyos-7.2.4-1", kernel_desc()),
+            ("linux-cachyos-headers-7.2.3-1", headers_desc()),
+        ]);
+
+        select_kernel_and_headers(&bytes, "test://database").unwrap_err();
+    }
+
+    #[test]
+    fn rejects_missing_headers_in_database() {
+        let bytes =
+            database_bytes(&[("linux-cachyos-7.2.3-1", kernel_desc())]);
+
+        let error = select_kernel_and_headers(&bytes, "test://database")
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("linux-cachyos-headers"));
     }
 
     #[test]
@@ -1001,8 +1113,8 @@ mod tests {
     #[test]
     fn derives_kernel_version_from_package_version() {
         assert_eq!(kernel_version("7.2.3-1").unwrap(), "7.2.3");
-        assert!(kernel_version("7.2-1").is_err());
-        assert!(kernel_version("7.2.3").is_err());
-        assert!(kernel_version("7.2.3rc1-1").is_err());
+        kernel_version("7.2-1").unwrap_err();
+        kernel_version("7.2.3").unwrap_err();
+        kernel_version("7.2.3rc1-1").unwrap_err();
     }
 }
