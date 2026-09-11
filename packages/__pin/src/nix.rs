@@ -116,6 +116,28 @@ pub fn eval_json(flake: &Path, attr: &str, what: &str) -> Result<Value> {
         .context(format!("{what}: parse eval output"))?)
 }
 
+/// `nix eval --json <flake>#<attr> --apply <lambda>`, parsed: a JSON
+/// view of data that is not itself JSON-able (the upstream manifest
+/// carries derivations).
+pub fn eval_apply_json(
+    flake: &Path,
+    attr: &str,
+    apply: &str,
+    what: &str,
+) -> Result<Value> {
+    let out = capture_checked(
+        Command::new("nix")
+            .arg("eval")
+            .arg("--json")
+            .arg(format!("{}#{attr}", flake.display()))
+            .arg("--apply")
+            .arg(apply),
+        what,
+    )?;
+    Ok(serde_json::from_str(&out)
+        .context(format!("{what}: parse eval output"))?)
+}
+
 /// The substituters configured in this environment; used by verify to
 /// find which cache is "mine" (the cachix.org one).
 pub fn configured_substituters() -> Result<Vec<String>> {

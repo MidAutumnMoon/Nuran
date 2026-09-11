@@ -1,4 +1,384 @@
 {
+  "aarch64-darwin": {
+    "omp": {
+      "name": "omp-18.1.17",
+      "pname": "omp",
+      "version": "18.1.17",
+      "outputs": {
+        "out": "/nix/store/5d6ff9bwsyn6mbipsr7whihc2rhq0pj5-omp-18.1.17"
+      },
+      "meta": {
+        "available": true,
+        "broken": false,
+        "changelog": "https://github.com/can1357/oh-my-pi/releases/tag/v18.1.17",
+        "description": "A terminal-based coding agent with multi-model support",
+        "homepage": "https://github.com/can1357/oh-my-pi",
+        "identifiers": {
+          "cpeParts": {
+            "edition": "*",
+            "language": "*",
+            "other": "*",
+            "part": "a",
+            "product": "omp",
+            "sw_edition": "*",
+            "target_hw": "*",
+            "target_sw": "*"
+          },
+          "possibleCPEs": [],
+          "purlParts": {},
+          "purls": [],
+          "v1": {
+            "cpeParts": {
+              "edition": "*",
+              "language": "*",
+              "other": "*",
+              "part": "a",
+              "product": "omp",
+              "sw_edition": "*",
+              "target_hw": "*",
+              "target_sw": "*"
+            },
+            "possibleCPEs": [],
+            "purls": []
+          }
+        },
+        "insecure": false,
+        "license": {
+          "deprecated": false,
+          "free": true,
+          "fullName": "MIT License",
+          "licenseType": "simple",
+          "redistributable": true,
+          "shortName": "mit",
+          "spdxId": "MIT",
+          "url": "https://spdx.org/licenses/MIT.html"
+        },
+        "mainProgram": "omp",
+        "maintainers": [
+          {
+            "email": "aldoborrero+nixos@pm.me",
+            "github": "aldoborrero",
+            "githubId": 82811,
+            "name": "Aldo Borrero"
+          }
+        ],
+        "maintainersPosition": {
+          "column": 5,
+          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix",
+          "line": 303
+        },
+        "name": "omp-18.1.17",
+        "nonTeamMaintainers": [
+          {
+            "email": "aldoborrero+nixos@pm.me",
+            "github": "aldoborrero",
+            "githubId": 82811,
+            "name": "Aldo Borrero"
+          }
+        ],
+        "outputsToInstall": [
+          "out"
+        ],
+        "platforms": [
+          "aarch64-darwin",
+          "aarch64-linux",
+          "x86_64-linux"
+        ],
+        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix:298",
+        "problems": {},
+        "sourceProvenance": [
+          {
+            "isSource": true,
+            "shortName": "fromSource"
+          }
+        ],
+        "unfree": false,
+        "unsupported": false
+      }
+    },
+    "zcode": {
+      "name": "zcode-3.11.2",
+      "pname": "zcode",
+      "version": "3.11.2",
+      "outputs": {
+        "out": "/nix/store/283z78vr0qdilad9p8gh0ah273v00vmv-zcode-3.11.2"
+      },
+      "meta": {
+        "available": true,
+        "broken": false,
+        "changelog": "https://zcode.z.ai/en/changelog",
+        "description": "Agentic development environment (ADE) by Z.ai",
+        "homepage": "https://zcode.z.ai",
+        "identifiers": {
+          "cpeParts": {
+            "edition": "*",
+            "language": "*",
+            "other": "*",
+            "part": "a",
+            "product": "zcode",
+            "sw_edition": "*",
+            "target_hw": "*",
+            "target_sw": "*"
+          },
+          "possibleCPEs": [],
+          "purlParts": {},
+          "purls": [],
+          "v1": {
+            "cpeParts": {
+              "edition": "*",
+              "language": "*",
+              "other": "*",
+              "part": "a",
+              "product": "zcode",
+              "sw_edition": "*",
+              "target_hw": "*",
+              "target_sw": "*"
+            },
+            "possibleCPEs": [],
+            "purls": []
+          }
+        },
+        "insecure": false,
+        "license": {
+          "deprecated": false,
+          "free": true,
+          "fullName": "Unfree",
+          "licenseType": "simple",
+          "redistributable": false,
+          "shortName": "unfree"
+        },
+        "mainProgram": "zcode",
+        "maintainers": [
+          {
+            "github": "imxyy1soope1",
+            "githubId": 103114856,
+            "name": "imxyy_soope_"
+          }
+        ],
+        "maintainersPosition": {
+          "column": 5,
+          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix",
+          "line": 206
+        },
+        "name": "zcode-3.11.2",
+        "nonTeamMaintainers": [
+          {
+            "github": "imxyy1soope1",
+            "githubId": 103114856,
+            "name": "imxyy_soope_"
+          }
+        ],
+        "outputsToInstall": [
+          "out"
+        ],
+        "platforms": [
+          "x86_64-linux",
+          "aarch64-linux",
+          "aarch64-darwin"
+        ],
+        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix:201",
+        "problems": {},
+        "sourceProvenance": [
+          {
+            "isSource": false,
+            "shortName": "binaryNativeCode"
+          }
+        ],
+        "unfree": false,
+        "unsupported": false
+      }
+    }
+  },
+  "aarch64-linux": {
+    "omp": {
+      "name": "omp-18.1.17",
+      "pname": "omp",
+      "version": "18.1.17",
+      "outputs": {
+        "out": "/nix/store/aczicc6r32lv2li985w9im7x65dhddyl-omp-18.1.17"
+      },
+      "meta": {
+        "available": true,
+        "broken": false,
+        "changelog": "https://github.com/can1357/oh-my-pi/releases/tag/v18.1.17",
+        "description": "A terminal-based coding agent with multi-model support",
+        "homepage": "https://github.com/can1357/oh-my-pi",
+        "identifiers": {
+          "cpeParts": {
+            "edition": "*",
+            "language": "*",
+            "other": "*",
+            "part": "a",
+            "product": "omp",
+            "sw_edition": "*",
+            "target_hw": "*",
+            "target_sw": "*"
+          },
+          "possibleCPEs": [],
+          "purlParts": {},
+          "purls": [],
+          "v1": {
+            "cpeParts": {
+              "edition": "*",
+              "language": "*",
+              "other": "*",
+              "part": "a",
+              "product": "omp",
+              "sw_edition": "*",
+              "target_hw": "*",
+              "target_sw": "*"
+            },
+            "possibleCPEs": [],
+            "purls": []
+          }
+        },
+        "insecure": false,
+        "license": {
+          "deprecated": false,
+          "free": true,
+          "fullName": "MIT License",
+          "licenseType": "simple",
+          "redistributable": true,
+          "shortName": "mit",
+          "spdxId": "MIT",
+          "url": "https://spdx.org/licenses/MIT.html"
+        },
+        "mainProgram": "omp",
+        "maintainers": [
+          {
+            "email": "aldoborrero+nixos@pm.me",
+            "github": "aldoborrero",
+            "githubId": 82811,
+            "name": "Aldo Borrero"
+          }
+        ],
+        "maintainersPosition": {
+          "column": 5,
+          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix",
+          "line": 303
+        },
+        "name": "omp-18.1.17",
+        "nonTeamMaintainers": [
+          {
+            "email": "aldoborrero+nixos@pm.me",
+            "github": "aldoborrero",
+            "githubId": 82811,
+            "name": "Aldo Borrero"
+          }
+        ],
+        "outputsToInstall": [
+          "out"
+        ],
+        "platforms": [
+          "aarch64-darwin",
+          "aarch64-linux",
+          "x86_64-linux"
+        ],
+        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix:298",
+        "problems": {},
+        "sourceProvenance": [
+          {
+            "isSource": true,
+            "shortName": "fromSource"
+          }
+        ],
+        "unfree": false,
+        "unsupported": false
+      }
+    },
+    "zcode": {
+      "name": "zcode-3.11.2",
+      "pname": "zcode",
+      "version": "3.11.2",
+      "outputs": {
+        "out": "/nix/store/scy4m5hdihjspw84cpmhxqvrmngrikxa-zcode-3.11.2"
+      },
+      "meta": {
+        "available": true,
+        "broken": false,
+        "changelog": "https://zcode.z.ai/en/changelog",
+        "description": "Agentic development environment (ADE) by Z.ai",
+        "homepage": "https://zcode.z.ai",
+        "identifiers": {
+          "cpeParts": {
+            "edition": "*",
+            "language": "*",
+            "other": "*",
+            "part": "a",
+            "product": "zcode",
+            "sw_edition": "*",
+            "target_hw": "*",
+            "target_sw": "*"
+          },
+          "possibleCPEs": [],
+          "purlParts": {},
+          "purls": [],
+          "v1": {
+            "cpeParts": {
+              "edition": "*",
+              "language": "*",
+              "other": "*",
+              "part": "a",
+              "product": "zcode",
+              "sw_edition": "*",
+              "target_hw": "*",
+              "target_sw": "*"
+            },
+            "possibleCPEs": [],
+            "purls": []
+          }
+        },
+        "insecure": false,
+        "license": {
+          "deprecated": false,
+          "free": true,
+          "fullName": "Unfree",
+          "licenseType": "simple",
+          "redistributable": false,
+          "shortName": "unfree"
+        },
+        "mainProgram": "zcode",
+        "maintainers": [
+          {
+            "github": "imxyy1soope1",
+            "githubId": 103114856,
+            "name": "imxyy_soope_"
+          }
+        ],
+        "maintainersPosition": {
+          "column": 5,
+          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix",
+          "line": 206
+        },
+        "name": "zcode-3.11.2",
+        "nonTeamMaintainers": [
+          {
+            "github": "imxyy1soope1",
+            "githubId": 103114856,
+            "name": "imxyy_soope_"
+          }
+        ],
+        "outputsToInstall": [
+          "out"
+        ],
+        "platforms": [
+          "x86_64-linux",
+          "aarch64-linux",
+          "aarch64-darwin"
+        ],
+        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix:201",
+        "problems": {},
+        "sourceProvenance": [
+          {
+            "isSource": false,
+            "shortName": "binaryNativeCode"
+          }
+        ],
+        "unfree": false,
+        "unsupported": false
+      }
+    }
+  },
   "x86_64-linux": {
     "omp": {
       "name": "omp-18.1.17",

@@ -27,18 +27,32 @@ the whole input subtree is gone, every rebuild.
 
 ## The manifest
 
-`flake.nix` here is a manifest for the pin driver, nothing more:
+`flake.nix` here is a manifest for the pin driver, nothing more: one
+`upstream.<name>` bundle per input, holding together the flake, the
+cache refresh substitutes from before pushing to my own, and the
+selection of packages taken from it —
 
-- inputs — where packages come from, pinned by this directory's lock;
-- `pinnedNames` — which packages become pins, searched in the union
-  of all inputs' packages;
-- `substituters` — the upstream caches refresh substitutes from
-  before pushing to my own. My machines never see them.
+```nix
+upstream.llm-agents = rec {
+    flake = flakes.llm-agents;
+    substituter = { url = …; public-key = …; };
+    packages = pkgsFrom flake (pkgs: {
+        inherit (pkgs) omp zcode;
+    });
+};
+```
 
-Its outputs follow directly: `packages` (the real derivations, what
-refresh builds and pushes), `pins` (the fresh pins.json, what refresh
-writes and verify re-evals). `facts.nix` is the mechanics of turning
-a package into JSON; `driver.nix`/`default.nix` the overlay's view.
+That `upstream` output is the whole interface the driver consumes:
+refresh builds through `#upstream.<name>.packages.<system>.<pkg>`
+with each bundle's own substituter, and reads the bundle structure
+through a `--apply` projection (the bundles carry derivations, which
+are not JSON-able). One derived output remains: `pins`, the fresh
+pins.json in the file's shape (system -> package) — refresh writes
+it out, verify re-evals it and expects the file to match. The
+systems follow the upstream: whatever it builds packages for, gets
+pinned. My machines never see the upstream caches. `facts.nix` is
+the mechanics of turning a package into JSON; `driver.nix` /
+`default.nix` the overlay's view.
 
 ## The driver (this directory's crate)
 
@@ -57,7 +71,7 @@ Two subcommands, tied to CI:
   narinfo-walks every pinned closure (concurrently, nothing
   downloaded). Drift or uncovered paths fail the build.
 
-Pin one more package: add its name to `pinnedNames`, run
+Pin one more package: add it to its upstream's selection, run
 `refresh-pin`, consume it in `packages/default.nix`.
 
 ## Cache semantics

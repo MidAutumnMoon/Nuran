@@ -1,3 +1,4 @@
+use std::collections::BTreeMap;
 use std::collections::HashMap;
 use std::path::Path;
 use std::process::Command;
@@ -21,11 +22,20 @@ struct Substituter {
     public_key: String,
 }
 
+/// One upstream bundle, as the driver reads it: its cache and the
+/// names it provides per system (the derivations themselves are only
+/// addressable through the flake, not JSON-able).
+#[derive(Debug)]
+#[derive(Deserialize)]
+struct Upstream {
+    substituter: Substituter,
+    packages: BTreeMap<String, Vec<String>>,
+}
+
 /// Refresh the pins: bump the staged __pin lock, eval the fresh
-/// pins.json from it, build the real packages with the upstream
-/// caches declared in the flake, push the closures to my cache, write
-/// lock + pins.json back, and print the update report to stdout (for
-/// the PR body).
+/// pins.json from it, build the real packages with each upstream's own
+/// cache, push the closures to my cache, write lock + pins.json back,
+/// and print the update report to stdout (for the PR body).
 pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
     let dir = nix::pin_dir(dir)?;
     let old = pins::read(&dir.join("pins.json"))?;
@@ -46,41 +56,52 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
     )?)
     .context("pins: unexpected shape")?;
 
-    let substituters: Vec<Substituter> =
-        serde_json::from_value(nix::eval_json(
+    let upstreams: BTreeMap<String, Upstream> =
+        serde_json::from_value(nix::eval_apply_json(
             flake,
-            "substituters",
-            "read substituters from the staged flake",
+            "upstream",
+            "u: builtins.mapAttrs
+                (_: up: {
+                    substituter = up.substituter;
+                    packages = builtins.mapAttrs
+                        (_: ps: builtins.attrNames ps)
+                        up.packages;
+                })
+                u",
+            "read the upstream manifest from the staged flake",
         )?)
-        .context("substituters: unexpected shape")?;
+        .context("upstream: unexpected shape")?;
 
-    // Substitute the real packages from upstream, so the closures are
-    // local and can be pushed to mine. My machines then never need the
-    // upstream substituters.
-    let paths: Vec<String> = if fresh.is_empty() {
-        Vec::new()
-    } else {
+    // Substitute each upstream's packages from its own cache, so the
+    // closures are local and can be pushed to mine. My machines then
+    // never need the upstream caches.
+    let mut paths: Vec<String> = Vec::new();
+    for (name, upstream) in &upstreams {
         let mut build = Command::new("nix");
         build.args(["build", "--no-link", "--print-out-paths"]);
-        for substituter in &substituters {
-            build.arg("--extra-substituters").arg(&substituter.url);
-            build
-                .arg("--extra-trusted-public-keys")
-                .arg(&substituter.public_key);
-        }
-        for (system, pkgs) in &fresh {
-            for pkg in pkgs.keys() {
+        build
+            .arg("--extra-substituters")
+            .arg(&upstream.substituter.url);
+        build
+            .arg("--extra-trusted-public-keys")
+            .arg(&upstream.substituter.public_key);
+        for (system, names) in &upstream.packages {
+            for pkg in names {
                 build.arg(format!(
-                    "{}#packages.{system}.{pkg}",
+                    "{}#upstream.{name}.packages.{system}.{pkg}",
                     flake.display()
                 ));
             }
         }
-        nix::stream_checked(&mut build, "nix build pinned packages")?
+        paths.extend(
+            nix::stream_checked(
+                &mut build,
+                &format!("nix build {name} packages"),
+            )?
             .lines()
-            .map(str::to_owned)
-            .collect()
-    };
+            .map(str::to_owned),
+        );
+    }
 
     if !no_push && !paths.is_empty() {
         push(cachix, &paths)?;
