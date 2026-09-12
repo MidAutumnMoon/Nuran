@@ -23,10 +23,10 @@ let
     # manifests change — never because a sibling did. Members missing
     # from the tree are pruned from the lockfile copy by cargo itself
     # during the build.
-    selectSrc = members: toSource {
+    selectSrc = names: toSource {
         root = ./.;
         fileset = intersection tracked <| unions (
-            [ manifest lock ] ++ map (append ./. ) members
+            [ manifest lock ] ++ map (append ./.) names
         );
     };
 
