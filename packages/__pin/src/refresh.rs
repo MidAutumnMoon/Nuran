@@ -57,16 +57,15 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
         return Err(report!("pin manifest contains no packages"));
     }
 
-    // Upstream moved but produced the same paths: the lock revision carries
-    // no consumer-visible change, and the committed lock already matches
-    // pins.json. Publishing would only re-verify state an earlier refresh
-    // already fetched and pushed.
-    if fresh == old {
+    // A missing report means every package reproduced its committed pins:
+    // the lock revision carries no consumer-visible change, and fetching
+    // and pushing would only re-verify state an earlier refresh already
+    // published.
+    let Some(report) = pins::diff_report(&old, &fresh) else {
         restore_lock(&lock, lock_before)?;
-        print!("{}", pins::diff_report(&old, &fresh));
         println!("Pins unchanged; flake.lock restored.");
         return Ok(());
-    }
+    };
 
     let mut build = Command::new("nix");
     build.args(["build", "--no-link", "--print-build-logs"]);
@@ -87,7 +86,7 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
     // Publish consumer state only after fetch and push succeed.
     pins::write(&flake.join("pins.json"), &fresh)?;
 
-    print!("{}", pins::diff_report(&old, &fresh));
+    print!("{report}");
     if no_push {
         println!("{package_count} package(s) fetched; push skipped.");
     } else {
