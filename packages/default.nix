@@ -38,6 +38,8 @@ in rec {
             kdePackages = prev.kdePackages;
         };
 
+        inherit pinned;
+
         # Using lib.fileset to avoid unnecessary non-rust rebuilds.
         workspace =
             let

@@ -14,16 +14,16 @@ mod verify;
 #[derive(Debug)]
 #[derive(Clone)]
 enum Cli {
-    /// Update the __pin flake lock, refresh pins.json from it, and copy
-    /// the packages into my cache. Prints the update report to stdout.
+    /// Refresh default-output store paths, fetch them from the upstream
+    /// caches, and optionally push their closures. Prints the report to stdout.
     RefreshPin {
         dir: PathBuf,
         cachix: String,
         no_push: bool,
     },
 
-    /// Build every committed pin through the root flake using the
-    /// consumer's ordinary Nix substituters.
+    /// Build every committed default output through the root flake using
+    /// the consumer's ordinary Nix substituters.
     VerifyPin { dir: PathBuf },
 }
 
@@ -42,7 +42,7 @@ fn cli() -> OptionParser<Cli> {
             .argument::<String>("CACHE")
             .fallback("nuirrce".into());
         let no_push = long("no-push")
-            .help("Refresh pins.json without pushing to cachix")
+            .help("Fetch and publish pins.json without pushing to cachix")
             .switch();
         construct!(Cli::RefreshPin {
             dir,
@@ -50,7 +50,7 @@ fn cli() -> OptionParser<Cli> {
             no_push,
         })
         .to_options()
-        .descr("Update the pin lock and pins.json, copy to my cache.")
+        .descr("Refresh the pin lock, cache, and pins.json.")
         .command("refresh-pin")
     };
 
@@ -58,14 +58,14 @@ fn cli() -> OptionParser<Cli> {
         let dir = pin_dir();
         construct!(Cli::VerifyPin { dir })
             .to_options()
-            .descr("Build every committed pin through the root flake.")
+            .descr("Build every committed pinned package.")
             .command("verify-pin")
     };
 
     construct!([refresh, verify])
         .to_options()
         .version(env!("CARGO_PKG_VERSION"))
-        .descr("Maintain the store-path pins under packages/__pin.")
+        .descr("Maintain default-output store-path pins.")
 }
 
 fn main() -> Result<()> {

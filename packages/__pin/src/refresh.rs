@@ -1,9 +1,8 @@
-use std::collections::BTreeMap;
 use std::path::Path;
 use std::process::Command;
 
 use rootcause::Result;
-use rootcause::prelude::ResultExt as _;
+use rootcause::report;
 use serde::Deserialize;
 
 use crate::nix;
@@ -11,38 +10,21 @@ use crate::pins;
 
 #[derive(Debug)]
 #[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
 struct Manifest {
     pins: pins::Pins,
-    upstreams: BTreeMap<String, Upstream>,
+    substituters: Vec<String>,
+    #[serde(rename = "trusted-public-keys")]
+    trusted_public_keys: Vec<String>,
 }
 
-#[derive(Debug)]
-#[derive(Deserialize)]
-struct Substituter {
-    url: String,
-    #[serde(rename = "public-key")]
-    public_key: String,
-}
-
-#[derive(Debug)]
-#[derive(Deserialize)]
-struct Upstream {
-    substituter: Substituter,
-    /// System -> selected package names.
-    packages: BTreeMap<String, Vec<String>>,
-}
-
-/// Refresh the pins:
-///
-/// 1. update the tracked lock and evaluate the manifest in its checkout;
-/// 2. fetch every selected output through its upstream cache;
-/// 3. push the resulting closures to my Cachix;
-/// 4. publish the new pins.json.
+/// Update the lock, realize every selected store path through the upstream
+/// caches, optionally push those closures, then publish pins.json.
 pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
     let flake = nix::pin_dir(dir)?;
     let old = pins::read(&flake.join("pins.json"))?;
 
-    nix::stream_checked(
+    nix::run_checked(
         Command::new("nix")
             .args(["flake", "update"])
             .current_dir(&flake),
@@ -51,51 +33,29 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
 
     let Manifest {
         pins: fresh,
-        upstreams,
-    } = serde_json::from_value(nix::eval_json(
-        &flake,
-        "manifest",
-        "evaluate the pin manifest",
-    )?)
-    .context("pin manifest: unexpected shape")?;
+        substituters,
+        trusted_public_keys,
+    } = nix::eval_json(&flake, "manifest", "evaluate the pin manifest")?;
 
-    let mut paths = Vec::new();
-    for (name, upstream) in &upstreams {
-        let mut build = Command::new("nix");
-        build.args(["build", "--no-link", "--print-out-paths"]);
-        build
-            .arg("--extra-substituters")
-            .arg(&upstream.substituter.url);
-        build
-            .arg("--extra-trusted-public-keys")
-            .arg(&upstream.substituter.public_key);
-
-        let mut package_count = 0_usize;
-        for (system, names) in &upstream.packages {
-            for package in names {
-                build.arg(format!(
-                    "{}#upstream.{name}.packages.{system}.{package}^*",
-                    flake.display()
-                ));
-                package_count += 1;
-            }
-        }
-        if package_count == 0 {
-            continue;
-        }
-
-        paths.extend(
-            nix::stream_checked(
-                &mut build,
-                &format!("fetch {name} packages"),
-            )?
-            .lines()
-            .map(str::to_owned),
-        );
+    let package_count = pins::paths(&fresh).count();
+    if package_count == 0 {
+        return Err(report!("pin manifest contains no packages"));
     }
 
-    if !no_push && !paths.is_empty() {
-        push(cachix, &paths)?;
+    let mut build = Command::new("nix");
+    build.args(["build", "--no-link", "--print-build-logs"]);
+    for substituter in &substituters {
+        build.arg("--extra-substituters").arg(substituter);
+    }
+    for public_key in &trusted_public_keys {
+        build.arg("--extra-trusted-public-keys").arg(public_key);
+    }
+    build.args(pins::paths(&fresh));
+
+    nix::run_checked(&mut build, "fetch pinned paths")?;
+
+    if !no_push {
+        push(cachix, &fresh)?;
     }
 
     // Publish consumer state only after fetch and push succeed.
@@ -103,11 +63,10 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
 
     print!("{}", pins::diff_report(&old, &fresh));
     if no_push {
-        println!("{} output path(s) fetched; push skipped.", paths.len());
+        println!("{package_count} package(s) fetched; push skipped.");
     } else {
         println!(
-            "{} output path(s) pushed to cachix \"{cachix}\".",
-            paths.len()
+            "{package_count} package(s) pushed to cachix \"{cachix}\"."
         );
     }
     Ok(())
@@ -115,7 +74,7 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
 
 /// Push the realized closures. Cachix is not installed globally on every
 /// caller, so fall back to `nix run`.
-fn push(cachix: &str, paths: &[String]) -> Result<()> {
+fn push(cachix: &str, pinset: &pins::Pins) -> Result<()> {
     let have_cachix = Command::new("cachix")
         .arg("--version")
         .output()
@@ -123,14 +82,13 @@ fn push(cachix: &str, paths: &[String]) -> Result<()> {
 
     let mut cmd = if have_cachix {
         let mut cmd = Command::new("cachix");
-        cmd.arg("push").arg(cachix).args(paths);
+        cmd.arg("push").arg(cachix).args(pins::paths(pinset));
         cmd
     } else {
         let mut cmd = Command::new("nix");
         cmd.args(["run", "nixpkgs#cachix", "--", "push", cachix])
-            .args(paths);
+            .args(pins::paths(pinset));
         cmd
     };
-    nix::stream_checked(&mut cmd, "cachix push")?;
-    Ok(())
+    nix::run_checked(&mut cmd, "cachix push")
 }

@@ -8,51 +8,49 @@ use rootcause::report;
 use crate::nix;
 use crate::pins;
 
-/// Build every committed output through the root flake. This is the same
-/// consumer path used by the overlay: pins.json is hydrated by default.nix,
-/// and Nix uses only its ordinary configured substituters.
+/// Build every committed default output through the root flake. This is
+/// the consumer path: pins.json is hydrated by default.nix and Nix uses
+/// only its ordinary configured substituters.
 pub fn run(dir: &Path) -> Result<()> {
     let dir = nix::pin_dir(dir)?;
     let pins = pins::read(&dir.join("pins.json"))?;
     let root = nix::repo_root()?;
 
-    let mut installables = Vec::new();
+    let mut build = Command::new("nix");
+    build.args(["build", "--no-link", "--print-build-logs"]);
+
+    let mut package_count = 0_usize;
     for (system, packages) in &pins {
-        let system_attr = quoted_attr(system)?;
-        for (package, pin) in packages {
-            if pin.outputs.is_empty() {
-                return Err(report!(
-                    "{package} ({system}) has no outputs"
-                ));
-            }
-            let package_attr = quoted_attr(package)?;
-            for output in &pin.outputs {
-                let output_attr = quoted_attr(&output.name)?;
-                installables.push(format!(
-                    "{}#packages.{system_attr}.{package_attr}.{output_attr}",
-                    root.display()
-                ));
-            }
+        for package in packages.keys() {
+            build.arg(consumer_installable(&root, system, package)?);
+            package_count += 1;
         }
     }
-
-    if installables.is_empty() {
-        return Err(report!("pins.json contains no package outputs"));
+    if package_count == 0 {
+        return Err(report!("pins.json contains no packages"));
     }
 
-    let count = installables.len();
-    nix::stream_checked(
-        Command::new("nix")
-            .args(["build", "--no-link", "--print-build-logs"])
-            .args(installables),
+    nix::run_checked(
+        &mut build,
         "build committed pins through the root flake",
     )?;
-    println!("{count} pinned output(s) built.");
+    println!("{package_count} pinned package(s) built.");
     Ok(())
 }
 
-/// Flake attribute paths accept JSON-style quoted components. Always quote
-/// generated names so dots and other punctuation cannot change the path.
-fn quoted_attr(name: &str) -> Result<String> {
-    Ok(serde_json::to_string(name).context("quote flake attribute")?)
+/// Quote generated path components; punctuation in an attribute name must
+/// not change which package verify builds.
+fn consumer_installable(
+    root: &Path,
+    system: &str,
+    package: &str,
+) -> Result<String> {
+    let system =
+        serde_json::to_string(system).context("quote package system")?;
+    let package =
+        serde_json::to_string(package).context("quote package name")?;
+    Ok(format!(
+        "{}#packages.{system}.{package}.out",
+        root.display()
+    ))
 }

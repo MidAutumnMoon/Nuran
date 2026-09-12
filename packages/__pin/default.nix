@@ -12,8 +12,8 @@ let
     packages =
         pins.${system}
         or (throw ''
-            pins: no capture for system ${system}
-            (captured: ${toString (builtins.attrNames pins)})
+            pins: no packages for system ${system}
+            (pinned systems: ${toString (builtins.attrNames pins)})
         '');
 
     # Give an output path constant string context. Nix will then realize
@@ -25,37 +25,20 @@ let
         };
 
     hydrate =
-        name: pin:
+        name: path:
         let
-            outputNames = map (output: output.name) pin.outputs;
-            defaultOutput =
-                if outputNames == [ ] then
-                    throw "pins: ${name} has no outputs"
-                else
-                    builtins.head outputNames;
-            outputPaths = builtins.listToAttrs (
-                map (output: {
-                    inherit (output) name;
-                    value = pinned output.path;
-                }) pin.outputs
-            );
-        in
-        # Outputs first so derivation-critical attributes cannot be
-        # shadowed by an output literally named "type" or "outPath".
-        outputPaths
-        // {
+            out = pinned path;
+        in {
             type = "derivation";
-            inherit (pin) name pname;
-            version = pin.version or null;
-            outputs = outputNames;
-            outputName = defaultOutput;
-            outPath = outputPaths.${defaultOutput};
-            meta = pin.meta or { };
+            inherit name out;
+            pname = name;
+            outputs = [ "out" ];
+            outputName = "out";
+            outPath = out;
             drvPath = throw ''
-                pins: ${pin.name} is pinned by store path and has no .drv —
-                it can only be substituted, never rebuilt. Build an output
-                instead (…${name}.${defaultOutput}); to move to a new
-                version, run refresh-pin.
+                pins: ${name} is pinned by store path and has no .drv —
+                it can only be substituted, never rebuilt. Build its
+                .out attribute; to move to a new version, run refresh-pin.
             '';
         };
 

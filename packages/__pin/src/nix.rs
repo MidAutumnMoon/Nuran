@@ -1,4 +1,3 @@
-use std::io::Read as _;
 use std::path::Path;
 use std::path::PathBuf;
 use std::process::Command;
@@ -8,7 +7,7 @@ use gix_discover::repository;
 use rootcause::Result;
 use rootcause::prelude::ResultExt as _;
 use rootcause::report;
-use serde_json::Value;
+use serde::de::DeserializeOwned;
 
 /// Locate the repo root, like `git rev-parse --show-toplevel`.
 pub fn repo_root() -> Result<PathBuf> {
@@ -35,10 +34,31 @@ pub fn pin_dir(dir: &Path) -> Result<PathBuf> {
     }
 }
 
-/// Run to completion, capture both streams, fail with stderr in the
-/// report. For commands whose output is consumed programmatically.
-pub fn capture_checked(cmd: &mut Command, what: &str) -> Result<String> {
-    let output = cmd.output().context(format!("spawn: {what}"))?;
+/// Run a command with progress on stderr and no stdout. Driver stdout is
+/// reserved for the refresh report consumed by CI.
+pub fn run_checked(cmd: &mut Command, what: &str) -> Result<()> {
+    let status = cmd
+        .stdout(Stdio::null())
+        .stderr(Stdio::inherit())
+        .status()
+        .context(format!("spawn: {what}"))?;
+    if !status.success() {
+        return Err(report!(format!("{what} failed ({status})")).into());
+    }
+    Ok(())
+}
+
+/// Evaluate one flake attribute as JSON and deserialize its public shape.
+pub fn eval_json<T>(flake: &Path, attr: &str, what: &str) -> Result<T>
+where
+    T: DeserializeOwned,
+{
+    let output = Command::new("nix")
+        .arg("eval")
+        .arg("--json")
+        .arg(format!("{}#{attr}", flake.display()))
+        .output()
+        .context(format!("spawn: {what}"))?;
     if !output.status.success() {
         return Err(report!(format!(
             "{what} failed ({}):\n{}",
@@ -47,39 +67,6 @@ pub fn capture_checked(cmd: &mut Command, what: &str) -> Result<String> {
         ))
         .into());
     }
-    Ok(String::from_utf8_lossy(&output.stdout).trim().to_owned())
-}
-
-/// Run to completion, capture stdout, let stderr stream to the
-/// terminal. For long-running commands whose progress should be
-/// visible (builds, pushes).
-pub fn stream_checked(cmd: &mut Command, what: &str) -> Result<String> {
-    let mut child = cmd
-        .stdout(Stdio::piped())
-        .stderr(Stdio::inherit())
-        .spawn()
-        .context(format!("spawn: {what}"))?;
-    let mut stdout = String::new();
-    if let Some(mut pipe) = child.stdout.take() {
-        pipe.read_to_string(&mut stdout)
-            .context(format!("read stdout of: {what}"))?;
-    }
-    let status = child.wait().context(format!("wait: {what}"))?;
-    if !status.success() {
-        return Err(report!(format!("{what} failed ({status})")).into());
-    }
-    Ok(stdout.trim().to_owned())
-}
-
-/// `nix eval --json <flake>#<attr>`, parsed.
-pub fn eval_json(flake: &Path, attr: &str, what: &str) -> Result<Value> {
-    let out = capture_checked(
-        Command::new("nix")
-            .arg("eval")
-            .arg("--json")
-            .arg(format!("{}#{attr}", flake.display())),
-        what,
-    )?;
-    Ok(serde_json::from_str(&out)
+    Ok(serde_json::from_slice(&output.stdout)
         .context(format!("{what}: parse eval output"))?)
 }
