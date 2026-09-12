@@ -6,8 +6,8 @@ tsuki.rust.buildRustPackage rec {
     pname = "pin-driver";
     version = "0.1.0";
 
-    inherit (tsuki.workspace)
-        src cargoLock;
+    src = tsuki.workspace.selectSrc [ "__pin" ];
+    cargoLock = tsuki.workspace.cargoLock;
 
     cargoBuildFlags = "-p ${pname}";
     doCheck = false;

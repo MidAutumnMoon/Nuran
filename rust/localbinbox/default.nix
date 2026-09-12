@@ -8,8 +8,8 @@ tsuki.rust.buildRustPackage rec {
     pname = "localbinbox";
     version = "0.1.0";
 
-    inherit (tsuki.workspace)
-        src cargoLock;
+    src = tsuki.workspace.selectSrc [ "localbinbox" ];
+    cargoLock = tsuki.workspace.cargoLock;
 
     nativeBuildInputs = [
         tsuki.hooks.prefixCommaToBin

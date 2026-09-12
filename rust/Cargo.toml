@@ -1,14 +1,7 @@
 [workspace]
-resolver = "2"
-members = [
-    "localbinbox",
-    "maintenance",
-    "mimic-cloud-init",
-    "psd-rs",
-    "system76-scheduler-niri",
-    "__ci",
-    "__pin",
-]
+resolver = "3"
+members = [ "*" ]
+exclude = [ "target" ]
 
 [workspace.package]
 authors = [ "MidAutumnMoon" ]

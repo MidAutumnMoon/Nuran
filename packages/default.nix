@@ -55,28 +55,26 @@ in rec {
                 inherit (lib.fileset)
                     unions toSource intersection gitTracked;
                 inherit (lib.path) append;
-                inherit (lib.strings) hasInfix;
+
                 rust = ../rust;
-                workspaceRootToml = append rust "Cargo.toml";
-                workspaceLock = append rust "Cargo.lock";
-                membersSrc =
-                    lib.importTOML workspaceRootToml
-                    |> (m: m.workspace.members)
-                    # assert that "members" does not contains glob
-                    |> (ms:
-                        assert lib.all (m: !hasInfix m "*") ms;
-                        ms)
-                    |> map (append rust);
-                workspaceSrc = unions <|
-                    [ workspaceRootToml workspaceLock ]
-                    ++ membersSrc;
-            in {
-                cargoLock.lockFile = workspaceLock;
-                src = toSource {
+                tracked = gitTracked rust;
+                manifest = append rust "Cargo.toml";
+                lock = append rust "Cargo.lock";
+
+                # A source tree holding only the named workspace members
+                # beside the root manifests, so a crate rebuilds when its
+                # own sources or the manifests change — never because a
+                # sibling did. Members missing from the tree are pruned
+                # from the lockfile copy by cargo itself during the build.
+                selectSrc = members: toSource {
                     root = rust;
-                    fileset = intersection
-                        (gitTracked rust) workspaceSrc;
+                    fileset = intersection tracked <| unions (
+                        [ manifest lock ] ++ map (append rust) members
+                    );
                 };
+            in {
+                cargoLock.lockFile = lock;
+                inherit selectSrc;
             };
     };
 

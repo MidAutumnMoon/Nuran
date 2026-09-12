@@ -16,8 +16,8 @@ tsuki.rust.buildRustPackage rec {
     pname = "psd-rs";
     version = "0.1.0";
 
-    inherit (tsuki.workspace)
-        src cargoLock;
+    src = tsuki.workspace.selectSrc [ "psd-rs" ];
+    cargoLock = tsuki.workspace.cargoLock;
 
     cargoBuildFlags = "-p ${pname}";
 

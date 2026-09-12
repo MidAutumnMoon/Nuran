@@ -6,8 +6,8 @@ tsuki.rust.buildRustPackage rec {
     pname = "mimic-cloud-init";
     version = "0.1.0";
 
-    inherit (tsuki.workspace)
-        src cargoLock;
+    src = tsuki.workspace.selectSrc [ "mimic-cloud-init" ];
+    cargoLock = tsuki.workspace.cargoLock;
 
     cargoBuildFlags = "-p ${pname}";
     doCheck = false;
