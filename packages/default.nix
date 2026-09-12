@@ -16,8 +16,8 @@ let
     legacyFrom =
         name: flakes.${name}.legacyPackages.${hostSystem};
 
-    # Store-path pins; see ./__pin/.
-    pinned = import ./__pin {
+    # Store-path pins; see ../rust/__pin/pins.nix.
+    pinned = import ../rust/__pin/pins.nix {
         system = hostSystem;
     };
 
@@ -30,8 +30,17 @@ let
 in rec {
 
     tsuki = discovered // {
+
+        # First-party crates from the Rust workspace; see ../rust.
+        __ci = callPackage ../rust/__ci {};
+        __pin = callPackage ../rust/__pin {};
+        localbinbox = callPackage ../rust/localbinbox {};
+        maintenance = callPackage ../rust/maintenance {};
+        mimic-cloud-init = callPackage ../rust/mimic-cloud-init {};
+        psd-rs = callPackage ../rust/psd-rs {};
+        system76-scheduler-niri = callPackage ../rust/system76-scheduler-niri {};
+
         # test builds
-        localbinbox = callPackage ../home/localbinbox {};
         portableTest = callPackage ./portable/test.nix {};
 
         kde = callPackage ./kde/package.nix {
@@ -47,9 +56,9 @@ in rec {
                     unions toSource intersection gitTracked;
                 inherit (lib.path) append;
                 inherit (lib.strings) hasInfix;
-                root = ../.;
-                workspaceRootToml = append root "Cargo.toml";
-                workspaceLock = append root "Cargo.lock";
+                rust = ../rust;
+                workspaceRootToml = append rust "Cargo.toml";
+                workspaceLock = append rust "Cargo.lock";
                 membersSrc =
                     lib.importTOML workspaceRootToml
                     |> (m: m.workspace.members)
@@ -57,16 +66,16 @@ in rec {
                     |> (ms:
                         assert lib.all (m: !hasInfix m "*") ms;
                         ms)
-                    |> map (append root);
+                    |> map (append rust);
                 workspaceSrc = unions <|
                     [ workspaceRootToml workspaceLock ]
                     ++ membersSrc;
             in {
                 cargoLock.lockFile = workspaceLock;
                 src = toSource {
-                    inherit root;
+                    root = rust;
                     fileset = intersection
-                        (gitTracked root) workspaceSrc;
+                        (gitTracked rust) workspaceSrc;
                 };
             };
     };

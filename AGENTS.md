@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A NixOS config repo. Flake at the root. Machines in `machine/`, shared modules in `nixos/`, custom lib in `tsukilib/`, packages in `packages/`, secrets via sops.
+A NixOS config repo. Flake at the root. Machines in `machine/`, shared modules in `nixos/`, custom lib in `tsukilib/`, packages in `packages/`, first-party Rust crates (one Cargo workspace) in `rust/`, secrets via sops.
 
 ## Rules
 
@@ -32,7 +32,7 @@ Do not pipe any command output through `head` or `tail`, tools will properly han
 
 - To find a machine's config: look in `machine/<name>/` — each is a list of NixOS modules.
 - To find a module option: grep in `nixos/` or `tsukilib/`.
-- To find a package definition: look in `packages/`.
+- To find a package definition: look in `packages/`. First-party Rust crates live in `rust/<crate>/` with their `default.nix` beside the sources.
 - Secrets are in `sops/`, encrypted. Don't try to read encrypted blobs.
 
 ## Look Things Up

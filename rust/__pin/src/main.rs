@@ -29,9 +29,9 @@ enum Cli {
 
 fn pin_dir() -> impl Parser<PathBuf> {
     long("dir")
-        .help("The __pin directory (default: packages/__pin under the repo root)")
+        .help("The __pin directory (default: rust/__pin under the repo root)")
         .argument::<PathBuf>("DIR")
-        .fallback("packages/__pin".into())
+        .fallback("rust/__pin".into())
 }
 
 fn cli() -> OptionParser<Cli> {

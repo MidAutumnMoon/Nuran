@@ -1,12 +1,13 @@
 [workspace]
 resolver = "2"
 members = [
-    "home/localbinbox",
-    "packages/mimic-cloud-init",
-    "packages/__ci",
-    "packages/psd-rs",
-    "packages/system76-scheduler-niri",
-    "machine/phia/environment/maintenance", "packages/__pin",
+    "localbinbox",
+    "maintenance",
+    "mimic-cloud-init",
+    "psd-rs",
+    "system76-scheduler-niri",
+    "__ci",
+    "__pin",
 ]
 
 [workspace.package]

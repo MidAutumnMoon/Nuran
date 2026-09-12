@@ -2,7 +2,7 @@
 
 let
 
-    maintenance = pkgs.callPackage ./maintenance/package.nix {};
+    maintenance = pkgs.tsuki.maintenance;
 
 in
 
