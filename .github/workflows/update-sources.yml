@@ -59,7 +59,7 @@ jobs:
         uses: peter-evans/create-pull-request@v8
         with:
           sign-commits: true
-          add-paths: "packages, rust"
+          add-paths: "packages"
           title: "pkgs: ${{ steps.commit_date.outputs.date }}"
           body-path: ${{ runner.temp }}/summary.md
           commit-message: "pkgs: ${{ steps.commit_date.outputs.date }}"

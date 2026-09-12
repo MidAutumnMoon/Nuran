@@ -16,8 +16,8 @@ let
     legacyFrom =
         name: flakes.${name}.legacyPackages.${hostSystem};
 
-    # Store-path pins; see ../rust/__pin/pins.nix.
-    pinned = import ../rust/__pin/pins.nix {
+    # Store-path pins; see ./__pin/.
+    pinned = import ./__pin/pins.nix {
         system = hostSystem;
     };
 

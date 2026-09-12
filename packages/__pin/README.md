@@ -101,9 +101,9 @@ pins =
 ```
 
 Then run `refresh-pin` and export the package from `packages/default.nix`.
-(The pin consumer and the driver package live beside each other in
-`rust/__pin/`: `pins.nix` is the consumer view, `default.nix` builds the
-driver.)
+The pins live in `packages/__pin/` — `pins.nix` is the consumer view,
+`pins.json` the published state, `flake.nix` the refresh manifest — while
+the driver crate lives in `rust/__pin/`.
 Systems follow the upstream package sets. The manifest intentionally models
 one package source and a flat cache list; it does not assign packages to
 particular caches.
