@@ -1,19 +1,19 @@
 {
   "aarch64-darwin": {
     "omp": {
-      "name": "omp-18.1.17",
+      "name": "omp-18.1.18",
       "pname": "omp",
-      "version": "18.1.17",
+      "version": "18.1.18",
       "outputs": [
         {
           "name": "out",
-          "path": "/nix/store/5d6ff9bwsyn6mbipsr7whihc2rhq0pj5-omp-18.1.17"
+          "path": "/nix/store/zz8ysfdx1hfh5dy2a9d28klm2s8bgacj-omp-18.1.18"
         }
       ],
       "meta": {
         "available": true,
         "broken": false,
-        "changelog": "https://github.com/can1357/oh-my-pi/releases/tag/v18.1.17",
+        "changelog": "https://github.com/can1357/oh-my-pi/releases/tag/v18.1.18",
         "description": "A terminal-based coding agent with multi-model support",
         "homepage": "https://github.com/can1357/oh-my-pi",
         "identifiers": {
@@ -67,10 +67,10 @@
         ],
         "maintainersPosition": {
           "column": 5,
-          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix",
+          "file": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/omp/package.nix",
           "line": 303
         },
-        "name": "omp-18.1.17",
+        "name": "omp-18.1.18",
         "nonTeamMaintainers": [
           {
             "email": "aldoborrero+nixos@pm.me",
@@ -87,7 +87,7 @@
           "aarch64-linux",
           "x86_64-linux"
         ],
-        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix:298",
+        "position": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/omp/package.nix:298",
         "problems": {},
         "sourceProvenance": [
           {
@@ -163,7 +163,7 @@
         ],
         "maintainersPosition": {
           "column": 5,
-          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix",
+          "file": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/zcode/package.nix",
           "line": 206
         },
         "name": "zcode-3.11.2",
@@ -182,7 +182,7 @@
           "aarch64-linux",
           "aarch64-darwin"
         ],
-        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix:201",
+        "position": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/zcode/package.nix:201",
         "problems": {},
         "sourceProvenance": [
           {
@@ -197,19 +197,19 @@
   },
   "aarch64-linux": {
     "omp": {
-      "name": "omp-18.1.17",
+      "name": "omp-18.1.18",
       "pname": "omp",
-      "version": "18.1.17",
+      "version": "18.1.18",
       "outputs": [
         {
           "name": "out",
-          "path": "/nix/store/aczicc6r32lv2li985w9im7x65dhddyl-omp-18.1.17"
+          "path": "/nix/store/xv0a6bws4747x1mj985hraxcm59dxplx-omp-18.1.18"
         }
       ],
       "meta": {
         "available": true,
         "broken": false,
-        "changelog": "https://github.com/can1357/oh-my-pi/releases/tag/v18.1.17",
+        "changelog": "https://github.com/can1357/oh-my-pi/releases/tag/v18.1.18",
         "description": "A terminal-based coding agent with multi-model support",
         "homepage": "https://github.com/can1357/oh-my-pi",
         "identifiers": {
@@ -263,10 +263,10 @@
         ],
         "maintainersPosition": {
           "column": 5,
-          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix",
+          "file": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/omp/package.nix",
           "line": 303
         },
-        "name": "omp-18.1.17",
+        "name": "omp-18.1.18",
         "nonTeamMaintainers": [
           {
             "email": "aldoborrero+nixos@pm.me",
@@ -283,7 +283,7 @@
           "aarch64-linux",
           "x86_64-linux"
         ],
-        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix:298",
+        "position": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/omp/package.nix:298",
         "problems": {},
         "sourceProvenance": [
           {
@@ -359,7 +359,7 @@
         ],
         "maintainersPosition": {
           "column": 5,
-          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix",
+          "file": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/zcode/package.nix",
           "line": 206
         },
         "name": "zcode-3.11.2",
@@ -378,7 +378,7 @@
           "aarch64-linux",
           "aarch64-darwin"
         ],
-        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix:201",
+        "position": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/zcode/package.nix:201",
         "problems": {},
         "sourceProvenance": [
           {
@@ -393,19 +393,19 @@
   },
   "x86_64-linux": {
     "omp": {
-      "name": "omp-18.1.17",
+      "name": "omp-18.1.18",
       "pname": "omp",
-      "version": "18.1.17",
+      "version": "18.1.18",
       "outputs": [
         {
           "name": "out",
-          "path": "/nix/store/0xyalf4yh2q2bnr7cx52wd6xjwdwsyki-omp-18.1.17"
+          "path": "/nix/store/lp1r0v6sz4s3zlrb7hmnc40af91mxdgs-omp-18.1.18"
         }
       ],
       "meta": {
         "available": true,
         "broken": false,
-        "changelog": "https://github.com/can1357/oh-my-pi/releases/tag/v18.1.17",
+        "changelog": "https://github.com/can1357/oh-my-pi/releases/tag/v18.1.18",
         "description": "A terminal-based coding agent with multi-model support",
         "homepage": "https://github.com/can1357/oh-my-pi",
         "identifiers": {
@@ -459,10 +459,10 @@
         ],
         "maintainersPosition": {
           "column": 5,
-          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix",
+          "file": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/omp/package.nix",
           "line": 303
         },
-        "name": "omp-18.1.17",
+        "name": "omp-18.1.18",
         "nonTeamMaintainers": [
           {
             "email": "aldoborrero+nixos@pm.me",
@@ -479,7 +479,7 @@
           "aarch64-linux",
           "x86_64-linux"
         ],
-        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/omp/package.nix:298",
+        "position": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/omp/package.nix:298",
         "problems": {},
         "sourceProvenance": [
           {
@@ -555,7 +555,7 @@
         ],
         "maintainersPosition": {
           "column": 5,
-          "file": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix",
+          "file": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/zcode/package.nix",
           "line": 206
         },
         "name": "zcode-3.11.2",
@@ -574,7 +574,7 @@
           "aarch64-linux",
           "aarch64-darwin"
         ],
-        "position": "/nix/store/a1dbkbhgqg2w6p9l20n0vm2923ldbq15-source/packages/zcode/package.nix:201",
+        "position": "/nix/store/g2mqzh90avddwh15m4j6wbjz37dhjfh4-source/packages/zcode/package.nix:201",
         "problems": {},
         "sourceProvenance": [
           {
