@@ -2,6 +2,7 @@ use std::path::Path;
 use std::process::Command;
 
 use rootcause::Result;
+use rootcause::prelude::ResultExt as _;
 use rootcause::report;
 use serde::Deserialize;
 
@@ -24,6 +25,20 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
     let flake = nix::pin_dir(dir)?;
     let old = pins::read(&flake.join("pins.json"))?;
 
+    // Snapshot the lock so a refresh that reproduces the committed pins can
+    // leave the tree exactly as it found it. Absence is a valid snapshot.
+    let lock = flake.join("flake.lock");
+    let lock_before = std::fs::read(&lock)
+        .map(Some)
+        .or_else(|err| {
+            if err.kind() == std::io::ErrorKind::NotFound {
+                Ok(None)
+            } else {
+                Err(err)
+            }
+        })
+        .context(format!("read {}", lock.display()))?;
+
     nix::run_checked(
         Command::new("nix")
             .args(["flake", "update"])
@@ -40,6 +55,17 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
     let package_count = pins::paths(&fresh).count();
     if package_count == 0 {
         return Err(report!("pin manifest contains no packages"));
+    }
+
+    // Upstream moved but produced the same paths: the lock revision carries
+    // no consumer-visible change, and the committed lock already matches
+    // pins.json. Publishing would only re-verify state an earlier refresh
+    // already fetched and pushed.
+    if fresh == old {
+        restore_lock(&lock, lock_before)?;
+        print!("{}", pins::diff_report(&old, &fresh));
+        println!("Pins unchanged; flake.lock restored.");
+        return Ok(());
     }
 
     let mut build = Command::new("nix");
@@ -72,6 +98,18 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
     Ok(())
 }
 
+/// Put the pre-update lock back. `None` means there was no lock, so the
+/// one `nix flake update` wrote is removed again.
+fn restore_lock(lock: &Path, before: Option<Vec<u8>>) -> Result<()> {
+    before
+        .map_or_else(
+            || std::fs::remove_file(lock),
+            |bytes| std::fs::write(lock, bytes),
+        )
+        .context(format!("restore {}", lock.display()))?;
+    Ok(())
+}
+
 /// Push the realized closures. Cachix is not installed globally on every
 /// caller, so fall back to `nix run`.
 fn push(cachix: &str, pinset: &pins::Pins) -> Result<()> {
@@ -91,4 +129,31 @@ fn push(cachix: &str, pinset: &pins::Pins) -> Result<()> {
         cmd
     };
     nix::run_checked(&mut cmd, "cachix push")
+}
+
+#[cfg(test)]
+#[expect(clippy::unwrap_used, reason = "Tests")]
+mod tests {
+    use super::restore_lock;
+
+    /// A no-op refresh leaves the lock byte-identical, and removes it
+    /// entirely when there was none before the update.
+    #[test]
+    fn restore_lock_round_trips() {
+        let dir = std::env::temp_dir().join(format!(
+            "pin-driver-restore-lock-{}",
+            std::process::id()
+        ));
+        std::fs::create_dir_all(&dir).unwrap();
+        let lock = dir.join("flake.lock");
+
+        std::fs::write(&lock, "updated").unwrap();
+        restore_lock(&lock, Some(b"committed".to_vec())).unwrap();
+        assert_eq!(std::fs::read(&lock).unwrap(), b"committed");
+
+        restore_lock(&lock, None).unwrap();
+        assert!(!lock.exists());
+
+        std::fs::remove_dir_all(&dir).unwrap();
+    }
 }

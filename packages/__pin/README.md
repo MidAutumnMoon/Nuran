@@ -43,6 +43,11 @@ If evaluation, fetching, or pushing fails, the updated lock remains as an
 ordinary Git working-tree change while `pins.json` stays untouched. Rerun to
 continue from that lock, or use Git to discard it.
 
+A refresh that reproduces the committed pins is a no-op: the lock is restored
+to its pre-update content, fetch and push are skipped, and `pins.json` is left
+alone, so the working tree stays clean and no update PR is opened. The lock
+only ever travels with an actual pin change.
+
 `--no-push` still fetches the paths before publishing `pins.json`.
 
 ### Consumption
