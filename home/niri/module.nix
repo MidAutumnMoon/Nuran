@@ -27,9 +27,4 @@
 
     xdg_config."niri".src = dots.get "niri";
 
-    xdg_config."systemd/user/niri.service.d/override.conf".text = ''
-        [Unit]
-        Wants = noctalia.service hypridle.service sway-audio-idle-inhibit.service
-    '';
-
 }
