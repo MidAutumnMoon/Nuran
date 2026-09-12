@@ -1,6 +1,7 @@
 {
     lib,
     tsuki,
+    workspace,
     makeWrapper,
     rsync,
     fuse-overlayfs,
@@ -16,8 +17,8 @@ tsuki.rust.buildRustPackage rec {
     pname = "psd-rs";
     version = "0.1.0";
 
-    src = tsuki.workspace.selectSrc [ "psd-rs" ];
-    cargoLock = tsuki.workspace.cargoLock;
+    src = workspace.selectSrc [ "psd-rs" ];
+    cargoLock = workspace.cargoLock;
 
     cargoBuildFlags = "-p ${pname}";
 

@@ -1,13 +1,14 @@
 {
     tsuki,
+    workspace,
 }:
 
 tsuki.rust.buildRustPackage rec {
     pname = "ci-driver";
     version = "0.1.0";
 
-    src = tsuki.workspace.selectSrc [ "__ci" ];
-    cargoLock = tsuki.workspace.cargoLock;
+    src = workspace.selectSrc [ "__ci" ];
+    cargoLock = workspace.cargoLock;
 
     cargoBuildFlags = "-p ${pname}";
     doCheck = false;

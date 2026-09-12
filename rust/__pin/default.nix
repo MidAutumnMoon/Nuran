@@ -1,13 +1,14 @@
 {
     tsuki,
+    workspace,
 }:
 
 tsuki.rust.buildRustPackage rec {
     pname = "pin-driver";
     version = "0.1.0";
 
-    src = tsuki.workspace.selectSrc [ "__pin" ];
-    cargoLock = tsuki.workspace.cargoLock;
+    src = workspace.selectSrc [ "__pin" ];
+    cargoLock = workspace.cargoLock;
 
     cargoBuildFlags = "-p ${pname}";
     doCheck = false;

@@ -1,6 +1,7 @@
 {
     lib,
     tsuki,
+    workspace,
     par2cmdline-turbo,
 }:
 
@@ -8,8 +9,8 @@ tsuki.rust.buildRustPackage rec {
     pname = "localbinbox";
     version = "0.1.0";
 
-    src = tsuki.workspace.selectSrc [ "localbinbox" ];
-    cargoLock = tsuki.workspace.cargoLock;
+    src = workspace.selectSrc [ "localbinbox" ];
+    cargoLock = workspace.cargoLock;
 
     nativeBuildInputs = [
         tsuki.hooks.prefixCommaToBin

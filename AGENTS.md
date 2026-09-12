@@ -32,7 +32,7 @@ Do not pipe any command output through `head` or `tail`, tools will properly han
 
 - To find a machine's config: look in `machine/<name>/` — each is a list of NixOS modules.
 - To find a module option: grep in `nixos/` or `tsukilib/`.
-- To find a package definition: look in `packages/`. First-party Rust crates live in `rust/<crate>/` with their `default.nix` beside the sources.
+- To find a package definition: look in `packages/`. First-party Rust crates live in `rust/<crate>/` with their `default.nix` beside the sources; `rust/default.nix` packages every member directory into the `tsuki` namespace.
 - Secrets are in `sops/`, encrypted. Don't try to read encrypted blobs.
 
 ## Look Things Up

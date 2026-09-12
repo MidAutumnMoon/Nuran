@@ -27,18 +27,12 @@ let
             directory = ./.;
         };
 
+    # First-party crates of the Rust workspace; see ../rust.
+    rustApps = import ../rust { inherit lib callPackage; };
+
 in rec {
 
-    tsuki = discovered // {
-
-        # First-party crates from the Rust workspace; see ../rust.
-        __ci = callPackage ../rust/__ci {};
-        __pin = callPackage ../rust/__pin {};
-        localbinbox = callPackage ../rust/localbinbox {};
-        maintenance = callPackage ../rust/maintenance {};
-        mimic-cloud-init = callPackage ../rust/mimic-cloud-init {};
-        psd-rs = callPackage ../rust/psd-rs {};
-        system76-scheduler-niri = callPackage ../rust/system76-scheduler-niri {};
+    tsuki = discovered // rustApps // {
 
         # test builds
         portableTest = callPackage ./portable/test.nix {};
@@ -48,34 +42,6 @@ in rec {
         };
 
         inherit pinned;
-
-        # Using lib.fileset to avoid unnecessary non-rust rebuilds.
-        workspace =
-            let
-                inherit (lib.fileset)
-                    unions toSource intersection gitTracked;
-                inherit (lib.path) append;
-
-                rust = ../rust;
-                tracked = gitTracked rust;
-                manifest = append rust "Cargo.toml";
-                lock = append rust "Cargo.lock";
-
-                # A source tree holding only the named workspace members
-                # beside the root manifests, so a crate rebuilds when its
-                # own sources or the manifests change — never because a
-                # sibling did. Members missing from the tree are pruned
-                # from the lockfile copy by cargo itself during the build.
-                selectSrc = members: toSource {
-                    root = rust;
-                    fileset = intersection tracked <| unions (
-                        [ manifest lock ] ++ map (append rust) members
-                    );
-                };
-            in {
-                cargoLock.lockFile = lock;
-                inherit selectSrc;
-            };
     };
 
     inherit (pkgsFrom "sops-nix")
