@@ -6,10 +6,10 @@
 }:
 
 tsuki.rust.buildRustPackage rec {
-    pname = "phia_maintenance";
+    pname = "phia_toolbox";
     version = "0.1.0";
 
-    src = workspace.selectSrc [ "maintenance" ];
+    src = workspace.selectSrc [ "phia_toolbox" ];
     cargoLock = workspace.cargoLock;
 
     nativeBuildInputs = [

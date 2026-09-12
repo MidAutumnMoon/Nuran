@@ -16,11 +16,6 @@ let
     legacyFrom =
         name: flakes.${name}.legacyPackages.${hostSystem};
 
-    # Store-path pins; see ./__pin/.
-    pinned = import ./__pin/pins.nix {
-        system = hostSystem;
-    };
-
     discovered =
         lib.packagesFromDirectoryRecursive {
             inherit callPackage;
@@ -40,15 +35,14 @@ in rec {
         kde = callPackage ./kde/package.nix {
             kdePackages = prev.kdePackages;
         };
-
-        inherit pinned;
     };
 
     inherit (pkgsFrom "sops-nix")
         sops-install-secrets
     ;
 
-    inherit (pinned)
+    # Store-path pins; see ./__pin/.
+    inherit (discovered.__pin)
         omp
         zcode
     ;

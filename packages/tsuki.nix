@@ -1,8 +1,8 @@
-# Package maintenance manifest, consumed by `tsuki.__ci`:
+# Package maintenance manifest, consumed by `tsuki.ci-driver`:
 #
-#     nix run .#tsuki.__ci -- build  -m packages/tsuki.nix -l
-#     nix run .#tsuki.__ci -- build  -m packages/tsuki.nix -g <group>
-#     nix run .#tsuki.__ci -- update -m packages/tsuki.nix
+#     nix run .#tsuki.ci-driver -- build  -m packages/tsuki.nix -l
+#     nix run .#tsuki.ci-driver -- build  -m packages/tsuki.nix -g <group>
+#     nix run .#tsuki.ci-driver -- update -m packages/tsuki.nix
 #
 # Each attribute is a build group; CI builds its members as one job and
 # caches them. Packages under the tsuki namespace use the `tsuki`
@@ -59,7 +59,7 @@ let
         else
             throw "pkgs: attrpath must be a string";
 
-    # Reduce an entry to the JSON shape `__ci` parses.
+    # Reduce an entry to the JSON shape `ci-driver` parses.
     toWire = entry: { inherit (entry) attrpath track; };
 
     checkGroup = name: members:

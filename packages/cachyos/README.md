@@ -22,9 +22,9 @@ The raw plan and the prototype: <https://github.com/MidAutumnMoon/use-cachyos-bi
 ## Updating
 
 ```console
-nix run .#tsuki.__ci -- cachyos check
-nix run .#tsuki.__ci -- cachyos update
-nix run .#tsuki.__ci -- cachyos gen-config CONFIG [-o OUTPUT]
+nix run .#tsuki.ci-driver -- cachyos check
+nix run .#tsuki.ci-driver -- cachyos update
+nix run .#tsuki.ci-driver -- cachyos gen-config CONFIG [-o OUTPUT]
 ```
 
 # Findings of what's missing in CachyOS stock kernel

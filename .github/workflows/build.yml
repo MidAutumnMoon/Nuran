@@ -37,7 +37,7 @@ jobs:
             - name: List Matrix
               id: list_matrix_step
               run: |
-                  TOOL=".#tsuki.__ci"
+                  TOOL=".#tsuki.ci-driver"
                   nix build --print-build-logs "$TOOL"
                   # N.B. Don't use "GROUPS", in Github Action environment
                   # $GROUPS is already set, so bash errors out if this
@@ -69,7 +69,7 @@ jobs:
 
             - name: Build Packages from Group
               run: |
-                  TOOL=".#tsuki.__ci"
+                  TOOL=".#tsuki.ci-driver"
                   nix flake update
                   nix run "$TOOL" -- build \
                       -m "packages/tsuki.nix" \
@@ -92,7 +92,7 @@ jobs:
 
             - name: Verify pins
               run: |
-                  TOOL=".#tsuki.__pin"
+                  TOOL=".#tsuki.pin-driver"
                   nix build --print-build-logs "$TOOL"
                   # Builds committed pin outputs through the root flake.
                   # Only the consumer's normal caches are configured.
@@ -121,7 +121,7 @@ jobs:
 
             - name: Build NixOS
               run: |
-                  TOOL=".#tsuki.__ci"
+                  TOOL=".#tsuki.ci-driver"
                   nix flake update
                   nix build --print-build-logs "$TOOL"
                   nix run "$TOOL" -- nixos -n "${{ matrix.hostname }}"

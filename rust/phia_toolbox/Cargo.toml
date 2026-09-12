@@ -1,5 +1,5 @@
 [package]
-name = "phia_maintenance"
+name = "phia_toolbox"
 version = "0.1.0"
 edition.workspace = true
 

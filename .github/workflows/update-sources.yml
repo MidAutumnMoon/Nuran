@@ -30,7 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "date=$( date '+%Y-%b-%d' )" >> "$GITHUB_OUTPUT"
-          TOOL=".#tsuki.__ci"
+          TOOL=".#tsuki.ci-driver"
           nix build --print-build-logs "$TOOL"
           conf="$HOME/.config/nix/nix.conf"
           sed -i '/^experimental-features/s/$/ pipe-operators/' "$conf"
@@ -41,7 +41,7 @@ jobs:
 
       - name: Update CachyOS kernel
         run: |
-          TOOL=".#tsuki.__ci"
+          TOOL=".#tsuki.ci-driver"
           nix run "$TOOL" -- cachyos update \
             >> "$RUNNER_TEMP/summary.md"
 
@@ -49,7 +49,7 @@ jobs:
         env:
           CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
         run: |
-          TOOL=".#tsuki.__pin"
+          TOOL=".#tsuki.pin-driver"
           nix build --print-build-logs "$TOOL"
           # Report goes to stdout -> PR summary; nix/cachix log to stderr.
           nix run "$TOOL" -- refresh-pin \

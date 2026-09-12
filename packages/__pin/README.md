@@ -52,13 +52,13 @@ only ever travels with an actual pin change.
 
 ### Consumption
 
-The root overlay imports `pins.nix`, which reads only `pins.json`. Its wire
+The root overlay imports `package.nix`, which reads only `pins.json`. Its wire
 format is `system -> package -> default output store path`.
 
 `pins.json` is required tracked consumer state. Refresh replaces it; it does
 not bootstrap a missing file.
 
-`pins.nix` gives each path constant string context with
+`package.nix` gives each path constant string context with
 `builtins.appendContext`, then exposes a minimal one-output package value with
 `.out` and `.outPath`. Nix can therefore realize it through the consumer's
 ordinary configured substituters without evaluating the upstream flake.
@@ -100,10 +100,11 @@ pins =
     }) llm-agents.packages;
 ```
 
-Then run `refresh-pin` and export the package from `packages/default.nix`.
-The pins live in `packages/__pin/` — `pins.nix` is the consumer view,
-`pins.json` the published state, `flake.nix` the refresh manifest — while
-the driver crate lives in `rust/__pin/`.
+Then run `refresh-pin`; the pins are exposed as `tsuki.__pin`, with `omp`
+and `zcode` also re-exported at the overlay top level. The pins live in
+`packages/__pin/` — `package.nix` is the consumer view, `pins.json` the
+published state, `flake.nix` the refresh manifest — while the driver
+crate lives in `rust/pin-driver/`.
 Systems follow the upstream package sets. The manifest intentionally models
 one package source and a flat cache list; it does not assign packages to
 particular caches.
@@ -120,9 +121,9 @@ substituted again from those normal consumer caches.
 ## Commands
 
 ```console
-nix run .#tsuki.__pin -- refresh-pin
-nix run .#tsuki.__pin -- refresh-pin --no-push
-nix run .#tsuki.__pin -- verify-pin
+nix run .#tsuki.pin-driver -- refresh-pin
+nix run .#tsuki.pin-driver -- refresh-pin --no-push
+nix run .#tsuki.pin-driver -- verify-pin
 ```
 
 Everything under this directory must be tracked before the root flake can see

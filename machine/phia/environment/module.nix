@@ -2,18 +2,12 @@
 
 let
 
-    maintenance = pkgs.tsuki.maintenance;
+    phia_toolbox = pkgs.tsuki.phia_toolbox;
 
 in
 
 {
 
-    environment.systemPackages = [
-        maintenance
-    ];
-
-    passthru = {
-        inherit maintenance;
-    };
+    environment.systemPackages = [ phia_toolbox ];
 
 }

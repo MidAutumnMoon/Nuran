@@ -1,12 +1,14 @@
 # Consumer view of pins.json. This deliberately has no dependency on the
 # refresh manifest or its upstream substituters.
 {
-    system,
+    stdenv,
 }:
 
 let
 
     pins = builtins.fromJSON (builtins.readFile ./pins.json);
+
+    system = stdenv.hostPlatform.system;
 
     # A store path belongs to one system: never serve a neighbour's.
     packages =
