@@ -18,17 +18,20 @@ Prior art:
 - the substituter needed to fetch it;
 - the packages selected from that flake, for every system it provides.
 
-`refresh-pin` stages and updates that flake, then evaluates its single JSON
-`manifest` output. The output contains the fresh pin records and a JSON view of
-the upstream package selections. Refresh then:
+`refresh-pin` updates and evaluates that flake directly in the checkout. Both
+Nix files are tracked, so the Git-backed flake exposes them without a staging
+copy. Refresh then:
 
-1. builds every selected package output through its upstream substituter;
-2. pushes the realized closures to my Cachix;
-3. writes `flake.lock` and `pins.json` back only after those steps succeed;
-4. prints the pin diff to stdout for the update PR.
+1. updates `flake.lock` and evaluates the single JSON `manifest` output;
+2. builds every selected package output through its upstream substituter;
+3. pushes the realized closures to my Cachix;
+4. writes `pins.json` and prints the pin diff to stdout for the update PR.
 
-`--no-push` deliberately stops after fetching and still writes the generated
-files.
+If evaluation, fetching, or pushing fails, the updated lock remains as an
+ordinary Git working-tree change while `pins.json` stays untouched. Rerun to
+continue from that lock, or use Git to discard it.
+
+`--no-push` deliberately stops after fetching and still writes `pins.json`.
 
 ### Consumption
 
@@ -58,8 +61,8 @@ against the corresponding root-flake output attributes:
 <repo>#packages.<system>.<package>.<output>
 ```
 
-It does not stage or evaluate the refresh manifest, inspect `flake.lock`, name
-upstream substituters, or implement cache protocols. CI configures only the
+It does not evaluate the refresh manifest, inspect `flake.lock`, name upstream
+substituters, or implement cache protocols. CI configures only the
 normal consumer caches for this job; a missing pin therefore fails exactly as
 it would for a machine consuming the overlay.
 

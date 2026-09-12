@@ -35,21 +35,6 @@ pub fn pin_dir(dir: &Path) -> Result<PathBuf> {
     }
 }
 
-/// Copy the refresh manifest to a temporary flake. A checkout inside a
-/// dirty repository is not itself a valid flake source because untracked
-/// files are invisible.
-pub fn stage(pin_dir: &Path) -> Result<tempfile::TempDir> {
-    let stage = tempfile::TempDir::new().context("create staging dir")?;
-    for name in ["flake.nix", "flake.lock"] {
-        let from = pin_dir.join(name);
-        let bytes = std::fs::read(&from)
-            .context(format!("read {}", from.display()))?;
-        std::fs::write(stage.path().join(name), bytes)
-            .context(format!("stage {name}"))?;
-    }
-    Ok(stage)
-}
-
 /// Run to completion, capture both streams, fail with stderr in the
 /// report. For commands whose output is consumed programmatically.
 pub fn capture_checked(cmd: &mut Command, what: &str) -> Result<String> {

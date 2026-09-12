@@ -32,32 +32,30 @@ struct Upstream {
     packages: BTreeMap<String, Vec<String>>,
 }
 
-/// Refresh the pins as one producer-side transaction:
+/// Refresh the pins:
 ///
-/// 1. update and evaluate the staged manifest;
+/// 1. update the tracked lock and evaluate the manifest in its checkout;
 /// 2. fetch every selected output through its upstream cache;
 /// 3. push the resulting closures to my Cachix;
-/// 4. commit the new lock and pins.json.
+/// 4. publish the new pins.json.
 pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
-    let dir = nix::pin_dir(dir)?;
-    let old = pins::read(&dir.join("pins.json"))?;
-    let stage = nix::stage(&dir)?;
-    let flake = stage.path();
+    let flake = nix::pin_dir(dir)?;
+    let old = pins::read(&flake.join("pins.json"))?;
 
     nix::stream_checked(
         Command::new("nix")
             .args(["flake", "update"])
-            .current_dir(flake),
-        "nix flake update (staged pin manifest)",
+            .current_dir(&flake),
+        "nix flake update (pin manifest)",
     )?;
 
     let Manifest {
         pins: fresh,
         upstreams,
     } = serde_json::from_value(nix::eval_json(
-        flake,
+        &flake,
         "manifest",
-        "evaluate the staged pin manifest",
+        "evaluate the pin manifest",
     )?)
     .context("pin manifest: unexpected shape")?;
 
@@ -100,12 +98,8 @@ pub fn run(dir: &Path, cachix: &str, no_push: bool) -> Result<()> {
         push(cachix, &paths)?;
     }
 
-    // Write generated state only after fetch and push succeed.
-    let lock = std::fs::read(flake.join("flake.lock"))
-        .context("read staged flake.lock")?;
-    std::fs::write(dir.join("flake.lock"), lock)
-        .context("write back flake.lock")?;
-    pins::write(&dir.join("pins.json"), &fresh)?;
+    // Publish consumer state only after fetch and push succeed.
+    pins::write(&flake.join("pins.json"), &fresh)?;
 
     print!("{}", pins::diff_report(&old, &fresh));
     if no_push {
